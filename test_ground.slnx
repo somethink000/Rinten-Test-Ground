@@ -1,0 +1,17 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+  </Configurations>
+  <Project Path="Code/test_ground.csproj" />
+  <Project Path="Editor/test_ground.editor.csproj" />
+  <Folder Name="/Addons/">
+    <Project Path="../../Projects/Rinten-Engine/game/addons/base/code/Base Library.csproj" />
+  </Folder>
+  <Folder Name="/Tools/">
+    <Project Path="../../Projects/Rinten-Engine/game/addons/tools/Code/Base Editor Library.csproj" />
+    <Project Path="../../Projects/Rinten-Engine/game/editor/ActionGraph/Code/actiongraph.csproj" />
+    <Project Path="../../Projects/Rinten-Engine/game/editor/FxEditor/Code/fxeditor.csproj" />
+    <Project Path="../../Projects/Rinten-Engine/game/editor/MdlEditor/Code/mdleditor.csproj" />
+    <Project Path="../../Projects/Rinten-Engine/game/editor/MovieMaker/Code/moviemaker.csproj" />
+  </Folder>
+</Solution>

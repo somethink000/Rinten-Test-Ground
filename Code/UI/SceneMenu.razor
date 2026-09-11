@@ -1,0 +1,115 @@
+@using Rinten;
+@using Rinten.UI;
+@using System;
+@namespace TestGround
+@inherits PanelComponent
+
+<root>
+
+	<div class="sheet">
+
+		<div class="head">
+			<div class="titles">
+				<div class="title">@Heading</div>
+				<div class="subtitle">@Subheading</div>
+			</div>
+			<div class="count">@(Entries.Count()) / @(All.Count())</div>
+		</div>
+
+		<div class="filters">
+			<div class="chip @(filter is null ? "active" : "")" onclick=@( () => SetFilter( null ) )>All</div>
+			@foreach ( var category in Categories )
+			{
+				<div class="chip @(filter == category ? "active" : "")" onclick=@( () => SetFilter( category ) )>@category</div>
+			}
+		</div>
+
+		@if ( !All.Any() )
+		{
+			<div class="empty">
+				<div class="empty-title">Nothing in the list yet</div>
+				<div class="empty-body">Select this object and drop scenes onto the Scenes list in the inspector.</div>
+			</div>
+		}
+		else
+		{
+			<div class="cards">
+				@foreach ( var entry in Entries )
+				{
+					<div class="card @(entry.Scene is null ? "broken" : "")" onclick=@( () => Open( entry ) )>
+						<div class="card-tag @(entry.Category.ToString().ToLower())">@entry.Category</div>
+						<div class="card-name">@entry.DisplayName</div>
+						<div class="card-note">@Note( entry )</div>
+					</div>
+				}
+			</div>
+		}
+
+		<div class="foot">@FootNote</div>
+
+	</div>
+
+</root>
+
+@code
+{
+	/// <summary>What the menu calls itself.</summary>
+	[Property] public string Heading { get; set; } = "Rinten Test Ground";
+
+	/// <summary>The line under the heading.</summary>
+	[Property] public string Subheading { get; set; } = "Feature scenes, kept in a working state";
+
+	/// <summary>The line along the bottom.</summary>
+	[Property] public string FootNote { get; set; } = "Click a scene to open it. Q brings you back here.";
+
+	/// <summary>
+	/// The scenes on offer. Drop a .scene on each row's Scene slot, name it and
+	/// pick a category - the filter row is built from whatever categories are used.
+	/// </summary>
+	[Property] public List<SceneEntry> Scenes { get; set; } = new();
+
+	private SceneCategory? filter;
+
+	private IEnumerable<SceneEntry> All => Scenes ?? Enumerable.Empty<SceneEntry>();
+
+	private IEnumerable<SceneEntry> Entries => filter is null
+		? All
+		: All.Where( x => x.Category == filter.Value );
+
+	private IEnumerable<SceneCategory> Categories => All
+		.Select( x => x.Category )
+		.Distinct()
+		.OrderBy( x => (int)x );
+
+	private void SetFilter( SceneCategory? category )
+	{
+		filter = category;
+		StateHasChanged();
+	}
+
+	private static string Note( SceneEntry entry )
+	{
+		if ( entry.Scene is null ) return "No scene set on this row";
+		if ( !string.IsNullOrWhiteSpace( entry.Description ) ) return entry.Description;
+
+		return entry.Scene.ResourcePath;
+	}
+
+	private void Open( SceneEntry entry )
+	{
+		if ( entry.Scene is null )
+		{
+			Log.Warning( $"Scene menu: \"{entry.DisplayName}\" has no scene set" );
+			return;
+		}
+
+		SceneNavigator.Go( entry.Scene );
+	}
+
+	protected override void OnUpdate()
+	{
+		SceneNavigator.Flush( Scene );
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine( Heading, Subheading, FootNote, filter, All.Count() );
+}

@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Editor": {
+      "commandName": "Executable",
+      "executablePath": "../../../../Projects/Rinten-Engine/game/Rinten",
+      "commandLineArgs": "-project \u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/test_ground.rinproj\u0022"
+    }
+  }
+}

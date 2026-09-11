@@ -1,0 +1,358 @@
+{
+  "__guid": "b8267682-fc9d-4a10-a42e-ead098314174",
+  "GameObjects": [
+    {
+      "__guid": "e2c155af-3eaf-4d3d-8aee-4284f4811f69",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Player",
+      "Position": "-6,4.00000048,9.5",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Template.Player",
+          "__guid": "e1ba16b7-c2e7-4041-a566-aed9c1175f1e",
+          "__enabled": true,
+          "Flags": 0,
+          "Camera": {
+            "_type": "component",
+            "component_id": "67c671bb-bb97-4a25-bc2f-ba0cf6867c08",
+            "go": "6b6d2a86-318b-4ef6-a9aa-a6801858d5ff",
+            "component_type": "CameraComponent"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PitchClamp": 89,
+          "RunScale": 3,
+          "Speed": 5
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "6b6d2a86-318b-4ef6-a9aa-a6801858d5ff",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Camera",
+          "Position": "0,0,0",
+          "Rotation": "0,-0.382683396,0,0.923879504",
+          "Scale": "1,1,1",
+          "Tags": "maincamera",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.CameraComponent",
+              "__guid": "67c671bb-bb97-4a25-bc2f-ba0cf6867c08",
+              "__enabled": true,
+              "Flags": 0,
+              "BackgroundColor": "0.33333,0.46275,0.52157,1",
+              "ClearFlags": "All",
+              "EnablePostProcessing": true,
+              "FieldOfView": 60,
+              "FovAxis": "Horizontal",
+              "IsMainCamera": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Orthographic": false,
+              "OrthographicHeight": 10,
+              "PostProcessAnchor": null,
+              "Priority": 1,
+              "RenderExcludeTags": "",
+              "RenderTags": "",
+              "RenderTexture": null,
+              "TargetEye": "None",
+              "Viewport": "0,0,1,1",
+              "ZFar": 250,
+              "ZNear": 0.1
+            },
+            {
+              "__type": "Rinten.Bloom",
+              "__guid": "b9c92e22-0be0-4e56-91c2-081ceb62f298",
+              "__enabled": true,
+              "Flags": 0,
+              "__version": 1,
+              "Mode": "Additive",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Spread": 0.5,
+              "Strength": 1.1160896,
+              "Threshold": 1,
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "2bc8f61b-70ff-45ea-bc7f-d994bbae96a8",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Enviroment",
+      "Position": "-0.00357627869,3.2998507,0.136283398",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "daec8d4a-42ae-4b84-98b1-a253a2aeaebd",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Sun",
+          "Position": "0.00357627869,1.7001493,-0.136283398",
+          "Rotation": "-0.372788548,-0.776215434,-0.149966598,0.485827178",
+          "Scale": "1,1,1",
+          "Tags": "light_directional,light",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.DirectionalLight",
+              "__guid": "62256702-4084-48c0-b50d-d1c7d1f14543",
+              "__enabled": true,
+              "Flags": 0,
+              "__version": 1,
+              "Attenuation": 1,
+              "Brightness": 1,
+              "Contribution": "Diffuse, Specular, Transmissive",
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "0.91373,0.98039,1,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "ShadowAngle": 0.6,
+              "ShadowDetail": 64,
+              "Shadows": true,
+              "SkyColor": "0,0,0,0",
+              "SourceRadius": 0.05
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "2df0d911-5d85-4593-9d6e-853a3702eebd",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "2D Skybox",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "skybox",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.SkyBox2D",
+              "__guid": "e462cf0b-9fa1-4713-a2da-9fecf78ca8cf",
+              "__enabled": true,
+              "Flags": 0,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SkyIndirectLighting": true,
+              "SkyMaterial": "materials/skybox/procedural.mat",
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "8e762ccc-c740-476c-823a-372cfba3389c",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Map",
+      "Position": "-0.730511189,5.66610861,5.36854696",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "cb2ed6e5-554f-403c-99a5-23cac3048b9a",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Block",
+          "Position": "0.230511189,-5.66610861,-5.85854673",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "world",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.MeshComponent",
+              "__guid": "f264787f-333b-4255-bee6-ab28b99a90e1",
+              "__enabled": true,
+              "Flags": 0,
+              "ColliderFlags": 0,
+              "Collision": "Mesh",
+              "Elasticity": null,
+              "Friction": null,
+              "HideInGame": false,
+              "IsTrigger": false,
+              "Mesh": {
+                "Data": {
+                  "$blob": "8d702dad-9c25-8a24-b101-4478062db943"
+                },
+                "Materials": [
+                  "materials/default.mat"
+                ]
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "RenderType": "On",
+              "RollingResistance": null,
+              "SmoothingAngle": 40,
+              "Static": true,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "da5f1544-eb55-4690-89f5-8cf186b808f8",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "test",
+      "Position": "-14.9999981,1.5,-14.4128208",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ParticlePlayer",
+          "__guid": "ce702c0d-0b7a-414c-aeb5-f7895432f8e2",
+          "__enabled": true,
+          "Flags": 0,
+          "ColorOverrides": {},
+          "Definition": "test.fx",
+          "DestroyOnEnd": false,
+          "FloatOverrides": {},
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "VectorOverrides": {
+            "Vector1": "4.27007818,1,1"
+          }
+        }
+      ],
+      "Children": []
+    }
+  ],
+  "SceneProperties": {
+    "NetworkInterpolation": true,
+    "TimeScale": 1,
+    "WantsSystemScene": true,
+    "Metadata": {},
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": false,
+      "AgentHeight": 1.6,
+      "AgentRadius": 0.4,
+      "AgentStepSize": 0.45,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": "",
+      "DeferGeneration": false,
+      "CustomBounds": false
+    },
+    "GameObjectSystems": {
+      "Rinten.Clutter.ClutterGridSystem": {
+        "Storage": {
+          "$blob": "64db792e-5935-8fbc-8cfa-050cd49fa7fd",
+          "$refs": []
+        }
+      },
+      "Rinten.SelectionSetsSystem": {
+        "Data": {
+          "SelectionSets": []
+        }
+      }
+    }
+  },
+  "ResourceVersion": 4,
+  "Title": null,
+  "Description": null,
+  "__references": [],
+  "__version": 4
+}

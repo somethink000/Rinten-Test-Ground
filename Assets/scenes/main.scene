@@ -1,0 +1,180 @@
+{
+  "__guid": "ac34db31-e48e-589d-a8e0-d57ce199eb2b",
+  "GameObjects": [
+    {
+      "__guid": "ea933164-2bae-5a11-ad72-916775a4146d",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Camera",
+      "Position": "0,1,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "maincamera",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.CameraComponent",
+          "__guid": "5dfeae2e-c773-5a51-b3ee-9f1f0c0e2a6e",
+          "__enabled": true,
+          "Flags": 0,
+          "BackgroundColor": "0.043,0.047,0.058,1",
+          "ClearFlags": "All",
+          "EnablePostProcessing": true,
+          "FieldOfView": 70,
+          "FovAxis": "Horizontal",
+          "IsMainCamera": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Orthographic": false,
+          "OrthographicHeight": 10,
+          "PostProcessAnchor": null,
+          "Priority": 1,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
+          "RenderTexture": null,
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 400,
+          "ZNear": 0.05
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "fd1b10c0-cba9-5646-bd05-035498f16ffe",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "UI",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ScreenPanel",
+          "__guid": "299e7501-9585-5d97-ace2-6d139ea92edc",
+          "__enabled": true,
+          "Flags": 0,
+          "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": null,
+          "ZIndex": 100
+        },
+        {
+          "__type": "TestGround.SceneMenu",
+          "__guid": "b8c75219-c278-5a07-b6fe-5f1c968be439",
+          "__enabled": true,
+          "Flags": 0,
+          "FootNote": "Click a scene to open it. Q brings you back here.",
+          "Heading": "Rinten Test Ground",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Scenes": [
+            {
+              "Scene": "scenes/scene.scene",
+              "Title": "Scene",
+              "Category": "General",
+              "Description": "Plain sandbox - transforms, renderers, lights, a fly camera",
+              "DisplayName": "Scene"
+            },
+            {
+              "Scene": "scenes/collider.scene",
+              "Title": "Colliders & Triggers",
+              "Category": "Physics",
+              "Description": "Static and keyframed shapes, trigger volumes, enter/exit events",
+              "DisplayName": "Colliders & Triggers"
+            },
+            {
+              "Scene": "scenes/rigidbody.scene",
+              "Title": "Rigid Bodies",
+              "Category": "Physics",
+              "Description": "Joints, locks, damping, gravity scale and a paddle churning a box of debris",
+              "DisplayName": "Rigid Bodies"
+            },
+            {
+              "Scene": "scenes/minimal.scene",
+              "Title": "Minimal",
+              "Category": "Scratch",
+              "Description": "The template scene this project started from",
+              "DisplayName": "Minimal"
+            },
+            {
+              "Scene": "scenes/fx.scene",
+              "Title": "",
+              "Category": "General",
+              "Description": null,
+              "DisplayName": "fx"
+            }
+          ],
+          "Subheading": "Feature scenes, kept in a working state"
+        }
+      ],
+      "Children": []
+    }
+  ],
+  "SceneProperties": {
+    "NetworkInterpolation": true,
+    "TimeScale": 1,
+    "WantsSystemScene": true,
+    "Metadata": {},
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": false,
+      "AgentHeight": 1.6,
+      "AgentRadius": 0.4,
+      "AgentStepSize": 0.45,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": "",
+      "DeferGeneration": false,
+      "CustomBounds": false
+    },
+    "GameObjectSystems": {
+      "Rinten.Clutter.ClutterGridSystem": {
+        "Storage": {
+          "$blob": "64db792e-5935-8fbc-8cfa-050cd49fa7fd",
+          "$refs": []
+        }
+      },
+      "Rinten.SelectionSetsSystem": {
+        "Data": {
+          "SelectionSets": []
+        }
+      }
+    }
+  },
+  "ResourceVersion": 4,
+  "Title": null,
+  "Description": null,
+  "__references": [],
+  "__version": 4
+}

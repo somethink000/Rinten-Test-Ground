@@ -1,0 +1,36 @@
+/home/sampesss/Documents/Projects/Rinten-Engine/game/.vs/output/Base Library.staticwebassets.endpoints.json
+/home/sampesss/Documents/Projects/Rinten-Engine/game/.vs/output/Properties/launchSettings.json
+/home/sampesss/Documents/Projects/Rinten-Engine/game/.vs/output/test_ground.staticwebassets.endpoints.json
+/home/sampesss/Documents/Projects/Rinten-Engine/game/.vs/output/test_ground.xml
+/home/sampesss/Documents/Projects/Rinten-Engine/game/.vs/output/test_ground.deps.json
+/home/sampesss/Documents/Projects/Rinten-Engine/game/.vs/output/test_ground.dll
+/home/sampesss/Documents/Projects/Rinten-Engine/game/.vs/output/test_ground.pdb
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/EmbeddedAttribute.cs
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/ValidatableTypeAttribute.cs
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/test_ground.csproj.AssemblyReference.cache
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/rpswa.dswa.cache.json
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/test_ground.GeneratedMSBuildEditorConfig.editorconfig
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/test_ground.AssemblyInfoInputs.cache
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/test_ground.AssemblyInfo.cs
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/test_ground.csproj.CoreCompileInputs.cache
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/test_ground.sourcelink.json
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/rjimswa.dswa.cache.json
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/rjsmrazor.dswa.cache.json
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/rjsmcshtml.dswa.cache.json
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/scopedcss/bundle/test_ground.styles.css
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/staticwebassets.build.json
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/staticwebassets.build.json.cache
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/staticwebassets.development.json
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/staticwebassets.build.endpoints.json
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/swae.build.ex.cache
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/staticwebassets/msbuild.test_ground.Microsoft.AspNetCore.StaticWebAssets.props
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/staticwebassets/msbuild.test_ground.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/staticwebassets/msbuild.build.test_ground.props
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/staticwebassets/msbuild.buildMultiTargeting.test_ground.props
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/staticwebassets/msbuild.buildTransitive.test_ground.props
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/staticwebassets.pack.json
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/test_gro.81670031.Up2Date
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/test_ground.dll
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/refint/test_ground.dll
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/test_ground.pdb
+/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/ref/test_ground.dll

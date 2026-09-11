@@ -1,0 +1,18 @@
+{
+  "files.associations": {
+    "*.shader": "slang",
+    "*.hlsl": "slang"
+  },
+  "slang.additionalSearchPaths": [
+    "/home/sampesss/Documents/Projects/Rinten-Engine/game/core/shaders",
+    "/home/sampesss/Documents/Projects/Rinten-Engine/game/addons/base/Assets/shaders",
+    "/home/sampesss/Documents/Projects/Rinten-Engine/game/addons/tools/Assets/shaders",
+    "/home/sampesss/Documents/Projects/Rinten-Engine/game/editor/ActionGraph/Assets/shaders",
+    "/home/sampesss/Documents/Projects/Rinten-Engine/game/editor/MdlEditor/Assets/shaders",
+    "/home/sampesss/Documents/Projects/Rinten-Engine/game/editor/FxEditor/Assets/shaders",
+    "/home/sampesss/Documents/Projects/Rinten-Engine/game/editor/MovieMaker/Assets/shaders",
+    "/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets/shaders"
+  ],
+  "slang.predefinedMacros": [],
+  "slang.workspaceFlavor": "vfx"
+}

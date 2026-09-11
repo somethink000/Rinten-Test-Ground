@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<AssemblyName>test_ground.editor</AssemblyName>
+		<PackageId>test_ground.editor</PackageId>
+		<LangVersion>14</LangVersion>
+		<NoWarn>1701;1702;1591;</NoWarn>
+		<WarningsAsErrors></WarningsAsErrors>
+		<TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<DefineConstants>SANDBOX</DefineConstants>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<OutputPath>../../../Projects/Rinten-Engine/game/.vs/output/</OutputPath>
+		<DocumentationFile>../../../Projects/Rinten-Engine/game/.vs/output/test_ground.editor.xml</DocumentationFile>
+		<RootNamespace>Rinten</RootNamespace>
+		<Nullable>disable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Using Include="Rinten.Internal.GlobalToolsNamespace" Static="true" />
+		<Using Include="Rinten.Internal.GlobalGameNamespace" Static="true" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Analyzer Include="../../../Projects/Rinten-Engine/game/bin/managed/Rinten.CodeUpgrader.dll"/> 
+		<Analyzer Include="../../../Projects/Rinten-Engine/game/bin/managed/Rinten.Generator.dll"/> 
+		<Reference Include="../../../Projects/Rinten-Engine/game/bin/managed/Rinten.System.dll"/> 
+		<Reference Include="../../../Projects/Rinten-Engine/game/bin/managed/Rinten.Engine.dll"/> 
+		<Reference Include="../../../Projects/Rinten-Engine/game/bin/managed/Rinten.Filesystem.dll"/> 
+		<Reference Include="../../../Projects/Rinten-Engine/game/bin/managed/Rinten.Reflection.dll"/> 
+		<Reference Include="../../../Projects/Rinten-Engine/game/bin/managed/Rinten.Mounting.dll"/> 
+		<Reference Include="../../../Projects/Rinten-Engine/game/bin/managed/Microsoft.AspNetCore.Components.dll"/> 
+		<Reference Include="../../../Projects/Rinten-Engine/game/bin/managed/Rinten.AppSystem.dll"/> 
+		<Reference Include="../../../Projects/Rinten-Engine/game/bin/managed/Rinten.Tools.dll"/> 
+		<Reference Include="../../../Projects/Rinten-Engine/game/bin/managed/Rinten.Compiling.dll"/> 
+		<Reference Include="../../../Projects/Rinten-Engine/game/bin/managed/Microsoft.CodeAnalysis.dll"/> 
+		<Reference Include="../../../Projects/Rinten-Engine/game/bin/managed/Microsoft.CodeAnalysis.CSharp.dll"/> 
+		<Reference Include="../../../Projects/Rinten-Engine/game/bin/managed/Rinten.Bind.dll"/> 
+		<Reference Include="../../../Projects/Rinten-Engine/game/bin/managed/Facepunch.ActionGraphs.dll"/> 
+		<Reference Include="../../../Projects/Rinten-Engine/game/bin/managed/SkiaSharp.dll"/> 
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="../../../Projects/Rinten-Engine/game/editor/ActionGraph/Code/actiongraph.csproj" />
+		<ProjectReference Include="../../../Projects/Rinten-Engine/game/addons/tools/Code/Base Editor Library.csproj" />
+		<ProjectReference Include="../../../Projects/Rinten-Engine/game/editor/MovieMaker/Code/moviemaker.csproj" />
+		<ProjectReference Include="../Code/test_ground.csproj" />
+	</ItemGroup>
+
+</Project>

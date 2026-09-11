@@ -1,0 +1,33 @@
+@using Rinten;
+@using Rinten.UI;
+@namespace TestGround
+@inherits PanelComponent
+
+<root>
+
+	<div class="badge">
+		<div class="name">@DisplayName</div>
+		@if ( !string.IsNullOrWhiteSpace( Note ) )
+		{
+			<div class="note">@Note</div>
+		}
+		<div class="keys">
+			<div class="key">Q</div>
+			<div class="key-label">back to the menu</div>
+		</div>
+	</div>
+
+</root>
+
+@code
+{
+	/// <summary>What this scene is called. Falls back to the scene's own name.</summary>
+	[Property] public string Title { get; set; }
+
+	/// <summary>A line saying what the scene is testing.</summary>
+	[Property, TextArea] public string Note { get; set; }
+
+	private string DisplayName => string.IsNullOrWhiteSpace( Title ) ? Scene?.Name ?? "Scene" : Title;
+
+	protected override int BuildHash() => System.HashCode.Combine( DisplayName, Note );
+}
