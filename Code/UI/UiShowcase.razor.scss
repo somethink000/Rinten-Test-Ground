@@ -1,0 +1,305 @@
+// One screen of everything: the sheet in the middle, corners pinned to the
+// edges, and every state a rule can wear.
+
+uishowcase
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	font-family: Poppins;
+	color: #e6ebf3;
+	background-color: #0d1016;
+
+	// Pinned to the edges: what the Anchor block writes.
+	.corner
+	{
+		position: absolute;
+		padding: 6px 10px;
+		border-radius: 6px;
+		background-color: #ffffff0a;
+		border: 1px solid #ffffff10;
+		font-size: 11px;
+		color: #8b93a3;
+
+		&.top-left { top: 16px; left: 16px; }
+		&.top-right { top: 16px; right: 16px; }
+		&.bottom-left { bottom: 16px; left: 16px; }
+		&.bottom-right { bottom: 16px; right: 16px; }
+	}
+
+	.sheet
+	{
+		position: absolute;
+		left: 50%;
+		top: 48px;
+		width: 880px;
+		margin-left: -440px;
+		flex-direction: column;
+		padding: 28px 32px;
+		border-radius: 16px;
+		background-color: #16181dee;
+		border: 1px solid #ffffff14;
+		box-shadow: 0 24px 64px #00000088;
+	}
+
+	.head
+	{
+		flex-direction: column;
+		margin-bottom: 8px;
+
+		.title
+		{
+			font-size: 28px;
+			font-weight: 700;
+		}
+
+		.sub
+		{
+			font-size: 13px;
+			color: #8b93a3;
+		}
+
+		.dot
+		{
+			position: absolute;
+			right: 0;
+			top: 4px;
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			background-color: #6fb2ff;
+			animation: pulse 1.6s ease-in-out infinite;
+		}
+	}
+
+	.section
+	{
+		margin: 18px 0 8px 0;
+		font-size: 11px;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: #6c7482;
+	}
+
+	// ── type ────────────────────────────────────────────────────────────────
+
+	.type
+	{
+		flex-direction: column;
+
+		.display { font-size: 32px; font-weight: 700; }
+		.heading { font-size: 20px; font-weight: 600; }
+		.body { font-size: 14px; }
+		.small { font-size: 11px; color: #8b93a3; }
+		.mono { font-family: Roboto Mono; font-size: 13px; color: #9cdcfe; }
+	}
+
+	// ── buttons, chips, switch ──────────────────────────────────────────────
+
+	.row
+	{
+		flex-direction: row;
+		align-items: center;
+		flex-wrap: wrap;
+
+		.spacer { flex-grow: 1; }
+	}
+
+	.button
+	{
+		padding: 8px 18px;
+		margin-right: 8px;
+		border-radius: 8px;
+		background-color: #ffffff12;
+		border: 1px solid #ffffff18;
+		font-size: 13px;
+		cursor: pointer;
+		transition: all 0.12s ease-out;
+
+		&:hover { background-color: #ffffff22; transform: translateY( -1px ); }
+		&:active { background-color: #ffffff30; transform: translateY( 1px ); }
+
+		&.primary { background-color: #6fb2ff; border-color: #6fb2ff; color: #0d1016; }
+		&.primary:hover { background-color: #8cc2ff; }
+		&.ghost { background-color: transparent; }
+		&.danger { background-color: #ff6b6b22; border-color: #ff6b6b66; color: #ff8a8a; }
+		&.danger:hover { background-color: #ff6b6b44; }
+		&.disabled { opacity: 0.35; pointer-events: none; }
+	}
+
+	.pressed
+	{
+		margin-left: 8px;
+		font-size: 12px;
+		color: #8b93a3;
+	}
+
+	.chip
+	{
+		padding: 5px 12px;
+		margin-right: 6px;
+		border-radius: 999px;
+		background-color: #ffffff0a;
+		border: 1px solid #ffffff10;
+		font-size: 12px;
+		color: #b7bfcc;
+		cursor: pointer;
+		transition: all 0.1s ease-out;
+
+		&:hover { background-color: #ffffff16; color: #e6ebf3; }
+		&.active { background-color: #6fb2ff; border-color: #6fb2ff; color: #0d1016; }
+	}
+
+	.switch
+	{
+		position: relative;
+		width: 44px;
+		height: 24px;
+		border-radius: 12px;
+		background-color: #ffffff18;
+		cursor: pointer;
+		transition: background-color 0.15s ease-out;
+
+		.knob
+		{
+			position: absolute;
+			left: 3px;
+			top: 3px;
+			width: 18px;
+			height: 18px;
+			border-radius: 50%;
+			background-color: #e6ebf3;
+			transition: left 0.15s ease-out;
+		}
+
+		&.on { background-color: #6fb2ff; }
+		&.on .knob { left: 23px; background-color: #0d1016; }
+	}
+
+	.switch-label
+	{
+		margin-left: 10px;
+		font-size: 12px;
+		color: #8b93a3;
+	}
+
+	// ── progress ────────────────────────────────────────────────────────────
+
+	.bar
+	{
+		height: 10px;
+		border-radius: 5px;
+		background-color: #ffffff12;
+		overflow: hidden;
+
+		.fill
+		{
+			height: 100%;
+			border-radius: 5px;
+			background-color: #6fb2ff;
+			transition: width 0.3s ease-out;
+		}
+	}
+
+	// ── cards ───────────────────────────────────────────────────────────────
+
+	.grid
+	{
+		display: grid;
+		grid-template-columns: repeat( 4, 1fr );
+		gap: 10px;
+	}
+
+	.card
+	{
+		flex-direction: column;
+		min-width: 0;
+		padding: 12px 14px;
+		border-radius: 10px;
+		background-color: #ffffff08;
+		border: 1px solid #ffffff10;
+		transition: all 0.12s ease-out;
+
+		&:hover { background-color: #ffffff12; border-color: #ffffff30; }
+
+		// A grid track is measured at its least, so the words say they do not wrap.
+		.tag, .name, .note { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+		.tag { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #6c7482; }
+		.name { font-size: 15px; font-weight: 600; margin-top: 2px; }
+		.note { font-size: 12px; color: #8b93a3; margin-top: 2px; }
+
+		&.tool .tag { color: #6fb2ff; }
+		&.weapon .tag { color: #ff8a8a; }
+		&.note .tag { color: #f0c674; }
+	}
+
+	// ── motion ──────────────────────────────────────────────────────────────
+
+	.spinner
+	{
+		width: 22px;
+		height: 22px;
+		margin-right: 16px;
+		border-radius: 50%;
+		border: 3px solid #ffffff18;
+		border-top-color: #6fb2ff;
+		animation: spin 1s linear infinite;
+	}
+
+	.pulse
+	{
+		width: 22px;
+		height: 22px;
+		margin-right: 16px;
+		border-radius: 50%;
+		background-color: #f0c674;
+		animation: pulse 1.6s ease-in-out infinite;
+	}
+
+	.slide
+	{
+		width: 22px;
+		height: 22px;
+		margin-right: 16px;
+		border-radius: 6px;
+		background-color: #ff8a8a;
+		animation: slide 1.2s ease-in-out infinite alternate;
+	}
+
+	.note
+	{
+		font-size: 12px;
+		color: #8b93a3;
+	}
+
+	// ── compact ─────────────────────────────────────────────────────────────
+
+	&.compact
+	{
+		.sheet { padding: 16px 20px; }
+		.section { margin: 10px 0 4px 0; }
+		.button { padding: 5px 12px; }
+	}
+}
+
+@keyframes spin
+{
+	from { transform: rotate( 0deg ); }
+	to { transform: rotate( 360deg ); }
+}
+
+@keyframes pulse
+{
+	from { transform: scale( 1 ); opacity: 1; }
+	50% { transform: scale( 1.35 ); opacity: 0.55; }
+	to { transform: scale( 1 ); opacity: 1; }
+}
+
+@keyframes slide
+{
+	from { transform: translateX( 0px ); }
+	to { transform: translateX( 40px ); }
+}

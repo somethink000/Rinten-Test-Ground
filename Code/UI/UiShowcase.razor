@@ -1,0 +1,134 @@
+@using Rinten;
+@using Rinten.UI;
+@using System;
+@using System.Collections.Generic;
+@namespace TestGround
+@inherits PanelComponent
+
+@* Everything the UI editor can show and touch, on one screen: type, buttons
+   and their states, chips, a switch and a bar bound to data, a grid of cards
+   from a list, keyframes, anchored corners. Open it in the UI Editor: right
+   click this file in the asset browser. *@
+
+<root class="@(Compact ? "compact" : "")">
+
+	<div class="corner top-left">top-left</div>
+	<div class="corner top-right">top-right</div>
+	<div class="corner bottom-left">bottom-left</div>
+	<div class="corner bottom-right">bottom-right</div>
+
+	<div class="sheet">
+
+		<div class="head">
+			<div class="title">@Title</div>
+			<div class="sub">@Subtitle</div>
+			<div class="dot"></div>
+		</div>
+
+		<div class="section">Type</div>
+		<div class="type">
+			<div class="display">Display 32</div>
+			<div class="heading">Heading 20</div>
+			<div class="body">Body 14 - the quick brown fox jumps over the lazy dog</div>
+			<div class="small">Small 11 - captions and footnotes</div>
+			<div class="mono">mono 13 - const int answer = 42;</div>
+		</div>
+
+		<div class="section">Buttons</div>
+		<div class="row">
+			<div class="button primary" onclick=@( () => Press( "primary" ) )>Primary</div>
+			<div class="button" onclick=@( () => Press( "plain" ) )>Plain</div>
+			<div class="button ghost" onclick=@( () => Press( "ghost" ) )>Ghost</div>
+			<div class="button danger" onclick=@( () => Press( "danger" ) )>Danger</div>
+			<div class="button disabled">Disabled</div>
+			<div class="pressed">@LastPressed</div>
+		</div>
+
+		<div class="section">Chips and switch</div>
+		<div class="row">
+			@foreach ( var kind in Kinds )
+			{
+				<div class="chip @(kind == Kind ? "active" : "")" onclick=@( () => Kind = kind )>@kind</div>
+			}
+			<div class="spacer"></div>
+			<div class="switch @(Enabled ? "on" : "")" onclick=@( () => Enabled = !Enabled )>
+				<div class="knob"></div>
+			</div>
+			<div class="switch-label">@(Enabled ? "enabled" : "disabled")</div>
+		</div>
+
+		<div class="section">Progress @((int)( Progress * 100 ))%</div>
+		<div class="bar">
+			<div class="fill" style="width: @( Progress * 100 )%"></div>
+		</div>
+
+		<div class="section">Cards from data - @Items.Count</div>
+		<div class="grid">
+			@foreach ( var item in Items )
+			{
+				<div class="card @(item.Kind.ToString().ToLower())">
+					<div class="tag">@item.Kind</div>
+					<div class="name">@item.Name</div>
+					<div class="note">@item.Note</div>
+				</div>
+			}
+		</div>
+
+		<div class="section">Motion</div>
+		<div class="row">
+			<div class="spinner"></div>
+			<div class="pulse"></div>
+			<div class="slide"></div>
+			<div class="note">spin, pulse and slide are @@keyframes; hover on a button is a transition</div>
+		</div>
+
+	</div>
+
+</root>
+
+@code
+{
+	/// <summary>What a card is: a name, a line, and which kind of thing it is.</summary>
+	public enum ItemKind { Tool, Weapon, Note }
+
+	public record ShowcaseItem( string Name, string Note, ItemKind Kind );
+
+	/// <summary>Makes cards for the UI editor to lay the grid out with, when nothing in a scene gives any.</summary>
+	public sealed class ItemSamples : IDesignDataFactory
+	{
+		static readonly string[] Names = { "Wrench", "Lantern", "Compass", "Sword", "Map", "Key" };
+
+		public object Make( int index ) => new ShowcaseItem( Names[index % Names.Length], $"Sample {index + 1}", (ItemKind)( index % 3 ) );
+	}
+
+	[Property] public string Title { get; set; } = "UI Showcase";
+	[Property] public string Subtitle { get; set; } = "type, states, data, motion";
+
+	/// <summary>Tighter spacing throughout.</summary>
+	[Property] public bool Compact { get; set; }
+
+	[Property] public bool Enabled { get; set; } = true;
+
+	[Property, Range( 0, 1 )] public float Progress { get; set; } = 0.62f;
+
+	[Property] public ItemKind Kind { get; set; } = ItemKind.Tool;
+
+	[Property, DesignData( typeof( ItemSamples ) )] public List<ShowcaseItem> Items { get; set; } = new()
+	{
+		new( "Wrench", "Turns things", ItemKind.Tool ),
+		new( "Lantern", "Lights the way", ItemKind.Tool ),
+		new( "Sword", "Sharp on one side", ItemKind.Weapon ),
+		new( "Map", "Where you are", ItemKind.Note ),
+	};
+
+	string LastPressed { get; set; } = "nothing pressed yet";
+
+	static readonly ItemKind[] Kinds = { ItemKind.Tool, ItemKind.Weapon, ItemKind.Note };
+
+	void Press( string what )
+	{
+		LastPressed = $"{what} pressed";
+	}
+
+	protected override int BuildHash() => HashCode.Combine( Title, Subtitle, Compact, Enabled, Progress, Kind, Items?.Count ?? 0, LastPressed );
+}

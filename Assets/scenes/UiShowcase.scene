@@ -1,12 +1,12 @@
 {
-  "__guid": "ac34db31-e48e-589d-a8e0-d57ce199eb2b",
+  "__guid": "6cbdea32-e453-40d4-aae4-dfd852db3315",
   "GameObjects": [
     {
-      "__guid": "ea933164-2bae-5a11-ad72-916775a4146d",
+      "__guid": "a5ab9f15-2b02-48e1-b504-05dbe5bab97b",
       "__version": 2,
       "Flags": 0,
       "Name": "Camera",
-      "Position": "0,1,0",
+      "Position": "0,0,0",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "maincamera",
@@ -19,13 +19,13 @@
       "Components": [
         {
           "__type": "Rinten.CameraComponent",
-          "__guid": "5dfeae2e-c773-5a51-b3ee-9f1f0c0e2a6e",
+          "__guid": "49150e97-e85a-4d43-80b0-83a4cd6b5f9b",
           "__enabled": true,
           "Flags": 0,
-          "BackgroundColor": "0.043,0.047,0.058,1",
+          "BackgroundColor": "0.05,0.06,0.09,1",
           "ClearFlags": "All",
           "EnablePostProcessing": true,
-          "FieldOfView": 70,
+          "FieldOfView": 75,
           "FovAxis": "Horizontal",
           "IsMainCamera": true,
           "OnComponentDestroy": null,
@@ -43,17 +43,17 @@
           "RenderTexture": null,
           "TargetEye": "None",
           "Viewport": "0,0,1,1",
-          "ZFar": 400,
+          "ZFar": 600,
           "ZNear": 0.05
         }
       ],
       "Children": []
     },
     {
-      "__guid": "fd1b10c0-cba9-5646-bd05-035498f16ffe",
+      "__guid": "7bbdc8c4-0477-4fde-b16c-e67e82c7967a",
       "__version": 2,
       "Flags": 0,
-      "Name": "UI",
+      "Name": "HUD",
       "Position": "0,0,0",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
@@ -67,7 +67,7 @@
       "Components": [
         {
           "__type": "Rinten.ScreenPanel",
-          "__guid": "299e7501-9585-5d97-ace2-6d139ea92edc",
+          "__guid": "2e28ee80-f6e0-4765-96c4-24e1a89f72d9",
           "__enabled": true,
           "Flags": 0,
           "AutoScreenScale": true,
@@ -84,70 +84,36 @@
           "ZIndex": 100
         },
         {
-          "__type": "TestGround.SceneMenu",
-          "__guid": "b8c75219-c278-5a07-b6fe-5f1c968be439",
+          "__type": "TestGround.UiShowcase",
+          "__guid": "8dcc65a5-bfdd-4c05-a318-8c404fb61e5a",
           "__enabled": true,
           "Flags": 0,
-          "FootNote": "Click a scene to open it. Q brings you back here.",
-          "Heading": "Rinten Test Ground",
+          "Compact": false,
+          "Enabled": true,
+          "Kind": "Tool",
+          "Progress": 0.62,
+          "Subtitle": "type, states, data, motion",
+          "Title": "UI Showcase",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Scenes": [
-            {
-              "Scene": "scenes/scene.scene",
-              "Title": "Scene",
-              "Category": "General",
-              "Description": "Plain sandbox - transforms, renderers, lights, a fly camera",
-              "DisplayName": "Scene"
-            },
-            {
-              "Scene": "scenes/collider.scene",
-              "Title": "Colliders & Triggers",
-              "Category": "Physics",
-              "Description": "Static and keyframed shapes, trigger volumes, enter/exit events",
-              "DisplayName": "Colliders & Triggers"
-            },
-            {
-              "Scene": "scenes/rigidbody.scene",
-              "Title": "Rigid Bodies",
-              "Category": "Physics",
-              "Description": "Joints, locks, damping, gravity scale and a paddle churning a box of debris",
-              "DisplayName": "Rigid Bodies"
-            },
-            {
-              "Scene": "scenes/minimal.scene",
-              "Title": "Minimal",
-              "Category": "Scratch",
-              "Description": "The template scene this project started from",
-              "DisplayName": "Minimal"
-            },
-            {
-              "Scene": "scenes/fx.scene",
-              "Title": "Particles",
-              "Category": "FX",
-              "Description": "Six rows of effects from the FX editor: basics, weather, magic, shapes and slots, meshes, anchors and events",
-              "DisplayName": "Particles"
-            },
-            {
-              "Scene": "scenes/solar.scene",
-              "Title": "Solar System",
-              "Category": "FX",
-              "Description": "The sun, nine worlds with moons and rings, two belts and a comet - every one an effect, with planet and sun shaders",
-              "DisplayName": "Solar System"
-            },
-            {
-              "Scene": "scenes/uishowcase.scene",
-              "Title": "UI Showcase",
-              "Category": "Interface",
-              "Description": "One screen of everything the UI editor handles: type, buttons and states, chips, a switch and a bar from data, cards from a list, keyframes, anchored corners",
-              "DisplayName": "UI Showcase"
-            }
-          ],
-          "Subheading": "Feature scenes, kept in a working state"
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "TestGround.ReturnToMenu",
+          "__guid": "92da8ea7-6504-42fa-adfc-929f2f64945c",
+          "__enabled": true,
+          "Flags": 0,
+          "Key": "Q",
+          "MenuScene": null,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": []
