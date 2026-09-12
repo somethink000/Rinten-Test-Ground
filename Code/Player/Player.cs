@@ -18,6 +18,12 @@ public sealed partial class Player : Component
 	
 	private Angles look;
 
+	/// <summary>Held still: no looking, no moving - while a sheet has the mouse or something else has the camera.</summary>
+	public bool Frozen { get; set; }
+
+	/// <summary>Face this way, as if the mouse had been dragged there - so a hand-placed camera does not snap back.</summary>
+	public void Face( Rotation rotation ) => look = rotation.Angles();
+
 
 
 	protected override void OnStart()
@@ -29,7 +35,8 @@ public sealed partial class Player : Component
 
 	protected override void OnUpdate()
 	{
-		
+		if ( Frozen ) return;
+
 		look += Input.AnalogLook;
 		look.pitch = look.pitch.Clamp( -PitchClamp, PitchClamp );
 		look.roll = 0.0f;

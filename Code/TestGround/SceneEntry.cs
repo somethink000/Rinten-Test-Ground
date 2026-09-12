@@ -9,6 +9,7 @@ public enum SceneCategory
 	[Icon( "science" )] General,
 	[Icon( "sports_volleyball" )] Physics,
 	[Icon( "palette" )] Rendering,
+	[Icon( "auto_awesome" )] FX,
 	[Icon( "widgets" )] Interface,
 	[Icon( "volume_up" )] Audio,
 	[Icon( "hub" )] Networking,

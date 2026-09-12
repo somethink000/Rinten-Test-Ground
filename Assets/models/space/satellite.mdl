@@ -1,0 +1,75 @@
+{
+  "Steps": [],
+  "Meshes": [
+    {
+      "Name": "",
+      "File": "models/space/satellite.fbx",
+      "Scale": 1,
+      "Include": [
+        "Part_02",
+        "Part_03",
+        "Part_04",
+        "Part_05",
+        "Part_06",
+        "Part_07",
+        "Part_08",
+        "Part_09",
+        "Part_10",
+        "Part_11",
+        "Part_12",
+        "Part_13",
+        "Part_14",
+        "Part_15",
+        "Part_16",
+        "Part_01"
+      ],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1,
+  "Material": "materials/solar/craft.mat",
+  "Materials": [
+    "materials/solar/craft.mat"
+  ],
+  "MaterialRemaps": [],
+  "Clips": [],
+  "Transform": {
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0",
+    "Scale": "1,1,1",
+    "IsIdentity": true
+  },
+  "Mirror": {
+    "Enabled": false,
+    "Axis": "X",
+    "FlipWinding": true,
+    "RemapLeftRight": true
+  },
+  "Joints": [],
+  "AnimationGraph": "",
+  "LookAtChains": [],
+  "IkChains": [],
+  "WeightLists": [],
+  "Morphs": [],
+  "BodyGroups": [],
+  "Folders": [],
+  "CoarseMeshes": [],
+  "MaterialGroups": [],
+  "Hulls": [],
+  "Surface": "",
+  "Mass": 0,
+  "OverrideBounds": false,
+  "Bounds": {
+    "Mins": "-16,-16,-16",
+    "Maxs": "16,16,16"
+  },
+  "Attachments": [],
+  "Bones": [],
+  "Constraints": [],
+  "__references": [],
+  "__version": 1
+}

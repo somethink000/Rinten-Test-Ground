@@ -982,6 +982,19 @@
                 "ParameterName": null,
                 "IsBound": false
               },
+              "AsVector": false,
+              "Vector": {
+                "UseParameter": false,
+                "Value": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "ParameterName": null,
+                "Multiplier": 1.0,
+                "ScaleParameterName": null,
+                "IsBound": false
+              },
               "Min": 0,
               "Max": 1
             },
@@ -1001,6 +1014,19 @@
                 "UseParameter": false,
                 "Value": "1,1,1,1",
                 "ParameterName": null,
+                "IsBound": false
+              },
+              "AsVector": false,
+              "Vector": {
+                "UseParameter": false,
+                "Value": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "ParameterName": null,
+                "Multiplier": 1.0,
+                "ScaleParameterName": null,
                 "IsBound": false
               },
               "Min": 0,
@@ -1024,6 +1050,19 @@
                 "ParameterName": null,
                 "IsBound": false
               },
+              "AsVector": false,
+              "Vector": {
+                "UseParameter": false,
+                "Value": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "ParameterName": null,
+                "Multiplier": 1.0,
+                "ScaleParameterName": null,
+                "IsBound": false
+              },
               "Min": 0,
               "Max": 1
             },
@@ -1043,6 +1082,19 @@
                 "UseParameter": false,
                 "Value": "1,1,1,1",
                 "ParameterName": null,
+                "IsBound": false
+              },
+              "AsVector": false,
+              "Vector": {
+                "UseParameter": false,
+                "Value": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "ParameterName": null,
+                "Multiplier": 1.0,
+                "ScaleParameterName": null,
                 "IsBound": false
               },
               "Min": 0,

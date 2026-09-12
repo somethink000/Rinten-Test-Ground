@@ -128,9 +128,16 @@
             {
               "Scene": "scenes/fx.scene",
               "Title": "Particles",
-              "Category": "Rendering",
-              "Description": "Fire, explosion, gunshot, magic, water, snow and a portal - effects from the particle editor, each with parameters",
+              "Category": "FX",
+              "Description": "Six rows of effects from the FX editor: basics, weather, magic, shapes and slots, meshes, anchors and events",
               "DisplayName": "Particles"
+            },
+            {
+              "Scene": "scenes/solar.scene",
+              "Title": "Solar System",
+              "Category": "FX",
+              "Description": "The sun, nine worlds with moons and rings, two belts and a comet - every one an effect, with planet and sun shaders",
+              "DisplayName": "Solar System"
             }
           ],
           "Subheading": "Feature scenes, kept in a working state"

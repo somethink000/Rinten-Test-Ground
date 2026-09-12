@@ -233,7 +233,7 @@
               "Type": "Curve",
               "Evaluation": "Life",
               "CurveA": {
-                "rangey": "0,0.08",
+                "rangey": "0,0.035",
                 "frames": [
                   {
                     "x": 0,
@@ -252,7 +252,7 @@
                 ]
               },
               "CurveB": {
-                "rangey": "0,0.08",
+                "rangey": "0,0.035",
                 "frames": [
                   {
                     "x": 0,

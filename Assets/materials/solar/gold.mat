@@ -1,0 +1,27 @@
+{
+  "Shader": "shaders/complex.shader",
+  "Features": {},
+  "Numbers": {
+    "g_vColourA": "0.95,0.75,0.3,1",
+    "g_vColourB": "0.6,0.42,0.15,1",
+    "g_flNoiseScale": "2,0,0,0",
+    "g_flNoiseOctaves": "2,0,0,0",
+    "g_vScrollDirection": "0,0,0,0"
+  },
+  "Textures": {},
+  "Tint": "1,1,1,1",
+  "ColorMap": "materials/default/white.png",
+  "Normal": "materials/default/normal.png",
+  "RoughMetalAmbient": "materials/default/roughmetal.png",
+  "Emission": "materials/default/colour/ffffffff.png",
+  "Roughness": 0.5,
+  "Metalness": 0,
+  "EmissionStrength": 0.45,
+  "PhysicsSurface": "",
+  "TwoSided": true,
+  "Filtering": "Smooth",
+  "Blend": "Opaque",
+  "AlphaCutoff": 0.5,
+  "__references": [],
+  "__version": 0
+}

@@ -1,0 +1,28 @@
+{
+  "Shader": "shaders/effects/atmosphere.shader",
+  "Features": {},
+  "Numbers": {
+    "g_vColourA": "0.95,0.8,0.45,1",
+    "g_vColourB": "1.0,0.6,0.2,1",
+    "g_flDensity": "1.6,0,0,0",
+    "g_flFalloff": "3.0,0,0,0",
+    "g_flWrap": "0.35,0,0,0",
+    "g_vSunPosition": "0,3,0,1"
+  },
+  "Textures": {},
+  "Tint": "1,1,1,1",
+  "ColorMap": "materials/default/white.png",
+  "Normal": "materials/default/normal.png",
+  "RoughMetalAmbient": "materials/default/roughmetal.png",
+  "Emission": "materials/default/black.png",
+  "Roughness": 0.5,
+  "Metalness": 0,
+  "EmissionStrength": 0,
+  "PhysicsSurface": "",
+  "TwoSided": false,
+  "Filtering": "Smooth",
+  "Blend": "Translucent",
+  "AlphaCutoff": 0.5,
+  "__references": [],
+  "__version": 0
+}

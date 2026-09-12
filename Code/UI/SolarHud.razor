@@ -1,0 +1,250 @@
+@using Rinten;
+@using Rinten.UI;
+@using System;
+@using System.Linq;
+@using System.Collections.Generic;
+@namespace TestGround
+@inherits PanelComponent
+
+<root class="@(Open ? "open" : "")">
+
+	<div class="badge">
+		<div class="name">Solar System</div>
+		<div class="note">@(Clock?.DateText ?? "") &middot; @SpeedText</div>
+		<div class="keys">
+			<div class="key">T</div><div class="key-label">settings</div>
+			<div class="key">[ ]</div><div class="key-label">time</div>
+			<div class="key">Q</div><div class="key-label">menu</div>
+		</div>
+	</div>
+
+	@if ( Open )
+	{
+		<div class="sheet">
+			<div class="head">
+				<div class="title">Settings</div>
+				<div class="sub">what runs, how fast</div>
+			</div>
+
+			<div class="section">Time</div>
+			<div class="row">
+				@foreach ( var speed in Speeds )
+				{
+					<div class="chip @(Math.Abs( ( Clock?.Scale ?? 1 ) - speed ) < 0.001f ? "active" : "")" onclick=@( () => SetSpeed( speed ) )>@SpeedLabel( speed )</div>
+				}
+			</div>
+
+			<div class="section">Layers</div>
+			<div class="toggles">
+				@foreach ( var layer in Layers )
+				{
+					<div class="toggle @(IsOn( layer.Object ) ? "on" : "")" onclick=@( () => Toggle( layer.Object ) )>
+						<div class="dot"></div>
+						<div class="label">@layer.Title</div>
+						<div class="hint">@layer.Key</div>
+					</div>
+				}
+			</div>
+
+			<div class="section">Focus</div>
+			<TextEntry class="search" Placeholder="search a world, a moon, a craft" OnTextEdited=@OnSearch />
+			<div class="targets">
+				@foreach ( var target in Targets.Where( Matches ).Take( 14 ) )
+				{
+					<div class="target @(Focused == target.Id ? "active" : "")" onclick=@( () => Focus( target ) )>
+						<div class="label">@target.Name</div>
+						<div class="hint">@target.Parent</div>
+					</div>
+				}
+			</div>
+			@if ( Focused is not null )
+			{
+				<div class="row"><div class="chip" onclick=@Release>release focus (move to release)</div></div>
+			}
+
+			<div class="foot">Esc or T closes</div>
+		</div>
+	}
+
+</root>
+
+@code
+{
+	public bool Open { get; private set; }
+
+	/// <summary>The clock this drives; found on the scene when not set.</summary>
+	[Property] public SolarClock Clock { get; set; }
+
+	/// <summary>The player to freeze while the sheet is up, so the mouse is the sheet's.</summary>
+	[Property] public GameObject Player { get; set; }
+
+	readonly record struct Layer( string Title, string Object, string Key );
+
+	static readonly Layer[] Layers =
+	{
+		new( "Orbit lines", "Orbits", "1" ),
+		new( "Asteroid and Kuiper belts", "Belts", "2" ),
+		new( "Probes", "Probes", "3" ),
+		new( "Stars and the Milky Way", "Stars", "4" ),
+		new( "Planets", "Planets", "5" ),
+	};
+
+	static readonly float[] Speeds = { 0.0f, 0.25f, 1.0f, 5.0f, 25.0f, 100.0f };
+
+	/// <summary>Something the camera can be put in front of: a world (its player's Planet anchor), or a moon or craft the world's effect publishes.</summary>
+	public readonly record struct Target( string Id, string Name, string Parent, ParticlePlayer Player, string Anchor );
+
+	public string Search { get; set; } = "";
+
+	void OnSearch( string text ) => Search = text ?? "";
+	public string Focused { get; private set; }
+	Target _focused;
+
+	bool Matches( Target t ) => string.IsNullOrWhiteSpace( Search ) || t.Name.Contains( Search, StringComparison.OrdinalIgnoreCase ) || t.Parent.Contains( Search, StringComparison.OrdinalIgnoreCase );
+
+	/// <summary>Every world, moon and craft in the scene, read off the players' anchors.</summary>
+	IEnumerable<Target> Targets
+	{
+		get
+		{
+			foreach ( var player in Scene.GetAllComponents<ParticlePlayer>() )
+			{
+				if ( player.Definition is not { } definition ) continue;
+				if ( !player.GameObject.IsValid() || !player.GameObject.Enabled ) continue;
+
+				// An effect an event spawned is named after its file: "sol_apollo (event)" reads as Apollo.
+				var world = player.GameObject.Name;
+				if ( world.EndsWith( " (event)" ) )
+				{
+					world = world[..^8];
+					if ( world.StartsWith( "sol_" ) ) world = world[4..];
+					world = char.ToUpperInvariant( world[0] ) + world[1..];
+				}
+
+				foreach ( var anchor in definition.Anchors )
+				{
+					var name = anchor.Name == "Planet" ? world : anchor.Name == "Probe" || anchor.Name == "Comet" ? world : anchor.Name;
+					var parent = anchor.Name == "Planet" || anchor.Name == "Probe" || anchor.Name == "Comet" ? "" : world;
+
+					yield return new Target( $"{world}/{anchor.Name}", name, parent, player, anchor.Name );
+				}
+			}
+		}
+	}
+
+	void Focus( Target target )
+	{
+		_focused = target;
+		Focused = target.Id;
+		SetOpen( false );
+		Freeze( true );
+	}
+
+	void Release()
+	{
+		Focused = null;
+		Freeze( Open );
+	}
+
+	void Freeze( bool frozen )
+	{
+		var player = Player?.Components.Get<Template.Player>();
+		if ( player.IsValid() ) player.Frozen = frozen;
+	}
+
+	/// <summary>Camera in front of the target, on the sun's side, at a distance that fits it; the target moves, the camera goes with it.</summary>
+	void HoldFocus()
+	{
+		if ( Focused is null || !_focused.Player.IsValid() || !Player.IsValid() ) return;
+
+		var tx = _focused.Player.Anchor( _focused.Anchor );
+		var size = System.MathF.Max( tx.Scale.x, 0.05f );
+		var sun = Scene.Children.FirstOrDefault( go => go.Name == "Sun" )?.WorldPosition ?? Vector3.Zero;
+		var fromSun = ( tx.Position - sun );
+		var side = fromSun.Length < 0.01f ? Vector3.Forward : fromSun.Normal;
+
+		// A little off the sun line so the lit side shows in three-quarter, and above the plane.
+		var at = tx.Position - side * size * 3.2f + Vector3.Cross( side, Vector3.Up ) * size * 1.6f + Vector3.Up * size * 0.9f;
+
+		// Something small standing on a world - a rover, a lander - is looked at
+		// from above its patch of ground, or the camera ends up inside the world.
+		var centre = _focused.Player.Definition.Anchors.Any( a => a.Name == "Planet" ) ? _focused.Player.Anchor( "Planet" ).Position : _focused.Player.WorldPosition;
+		var up = tx.Position - centre;
+
+		if ( _focused.Parent != "" && size <= 0.1f && up.Length > 0.01f && up.Length < 0.6f )
+		{
+			var normal = up.Normal;
+			var across = Vector3.Cross( normal, Vector3.Up );
+			if ( across.Length < 0.01f ) across = Vector3.Cross( normal, Vector3.Forward );
+
+			at = tx.Position + normal * size * 2.4f + across.Normal * size * 1.8f;
+		}
+
+		var facing = Rotation.LookAt( ( tx.Position - at ).Normal );
+
+		Player.WorldPosition = at;
+
+		// The camera sits under the player: point it the same way, and tell
+		// the player so it does not snap back when it wakes.
+		var camera = Player.Components.Get<CameraComponent>( true );
+		if ( camera.IsValid() ) camera.WorldRotation = facing;
+		Player.Components.Get<Template.Player>()?.Face( facing );
+
+		// Any move is the way out.
+		if ( Input.AnalogMove.Length > 0.1f ) Release();
+	}
+
+	string SpeedText => ( Clock?.Scale ?? 1 ) == 0 ? "paused" : $"x{Clock?.Scale ?? 1:0.##}";
+
+	static string SpeedLabel( float speed ) => speed == 0 ? "pause" : $"x{speed:0.##}";
+
+	protected override void OnUpdate()
+	{
+		Clock ??= Scene.GetAllComponents<SolarClock>().FirstOrDefault();
+
+		if ( Input.Keyboard.Pressed( "T" ) ) SetOpen( !Open );
+		if ( Open && Input.Keyboard.Pressed( "Escape" ) ) SetOpen( false );
+
+		if ( Clock.IsValid() )
+		{
+			if ( Input.Keyboard.Pressed( "[" ) ) Clock.Step( -1 );
+			if ( Input.Keyboard.Pressed( "]" ) ) Clock.Step( 1 );
+		}
+
+		foreach ( var layer in Layers )
+		{
+			if ( Input.Keyboard.Pressed( layer.Key ) ) Toggle( layer.Object );
+		}
+
+		if ( Focused is not null ) HoldFocus();
+
+		StateHasChanged();
+	}
+
+	void SetOpen( bool open )
+	{
+		Open = open;
+
+		// The sheet takes the mouse: the player stops looking and moving -
+		// and stays stopped while a focus holds the camera.
+		Mouse.Visibility = open ? MouseVisibility.Visible : MouseVisibility.Auto;
+		Freeze( open || Focused is not null );
+	}
+
+	void SetSpeed( float speed )
+	{
+		if ( Clock.IsValid() ) Clock.Scale = speed;
+	}
+
+	GameObject Find( string name ) => Scene.Children.FirstOrDefault( go => go.Name == name );
+
+	bool IsOn( string name ) => Find( name )?.Enabled ?? false;
+
+	void Toggle( string name )
+	{
+		var go = Find( name );
+		if ( go.IsValid() ) go.Enabled = !go.Enabled;
+	}
+
+	protected override int BuildHash() => HashCode.Combine( Open, Clock?.Scale ?? 1, Clock?.DateText, string.Join( ",", Layers.Select( l => IsOn( l.Object ) ) ), Search, Focused );
+}
