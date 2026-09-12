@@ -7207,8 +7207,8 @@
                       "Definition": "fx/meteor.fx",
                       "DestroyOnEnd": false,
                       "FloatOverrides": {
-                        "Trail": 0.35500002,
-                        "Size": 1.8540001
+                        "Trail": 1.0040001,
+                        "Size": 1.2950001
                       },
                       "OnComponentDestroy": null,
                       "OnComponentDisabled": null,
@@ -7640,7 +7640,7 @@
                   "Flags": 0,
                   "Name": "Homing Arm",
                   "Position": "0,1.60000002,0",
-                  "Rotation": "0,-0.250306785,0,0.968166649",
+                  "Rotation": "0,-0.439533949,0,0.898226023",
                   "Scale": "1,1,1",
                   "Tags": "",
                   "Enabled": true,
@@ -7941,7 +7941,7 @@
                   "Flags": 0,
                   "Name": "Tesla Arm A",
                   "Position": "-1.39999998,1.5,0",
-                  "Rotation": "0,-0.573991716,0,0.818861246",
+                  "Rotation": "0,-0.141254425,0,0.989973426",
                   "Scale": "1,1,1",
                   "Tags": "",
                   "Enabled": true,
@@ -8023,7 +8023,7 @@
                   "Flags": 0,
                   "Name": "Tesla Arm B",
                   "Position": "1.39999998,1.5,0",
-                  "Rotation": "0,0.573991776,0,0.818861127",
+                  "Rotation": "0,0.141254544,0,0.989973366",
                   "Scale": "1,1,1",
                   "Tags": "",
                   "Enabled": true,
