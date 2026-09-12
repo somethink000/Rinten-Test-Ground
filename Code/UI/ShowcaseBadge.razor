@@ -1,0 +1,22 @@
+@using Rinten;
+@using Rinten.UI;
+@namespace TestGround
+@inherits Panel
+
+@* A small component the showcase puts in its markup: a word on a tint. A
+   parameter each for the word and the tint, so the inspector's parameter
+   rows and a double click into the component have something to show. *@
+
+<root class="showcase-badge @Tone">
+	<div class="word">@Text</div>
+</root>
+
+@code
+{
+	[Parameter] public string Text { get; set; } = "badge";
+
+	/// <summary>Which colour it wears: info, good, warn or bad.</summary>
+	[Parameter] public string Tone { get; set; } = "info";
+
+	protected override int BuildHash() => System.HashCode.Combine( Text, Tone );
+}

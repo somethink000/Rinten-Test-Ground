@@ -5,10 +5,11 @@
 @namespace TestGround
 @inherits PanelComponent
 
-@* Everything the UI editor can show and touch, on one screen: type, buttons
-   and their states, chips, a switch and a bar bound to data, a grid of cards
-   from a list, keyframes, anchored corners. Open it in the UI Editor: right
-   click this file in the asset browser. *@
+@* Everything the UI editor can show and touch, on one screen that scrolls:
+   type, boxes, backgrounds, flex and grid, buttons and their states, chips,
+   a switch and a bar bound to data, cards from a list, a component with
+   parameters, inputs, transforms, keyframes, anchored corners. Open it in
+   the UI Editor: right click this file in the asset browser. *@
 
 <root class="@(Compact ? "compact" : "")">
 
@@ -32,6 +33,54 @@
 			<div class="body">Body 14 - the quick brown fox jumps over the lazy dog</div>
 			<div class="small">Small 11 - captions and footnotes</div>
 			<div class="mono">mono 13 - const int answer = 42;</div>
+			<div class="row">
+				<div class="text-sample upper">uppercase</div>
+				<div class="text-sample spaced">spaced out</div>
+				<div class="text-sample struck">struck</div>
+				<div class="text-sample underlined">underlined</div>
+				<div class="text-sample shadowed">shadowed</div>
+				<div class="text-sample italic">italic</div>
+			</div>
+			<div class="row">
+				<div class="align left">left</div>
+				<div class="align center">center</div>
+				<div class="align right">right</div>
+			</div>
+		</div>
+
+		<div class="section">Boxes - margin, padding, border, radius, shadow</div>
+		<div class="row">
+			<div class="box plain">plain</div>
+			<div class="box padded">padded</div>
+			<div class="box bordered">bordered</div>
+			<div class="box rounded">rounded</div>
+			<div class="box pill">pill</div>
+			<div class="box shadowed">shadow</div>
+			<div class="box inset">inset</div>
+			<div class="box dashed">dashed</div>
+			<div class="box sided">sides</div>
+		</div>
+
+		<div class="section">Backgrounds</div>
+		<div class="row">
+			<div class="swatch solid">solid</div>
+			<div class="swatch gradient">gradient</div>
+			<div class="swatch radial">radial</div>
+			<div class="swatch image">image</div>
+			<div class="swatch tinted">tinted</div>
+			<div class="swatch faded">opacity</div>
+		</div>
+
+		<div class="section">Flex - direction, justify, align, wrap, gap</div>
+		<div class="flex-samples">
+			<div class="flex start"><div class="bit"></div><div class="bit"></div><div class="bit"></div></div>
+			<div class="flex centered"><div class="bit"></div><div class="bit"></div><div class="bit"></div></div>
+			<div class="flex ended"><div class="bit"></div><div class="bit"></div><div class="bit"></div></div>
+			<div class="flex between"><div class="bit"></div><div class="bit"></div><div class="bit"></div></div>
+			<div class="flex around"><div class="bit"></div><div class="bit"></div><div class="bit"></div></div>
+			<div class="flex column"><div class="bit"></div><div class="bit"></div><div class="bit"></div></div>
+			<div class="flex wrapped"><div class="bit"></div><div class="bit"></div><div class="bit"></div><div class="bit"></div><div class="bit"></div><div class="bit"></div><div class="bit"></div></div>
+			<div class="flex grown"><div class="bit"></div><div class="bit grow"></div><div class="bit"></div></div>
 		</div>
 
 		<div class="section">Buttons</div>
@@ -44,12 +93,17 @@
 			<div class="pressed">@LastPressed</div>
 		</div>
 
-		<div class="section">Chips and switch</div>
+		<div class="section">Chips, switch and badges</div>
 		<div class="row">
 			@foreach ( var kind in Kinds )
 			{
 				<div class="chip @(kind == Kind ? "active" : "")" onclick=@( () => Kind = kind )>@kind</div>
 			}
+			<div class="spacer"></div>
+			<ShowcaseBadge Text="info" Tone="info" />
+			<ShowcaseBadge Text="good" Tone="good" />
+			<ShowcaseBadge Text="warn" Tone="warn" />
+			<ShowcaseBadge Text="bad" Tone="bad" />
 			<div class="spacer"></div>
 			<div class="switch @(Enabled ? "on" : "")" onclick=@( () => Enabled = !Enabled )>
 				<div class="knob"></div>
@@ -62,7 +116,14 @@
 			<div class="fill" style="width: @( Progress * 100 )%"></div>
 		</div>
 
-		<div class="section">Cards from data - @Items.Count</div>
+		<div class="section">Inputs from the base library</div>
+		<div class="row inputs">
+			<TextEntry Placeholder="Type here" />
+			<Checkbox Checked="@true">a checkbox</Checkbox>
+			<div class="button primary">a plain div button</div>
+		</div>
+
+		<div class="section">Cards from data - @Items.Count, in a grid</div>
 		<div class="grid">
 			@foreach ( var item in Items )
 			{
@@ -72,6 +133,23 @@
 					<div class="note">@item.Note</div>
 				</div>
 			}
+		</div>
+
+		<div class="section">Overflow - a list that scrolls</div>
+		<div class="scroller">
+			@for ( var i = 1; i <= 20; i++ )
+			{
+				<div class="line">Line @i of twenty</div>
+			}
+		</div>
+
+		<div class="section">Transforms - rotate, scale, skew, translate</div>
+		<div class="row transforms">
+			<div class="tile rotated">rotate</div>
+			<div class="tile scaled">scale</div>
+			<div class="tile skewed">skew</div>
+			<div class="tile moved">translate</div>
+			<div class="tile hovering">hover me</div>
 		</div>
 
 		<div class="section">Motion</div>
@@ -102,7 +180,7 @@
 	}
 
 	[Property] public string Title { get; set; } = "UI Showcase";
-	[Property] public string Subtitle { get; set; } = "type, states, data, motion";
+	[Property] public string Subtitle { get; set; } = "type, boxes, flex, states, data, motion";
 
 	/// <summary>Tighter spacing throughout.</summary>
 	[Property] public bool Compact { get; set; }
