@@ -1,0 +1,27 @@
+{
+  "Shader": "shaders/effects/stylized.shader",
+  "Features": {},
+  "Numbers": {
+    "g_vColourA": "0.5,0.899999976,1,1",
+    "g_vColourB": "0.100000001,0.300000012,0.899999976,1",
+    "g_flNoiseScale": "4,0,0,0",
+    "g_flNoiseOctaves": "2,0,0,0",
+    "g_vScrollDirection": "1,0.300000012,0,0"
+  },
+  "Textures": {},
+  "Tint": "1,1,1,0.4",
+  "ColorMap": "materials/default/white.png",
+  "Normal": "materials/default/normal.png",
+  "RoughMetalAmbient": "materials/default/roughmetal.png",
+  "Emission": "materials/default/black.png",
+  "Roughness": 0.5,
+  "Metalness": 0,
+  "EmissionStrength": 0,
+  "PhysicsSurface": "",
+  "TwoSided": true,
+  "Filtering": "Smooth",
+  "Blend": "Translucent",
+  "AlphaCutoff": 0.5,
+  "__references": [],
+  "__version": 0
+}

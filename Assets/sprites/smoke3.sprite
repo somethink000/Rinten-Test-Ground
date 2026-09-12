@@ -1,0 +1,28 @@
+{
+  "Animations": [
+    {
+      "Name": "Default",
+      "FrameRate": 15,
+      "Origin": "0.5,0.5",
+      "LoopMode": "Loop",
+      "LoopStart": -1,
+      "LoopEnd": -1,
+      "Frames": [
+        {
+          "Texture": {
+            "$compiler": "texture",
+            "$source": "imagefile",
+            "data": {
+              "FilePath": "textures/fx/smoke3.png",
+              "MaxSize": 4096
+            },
+            "compiled": null
+          },
+          "BroadcastMessages": []
+        }
+      ]
+    }
+  ],
+  "__references": [],
+  "__version": 2
+}

@@ -1,0 +1,112 @@
+{
+  "Animations": [
+    {
+      "Name": "Default",
+      "FrameRate": 12,
+      "Origin": "0.5,0.5",
+      "LoopMode": "Loop",
+      "LoopStart": -1,
+      "LoopEnd": -1,
+      "Frames": [
+        {
+          "Texture": {
+            "$compiler": "texture",
+            "$source": "imagefile",
+            "data": {
+              "FilePath": "textures/fx/flame1.png",
+              "MaxSize": 4096
+            },
+            "compiled": null
+          },
+          "BroadcastMessages": []
+        },
+        {
+          "Texture": {
+            "$compiler": "texture",
+            "$source": "imagefile",
+            "data": {
+              "FilePath": "textures/fx/flame2.png",
+              "MaxSize": 4096
+            },
+            "compiled": null
+          },
+          "BroadcastMessages": []
+        },
+        {
+          "Texture": {
+            "$compiler": "texture",
+            "$source": "imagefile",
+            "data": {
+              "FilePath": "textures/fx/flame3.png",
+              "MaxSize": 4096
+            },
+            "compiled": null
+          },
+          "BroadcastMessages": []
+        },
+        {
+          "Texture": {
+            "$compiler": "texture",
+            "$source": "imagefile",
+            "data": {
+              "FilePath": "textures/fx/flame4.png",
+              "MaxSize": 4096
+            },
+            "compiled": null
+          },
+          "BroadcastMessages": []
+        },
+        {
+          "Texture": {
+            "$compiler": "texture",
+            "$source": "imagefile",
+            "data": {
+              "FilePath": "textures/fx/flame5.png",
+              "MaxSize": 4096
+            },
+            "compiled": null
+          },
+          "BroadcastMessages": []
+        },
+        {
+          "Texture": {
+            "$compiler": "texture",
+            "$source": "imagefile",
+            "data": {
+              "FilePath": "textures/fx/flame6.png",
+              "MaxSize": 4096
+            },
+            "compiled": null
+          },
+          "BroadcastMessages": []
+        },
+        {
+          "Texture": {
+            "$compiler": "texture",
+            "$source": "imagefile",
+            "data": {
+              "FilePath": "textures/fx/flame7.png",
+              "MaxSize": 4096
+            },
+            "compiled": null
+          },
+          "BroadcastMessages": []
+        },
+        {
+          "Texture": {
+            "$compiler": "texture",
+            "$source": "imagefile",
+            "data": {
+              "FilePath": "textures/fx/flame8.png",
+              "MaxSize": 4096
+            },
+            "compiled": null
+          },
+          "BroadcastMessages": []
+        }
+      ]
+    }
+  ],
+  "__references": [],
+  "__version": 2
+}

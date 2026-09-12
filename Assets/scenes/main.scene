@@ -127,10 +127,10 @@
             },
             {
               "Scene": "scenes/fx.scene",
-              "Title": "",
-              "Category": "General",
-              "Description": null,
-              "DisplayName": "fx"
+              "Title": "Particles",
+              "Category": "Rendering",
+              "Description": "Fire, explosion, gunshot, magic, water, snow and a portal - effects from the particle editor, each with parameters",
+              "DisplayName": "Particles"
             }
           ],
           "Subheading": "Feature scenes, kept in a working state"
