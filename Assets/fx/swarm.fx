@@ -10,9 +10,9 @@
       "Rotation": "0,0,0",
       "Scale": "1,1,1",
       "Anchor": null,
-      "Delay": 0.0,
-      "Duration": 0.0,
-      "PreWarm": 0.0,
+      "Delay": 0,
+      "Duration": 0,
+      "PreWarm": 0,
       "TimeScale": 1,
       "Timing": "GameTime",
       "SpawnModules": [
@@ -23,8 +23,11 @@
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "cbc7c493-e667-5649-a1cf-c593c384b030",
@@ -36,6 +39,20 @@
         {
           "__type": "Rinten.InitializePositionModule",
           "Stage": "Initialize",
+          "ShapeName": null,
+          "Sample": "Random",
+          "Along": {
+            "UseParameter": false,
+            "Value": 0,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "AlignToShape": false,
           "Shape": "Point",
           "Offset": "0,0,0",
           "Follows": "Rotation, Scale",
@@ -54,10 +71,13 @@
           "Stage": "Initialize",
           "Lifetime": {
             "UseParameter": false,
-            "Value": 10000.0,
+            "Value": 10000,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "3c55e9da-ae31-555a-8ba0-182a15f75181",
@@ -71,9 +91,12 @@
             "UseParameter": true,
             "Value": 0.5,
             "ParameterName": "Size",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "InheritEmitterScale": true,
           "Identifier": "05d793af-0872-5ca0-a0a8-6e17bf8064bb",
@@ -85,24 +108,30 @@
           "Stage": "Initialize",
           "Color": {
             "UseParameter": false,
-            "Value": "1.0000,1.0000,1.0000,1.0",
+            "Value": "1,1,1,1",
             "ParameterName": null,
             "IsBound": false
           },
           "Alpha": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Brightness": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Tint": "1,1,1,1",
@@ -123,8 +152,10 @@
               "Z": 0
             },
             "ParameterName": null,
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "ScaleParameterName": null,
+            "SlotName": null,
+            "SlotMode": "Replace",
             "IsBound": false
           },
           "Identifier": "62eeec5c-ff63-56c4-b2d8-e17625837d3e",
@@ -140,15 +171,17 @@
           "Material": "materials/fx/stylized_ember.mat",
           "Scale": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "RotateWithObject": false,
           "CastShadows": false,
-          "PartFromParticle": false,
           "Morphs": [],
           "Shader": [
             {
@@ -157,10 +190,13 @@
               "Width": 1,
               "Value": {
                 "UseParameter": false,
-                "Value": 0.0,
+                "Value": 0,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -180,8 +216,11 @@
                 "UseParameter": false,
                 "Value": 0.1,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -201,9 +240,12 @@
                 "UseParameter": true,
                 "Value": 2.5,
                 "ParameterName": "Glow",
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
-                "IsBound": false
+                "Multiplier": 1,
+                "IsBound": true
               },
               "Color": {
                 "UseParameter": false,
@@ -222,8 +264,11 @@
                 "UseParameter": false,
                 "Value": 0.15,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -237,6 +282,7 @@
             }
           ],
           "ParticleAttributes": true,
+          "PartFromParticle": false,
           "Identifier": "8eadf57b-31f5-5f5e-aae0-68a425850eef",
           "Name": "Mesh",
           "Enabled": true
@@ -253,9 +299,9 @@
       "Rotation": "0,0,0",
       "Scale": "1,1,1",
       "Anchor": null,
-      "Delay": 0.0,
-      "Duration": 0.0,
-      "PreWarm": 0.0,
+      "Delay": 0,
+      "Duration": 0,
+      "PreWarm": 0,
       "TimeScale": 1,
       "Timing": "GameTime",
       "SpawnModules": [
@@ -266,8 +312,11 @@
             "UseParameter": false,
             "Value": 3,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "d1eb8bb1-6893-50e4-aa4f-c146908e549e",
@@ -279,6 +328,20 @@
         {
           "__type": "Rinten.InitializePositionModule",
           "Stage": "Initialize",
+          "ShapeName": null,
+          "Sample": "Random",
+          "Along": {
+            "UseParameter": false,
+            "Value": 0,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "AlignToShape": false,
           "Shape": "Point",
           "Offset": "0,0,0",
           "Follows": "Rotation, Scale",
@@ -299,8 +362,11 @@
             "UseParameter": false,
             "Value": 1.2,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "42006e2b-9f84-5117-aaae-f29bb084dc06",
@@ -327,7 +393,7 @@
                   },
                   {
                     "x": 0.5,
-                    "y": 0.8666666666666667,
+                    "y": 0.8666667,
                     "in": 0,
                     "out": 0,
                     "mode": "Flat"
@@ -353,7 +419,7 @@
                   },
                   {
                     "x": 0.5,
-                    "y": 0.8666666666666667,
+                    "y": 0.8666667,
                     "in": 0,
                     "out": 0,
                     "mode": "Flat"
@@ -369,9 +435,12 @@
               }
             },
             "ParameterName": "Size",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "InheritEmitterScale": true,
           "Identifier": "3b5cb12b-4abd-5241-963d-7db22cb3acf2",
@@ -383,7 +452,7 @@
           "Stage": "Initialize",
           "Color": {
             "UseParameter": false,
-            "Value": "1.0000,0.8471,0.6275,1.0",
+            "Value": "1,0.8471,0.6275,1",
             "ParameterName": null,
             "IsBound": false
           },
@@ -395,7 +464,7 @@
               "CurveA": [
                 {
                   "x": 0,
-                  "y": 0.0,
+                  "y": 0,
                   "in": 0,
                   "out": 0,
                   "mode": "Flat"
@@ -409,7 +478,7 @@
                 },
                 {
                   "x": 1,
-                  "y": 0.0,
+                  "y": 0,
                   "in": 0,
                   "out": 0,
                   "mode": "Flat"
@@ -418,7 +487,7 @@
               "CurveB": [
                 {
                   "x": 0,
-                  "y": 0.0,
+                  "y": 0,
                   "in": 0,
                   "out": 0,
                   "mode": "Flat"
@@ -432,7 +501,7 @@
                 },
                 {
                   "x": 1,
-                  "y": 0.0,
+                  "y": 0,
                   "in": 0,
                   "out": 0,
                   "mode": "Flat"
@@ -440,16 +509,22 @@
               ]
             },
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Brightness": {
             "UseParameter": false,
             "Value": 1.2,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Tint": "1,1,1,1",
@@ -464,7 +539,7 @@
           "__type": "Rinten.SpriteRenderModule",
           "Stage": "Render",
           "Sprite": "sprites/glow.sprite",
-          "Scale": 1.0,
+          "Scale": 1,
           "Alignment": "LookAtCamera",
           "FaceVelocity": false,
           "Additive": true,
@@ -473,7 +548,7 @@
           "DepthFeather": 0,
           "SortMode": "Unsorted",
           "Opaque": false,
-          "FogStrength": 1.0,
+          "FogStrength": 1,
           "TextureFilter": "Bilinear",
           "MotionBlur": false,
           "LeadingTrail": true,
@@ -489,7 +564,7 @@
           "Stage": "Render",
           "Color": {
             "UseParameter": false,
-            "Value": "1.0000,0.8471,0.6275,1.0",
+            "Value": "1,0.8471,0.6275,1",
             "ParameterName": null,
             "IsBound": false
           },
@@ -497,410 +572,61 @@
             "UseParameter": true,
             "Value": 6,
             "ParameterName": "Glow",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "Radius": {
             "UseParameter": false,
             "Value": 5,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Attenuation": {
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "MaxLights": {
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Ratio": {
             "UseParameter": false,
             "Value": 0.5,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "UseParticleColor": false,
           "CastShadows": false,
           "Identifier": "63812903-b69d-5871-b2c8-1cd3ad52cb78",
           "Name": "Light",
-          "Enabled": true
-        }
-      ]
-    },
-    {
-      "Name": "Flares",
-      "Identifier": "7aa6ac20-4cca-5624-908e-361fc1c6b38a",
-      "Enabled": true,
-      "MaxParticles": 20,
-      "Places": 0,
-      "Offset": "0,0,0",
-      "Rotation": "0,0,0",
-      "Scale": "1,1,1",
-      "Anchor": null,
-      "Delay": 0.0,
-      "Duration": 0.0,
-      "PreWarm": 0.0,
-      "TimeScale": 1,
-      "Timing": "GameTime",
-      "SpawnModules": [
-        {
-          "__type": "Rinten.SpawnRateModule",
-          "Stage": "Spawn",
-          "Rate": {
-            "UseParameter": true,
-            "Value": 6,
-            "ParameterName": "Glow",
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Identifier": "0373ac8e-9ba9-5a77-99bb-837f986de481",
-          "Name": "Spawn Rate",
-          "Enabled": true
-        }
-      ],
-      "InitializeModules": [
-        {
-          "__type": "Rinten.InitializePositionModule",
-          "Stage": "Initialize",
-          "Shape": "Sphere",
-          "Offset": "0,0,0",
-          "Follows": "Rotation, Scale",
-          "Radius": 0.5,
-          "BoxSize": "1,1,1",
-          "ConeAngle": 45,
-          "OnShell": true,
-          "LineStart": "0,0,0",
-          "LineEnd": "0,1,0",
-          "Identifier": "4a48ceee-4a58-5bfb-8133-3eb4ae9c79f1",
-          "Name": "Position",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.InitializeVelocityModule",
-          "Stage": "Initialize",
-          "Velocity": {
-            "UseParameter": false,
-            "Value": {
-              "X": 0,
-              "Y": 0,
-              "Z": 0
-            },
-            "ParameterName": null,
-            "Multiplier": 1.0,
-            "ScaleParameterName": null,
-            "IsBound": false
-          },
-          "Scatter": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "LocalSpace": false,
-          "InheritEmitterVelocity": false,
-          "InheritScale": 1,
-          "Drift": {
-            "X": 0,
-            "Y": 0,
-            "Z": 0
-          },
-          "Identifier": "366c0880-e54d-59a6-8f67-52fc96b87f5c",
-          "Name": "Velocity",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.InitializeLifetimeModule",
-          "Stage": "Initialize",
-          "Lifetime": {
-            "UseParameter": false,
-            "Value": {
-              "Type": "Range",
-              "Evaluation": "Seed",
-              "Constants": "0.6,1.0,0,0"
-            },
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Identifier": "00e24de2-8337-5e92-9b78-f30271bfa1db",
-          "Name": "Lifetime",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.InitializeSizeModule",
-          "Stage": "Initialize",
-          "Size": {
-            "UseParameter": false,
-            "Value": {
-              "Type": "Curve",
-              "Evaluation": "Life",
-              "CurveA": {
-                "rangey": "0,0.3",
-                "frames": [
-                  {
-                    "x": 0,
-                    "y": 0.16666666666666669,
-                    "in": 0,
-                    "out": 0,
-                    "mode": "Flat"
-                  },
-                  {
-                    "x": 0.4,
-                    "y": 0.7333333333333334,
-                    "in": 0,
-                    "out": 0,
-                    "mode": "Flat"
-                  },
-                  {
-                    "x": 1,
-                    "y": 0.0,
-                    "in": 0,
-                    "out": 0,
-                    "mode": "Flat"
-                  }
-                ]
-              },
-              "CurveB": {
-                "rangey": "0,0.3",
-                "frames": [
-                  {
-                    "x": 0,
-                    "y": 0.16666666666666669,
-                    "in": 0,
-                    "out": 0,
-                    "mode": "Flat"
-                  },
-                  {
-                    "x": 0.4,
-                    "y": 0.7333333333333334,
-                    "in": 0,
-                    "out": 0,
-                    "mode": "Flat"
-                  },
-                  {
-                    "x": 1,
-                    "y": 0.0,
-                    "in": 0,
-                    "out": 0,
-                    "mode": "Flat"
-                  }
-                ]
-              }
-            },
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "InheritEmitterScale": true,
-          "Identifier": "de20c0d6-195d-512b-ba91-79620f8dbfbe",
-          "Name": "Size",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.InitializeColorModule",
-          "Stage": "Initialize",
-          "Color": {
-            "UseParameter": false,
-            "Value": "1.0000,0.6902,0.2510,1.0",
-            "ParameterName": null,
-            "IsBound": false
-          },
-          "Alpha": {
-            "UseParameter": false,
-            "Value": {
-              "Type": "Curve",
-              "Evaluation": "Life",
-              "CurveA": [
-                {
-                  "x": 0,
-                  "y": 0.0,
-                  "in": 0,
-                  "out": 0,
-                  "mode": "Flat"
-                },
-                {
-                  "x": 0.3,
-                  "y": 0.9,
-                  "in": 0,
-                  "out": 0,
-                  "mode": "Flat"
-                },
-                {
-                  "x": 1,
-                  "y": 0.0,
-                  "in": 0,
-                  "out": 0,
-                  "mode": "Flat"
-                }
-              ],
-              "CurveB": [
-                {
-                  "x": 0,
-                  "y": 0.0,
-                  "in": 0,
-                  "out": 0,
-                  "mode": "Flat"
-                },
-                {
-                  "x": 0.3,
-                  "y": 0.9,
-                  "in": 0,
-                  "out": 0,
-                  "mode": "Flat"
-                },
-                {
-                  "x": 1,
-                  "y": 0.0,
-                  "in": 0,
-                  "out": 0,
-                  "mode": "Flat"
-                }
-              ]
-            },
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Brightness": {
-            "UseParameter": false,
-            "Value": 2.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Tint": "1,1,1,1",
-          "Identifier": "25dc6682-00be-589f-9ccb-21bb0bf22f28",
-          "Name": "Color",
-          "Enabled": true
-        }
-      ],
-      "UpdateModules": [
-        {
-          "__type": "Rinten.TransformOverLifeModule",
-          "Stage": "Update",
-          "Space": "Local",
-          "Offset": {
-            "UseParameter": false,
-            "Value": {
-              "X": 0,
-              "Y": {
-                "Type": "Curve",
-                "Evaluation": "Life",
-                "CurveA": {
-                  "rangey": "0,0.5",
-                  "frames": [
-                    {
-                      "x": 0,
-                      "y": 0.0,
-                      "in": 0,
-                      "out": 0,
-                      "mode": "Flat"
-                    },
-                    {
-                      "x": 1,
-                      "y": 0.6,
-                      "in": 0,
-                      "out": 0,
-                      "mode": "Flat"
-                    }
-                  ]
-                },
-                "CurveB": {
-                  "rangey": "0,0.5",
-                  "frames": [
-                    {
-                      "x": 0,
-                      "y": 0.0,
-                      "in": 0,
-                      "out": 0,
-                      "mode": "Flat"
-                    },
-                    {
-                      "x": 1,
-                      "y": 0.6,
-                      "in": 0,
-                      "out": 0,
-                      "mode": "Flat"
-                    }
-                  ]
-                }
-              },
-              "Z": 0
-            },
-            "ParameterName": null,
-            "Multiplier": 1.0,
-            "ScaleParameterName": null,
-            "IsBound": false
-          },
-          "Rotation": {
-            "UseParameter": false,
-            "Value": {
-              "X": 0,
-              "Y": 0,
-              "Z": 0
-            },
-            "ParameterName": null,
-            "Multiplier": 1.0,
-            "ScaleParameterName": null,
-            "IsBound": false
-          },
-          "Scale": {
-            "UseParameter": false,
-            "Value": 1.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Identifier": "b5467433-c8b5-5069-a3b3-ef8f29601104",
-          "Name": "Transform Over Life",
-          "Enabled": true
-        }
-      ],
-      "RenderModules": [
-        {
-          "__type": "Rinten.SpriteRenderModule",
-          "Stage": "Render",
-          "Sprite": "sprites/flame.sprite",
-          "Scale": 1.0,
-          "Alignment": "LookAtCamera",
-          "FaceVelocity": false,
-          "Additive": true,
-          "Shadows": false,
-          "Lighting": false,
-          "DepthFeather": 0,
-          "SortMode": "Unsorted",
-          "Opaque": false,
-          "FogStrength": 1.0,
-          "TextureFilter": "Bilinear",
-          "MotionBlur": false,
-          "LeadingTrail": true,
-          "BlurAmount": 0.5,
-          "BlurSpacing": 0.5,
-          "BlurOpacity": 0.5,
-          "Identifier": "ad6be60c-199e-588d-8851-f2a70a89b264",
-          "Name": "Sprite",
           "Enabled": true
         }
       ]
@@ -915,9 +641,9 @@
       "Rotation": "0,0,0",
       "Scale": "1,1,1",
       "Anchor": null,
-      "Delay": 0.0,
-      "Duration": 0.0,
-      "PreWarm": 0.0,
+      "Delay": 0,
+      "Duration": 0,
+      "PreWarm": 0,
       "TimeScale": 1,
       "Timing": "GameTime",
       "SpawnModules": [
@@ -928,8 +654,11 @@
             "UseParameter": false,
             "Value": 80,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "0ff72ccf-37a8-559e-8531-1c16c6111884",
@@ -941,6 +670,20 @@
         {
           "__type": "Rinten.InitializePositionModule",
           "Stage": "Initialize",
+          "ShapeName": "Orbit 1",
+          "Sample": "ByIndex",
+          "Along": {
+            "UseParameter": false,
+            "Value": 0,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "AlignToShape": false,
           "Shape": "Point",
           "Offset": "0,0,0",
           "Follows": "Rotation, Scale",
@@ -952,28 +695,20 @@
           "LineEnd": "0,1,0",
           "Identifier": "e7744ea0-f815-5d49-b67d-12b113a2266a",
           "Name": "Position",
-          "Enabled": true,
-          "ShapeName": "Orbit 1",
-          "Sample": "ByIndex",
-          "Along": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "AlignToShape": false
+          "Enabled": true
         },
         {
           "__type": "Rinten.InitializeLifetimeModule",
           "Stage": "Initialize",
           "Lifetime": {
             "UseParameter": false,
-            "Value": 10000.0,
+            "Value": 10000,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "3b501cc5-25b3-58d0-816b-9048f59cd50d",
@@ -987,9 +722,12 @@
             "UseParameter": true,
             "Value": 0.012,
             "ParameterName": "Size",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "InheritEmitterScale": true,
           "Identifier": "5ae7ded8-8d40-5781-aad3-9247d4b2eb4e",
@@ -1001,7 +739,7 @@
           "Stage": "Initialize",
           "Color": {
             "UseParameter": false,
-            "Value": "0.7529,0.8157,0.8784,1.0",
+            "Value": "0.7529,0.8157,0.8784,1",
             "ParameterName": null,
             "IsBound": false
           },
@@ -1009,16 +747,22 @@
             "UseParameter": false,
             "Value": 0.22,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Brightness": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Tint": "1,1,1,1",
@@ -1035,35 +779,47 @@
           "Sample": "ByIndex",
           "Along": {
             "UseParameter": false,
-            "Value": 0.0,
+            "Value": 0,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Speed": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Stagger": {
             "UseParameter": false,
-            "Value": 0.0,
+            "Value": 0,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "Speed": {
+            "UseParameter": false,
+            "Value": 0,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
             "IsBound": false
           },
           "Loop": true,
           "Weight": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "AlignToShape": false,
@@ -1077,7 +833,7 @@
           "__type": "Rinten.SpriteRenderModule",
           "Stage": "Render",
           "Sprite": "sprites/dot.sprite",
-          "Scale": 1.0,
+          "Scale": 1,
           "Alignment": "LookAtCamera",
           "FaceVelocity": false,
           "Additive": true,
@@ -1086,7 +842,7 @@
           "DepthFeather": 0,
           "SortMode": "Unsorted",
           "Opaque": false,
-          "FogStrength": 1.0,
+          "FogStrength": 1,
           "TextureFilter": "Bilinear",
           "MotionBlur": false,
           "LeadingTrail": true,
@@ -1109,9 +865,9 @@
       "Rotation": "0,0,0",
       "Scale": "1,1,1",
       "Anchor": null,
-      "Delay": 0.0,
-      "Duration": 0.0,
-      "PreWarm": 0.0,
+      "Delay": 0,
+      "Duration": 0,
+      "PreWarm": 0,
       "TimeScale": 1,
       "Timing": "GameTime",
       "SpawnModules": [
@@ -1122,8 +878,11 @@
             "UseParameter": false,
             "Value": 120,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "aafbd51c-b032-5dc6-bbd4-5b9fc1ff0986",
@@ -1135,6 +894,20 @@
         {
           "__type": "Rinten.InitializePositionModule",
           "Stage": "Initialize",
+          "ShapeName": "Orbit 2",
+          "Sample": "ByIndex",
+          "Along": {
+            "UseParameter": false,
+            "Value": 0,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "AlignToShape": false,
           "Shape": "Point",
           "Offset": "0,0,0",
           "Follows": "Rotation, Scale",
@@ -1146,28 +919,20 @@
           "LineEnd": "0,1,0",
           "Identifier": "1a975669-bfb1-5bda-b542-20f9ac18d8d8",
           "Name": "Position",
-          "Enabled": true,
-          "ShapeName": "Orbit 2",
-          "Sample": "ByIndex",
-          "Along": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "AlignToShape": false
+          "Enabled": true
         },
         {
           "__type": "Rinten.InitializeLifetimeModule",
           "Stage": "Initialize",
           "Lifetime": {
             "UseParameter": false,
-            "Value": 10000.0,
+            "Value": 10000,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "920cdb95-f3d0-52d6-8d26-ad20bff20149",
@@ -1181,9 +946,12 @@
             "UseParameter": true,
             "Value": 0.012,
             "ParameterName": "Size",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "InheritEmitterScale": true,
           "Identifier": "215e5371-1e60-54d8-867b-d3ea08c652a6",
@@ -1195,7 +963,7 @@
           "Stage": "Initialize",
           "Color": {
             "UseParameter": false,
-            "Value": "0.7529,0.8157,0.8784,1.0",
+            "Value": "0.7529,0.8157,0.8784,1",
             "ParameterName": null,
             "IsBound": false
           },
@@ -1203,16 +971,22 @@
             "UseParameter": false,
             "Value": 0.22,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Brightness": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Tint": "1,1,1,1",
@@ -1229,35 +1003,47 @@
           "Sample": "ByIndex",
           "Along": {
             "UseParameter": false,
-            "Value": 0.0,
+            "Value": 0,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Speed": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Stagger": {
             "UseParameter": false,
-            "Value": 0.0,
+            "Value": 0,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "Speed": {
+            "UseParameter": false,
+            "Value": 0,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
             "IsBound": false
           },
           "Loop": true,
           "Weight": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "AlignToShape": false,
@@ -1271,7 +1057,7 @@
           "__type": "Rinten.SpriteRenderModule",
           "Stage": "Render",
           "Sprite": "sprites/dot.sprite",
-          "Scale": 1.0,
+          "Scale": 1,
           "Alignment": "LookAtCamera",
           "FaceVelocity": false,
           "Additive": true,
@@ -1280,7 +1066,7 @@
           "DepthFeather": 0,
           "SortMode": "Unsorted",
           "Opaque": false,
-          "FogStrength": 1.0,
+          "FogStrength": 1,
           "TextureFilter": "Bilinear",
           "MotionBlur": false,
           "LeadingTrail": true,
@@ -1303,9 +1089,9 @@
       "Rotation": "0,0,0",
       "Scale": "1,1,1",
       "Anchor": null,
-      "Delay": 0.0,
-      "Duration": 0.0,
-      "PreWarm": 0.0,
+      "Delay": 0,
+      "Duration": 0,
+      "PreWarm": 0,
       "TimeScale": 1,
       "Timing": "GameTime",
       "SpawnModules": [
@@ -1316,8 +1102,11 @@
             "UseParameter": false,
             "Value": 160,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "7ac95f37-90f3-5c8b-b1f9-d62dce0e083e",
@@ -1329,6 +1118,20 @@
         {
           "__type": "Rinten.InitializePositionModule",
           "Stage": "Initialize",
+          "ShapeName": "Orbit 3",
+          "Sample": "ByIndex",
+          "Along": {
+            "UseParameter": false,
+            "Value": 0,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "AlignToShape": false,
           "Shape": "Point",
           "Offset": "0,0,0",
           "Follows": "Rotation, Scale",
@@ -1340,28 +1143,20 @@
           "LineEnd": "0,1,0",
           "Identifier": "ff39b0b8-a061-59a5-a34e-ff6532c366c1",
           "Name": "Position",
-          "Enabled": true,
-          "ShapeName": "Orbit 3",
-          "Sample": "ByIndex",
-          "Along": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "AlignToShape": false
+          "Enabled": true
         },
         {
           "__type": "Rinten.InitializeLifetimeModule",
           "Stage": "Initialize",
           "Lifetime": {
             "UseParameter": false,
-            "Value": 10000.0,
+            "Value": 10000,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "c4007598-13bb-5f28-858f-83e224541e56",
@@ -1375,9 +1170,12 @@
             "UseParameter": true,
             "Value": 0.012,
             "ParameterName": "Size",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "InheritEmitterScale": true,
           "Identifier": "8333eda7-9310-5ed5-b793-50f92b62e3b9",
@@ -1389,7 +1187,7 @@
           "Stage": "Initialize",
           "Color": {
             "UseParameter": false,
-            "Value": "0.7529,0.8157,0.8784,1.0",
+            "Value": "0.7529,0.8157,0.8784,1",
             "ParameterName": null,
             "IsBound": false
           },
@@ -1397,16 +1195,22 @@
             "UseParameter": false,
             "Value": 0.22,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Brightness": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Tint": "1,1,1,1",
@@ -1423,35 +1227,47 @@
           "Sample": "ByIndex",
           "Along": {
             "UseParameter": false,
-            "Value": 0.0,
+            "Value": 0,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Speed": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Stagger": {
             "UseParameter": false,
-            "Value": 0.0,
+            "Value": 0,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "Speed": {
+            "UseParameter": false,
+            "Value": 0,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
             "IsBound": false
           },
           "Loop": true,
           "Weight": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "AlignToShape": false,
@@ -1465,7 +1281,7 @@
           "__type": "Rinten.SpriteRenderModule",
           "Stage": "Render",
           "Sprite": "sprites/dot.sprite",
-          "Scale": 1.0,
+          "Scale": 1,
           "Alignment": "LookAtCamera",
           "FaceVelocity": false,
           "Additive": true,
@@ -1474,7 +1290,7 @@
           "DepthFeather": 0,
           "SortMode": "Unsorted",
           "Opaque": false,
-          "FogStrength": 1.0,
+          "FogStrength": 1,
           "TextureFilter": "Bilinear",
           "MotionBlur": false,
           "LeadingTrail": true,
@@ -1497,9 +1313,9 @@
       "Rotation": "0,0,0",
       "Scale": "1,1,1",
       "Anchor": null,
-      "Delay": 0.0,
-      "Duration": 0.0,
-      "PreWarm": 0.0,
+      "Delay": 0,
+      "Duration": 0,
+      "PreWarm": 0,
       "TimeScale": 1,
       "Timing": "GameTime",
       "SpawnModules": [
@@ -1510,8 +1326,11 @@
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "fe0c43b7-44db-5b61-aded-b91bb61f3023",
@@ -1523,6 +1342,20 @@
         {
           "__type": "Rinten.InitializePositionModule",
           "Stage": "Initialize",
+          "ShapeName": "Orbit 1",
+          "Sample": "ByTime",
+          "Along": {
+            "UseParameter": false,
+            "Value": 0,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "AlignToShape": false,
           "Shape": "Point",
           "Offset": "0,0,0",
           "Follows": "Rotation, Scale",
@@ -1534,28 +1367,20 @@
           "LineEnd": "0,1,0",
           "Identifier": "7a34d393-ad83-5ae4-9ac5-af046efca6c4",
           "Name": "Position",
-          "Enabled": true,
-          "ShapeName": "Orbit 1",
-          "Sample": "ByTime",
-          "Along": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "AlignToShape": false
+          "Enabled": true
         },
         {
           "__type": "Rinten.InitializeLifetimeModule",
           "Stage": "Initialize",
           "Lifetime": {
             "UseParameter": false,
-            "Value": 10000.0,
+            "Value": 10000,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "c4475e79-9b87-5767-a9b6-fecfa0ebca75",
@@ -1569,9 +1394,12 @@
             "UseParameter": true,
             "Value": 0.16,
             "ParameterName": "Size",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "InheritEmitterScale": true,
           "Identifier": "cf85d1f1-4c3b-5b17-91a5-4cef071dd8e2",
@@ -1585,22 +1413,28 @@
             "UseParameter": true,
             "Value": "1,1,1,1",
             "ParameterName": "Inner",
-            "IsBound": false
+            "IsBound": true
           },
           "Alpha": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Brightness": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Tint": "1,1,1,1",
@@ -1625,8 +1459,10 @@
               "Z": 0
             },
             "ParameterName": null,
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "ScaleParameterName": null,
+            "SlotName": null,
+            "SlotMode": "Replace",
             "IsBound": false
           },
           "Identifier": "ce9924c2-b98d-598d-85e0-01d13f86089a",
@@ -1640,35 +1476,47 @@
           "Sample": "ByTime",
           "Along": {
             "UseParameter": false,
-            "Value": 0.0,
+            "Value": 0,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "Stagger": {
+            "UseParameter": false,
+            "Value": 0,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
             "IsBound": false
           },
           "Speed": {
             "UseParameter": true,
             "Value": 0.2,
             "ParameterName": "Spin",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Stagger": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "Loop": true,
           "Weight": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "AlignToShape": false,
@@ -1685,15 +1533,17 @@
           "Material": "materials/fx/stylized_white.mat",
           "Scale": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "RotateWithObject": false,
           "CastShadows": true,
-          "PartFromParticle": false,
           "Morphs": [],
           "Shader": [
             {
@@ -1702,10 +1552,13 @@
               "Width": 1,
               "Value": {
                 "UseParameter": false,
-                "Value": 0.0,
+                "Value": 0,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -1725,8 +1578,11 @@
                 "UseParameter": false,
                 "Value": 0.05,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -1746,8 +1602,11 @@
                 "UseParameter": false,
                 "Value": 0.9,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -1767,8 +1626,11 @@
                 "UseParameter": false,
                 "Value": 0.6,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -1782,6 +1644,7 @@
             }
           ],
           "ParticleAttributes": true,
+          "PartFromParticle": false,
           "Identifier": "da6ce7d1-fdba-5c89-ab5c-f94fc2b961d0",
           "Name": "Mesh",
           "Enabled": true
@@ -1800,14 +1663,14 @@
                 "frames": [
                   {
                     "x": 0,
-                    "y": 1.0,
+                    "y": 1,
                     "in": 0,
                     "out": 0,
                     "mode": "Linear"
                   },
                   {
                     "x": 1,
-                    "y": 0.0,
+                    "y": 0,
                     "in": 0,
                     "out": 0,
                     "mode": "Linear"
@@ -1819,14 +1682,14 @@
                 "frames": [
                   {
                     "x": 0,
-                    "y": 1.0,
+                    "y": 1,
                     "in": 0,
                     "out": 0,
                     "mode": "Linear"
                   },
                   {
                     "x": 1,
-                    "y": 0.0,
+                    "y": 0,
                     "in": 0,
                     "out": 0,
                     "mode": "Linear"
@@ -1835,8 +1698,11 @@
               }
             },
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Color": {
@@ -1849,11 +1715,11 @@
                 "color": [
                   {
                     "t": 0,
-                    "c": "1.0000,1.0000,1.0000,0.35"
+                    "c": "1,1,1,0.35"
                   },
                   {
                     "t": 1,
-                    "c": "1.0000,1.0000,1.0000,0.35"
+                    "c": "1,1,1,0.35"
                   }
                 ],
                 "alpha": [
@@ -1863,7 +1729,7 @@
                   },
                   {
                     "t": 1,
-                    "a": 0.0
+                    "a": 0
                   }
                 ]
               },
@@ -1872,11 +1738,11 @@
                 "color": [
                   {
                     "t": 0,
-                    "c": "1.0000,1.0000,1.0000,0.35"
+                    "c": "1,1,1,0.35"
                   },
                   {
                     "t": 1,
-                    "c": "1.0000,1.0000,1.0000,0.35"
+                    "c": "1,1,1,0.35"
                   }
                 ],
                 "alpha": [
@@ -1886,7 +1752,7 @@
                   },
                   {
                     "t": 1,
-                    "a": 0.0
+                    "a": 0
                   }
                 ]
               }
@@ -1912,7 +1778,7 @@
           "Stage": "Render",
           "Color": {
             "UseParameter": false,
-            "Value": "1.0000,1.0000,1.0000,1.0",
+            "Value": "1,1,1,1",
             "ParameterName": null,
             "IsBound": false
           },
@@ -1920,40 +1786,55 @@
             "UseParameter": false,
             "Value": 1.2,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Radius": {
             "UseParameter": false,
-            "Value": 2.0,
+            "Value": 2,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Attenuation": {
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "MaxLights": {
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Ratio": {
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "UseParticleColor": true,
@@ -1974,9 +1855,9 @@
       "Rotation": "0,0,0",
       "Scale": "1,1,1",
       "Anchor": null,
-      "Delay": 0.0,
-      "Duration": 0.0,
-      "PreWarm": 0.0,
+      "Delay": 0,
+      "Duration": 0,
+      "PreWarm": 0,
       "TimeScale": 1,
       "Timing": "GameTime",
       "SpawnModules": [
@@ -1987,8 +1868,11 @@
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "40a033c9-6392-5e3d-8236-c2d16ffdc4c5",
@@ -2000,6 +1884,20 @@
         {
           "__type": "Rinten.InitializePositionModule",
           "Stage": "Initialize",
+          "ShapeName": "Orbit 2",
+          "Sample": "ByTime",
+          "Along": {
+            "UseParameter": false,
+            "Value": 0.4,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "AlignToShape": false,
           "Shape": "Point",
           "Offset": "0,0,0",
           "Follows": "Rotation, Scale",
@@ -2011,28 +1909,20 @@
           "LineEnd": "0,1,0",
           "Identifier": "65cc4974-c93d-5351-a832-c120faa75411",
           "Name": "Position",
-          "Enabled": true,
-          "ShapeName": "Orbit 2",
-          "Sample": "ByTime",
-          "Along": {
-            "UseParameter": false,
-            "Value": 0.4,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "AlignToShape": false
+          "Enabled": true
         },
         {
           "__type": "Rinten.InitializeLifetimeModule",
           "Stage": "Initialize",
           "Lifetime": {
             "UseParameter": false,
-            "Value": 10000.0,
+            "Value": 10000,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "18a1c1be-045d-5427-a7f3-63f9ce1e473d",
@@ -2046,9 +1936,12 @@
             "UseParameter": true,
             "Value": 0.28,
             "ParameterName": "Size",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "InheritEmitterScale": true,
           "Identifier": "6d46bcd7-a5e2-5868-8bf3-5644b8f7fae2",
@@ -2062,22 +1955,28 @@
             "UseParameter": true,
             "Value": "1,1,1,1",
             "ParameterName": "Middle",
-            "IsBound": false
+            "IsBound": true
           },
           "Alpha": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Brightness": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Tint": "1,1,1,1",
@@ -2102,8 +2001,10 @@
               "Z": 0
             },
             "ParameterName": null,
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "ScaleParameterName": null,
+            "SlotName": null,
+            "SlotMode": "Replace",
             "IsBound": false
           },
           "Identifier": "2bed4592-d28a-5a24-9159-333f5ad172f5",
@@ -2119,33 +2020,45 @@
             "UseParameter": false,
             "Value": 0.4,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "Stagger": {
+            "UseParameter": false,
+            "Value": 0,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
             "IsBound": false
           },
           "Speed": {
             "UseParameter": true,
             "Value": -0.11,
             "ParameterName": "Spin",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Stagger": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "Loop": true,
           "Weight": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "AlignToShape": false,
@@ -2162,15 +2075,17 @@
           "Material": "materials/fx/stylized_white.mat",
           "Scale": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "RotateWithObject": false,
           "CastShadows": true,
-          "PartFromParticle": false,
           "Morphs": [],
           "Shader": [
             {
@@ -2179,10 +2094,13 @@
               "Width": 1,
               "Value": {
                 "UseParameter": false,
-                "Value": 0.0,
+                "Value": 0,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -2202,8 +2120,11 @@
                 "UseParameter": false,
                 "Value": 0.05,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -2223,8 +2144,11 @@
                 "UseParameter": false,
                 "Value": 0.9,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -2244,8 +2168,11 @@
                 "UseParameter": false,
                 "Value": 0.6,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -2259,6 +2186,7 @@
             }
           ],
           "ParticleAttributes": true,
+          "PartFromParticle": false,
           "Identifier": "339435fd-fad7-5494-815e-785766870829",
           "Name": "Mesh",
           "Enabled": true
@@ -2277,14 +2205,14 @@
                 "frames": [
                   {
                     "x": 0,
-                    "y": 1.0,
+                    "y": 1,
                     "in": 0,
                     "out": 0,
                     "mode": "Linear"
                   },
                   {
                     "x": 1,
-                    "y": 0.0,
+                    "y": 0,
                     "in": 0,
                     "out": 0,
                     "mode": "Linear"
@@ -2296,14 +2224,14 @@
                 "frames": [
                   {
                     "x": 0,
-                    "y": 1.0,
+                    "y": 1,
                     "in": 0,
                     "out": 0,
                     "mode": "Linear"
                   },
                   {
                     "x": 1,
-                    "y": 0.0,
+                    "y": 0,
                     "in": 0,
                     "out": 0,
                     "mode": "Linear"
@@ -2312,8 +2240,11 @@
               }
             },
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Color": {
@@ -2326,11 +2257,11 @@
                 "color": [
                   {
                     "t": 0,
-                    "c": "1.0000,1.0000,1.0000,0.35"
+                    "c": "1,1,1,0.35"
                   },
                   {
                     "t": 1,
-                    "c": "1.0000,1.0000,1.0000,0.35"
+                    "c": "1,1,1,0.35"
                   }
                 ],
                 "alpha": [
@@ -2340,7 +2271,7 @@
                   },
                   {
                     "t": 1,
-                    "a": 0.0
+                    "a": 0
                   }
                 ]
               },
@@ -2349,11 +2280,11 @@
                 "color": [
                   {
                     "t": 0,
-                    "c": "1.0000,1.0000,1.0000,0.35"
+                    "c": "1,1,1,0.35"
                   },
                   {
                     "t": 1,
-                    "c": "1.0000,1.0000,1.0000,0.35"
+                    "c": "1,1,1,0.35"
                   }
                 ],
                 "alpha": [
@@ -2363,7 +2294,7 @@
                   },
                   {
                     "t": 1,
-                    "a": 0.0
+                    "a": 0
                   }
                 ]
               }
@@ -2389,7 +2320,7 @@
           "Stage": "Render",
           "Color": {
             "UseParameter": false,
-            "Value": "1.0000,1.0000,1.0000,1.0",
+            "Value": "1,1,1,1",
             "ParameterName": null,
             "IsBound": false
           },
@@ -2397,40 +2328,55 @@
             "UseParameter": false,
             "Value": 1.2,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Radius": {
             "UseParameter": false,
-            "Value": 2.0,
+            "Value": 2,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Attenuation": {
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "MaxLights": {
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Ratio": {
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "UseParticleColor": true,
@@ -2451,9 +2397,9 @@
       "Rotation": "0,0,0",
       "Scale": "1,1,1",
       "Anchor": null,
-      "Delay": 0.0,
-      "Duration": 0.0,
-      "PreWarm": 0.0,
+      "Delay": 0,
+      "Duration": 0,
+      "PreWarm": 0,
       "TimeScale": 1,
       "Timing": "GameTime",
       "SpawnModules": [
@@ -2464,8 +2410,11 @@
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "7637115b-afdb-5889-8824-847f7dcbb980",
@@ -2477,6 +2426,20 @@
         {
           "__type": "Rinten.InitializePositionModule",
           "Stage": "Initialize",
+          "ShapeName": "Orbit 3",
+          "Sample": "ByTime",
+          "Along": {
+            "UseParameter": false,
+            "Value": 0.75,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "AlignToShape": false,
           "Shape": "Point",
           "Offset": "0,0,0",
           "Follows": "Rotation, Scale",
@@ -2488,28 +2451,20 @@
           "LineEnd": "0,1,0",
           "Identifier": "80cc823c-b4d2-57a6-bdf6-1142cf41562f",
           "Name": "Position",
-          "Enabled": true,
-          "ShapeName": "Orbit 3",
-          "Sample": "ByTime",
-          "Along": {
-            "UseParameter": false,
-            "Value": 0.75,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "AlignToShape": false
+          "Enabled": true
         },
         {
           "__type": "Rinten.InitializeLifetimeModule",
           "Stage": "Initialize",
           "Lifetime": {
             "UseParameter": false,
-            "Value": 10000.0,
+            "Value": 10000,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Identifier": "955c089c-8036-5f4e-9963-693e25f4723e",
@@ -2523,9 +2478,12 @@
             "UseParameter": true,
             "Value": 0.22,
             "ParameterName": "Size",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "InheritEmitterScale": true,
           "Identifier": "7f0fa149-d1a5-58b0-942e-c29fbf776c69",
@@ -2539,22 +2497,28 @@
             "UseParameter": true,
             "Value": "1,1,1,1",
             "ParameterName": "Outer",
-            "IsBound": false
+            "IsBound": true
           },
           "Alpha": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Brightness": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Tint": "1,1,1,1",
@@ -2579,8 +2543,10 @@
               "Z": 0
             },
             "ParameterName": null,
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "ScaleParameterName": null,
+            "SlotName": null,
+            "SlotMode": "Replace",
             "IsBound": false
           },
           "Identifier": "388a3fc9-b3ba-5ca7-a37b-9cfda5098223",
@@ -2596,33 +2562,45 @@
             "UseParameter": false,
             "Value": 0.75,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "Stagger": {
+            "UseParameter": false,
+            "Value": 0,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
             "IsBound": false
           },
           "Speed": {
             "UseParameter": true,
             "Value": 0.07,
             "ParameterName": "Spin",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Stagger": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "Loop": true,
           "Weight": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "AlignToShape": false,
@@ -2639,15 +2617,17 @@
           "Material": "materials/fx/stylized_white.mat",
           "Scale": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "RotateWithObject": false,
           "CastShadows": true,
-          "PartFromParticle": false,
           "Morphs": [],
           "Shader": [
             {
@@ -2656,10 +2636,13 @@
               "Width": 1,
               "Value": {
                 "UseParameter": false,
-                "Value": 0.0,
+                "Value": 0,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -2679,8 +2662,11 @@
                 "UseParameter": false,
                 "Value": 0.05,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -2700,8 +2686,11 @@
                 "UseParameter": false,
                 "Value": 0.9,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -2721,8 +2710,11 @@
                 "UseParameter": false,
                 "Value": 0.6,
                 "ParameterName": null,
+                "SlotName": null,
+                "SlotChannel": "X",
+                "SlotMode": "Replace",
                 "Mode": "Multiply",
-                "Multiplier": 1.0,
+                "Multiplier": 1,
                 "IsBound": false
               },
               "Color": {
@@ -2736,6 +2728,7 @@
             }
           ],
           "ParticleAttributes": true,
+          "PartFromParticle": false,
           "Identifier": "cee87746-06f3-55c5-b73f-967989bc9c75",
           "Name": "Mesh",
           "Enabled": true
@@ -2754,14 +2747,14 @@
                 "frames": [
                   {
                     "x": 0,
-                    "y": 1.0,
+                    "y": 1,
                     "in": 0,
                     "out": 0,
                     "mode": "Linear"
                   },
                   {
                     "x": 1,
-                    "y": 0.0,
+                    "y": 0,
                     "in": 0,
                     "out": 0,
                     "mode": "Linear"
@@ -2773,14 +2766,14 @@
                 "frames": [
                   {
                     "x": 0,
-                    "y": 1.0,
+                    "y": 1,
                     "in": 0,
                     "out": 0,
                     "mode": "Linear"
                   },
                   {
                     "x": 1,
-                    "y": 0.0,
+                    "y": 0,
                     "in": 0,
                     "out": 0,
                     "mode": "Linear"
@@ -2789,8 +2782,11 @@
               }
             },
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Color": {
@@ -2803,11 +2799,11 @@
                 "color": [
                   {
                     "t": 0,
-                    "c": "1.0000,1.0000,1.0000,0.35"
+                    "c": "1,1,1,0.35"
                   },
                   {
                     "t": 1,
-                    "c": "1.0000,1.0000,1.0000,0.35"
+                    "c": "1,1,1,0.35"
                   }
                 ],
                 "alpha": [
@@ -2817,7 +2813,7 @@
                   },
                   {
                     "t": 1,
-                    "a": 0.0
+                    "a": 0
                   }
                 ]
               },
@@ -2826,11 +2822,11 @@
                 "color": [
                   {
                     "t": 0,
-                    "c": "1.0000,1.0000,1.0000,0.35"
+                    "c": "1,1,1,0.35"
                   },
                   {
                     "t": 1,
-                    "c": "1.0000,1.0000,1.0000,0.35"
+                    "c": "1,1,1,0.35"
                   }
                 ],
                 "alpha": [
@@ -2840,7 +2836,7 @@
                   },
                   {
                     "t": 1,
-                    "a": 0.0
+                    "a": 0
                   }
                 ]
               }
@@ -2866,7 +2862,7 @@
           "Stage": "Render",
           "Color": {
             "UseParameter": false,
-            "Value": "1.0000,1.0000,1.0000,1.0",
+            "Value": "1,1,1,1",
             "ParameterName": null,
             "IsBound": false
           },
@@ -2874,40 +2870,55 @@
             "UseParameter": false,
             "Value": 1.2,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Radius": {
             "UseParameter": false,
-            "Value": 2.0,
+            "Value": 2,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Attenuation": {
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "MaxLights": {
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Ratio": {
             "UseParameter": false,
             "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "UseParticleColor": true,
@@ -2928,9 +2939,9 @@
       "Rotation": "0,0,0",
       "Scale": "1,1,1",
       "Anchor": null,
-      "Delay": 0.0,
-      "Duration": 0.0,
-      "PreWarm": 0.0,
+      "Delay": 0,
+      "Duration": 0,
+      "PreWarm": 0,
       "TimeScale": 1,
       "Timing": "GameTime",
       "SpawnModules": [
@@ -2941,9 +2952,12 @@
             "UseParameter": true,
             "Value": 25,
             "ParameterName": "Count",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "Identifier": "f20f23a3-b88f-540f-ace1-dcf6892f0f3f",
           "Name": "Spawn Rate",
@@ -2954,6 +2968,20 @@
         {
           "__type": "Rinten.InitializePositionModule",
           "Stage": "Initialize",
+          "ShapeName": null,
+          "Sample": "Random",
+          "Along": {
+            "UseParameter": false,
+            "Value": 0,
+            "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
+            "Mode": "Multiply",
+            "Multiplier": 1,
+            "IsBound": false
+          },
+          "AlignToShape": false,
           "Shape": "Circle",
           "Offset": "0,0,0",
           "Follows": "Rotation, Scale",
@@ -2978,9 +3006,12 @@
               "Constants": "3,5,0,0"
             },
             "ParameterName": "Lifetime",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "Identifier": "87fa5d64-1b7c-59ff-87b1-fb427145ae85",
           "Name": "Lifetime",
@@ -2994,12 +3025,15 @@
             "Value": {
               "Type": "Range",
               "Evaluation": "Seed",
-              "Constants": "0.012,0.025,0,0"
+              "Constants": "0.0120000001,0.0250000004,0,0"
             },
             "ParameterName": "Size",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "InheritEmitterScale": true,
           "Identifier": "8fca3d7c-bcc0-554a-9b12-854c9487482f",
@@ -3011,7 +3045,7 @@
           "Stage": "Initialize",
           "Color": {
             "UseParameter": false,
-            "Value": "0.8784,0.9098,1.0000,1.0",
+            "Value": "0.8784,0.9098,1,1",
             "ParameterName": null,
             "IsBound": false
           },
@@ -3023,7 +3057,7 @@
               "CurveA": [
                 {
                   "x": 0,
-                  "y": 0.0,
+                  "y": 0,
                   "in": 0,
                   "out": 0,
                   "mode": "Flat"
@@ -3037,7 +3071,7 @@
                 },
                 {
                   "x": 1,
-                  "y": 0.0,
+                  "y": 0,
                   "in": 0,
                   "out": 0,
                   "mode": "Flat"
@@ -3046,7 +3080,7 @@
               "CurveB": [
                 {
                   "x": 0,
-                  "y": 0.0,
+                  "y": 0,
                   "in": 0,
                   "out": 0,
                   "mode": "Flat"
@@ -3060,7 +3094,7 @@
                 },
                 {
                   "x": 1,
-                  "y": 0.0,
+                  "y": 0,
                   "in": 0,
                   "out": 0,
                   "mode": "Flat"
@@ -3068,16 +3102,22 @@
               ]
             },
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Brightness": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Tint": "1,1,1,1",
@@ -3100,17 +3140,22 @@
               "Z": 0
             },
             "ParameterName": null,
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "ScaleParameterName": null,
+            "SlotName": null,
+            "SlotMode": "Replace",
             "IsBound": false
           },
           "Speed": {
             "UseParameter": true,
             "Value": 15,
             "ParameterName": "Spin",
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
+            "Multiplier": 1,
+            "IsBound": true
           },
           "Identifier": "8de408d3-9725-5056-b74b-aee8658ca8d8",
           "Name": "Orbit",
@@ -3123,24 +3168,33 @@
             "UseParameter": false,
             "Value": 0.15,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Scale": {
             "UseParameter": false,
-            "Value": 1.0,
+            "Value": 1,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "TimeScale": {
             "UseParameter": false,
             "Value": 0.5,
             "ParameterName": null,
+            "SlotName": null,
+            "SlotChannel": "X",
+            "SlotMode": "Replace",
             "Mode": "Multiply",
-            "Multiplier": 1.0,
+            "Multiplier": 1,
             "IsBound": false
           },
           "Offset": "0,0,0",
@@ -3154,7 +3208,7 @@
           "__type": "Rinten.SpriteRenderModule",
           "Stage": "Render",
           "Sprite": "sprites/dot.sprite",
-          "Scale": 1.0,
+          "Scale": 1,
           "Alignment": "LookAtCamera",
           "FaceVelocity": false,
           "Additive": true,
@@ -3163,7 +3217,7 @@
           "DepthFeather": 0,
           "SortMode": "Unsorted",
           "Opaque": false,
-          "FogStrength": 1.0,
+          "FogStrength": 1,
           "TextureFilter": "Bilinear",
           "MotionBlur": false,
           "LeadingTrail": true,
@@ -3185,25 +3239,25 @@
       "Identifier": "f0c60bcf-2424-5513-813c-611f531f1126",
       "Kind": "Circle",
       "Anchor": null,
-      "Model": null,
-      "ModelSampling": "Parts",
-      "ModelScale": 1.0,
-      "LineStartAnchor": null,
-      "LineEndAnchor": null,
       "Offset": "0,0,0",
       "Rotation": "0,0,6",
-      "Radius": 1.0,
+      "Radius": 1,
+      "Model": null,
+      "ModelSampling": "Parts",
+      "ModelScale": 1,
       "BoxSize": "1,1,1",
       "ConeAngle": 45,
       "OnShell": true,
       "LineStart": "0,0,0",
       "LineEnd": "0,1,0",
+      "LineStartAnchor": null,
+      "LineEndAnchor": null,
       "Points": [],
       "Closed": false,
       "GridCount": "5,1,5",
-      "GridSpacing": "0.3,0.3,0.3",
-      "Height": 2.0,
-      "Turns": 3.0,
+      "GridSpacing": "0.300000012,0.300000012,0.300000012",
+      "Height": 2,
+      "Turns": 3,
       "Count": 0
     },
     {
@@ -3211,25 +3265,25 @@
       "Identifier": "6ad2e174-6d17-5849-83bf-9fc0ada96cd1",
       "Kind": "Circle",
       "Anchor": null,
-      "Model": null,
-      "ModelSampling": "Parts",
-      "ModelScale": 1.0,
-      "LineStartAnchor": null,
-      "LineEndAnchor": null,
       "Offset": "0,0,0",
       "Rotation": "0,0,-4",
       "Radius": 1.7,
+      "Model": null,
+      "ModelSampling": "Parts",
+      "ModelScale": 1,
       "BoxSize": "1,1,1",
       "ConeAngle": 45,
       "OnShell": true,
       "LineStart": "0,0,0",
       "LineEnd": "0,1,0",
+      "LineStartAnchor": null,
+      "LineEndAnchor": null,
       "Points": [],
       "Closed": false,
       "GridCount": "5,1,5",
-      "GridSpacing": "0.3,0.3,0.3",
-      "Height": 2.0,
-      "Turns": 3.0,
+      "GridSpacing": "0.300000012,0.300000012,0.300000012",
+      "Height": 2,
+      "Turns": 3,
       "Count": 0
     },
     {
@@ -3237,25 +3291,25 @@
       "Identifier": "506ead3b-7a9e-539f-b32f-f9a806c4bfea",
       "Kind": "Circle",
       "Anchor": null,
-      "Model": null,
-      "ModelSampling": "Parts",
-      "ModelScale": 1.0,
-      "LineStartAnchor": null,
-      "LineEndAnchor": null,
       "Offset": "0,0,0",
       "Rotation": "0,0,3",
       "Radius": 2.5,
+      "Model": null,
+      "ModelSampling": "Parts",
+      "ModelScale": 1,
       "BoxSize": "1,1,1",
       "ConeAngle": 45,
       "OnShell": true,
       "LineStart": "0,0,0",
       "LineEnd": "0,1,0",
+      "LineStartAnchor": null,
+      "LineEndAnchor": null,
       "Points": [],
       "Closed": false,
       "GridCount": "5,1,5",
-      "GridSpacing": "0.3,0.3,0.3",
-      "Height": 2.0,
-      "Turns": 3.0,
+      "GridSpacing": "0.300000012,0.300000012,0.300000012",
+      "Height": 2,
+      "Turns": 3,
       "Count": 0
     }
   ],
@@ -3263,56 +3317,56 @@
   "Anchors": [],
   "FloatParameters": [
     {
-      "Name": "Spin",
       "DefaultValue": 1,
       "Min": -3,
       "Max": 3,
+      "Name": "Spin",
       "Identifier": "88565ac8-e6a8-5c18-9984-ca2f7499ee8a"
     },
     {
+      "DefaultValue": 1,
+      "Min": 0,
+      "Max": 3,
       "Name": "Count",
-      "DefaultValue": 1.0,
-      "Min": 0.0,
-      "Max": 3.0,
       "Identifier": "ea3b1a53-79cb-5e55-a1cb-2f920be33ac8"
     },
     {
-      "Name": "Size",
       "DefaultValue": 1,
       "Min": 0.2,
       "Max": 3,
+      "Name": "Size",
       "Identifier": "aa28643f-24dc-5d1d-8f12-1fa1d19f187c"
     },
     {
-      "Name": "Lifetime",
       "DefaultValue": 1,
       "Min": 0.2,
       "Max": 3,
+      "Name": "Lifetime",
       "Identifier": "217a743c-8b19-5549-aa37-f2d90240fd19"
     },
     {
+      "DefaultValue": 1,
+      "Min": 0,
+      "Max": 3,
       "Name": "Glow",
-      "DefaultValue": 1.0,
-      "Min": 0.0,
-      "Max": 3.0,
       "Identifier": "6e941755-ba13-5f6b-b668-a3913c5a96a2"
     }
   ],
   "VectorParameters": [],
   "ColorParameters": [
     {
+      "DefaultValue": "0.3765,0.8157,1,1",
       "Name": "Inner",
-      "DefaultValue": "0.3765,0.8157,1.0000,1.0",
       "Identifier": "756a58fb-731a-5912-bb82-bcaefcf0a820"
     },
     {
+      "DefaultValue": "1,0.6902,0.3765,1",
       "Name": "Middle",
-      "DefaultValue": "1.0000,0.6902,0.3765,1.0",
       "Identifier": "66fd5807-f243-57ae-9e19-9e31624fc1d0"
     },
     {
+      "DefaultValue": "0.7529,0.502,1,1",
       "Name": "Outer",
-      "DefaultValue": "0.7529,0.5020,1.0000,1.0",
       "Identifier": "9b2f2e52-793c-5ecc-ac8d-771f8a76a310"
     }
   ],

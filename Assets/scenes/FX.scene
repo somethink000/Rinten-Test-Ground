@@ -3137,7 +3137,14 @@
                       "ColorOverrides": {},
                       "Definition": "fx/magic_orb.fx",
                       "DestroyOnEnd": false,
-                      "FloatOverrides": {},
+                      "FloatOverrides": {
+                        "Size": 1.7580001,
+                        "Pull": 0.374,
+                        "Density": 1.687,
+                        "Wander": 0.54,
+                        "Brightness": 2.1950002,
+                        "Lifetime": 3.0000002
+                      },
                       "OnComponentDestroy": null,
                       "OnComponentDisabled": null,
                       "OnComponentEnabled": null,
@@ -3346,7 +3353,13 @@
                       "ColorOverrides": {},
                       "Definition": "fx/portal.fx",
                       "DestroyOnEnd": false,
-                      "FloatOverrides": {},
+                      "FloatOverrides": {
+                        "Size": 2.486,
+                        "Inner": 2.13,
+                        "Rim": 2.4060001,
+                        "Glow Light": 1.8390001,
+                        "Pull": 0.99700004
+                      },
                       "OnComponentDestroy": null,
                       "OnComponentDisabled": null,
                       "OnComponentEnabled": null,
@@ -3536,7 +3549,7 @@
                   "Flags": 0,
                   "Name": "Beam",
                   "Position": "0,1.39999998,0",
-                  "Rotation": "0,-0.707106829,0,0.707106829",
+                  "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
                   "Enabled": true,
@@ -3764,7 +3777,14 @@
                       "ColorOverrides": {},
                       "Definition": "fx/singularity.fx",
                       "DestroyOnEnd": false,
-                      "FloatOverrides": {},
+                      "FloatOverrides": {
+                        "Size": 3.0000002,
+                        "Density": 3.0000002,
+                        "Pull": 2.463,
+                        "Spin": 0.827,
+                        "Glow": 1.399,
+                        "Brightness": 3.0000002
+                      },
                       "OnComponentDestroy": null,
                       "OnComponentDisabled": null,
                       "OnComponentEnabled": null,
@@ -4182,7 +4202,10 @@
                       "ColorOverrides": {},
                       "Definition": "fx/slash.fx",
                       "DestroyOnEnd": false,
-                      "FloatOverrides": {},
+                      "FloatOverrides": {
+                        "Sparks": 0,
+                        "Width": 0.89100003
+                      },
                       "OnComponentDestroy": null,
                       "OnComponentDisabled": null,
                       "OnComponentEnabled": null,
@@ -4632,7 +4655,10 @@
                       "ColorOverrides": {},
                       "Definition": "fx/formation.fx",
                       "DestroyOnEnd": false,
-                      "FloatOverrides": {},
+                      "FloatOverrides": {
+                        "Helix": 1,
+                        "Ring": 1
+                      },
                       "OnComponentDestroy": null,
                       "OnComponentDisabled": null,
                       "OnComponentEnabled": null,
@@ -5468,7 +5494,9 @@
                       "ColorOverrides": {},
                       "Definition": "fx/swarm.fx",
                       "DestroyOnEnd": false,
-                      "FloatOverrides": {},
+                      "FloatOverrides": {
+                        "Glow": 2.2570002
+                      },
                       "OnComponentDestroy": null,
                       "OnComponentDisabled": null,
                       "OnComponentEnabled": null,
@@ -5677,7 +5705,11 @@
                       "ColorOverrides": {},
                       "Definition": "fx/buff_aura.fx",
                       "DestroyOnEnd": false,
-                      "FloatOverrides": {},
+                      "FloatOverrides": {
+                        "Rise": 1,
+                        "Intensity": 2.766,
+                        "Size": 0.74300003
+                      },
                       "OnComponentDestroy": null,
                       "OnComponentDisabled": null,
                       "OnComponentEnabled": null,
@@ -6545,7 +6577,9 @@
                       "ColorOverrides": {},
                       "Definition": "fx/mesh_shards.fx",
                       "DestroyOnEnd": false,
-                      "FloatOverrides": {},
+                      "FloatOverrides": {
+                        "Count": 3.0000002
+                      },
                       "OnComponentDestroy": null,
                       "OnComponentDisabled": null,
                       "OnComponentEnabled": null,
@@ -7172,7 +7206,10 @@
                       "ColorOverrides": {},
                       "Definition": "fx/meteor.fx",
                       "DestroyOnEnd": false,
-                      "FloatOverrides": {},
+                      "FloatOverrides": {
+                        "Trail": 0.35500002,
+                        "Size": 1.8540001
+                      },
                       "OnComponentDestroy": null,
                       "OnComponentDisabled": null,
                       "OnComponentEnabled": null,
@@ -7603,7 +7640,7 @@
                   "Flags": 0,
                   "Name": "Homing Arm",
                   "Position": "0,1.60000002,0",
-                  "Rotation": "0,-0.556807876,0,0.830641389",
+                  "Rotation": "0,-0.250306785,0,0.968166649",
                   "Scale": "1,1,1",
                   "Tags": "",
                   "Enabled": true,
@@ -7637,7 +7674,7 @@
                       "__version": 2,
                       "Flags": 0,
                       "Name": "Homing Target",
-                      "Position": "0,0,-2.20000005",
+                      "Position": "-0.394676328,0,-1.96067107",
                       "Rotation": "0,0,0,1",
                       "Scale": "0.25,0.25,0.25",
                       "Tags": "",
@@ -7707,7 +7744,7 @@
                             "_type": "gameobject",
                             "go": "24e04695-c5a0-577c-9f43-fed75e96452f"
                           },
-                          "Bone": null,
+                          "Bone": "",
                           "Offset": "0,0,0"
                         }
                       ],
@@ -7904,7 +7941,7 @@
                   "Flags": 0,
                   "Name": "Tesla Arm A",
                   "Position": "-1.39999998,1.5,0",
-                  "Rotation": "0,-0.266141891,0,0.963933945",
+                  "Rotation": "0,-0.573991716,0,0.818861246",
                   "Scale": "1,1,1",
                   "Tags": "",
                   "Enabled": true,
@@ -7986,7 +8023,7 @@
                   "Flags": 0,
                   "Name": "Tesla Arm B",
                   "Position": "1.39999998,1.5,0",
-                  "Rotation": "0,0.26614204,0,0.963933885",
+                  "Rotation": "0,0.573991776,0,0.818861127",
                   "Scale": "1,1,1",
                   "Tags": "",
                   "Enabled": true,
@@ -8106,7 +8143,9 @@
                       "ColorOverrides": {},
                       "Definition": "fx/tesla.fx",
                       "DestroyOnEnd": false,
-                      "FloatOverrides": {},
+                      "FloatOverrides": {
+                        "Arcs": 3.0000002
+                      },
                       "OnComponentDestroy": null,
                       "OnComponentDisabled": null,
                       "OnComponentEnabled": null,
@@ -8420,7 +8459,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Player",
-      "Position": "21,1.60000002,-4",
+      "Position": "0,4,0",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
