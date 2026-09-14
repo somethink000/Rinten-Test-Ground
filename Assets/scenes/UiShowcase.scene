@@ -90,16 +90,38 @@
           "Flags": 0,
           "Compact": false,
           "Enabled": true,
+          "Items": [
+            {
+              "Name": "Wrench",
+              "Note": "Turns things",
+              "Kind": "Tool"
+            },
+            {
+              "Name": "Lantern",
+              "Note": "Lights the way",
+              "Kind": "Tool"
+            },
+            {
+              "Name": "Sword",
+              "Note": "Sharp on one side",
+              "Kind": "Weapon"
+            },
+            {
+              "Name": "Map",
+              "Note": "Where you are",
+              "Kind": "Note"
+            }
+          ],
           "Kind": "Tool",
-          "Progress": 0.62,
-          "Subtitle": "type, states, data, motion",
-          "Title": "UI Showcase",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null
+          "OnComponentUpdate": null,
+          "Progress": 0.62,
+          "Subtitle": "type, states, data, motion",
+          "Title": "UI Showcase"
         },
         {
           "__type": "TestGround.ReturnToMenu",

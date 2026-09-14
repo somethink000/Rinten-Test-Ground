@@ -1,10 +1,10 @@
 scenemenu
 {
 	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
 	align-items: center;
 	justify-content: center;
 	font-family: Poppins;
@@ -133,7 +133,6 @@ scenemenu
 			.card-tag
 			{
 				width: 96px;
-				flex-shrink: 0;
 				font-size: 11px;
 				font-weight: 700;
 				color: #0d1016;
@@ -142,13 +141,20 @@ scenemenu
 				margin-right: 16px;
 				border-radius: 6px;
 				background-color: #7b8496;
+				justify-content: center;
 
-				&.physics { background-color: #ffb454; }
-				&.rendering { background-color: #b48cff; }
+				&.physics { background-color: #ffb454;
+					justify-content: center;
+				}
+				&.rendering { background-color: #b48cff;
+					justify-content: center;
+				}
 				&.interface { background-color: #6fb2ff; }
 				&.audio { background-color: #6fe0b8; }
 				&.networking { background-color: #ff8fa3; }
-				&.general { background-color: #c8d0dd; }
+				&.general { background-color: #c8d0dd;
+					justify-content: center;
+				}
 				&.scratch { background-color: #7b8496; }
 			}
 
@@ -200,5 +206,27 @@ scenemenu
 		margin-top: 14px;
 		padding-top: 14px;
 		border-top: 1px solid #ffffff12;
+	}
+
+	.checkbox
+	{
+		position: absolute;
+		left: 209px;
+		top: 761px;
+		width: 420px;
+		height: 207px;
+	}
+
+	.virtualgrid
+	{
+		position: absolute;
+		left: 139px;
+		top: 641px;
+		width: 323px;
+		height: 774px;
+	}
+
+	.card-tag
+	{
 	}
 }

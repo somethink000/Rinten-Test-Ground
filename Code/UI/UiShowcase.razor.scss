@@ -61,8 +61,8 @@ uishowcase
 		.dot
 		{
 			position: absolute;
-			right: 0;
-			top: 4px;
+			right: 7px;
+			top: 9px;
 			width: 12px;
 			height: 12px;
 			border-radius: 50%;
@@ -79,6 +79,7 @@ uishowcase
 		letter-spacing: 1px;
 		text-transform: uppercase;
 		color: #6c7482;
+		height: 30px;
 	}
 
 	.row
@@ -146,7 +147,9 @@ uishowcase
 		justify-content: center;
 
 		&.padded { padding: 14px 24px; }
-		&.bordered { border: 2px solid #6fb2ff; }
+		&.bordered { border: 2px solid #6fb2ff;
+			width: 100px;
+		}
 		&.rounded { border-radius: 10px; }
 		&.pill { border-radius: 999px; padding: 6px 16px; }
 		&.shadowed { box-shadow: 0 6px 18px #000000aa; }
@@ -283,7 +286,7 @@ uishowcase
 	.bar
 	{
 		flex-shrink: 0;
-		height: 10px;
+		height: 18px;
 		border-radius: 5px;
 		background-color: #ffffff12;
 		overflow: hidden;
@@ -305,7 +308,7 @@ uishowcase
 	.grid
 	{
 		display: grid;
-		grid-template-columns: repeat( 4, 1fr );
+		grid-template-columns: repeat( 2, 1fr );
 		gap: 10px;
 		flex-shrink: 0;
 	}
@@ -319,6 +322,7 @@ uishowcase
 		background-color: #ffffff08;
 		border: 1px solid #ffffff10;
 		transition: all 0.12s ease-out;
+		width: 415px;
 
 		&:hover { background-color: #ffffff12; border-color: #ffffff30; }
 
@@ -327,7 +331,9 @@ uishowcase
 
 		.tag { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #6c7482; }
 		.name { font-size: 15px; font-weight: 600; margin-top: 2px; }
-		.note { font-size: 12px; color: #8b93a3; margin-top: 2px; }
+		.note { font-size: 12px; color: #8b93a3; margin-top: 2px;
+			height: 30px;
+		}
 
 		&.tool .tag { color: #6fb2ff; }
 		&.weapon .tag { color: #ff8a8a; }
@@ -340,7 +346,7 @@ uishowcase
 	{
 		flex-direction: column;
 		flex-shrink: 0;
-		height: 96px;
+		height: 152px;
 		padding: 4px 10px;
 		border-radius: 6px;
 		background-color: #ffffff08;
@@ -351,12 +357,12 @@ uishowcase
 
 	// ── transforms ──────────────────────────────────────────────────────────
 
-	.transforms { height: 90px; align-items: center; }
+	.transforms { height: 54px; align-items: center; }
 
 	.tile
 	{
 		width: 80px;
-		height: 44px;
+		height: 49px;
 		margin: 0 28px 0 0;
 		border-radius: 6px;
 		background-color: #c586c0;
@@ -414,6 +420,16 @@ uishowcase
 		.section { margin: 10px 0 4px 0; }
 		.button { padding: 5px 12px; }
 	}
+
+	.note
+	{
+		width: 586px;
+	}
+
+	.note
+	{
+		width: 414px;
+	}
 }
 
 @keyframes spin
@@ -432,5 +448,5 @@ uishowcase
 @keyframes slide
 {
 	from { transform: translateX( 0px ); }
-	to { transform: translateX( 40px ); }
+	to { transform: translateX( 10px ); }
 }
