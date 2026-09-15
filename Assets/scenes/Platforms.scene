@@ -1,0 +1,1474 @@
+{
+  "__guid": "3c40bbe4-06a6-5584-97fe-6a0fd0df5a8c",
+  "GameObjects": [
+    {
+      "__guid": "a30f5f68-0b69-5dcb-b93d-b4eaad1f2571",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Environment",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "67bea4d1-8b13-54fe-939c-d7c94dee8da4",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Sun",
+          "Position": "0,0,0",
+          "Rotation": "-0.372788548,-0.776215434,-0.149966598,0.485827178",
+          "Scale": "1,1,1",
+          "Tags": "light_directional,light",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.DirectionalLight",
+              "__guid": "e0173bf1-6e25-52fd-869a-7c077998ff84",
+              "__enabled": true,
+              "Flags": 0,
+              "__version": 1,
+              "Attenuation": 1,
+              "Brightness": 1.6,
+              "Contribution": "Diffuse, Specular, Transmissive",
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "1,0.97,0.92,1",
+              "ShadowAngle": 0.6,
+              "ShadowDetail": 64,
+              "Shadows": true,
+              "SkyColor": "0,0,0,0",
+              "SourceRadius": 0.05
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "ff628834-4b8c-5c22-be93-8c4d8fccb1f9",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Ambient",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.AmbientLight",
+              "__guid": "bb3118d8-edb5-59d1-b9aa-522e270921d2",
+              "__enabled": true,
+              "Flags": 0,
+              "Color": "0.18,0.21,0.27,1"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "c90629a1-a902-568f-a2b1-b8891472c599",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "2D Skybox",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "skybox",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.SkyBox2D",
+              "__guid": "541d6d35-558e-53d5-886f-92a429da5318",
+              "__enabled": true,
+              "Flags": 0,
+              "SkyIndirectLighting": true,
+              "SkyMaterial": "materials/skybox/procedural.mat",
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "3685e832-a420-53ae-a305-fc1631a6b0bd",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Ground",
+      "Position": "0,-0.25,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "48,0.5,48",
+      "Tags": "world",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "a0db61e6-9dc8-5522-9ccd-abf612a8cf4b",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": "materials/dev/grid.mat",
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.55,0.58,0.62,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "72275440-d048-54bb-8bd9-58654a431f9b",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "b8d9f614-3e5c-5246-b9f7-92bf86732c76",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Label: Stairs",
+      "Position": "0,2.5,-1.2",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.TextRenderer",
+          "__guid": "75e99bc5-0ea0-53b8-9a80-2109ef528275",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 2,
+          "Billboard": "YOnly",
+          "BlendMode": "Normal",
+          "FogStrength": 1,
+          "HorizontalAlignment": "Center",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "Scale": 0.16,
+          "TextScope": {
+            "Text": "Steps of 0.3m\nStepHeight is 0.45",
+            "TextColor": "0.9,0.94,1,1",
+            "FontName": "Poppins",
+            "FontSize": 44,
+            "FontWeight": 700,
+            "FontItalic": false,
+            "FontVariantNumeric": "Normal",
+            "LineHeight": 1.1,
+            "LetterSpacing": 0,
+            "WordSpacing": 0,
+            "FilterMode": "Bilinear",
+            "FontSmooth": "Auto",
+            "Outline": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,1,1"
+            },
+            "Shadow": {
+              "Enabled": true,
+              "Size": 6,
+              "Color": "0,0,0,0.8",
+              "Offset": "3,3"
+            },
+            "OutlineUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,1,0,1"
+            },
+            "ShadowUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            }
+          },
+          "VerticalAlignment": "Center"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "b30e7e0c-6761-5159-aec0-c4934ff8259f",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Label: Gap",
+      "Position": "0,2.6,-5.0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.TextRenderer",
+          "__guid": "6709b6c8-cf52-58e7-ac33-972a92a4fd93",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 2,
+          "Billboard": "YOnly",
+          "BlendMode": "Normal",
+          "FogStrength": 1,
+          "HorizontalAlignment": "Center",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "Scale": 0.16,
+          "TextScope": {
+            "Text": "Jump\nspace, gap of 1.7m",
+            "TextColor": "0.9,0.94,1,1",
+            "FontName": "Poppins",
+            "FontSize": 44,
+            "FontWeight": 700,
+            "FontItalic": false,
+            "FontVariantNumeric": "Normal",
+            "LineHeight": 1.1,
+            "LetterSpacing": 0,
+            "WordSpacing": 0,
+            "FilterMode": "Bilinear",
+            "FontSmooth": "Auto",
+            "Outline": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,1,1"
+            },
+            "Shadow": {
+              "Enabled": true,
+              "Size": 6,
+              "Color": "0,0,0,0.8",
+              "Offset": "3,3"
+            },
+            "OutlineUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,1,0,1"
+            },
+            "ShadowUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            }
+          },
+          "VerticalAlignment": "Center"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "86bf2be6-7b25-5231-a67c-a8c9f9a84116",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Label: Move",
+      "Position": "0,2.6,-12.4",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.TextRenderer",
+          "__guid": "1b68051a-ab22-5ba9-ae62-616840a7eb11",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 2,
+          "Billboard": "YOnly",
+          "BlendMode": "Normal",
+          "FogStrength": 1,
+          "HorizontalAlignment": "Center",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "Scale": 0.16,
+          "TextScope": {
+            "Text": "Moving platform",
+            "TextColor": "0.9,0.94,1,1",
+            "FontName": "Poppins",
+            "FontSize": 44,
+            "FontWeight": 700,
+            "FontItalic": false,
+            "FontVariantNumeric": "Normal",
+            "LineHeight": 1.1,
+            "LetterSpacing": 0,
+            "WordSpacing": 0,
+            "FilterMode": "Bilinear",
+            "FontSmooth": "Auto",
+            "Outline": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,1,1"
+            },
+            "Shadow": {
+              "Enabled": true,
+              "Size": 6,
+              "Color": "0,0,0,0.8",
+              "Offset": "3,3"
+            },
+            "OutlineUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,1,0,1"
+            },
+            "ShadowUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            }
+          },
+          "VerticalAlignment": "Center"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "77d3fd82-cfba-5bd1-9be7-be10886bb50f",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Label: Walkable",
+      "Position": "5.5,2.4,1.5",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.TextRenderer",
+          "__guid": "8d114de5-97ed-51f2-bbf7-2f34b1ac1c46",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 2,
+          "Billboard": "YOnly",
+          "BlendMode": "Normal",
+          "FogStrength": 1,
+          "HorizontalAlignment": "Center",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "Scale": 0.16,
+          "TextScope": {
+            "Text": "Ramp 20\u00b0\nunder GroundAngle",
+            "TextColor": "0.9,0.94,1,1",
+            "FontName": "Poppins",
+            "FontSize": 44,
+            "FontWeight": 700,
+            "FontItalic": false,
+            "FontVariantNumeric": "Normal",
+            "LineHeight": 1.1,
+            "LetterSpacing": 0,
+            "WordSpacing": 0,
+            "FilterMode": "Bilinear",
+            "FontSmooth": "Auto",
+            "Outline": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,1,1"
+            },
+            "Shadow": {
+              "Enabled": true,
+              "Size": 6,
+              "Color": "0,0,0,0.8",
+              "Offset": "3,3"
+            },
+            "OutlineUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,1,0,1"
+            },
+            "ShadowUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            }
+          },
+          "VerticalAlignment": "Center"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "17343b99-69de-5186-9f01-f4710037f2dd",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Label: Steep",
+      "Position": "-5.5,2.6,1.5",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.TextRenderer",
+          "__guid": "f9c6dba3-7b93-5700-8385-7fdf23132ec5",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 2,
+          "Billboard": "YOnly",
+          "BlendMode": "Normal",
+          "FogStrength": 1,
+          "HorizontalAlignment": "Center",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "Scale": 0.16,
+          "TextScope": {
+            "Text": "Ramp 50\u00b0\ntoo steep to stand",
+            "TextColor": "0.9,0.94,1,1",
+            "FontName": "Poppins",
+            "FontSize": 44,
+            "FontWeight": 700,
+            "FontItalic": false,
+            "FontVariantNumeric": "Normal",
+            "LineHeight": 1.1,
+            "LetterSpacing": 0,
+            "WordSpacing": 0,
+            "FilterMode": "Bilinear",
+            "FontSmooth": "Auto",
+            "Outline": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,1,1"
+            },
+            "Shadow": {
+              "Enabled": true,
+              "Size": 6,
+              "Color": "0,0,0,0.8",
+              "Offset": "3,3"
+            },
+            "OutlineUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,1,0,1"
+            },
+            "ShadowUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            }
+          },
+          "VerticalAlignment": "Center"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "aea009ee-9923-59d0-8e7a-7ea2dd5e2ff6",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Label: Ledge",
+      "Position": "0,2.0,3.2",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.TextRenderer",
+          "__guid": "2dcf090e-8b41-5e12-9cc7-fae5e263604a",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 2,
+          "Billboard": "YOnly",
+          "BlendMode": "Normal",
+          "FogStrength": 1,
+          "HorizontalAlignment": "Center",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "Scale": 0.16,
+          "TextScope": {
+            "Text": "Ledge 0.7m\nhigher than a step",
+            "TextColor": "0.9,0.94,1,1",
+            "FontName": "Poppins",
+            "FontSize": 44,
+            "FontWeight": 700,
+            "FontItalic": false,
+            "FontVariantNumeric": "Normal",
+            "LineHeight": 1.1,
+            "LetterSpacing": 0,
+            "WordSpacing": 0,
+            "FilterMode": "Bilinear",
+            "FontSmooth": "Auto",
+            "Outline": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,1,1"
+            },
+            "Shadow": {
+              "Enabled": true,
+              "Size": 6,
+              "Color": "0,0,0,0.8",
+              "Offset": "3,3"
+            },
+            "OutlineUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,1,0,1"
+            },
+            "ShadowUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            }
+          },
+          "VerticalAlignment": "Center"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "6b416414-5ccc-50a8-a1ce-05b4d97c216a",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Stairs",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "0aa39338-8db6-5e78-8619-85038bd7798c",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Step 1",
+          "Position": "0,0.15,-0.4",
+          "Rotation": "0,0,0,1",
+          "Scale": "2.6,0.3,0.55",
+          "Tags": "world",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ModelRenderer",
+              "__guid": "cdec76a3-7977-5821-9880-12ba6e106792",
+              "__enabled": true,
+              "Flags": 0,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Materials": null,
+              "Model": "models/dev/box.mdl",
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "0.75,0.78,0.84,1"
+            },
+            {
+              "__type": "Rinten.BoxCollider",
+              "__guid": "7a9c40f4-258b-5661-a5a0-4be23fb263ae",
+              "__enabled": true,
+              "Flags": 0,
+              "Center": "0,0,0",
+              "Scale": "1,1,1",
+              "ColliderFlags": 0,
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": false,
+              "RollingResistance": null,
+              "Static": true,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "5ca129f0-784d-52de-900a-03fdd57a2e60",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Step 2",
+          "Position": "0,0.3,-0.9500000000000001",
+          "Rotation": "0,0,0,1",
+          "Scale": "2.6,0.6,0.55",
+          "Tags": "world",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ModelRenderer",
+              "__guid": "9684363c-5b13-5fce-88e9-f91b30cc76fb",
+              "__enabled": true,
+              "Flags": 0,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Materials": null,
+              "Model": "models/dev/box.mdl",
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "0.75,0.78,0.84,1"
+            },
+            {
+              "__type": "Rinten.BoxCollider",
+              "__guid": "7bfff8d4-bcb3-5dc0-87b7-8f36692b4631",
+              "__enabled": true,
+              "Flags": 0,
+              "Center": "0,0,0",
+              "Scale": "1,1,1",
+              "ColliderFlags": 0,
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": false,
+              "RollingResistance": null,
+              "Static": true,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "2753d6ad-c5bc-5010-825a-5f39e89a1366",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Step 3",
+          "Position": "0,0.44999999999999996,-1.5",
+          "Rotation": "0,0,0,1",
+          "Scale": "2.6,0.8999999999999999,0.55",
+          "Tags": "world",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ModelRenderer",
+              "__guid": "41f2a628-5efa-5bb1-ab14-b7f8848fc8fb",
+              "__enabled": true,
+              "Flags": 0,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Materials": null,
+              "Model": "models/dev/box.mdl",
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "0.75,0.78,0.84,1"
+            },
+            {
+              "__type": "Rinten.BoxCollider",
+              "__guid": "93d9b079-5cc9-5640-a323-1badc3cb2e4c",
+              "__enabled": true,
+              "Flags": 0,
+              "Center": "0,0,0",
+              "Scale": "1,1,1",
+              "ColliderFlags": 0,
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": false,
+              "RollingResistance": null,
+              "Static": true,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "5d90ec9d-f9c4-51ff-ab84-fbe8bfc58ae3",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Step 4",
+          "Position": "0,0.6,-2.0500000000000003",
+          "Rotation": "0,0,0,1",
+          "Scale": "2.6,1.2,0.55",
+          "Tags": "world",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ModelRenderer",
+              "__guid": "48642754-68ea-5a04-bcf1-d1a46d3be93a",
+              "__enabled": true,
+              "Flags": 0,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Materials": null,
+              "Model": "models/dev/box.mdl",
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "0.75,0.78,0.84,1"
+            },
+            {
+              "__type": "Rinten.BoxCollider",
+              "__guid": "7a3f2403-faae-53fc-a4c6-70c1b0ec4197",
+              "__enabled": true,
+              "Flags": 0,
+              "Center": "0,0,0",
+              "Scale": "1,1,1",
+              "ColliderFlags": 0,
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": false,
+              "RollingResistance": null,
+              "Static": true,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "f297c706-65ca-5596-b87b-3a878cd0e6b3",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Landing",
+      "Position": "0,1.05,-3.2",
+      "Rotation": "0,0,0,1",
+      "Scale": "2.6,0.3,1.8",
+      "Tags": "world",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "e1fb3904-1f7e-563d-8d31-6950960fb803",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.7,0.74,0.8,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "4e8c090a-8292-5385-909e-69eb294be0d6",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "08629f26-cde1-5c7a-ba54-88e5b3d28fdc",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Pad A",
+      "Position": "0,1.05,-6.85",
+      "Rotation": "0,0,0,1",
+      "Scale": "2.2,0.3,2.0",
+      "Tags": "world",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "13f8908d-089c-5a9d-b355-c88ad9375e9c",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.3,0.75,0.55,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "658ed0e5-0a2a-527a-9485-427e706e2038",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "31e6ccfb-a6aa-530f-aac9-9e201af99a9d",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Pad B",
+      "Position": "0,1.05,-9.6",
+      "Rotation": "0,0,0,1",
+      "Scale": "2.2,0.3,2.0",
+      "Tags": "world",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "8ba3d374-04c1-5fdc-9b81-6f6bcfad6ea6",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.3,0.75,0.55,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "f66a9361-5959-5af4-a5c7-d067597c8d9f",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "0bdd9fe4-0457-5c78-ba26-7dc4e8b1e250",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Mover",
+      "Position": "0,1.05,-12.4",
+      "Rotation": "0,0,0,1",
+      "Scale": "2.2,0.3,2.0",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "d428e95a-efe4-53aa-91e4-36ac99b96b39",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.95,0.6,0.2,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "4df077ec-d944-5f60-9fa5-eca2c1a49f78",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        },
+        {
+          "__type": "TestGround.Oscillator",
+          "__guid": "b512ec0b-ceed-5dc6-abfd-05b809751653",
+          "__enabled": true,
+          "Flags": 0,
+          "Axis": "0,0,1",
+          "Amplitude": 1.1,
+          "Speed": 0.35,
+          "Phase": 0
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "992043bb-7a4b-548e-b99f-1fb6547b2336",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "High Ledge",
+      "Position": "0,0.35,3.2",
+      "Rotation": "0,0,0,1",
+      "Scale": "2.2,0.7,1.2",
+      "Tags": "world",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "c722308c-ba5d-59be-9d56-fcee44e26c06",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.9,0.35,0.3,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "9f814ee7-b268-52fc-8836-dcb66ce89ece",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "e6b4c56e-196d-5167-8eaa-e1bec0214163",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Walkable Ramp",
+      "Position": "5.4,0.9490196203927626,0.5",
+      "Rotation": "0.17364818,0,0,0.98480775",
+      "Scale": "2.0,0.2,5.0",
+      "Tags": "world",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "526dce39-9b72-52df-aa4a-9ea803590ea4",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.35,0.7,0.95,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "690df146-9155-5310-b2e3-ff567399bc89",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "ebd8a2c9-6368-5735-b9e1-6f4859ab3387",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Steep Ramp",
+      "Position": "-5.4,1.979389868766099,0.5",
+      "Rotation": "0.42261826,0,0,0.90630779",
+      "Scale": "2.0,0.2,5.0",
+      "Tags": "world",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "f764ab13-b174-5ef4-be10-7f7834ce6544",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.95,0.35,0.3,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "0b8d2079-12f6-563a-9457-23f57dd8a715",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "f9161fe3-f384-53af-b62a-375fd7a32c85",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Player",
+      "Position": "0,0.05,7",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.CharacterController",
+          "__guid": "52795a9c-3ac3-52f5-b906-cb50edee650b",
+          "__enabled": true,
+          "Flags": 0,
+          "Acceleration": 10,
+          "Bounciness": 0.3,
+          "GroundAngle": 45,
+          "Height": 1.6,
+          "IgnoreLayers": "",
+          "Radius": 0.4,
+          "StepHeight": 0.45,
+          "UseCollisionRules": false
+        },
+        {
+          "__type": "TestGround.Walker",
+          "__guid": "adeef4a3-467c-5c9d-ae67-b244faf5f1ff",
+          "__enabled": true,
+          "Flags": 0,
+          "AirControl": 0.35,
+          "Camera": {
+            "_type": "component",
+            "component_id": "442f12c7-65cf-5a94-b435-1f98a5375561",
+            "go": "12bf3802-e10b-564e-bee4-5ba8635836c2",
+            "component_type": "CameraComponent"
+          },
+          "Controller": {
+            "_type": "component",
+            "component_id": "52795a9c-3ac3-52f5-b906-cb50edee650b",
+            "go": "f9161fe3-f384-53af-b62a-375fd7a32c85",
+            "component_type": "CharacterController"
+          },
+          "EyeHeight": 1.5,
+          "FallHeight": -4,
+          "Friction": 6,
+          "Gravity": 16,
+          "Jump": 5.5,
+          "PitchClamp": 89,
+          "RunScale": 1.8,
+          "Speed": 4.5
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "e9234a2d-446e-5c5d-9245-08897d61ad2f",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Body",
+          "Position": "0,0.78,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "0.7,1.55,0.7",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ModelRenderer",
+              "__guid": "d162a663-d7cd-53f8-9cd3-9e7d4ddc4fe1",
+              "__enabled": true,
+              "Flags": 0,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Materials": null,
+              "Model": "models/dev/box.mdl",
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "0.25,0.55,0.95,0.7"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "12bf3802-e10b-564e-bee4-5ba8635836c2",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Camera",
+          "Position": "0,1.5,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "maincamera",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.CameraComponent",
+              "__guid": "442f12c7-65cf-5a94-b435-1f98a5375561",
+              "__enabled": true,
+              "Flags": 0,
+              "BackgroundColor": "0.05,0.06,0.08,1",
+              "ClearFlags": "All",
+              "EnablePostProcessing": true,
+              "FieldOfView": 70,
+              "FovAxis": "Horizontal",
+              "IsMainCamera": true,
+              "Orthographic": false,
+              "OrthographicHeight": 10,
+              "PostProcessAnchor": null,
+              "Priority": 1,
+              "RenderExcludeTags": "",
+              "RenderTags": "",
+              "RenderTexture": null,
+              "TargetEye": "None",
+              "Viewport": "0,0,1,1",
+              "ZFar": 400,
+              "ZNear": 0.05
+            },
+            {
+              "__type": "Rinten.Bloom",
+              "__guid": "6bb21b47-2050-5c9b-ac53-3b23d56f5db9",
+              "__enabled": true,
+              "Flags": 0,
+              "__version": 1,
+              "Mode": "Additive",
+              "Strength": 0.5,
+              "Threshold": 1,
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "c698064b-0c06-5ee2-ae47-2fc2d0c47c91",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "HUD",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ScreenPanel",
+          "__guid": "1cbfafdc-410b-5c63-9219-6a593ea59da8",
+          "__enabled": true,
+          "Flags": 0,
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": null,
+          "ZIndex": 100
+        },
+        {
+          "__type": "TestGround.SceneHud",
+          "__guid": "d3c34fa2-04e1-57e6-9648-4c2313fd0b9a",
+          "__enabled": true,
+          "Flags": 0,
+          "Title": "Platforms",
+          "Note": "WASD walk, Shift run, Space jump. Stairs of 0.3, a 20\u00b0 ramp, a 50\u00b0 ramp, a gap, a moving pad, a 0.7m ledge."
+        },
+        {
+          "__type": "TestGround.ReturnToMenu",
+          "__guid": "0cd604be-6ead-5a05-aca8-9cb938398eb4",
+          "__enabled": true,
+          "Flags": 0,
+          "Key": "Q",
+          "MenuScene": null
+        }
+      ],
+      "Children": []
+    }
+  ],
+  "SceneProperties": {
+    "NetworkInterpolation": true,
+    "TimeScale": 1,
+    "WantsSystemScene": true,
+    "Metadata": {},
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": false,
+      "AgentHeight": 1.6,
+      "AgentRadius": 0.4,
+      "AgentStepSize": 0.45,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": "",
+      "DeferGeneration": false,
+      "CustomBounds": false
+    },
+    "GameObjectSystems": {}
+  },
+  "ResourceVersion": 4,
+  "Title": null,
+  "Description": null,
+  "__references": [],
+  "__version": 4
+}

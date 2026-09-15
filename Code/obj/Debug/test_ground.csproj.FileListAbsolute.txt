@@ -34,3 +34,4 @@
 /home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/refint/test_ground.dll
 /home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/test_ground.pdb
 /home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/Debug/ref/test_ground.dll
+/home/sampesss/Documents/Projects/Rinten-Engine/game/.vs/output/UI/UiShowcase.razor.design.json

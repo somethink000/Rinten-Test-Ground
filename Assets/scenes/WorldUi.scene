@@ -1,0 +1,717 @@
+{
+  "__guid": "ca9f7b29-5d63-5894-8d5d-8a3f2274b2b4",
+  "GameObjects": [
+    {
+      "__guid": "c8c0b6bd-ddc2-5aa8-8a66-94320fabb08a",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Environment",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "39faa1f2-c9c8-5872-ab74-95c99a84e5cc",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Sun",
+          "Position": "0,0,0",
+          "Rotation": "-0.372788548,-0.776215434,-0.149966598,0.485827178",
+          "Scale": "1,1,1",
+          "Tags": "light_directional,light",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.DirectionalLight",
+              "__guid": "4504c874-c2f7-5a1f-9bd4-15ffd09494b3",
+              "__enabled": true,
+              "Flags": 0,
+              "__version": 1,
+              "Attenuation": 1,
+              "Brightness": 1.6,
+              "Contribution": "Diffuse, Specular, Transmissive",
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "1,0.97,0.92,1",
+              "ShadowAngle": 0.6,
+              "ShadowDetail": 64,
+              "Shadows": true,
+              "SkyColor": "0,0,0,0",
+              "SourceRadius": 0.05
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "260f0dde-9c99-51b9-b3f4-bdef2e6a45ba",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Ambient",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.AmbientLight",
+              "__guid": "8bea0afd-ca59-5847-92a7-1e97f33b4ca6",
+              "__enabled": true,
+              "Flags": 0,
+              "Color": "0.18,0.21,0.27,1"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "0a26bb4a-ddb4-5b7e-a400-8e667f6280c8",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "2D Skybox",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "skybox",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.SkyBox2D",
+              "__guid": "82eafd9d-9251-59ed-97e9-a311c743dd6e",
+              "__enabled": true,
+              "Flags": 0,
+              "SkyIndirectLighting": true,
+              "SkyMaterial": "materials/skybox/procedural.mat",
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "664da7b6-0019-5b74-89ce-a74330c23ee4",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Ground",
+      "Position": "0,-0.25,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "24,0.5,24",
+      "Tags": "world",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "a33ec6d3-cb05-5a2a-ba13-71ae2a743520",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": "materials/dev/grid.mat",
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.55,0.58,0.62,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "582837f4-735e-598b-9621-8e5dce8a2afb",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "ddc6fa31-d03b-5857-bd0f-f6693e001ab5",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Label: World UI",
+      "Position": "0,3.0,-2",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.TextRenderer",
+          "__guid": "a0bcafad-bd40-5f10-86aa-a7b33a34c7a6",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 2,
+          "Billboard": "YOnly",
+          "BlendMode": "Normal",
+          "FogStrength": 1,
+          "HorizontalAlignment": "Center",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "Scale": 0.18,
+          "TextScope": {
+            "Text": "World Panels\nUI sitting on objects, facing the camera",
+            "TextColor": "0.9,0.94,1,1",
+            "FontName": "Poppins",
+            "FontSize": 44,
+            "FontWeight": 700,
+            "FontItalic": false,
+            "FontVariantNumeric": "Normal",
+            "LineHeight": 1.1,
+            "LetterSpacing": 0,
+            "WordSpacing": 0,
+            "FilterMode": "Bilinear",
+            "FontSmooth": "Auto",
+            "Outline": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,1,1"
+            },
+            "Shadow": {
+              "Enabled": true,
+              "Size": 6,
+              "Color": "0,0,0,0.8",
+              "Offset": "3,3"
+            },
+            "OutlineUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,1,0,1"
+            },
+            "ShadowUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            }
+          },
+          "VerticalAlignment": "Center"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "ef4ef831-1606-5349-9116-3d19a5948d87",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Alpha",
+      "Position": "-2.4,0.4,-1.5",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.9,0.9,0.9",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "4fff32be-0be4-53d1-b591-a2d84085eafd",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.25,0.55,0.95,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "828ae3a3-0223-5208-9093-3144bb3e812f",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "bab69bde-1412-54d9-9137-0db0ad015695",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Alpha Label",
+          "Position": "0,1.35,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.WorldPanel",
+              "__guid": "fe690d3e-2a72-5b7c-9aab-9238bedfaf2a",
+              "__enabled": true,
+              "Flags": 0,
+              "HorizontalAlign": "Center",
+              "InteractionRange": 6,
+              "LookAtCamera": true,
+              "PanelSize": "420,180",
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderScale": 1,
+              "VerticalAlign": "Center"
+            },
+            {
+              "__type": "TestGround.WorldLabel",
+              "__guid": "f379eae3-29bf-5a88-bdd6-83b18323783f",
+              "__enabled": true,
+              "Flags": 0,
+              "Title": "Alpha",
+              "Note": "A panel on a cube"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "5a765751-8383-5f5b-9296-b776bf07f48c",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Beta",
+      "Position": "0,0.4,-2.2",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.9,0.9,0.9",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "74da83ad-e5a2-5f65-bb4d-4d075205855c",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.95,0.5,0.2,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "6d37919d-fc1d-5944-8ee4-22d717e50aa3",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "62bbb0b8-8728-5eda-8451-c0c873200507",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Beta Label",
+          "Position": "0,1.35,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.WorldPanel",
+              "__guid": "13dddbd0-157c-512f-96b7-a51ac7d127a4",
+              "__enabled": true,
+              "Flags": 0,
+              "HorizontalAlign": "Center",
+              "InteractionRange": 6,
+              "LookAtCamera": true,
+              "PanelSize": "420,180",
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderScale": 1,
+              "VerticalAlign": "Center"
+            },
+            {
+              "__type": "TestGround.WorldLabel",
+              "__guid": "6b9c5c53-e028-530c-b097-a5b81525fa04",
+              "__enabled": true,
+              "Flags": 0,
+              "Title": "Beta",
+              "Note": "LookAtCamera is on"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "618da0a0-8cf1-59b7-988a-0834bfd5da2f",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Gamma",
+      "Position": "2.4,0.4,-1.5",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.9,0.9,0.9",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "2c812902-39c2-5e9c-8b74-ed12c3c046b4",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.3,0.8,0.45,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "f406f001-586d-58d0-a946-e0b39bc4a34b",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "ac7b0295-90d3-5825-a2ea-319bab812eea",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Gamma Label",
+          "Position": "0,1.35,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.WorldPanel",
+              "__guid": "2a21787b-1a81-5e30-900f-dd514b4ee7d9",
+              "__enabled": true,
+              "Flags": 0,
+              "HorizontalAlign": "Center",
+              "InteractionRange": 6,
+              "LookAtCamera": true,
+              "PanelSize": "420,180",
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderScale": 1,
+              "VerticalAlign": "Center"
+            },
+            {
+              "__type": "TestGround.WorldLabel",
+              "__guid": "cd086751-9593-5012-91c8-013c55b87f17",
+              "__enabled": true,
+              "Flags": 0,
+              "Title": "Gamma",
+              "Note": "Click through World Input"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "19171513-f09a-58bb-afa6-da35e5630d62",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Player",
+      "Position": "0,2.2,6",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Template.Player",
+          "__guid": "e979319b-45ee-5d8d-b4c6-d954c9e6ae37",
+          "__enabled": true,
+          "Flags": 0,
+          "Camera": {
+            "_type": "component",
+            "component_id": "1a7063c9-e997-5444-9c4d-8de9ef440399",
+            "go": "46f87e9a-022a-5408-92c0-2f62c6f159ae",
+            "component_type": "CameraComponent"
+          },
+          "PitchClamp": 89,
+          "RunScale": 3,
+          "Speed": 6.0
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "46f87e9a-022a-5408-92c0-2f62c6f159ae",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Camera",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "maincamera",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.CameraComponent",
+              "__guid": "1a7063c9-e997-5444-9c4d-8de9ef440399",
+              "__enabled": true,
+              "Flags": 0,
+              "BackgroundColor": "0.05,0.06,0.08,1",
+              "ClearFlags": "All",
+              "EnablePostProcessing": true,
+              "FieldOfView": 70,
+              "FovAxis": "Horizontal",
+              "IsMainCamera": true,
+              "Orthographic": false,
+              "OrthographicHeight": 10,
+              "PostProcessAnchor": null,
+              "Priority": 1,
+              "RenderExcludeTags": "",
+              "RenderTags": "",
+              "RenderTexture": null,
+              "TargetEye": "None",
+              "Viewport": "0,0,1,1",
+              "ZFar": 400,
+              "ZNear": 0.05
+            },
+            {
+              "__type": "Rinten.Bloom",
+              "__guid": "3db5b087-0118-58a5-a221-a53d3ce77479",
+              "__enabled": true,
+              "Flags": 0,
+              "__version": 1,
+              "Mode": "Additive",
+              "Strength": 0.6,
+              "Threshold": 1,
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Rinten.WorldInput",
+              "__guid": "7738958d-59d8-5d72-b700-e83a8d415b8e",
+              "__enabled": true,
+              "Flags": 0,
+              "LeftMouseAction": "Attack1",
+              "RightMouseAction": "Attack2",
+              "VRHandSource": "Left"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "b2ea968a-9ed9-5117-b815-f4520fb6ee0c",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "HUD",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ScreenPanel",
+          "__guid": "3eeb8cc5-6f1b-5e4d-9cfd-3327007c3740",
+          "__enabled": true,
+          "Flags": 0,
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": null,
+          "ZIndex": 100
+        },
+        {
+          "__type": "TestGround.SceneHud",
+          "__guid": "4a47782c-05d1-5f7c-8d60-a7d0431c79c3",
+          "__enabled": true,
+          "Flags": 0,
+          "Title": "World UI",
+          "Note": "Three world panels sit on cubes and turn to face you. Screen UI is the other showcase; this is UI in the scene."
+        },
+        {
+          "__type": "TestGround.ReturnToMenu",
+          "__guid": "04fecb6c-88c6-505a-b114-86172ca75a30",
+          "__enabled": true,
+          "Flags": 0,
+          "Key": "Q",
+          "MenuScene": null
+        }
+      ],
+      "Children": []
+    }
+  ],
+  "SceneProperties": {
+    "NetworkInterpolation": true,
+    "TimeScale": 1,
+    "WantsSystemScene": true,
+    "Metadata": {},
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": false,
+      "AgentHeight": 1.6,
+      "AgentRadius": 0.4,
+      "AgentStepSize": 0.45,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": "",
+      "DeferGeneration": false,
+      "CustomBounds": false
+    },
+    "GameObjectSystems": {}
+  },
+  "ResourceVersion": 4,
+  "Title": null,
+  "Description": null,
+  "__references": [],
+  "__version": 4
+}

@@ -1,0 +1,31 @@
+worldlabel
+{
+	justify-content: center;
+	align-items: center;
+
+	.card
+	{
+		flex-direction: column;
+		padding: 14px 18px;
+		border-radius: 12px;
+		background-color: #16181dee;
+		border: 1px solid #ffffff22;
+		min-width: 180px;
+
+		.title
+		{
+			font-family: Poppins;
+			font-size: 22px;
+			font-weight: 700;
+			color: #f2f5fa;
+		}
+
+		.note
+		{
+			font-family: Poppins;
+			font-size: 14px;
+			color: #8b93a3;
+			margin-top: 4px;
+		}
+	}
+}

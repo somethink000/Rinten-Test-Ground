@@ -30089,6 +30089,21 @@
           "PitchClamp": 89,
           "RunScale": 3,
           "Speed": 7
+        },
+        {
+          "__type": "TestGround.Grabber",
+          "__guid": "3a7f1c2e-9b40-5d18-ae6f-c4d8e2b0a159",
+          "__enabled": true,
+          "Flags": 0,
+          "Action": "Attack1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Reach": 8,
+          "Smoothness": 4
         }
       ],
       "Children": [
@@ -30199,7 +30214,7 @@
           "__guid": "e9a9c02b-94d2-5369-b9c3-e4e33c37e1b0",
           "__enabled": true,
           "Flags": 0,
-          "Note": "Joints, locks, damping, gravity scale - and a paddle churning a boxful of debris.",
+          "Note": "Joints, locks, damping, gravity scale - and a paddle churning a boxful of debris. Hold the mouse to grab a body.",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,

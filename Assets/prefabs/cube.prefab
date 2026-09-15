@@ -1,0 +1,100 @@
+{
+  "RootObject": {
+    "__guid": "7c3d1a90-2e4b-5f18-9c6a-1b0e8d4f2a11",
+    "__version": 2,
+    "Flags": 0,
+    "Name": "cube",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "0.45,0.45,0.45",
+    "Tags": "",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkFlags": 0,
+    "NetworkOrphaned": 0,
+    "NetworkTransmit": true,
+    "OwnerTransfer": 1,
+    "Components": [
+      {
+        "__type": "Rinten.ModelRenderer",
+        "__guid": "a11c4e72-8b03-5c9d-b2e1-4f7a90c6d812",
+        "__enabled": true,
+        "Flags": 0,
+        "BodyGroups": 18446744073709551615,
+        "CreateAttachments": false,
+        "MaterialGroup": null,
+        "MaterialOverride": null,
+        "Materials": null,
+        "Model": "models/dev/box.mdl",
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "BloomLayer": false,
+          "AfterUILayer": false
+        },
+        "RenderType": "On",
+        "Tint": "0.25,0.55,0.95,1"
+      },
+      {
+        "__type": "Rinten.BoxCollider",
+        "__guid": "b22d5f83-9c14-5dae-c3f2-508b01d7e923",
+        "__enabled": true,
+        "Flags": 0,
+        "Center": "0,0,0",
+        "Scale": "1,1,1",
+        "ColliderFlags": 0,
+        "Elasticity": null,
+        "Friction": null,
+        "IsTrigger": false,
+        "RollingResistance": null,
+        "Static": false,
+        "Surface": null,
+        "SurfaceVelocity": "0,0,0"
+      },
+      {
+        "__type": "Rinten.Rigidbody",
+        "__guid": "c33e6094-ad25-5ebf-d403-619c12e8f034",
+        "__enabled": true,
+        "Flags": 0,
+        "AngularDamping": 0.05,
+        "EnableImpactDamage": false,
+        "EnhancedCcd": false,
+        "Gravity": true,
+        "GravityScale": 1,
+        "ImpactDamage": 0,
+        "LinearDamping": 0,
+        "Locking": {
+          "X": false,
+          "Y": false,
+          "Z": false,
+          "Pitch": false,
+          "Yaw": false,
+          "Roll": false
+        },
+        "MassCenterOverride": "0,0,0",
+        "MassOverride": 0,
+        "MinImpactDamageSpeed": 500,
+        "MotionEnabled": true,
+        "OverrideMassCenter": false,
+        "RigidbodyFlags": 0,
+        "SleepThreshold": 2,
+        "StartAsleep": false
+      },
+      {
+        "__type": "TestGround.SelfDestruct",
+        "__guid": "d44f71a5-be36-5fc0-e514-72ad23f90145",
+        "__enabled": true,
+        "Flags": 0,
+        "Seconds": 6
+      }
+    ],
+    "Children": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 2,
+  "__references": [],
+  "__version": 2
+}

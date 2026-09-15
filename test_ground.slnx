@@ -13,5 +13,6 @@
     <Project Path="../../Projects/Rinten-Engine/game/editor/FxEditor/Code/fxeditor.csproj" />
     <Project Path="../../Projects/Rinten-Engine/game/editor/MdlEditor/Code/mdleditor.csproj" />
     <Project Path="../../Projects/Rinten-Engine/game/editor/MovieMaker/Code/moviemaker.csproj" />
+    <Project Path="../../Projects/Rinten-Engine/game/editor/UiEditor/Code/uieditor.csproj" />
   </Folder>
 </Solution>

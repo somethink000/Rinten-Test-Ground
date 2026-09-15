@@ -1,0 +1,100 @@
+{
+  "RootObject": {
+    "__guid": "8d4e2b01-3f5c-5029-ad7b-2c1f9e5a3b22",
+    "__version": 2,
+    "Flags": 0,
+    "Name": "sphere",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "0.45,0.45,0.45",
+    "Tags": "",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkFlags": 0,
+    "NetworkOrphaned": 0,
+    "NetworkTransmit": true,
+    "OwnerTransfer": 1,
+    "Components": [
+      {
+        "__type": "Rinten.ModelRenderer",
+        "__guid": "e55a82b6-cf47-50d1-f625-83be34aa1256",
+        "__enabled": true,
+        "Flags": 0,
+        "BodyGroups": 18446744073709551615,
+        "CreateAttachments": false,
+        "MaterialGroup": null,
+        "MaterialOverride": null,
+        "Materials": null,
+        "Model": "models/dev/sphere.mdl",
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "BloomLayer": false,
+          "AfterUILayer": false
+        },
+        "RenderType": "On",
+        "Tint": "0.95,0.55,0.2,1"
+      },
+      {
+        "__type": "Rinten.SphereCollider",
+        "__guid": "f66b93c7-d058-51e2-a736-94cf45bb2367",
+        "__enabled": true,
+        "Flags": 0,
+        "Center": "0,0,0",
+        "Radius": 0.5,
+        "ColliderFlags": 0,
+        "Elasticity": null,
+        "Friction": null,
+        "IsTrigger": false,
+        "RollingResistance": null,
+        "Static": false,
+        "Surface": null,
+        "SurfaceVelocity": "0,0,0"
+      },
+      {
+        "__type": "Rinten.Rigidbody",
+        "__guid": "077ca4d8-e169-52f3-b847-a5d056cc3478",
+        "__enabled": true,
+        "Flags": 0,
+        "AngularDamping": 0.05,
+        "EnableImpactDamage": false,
+        "EnhancedCcd": false,
+        "Gravity": true,
+        "GravityScale": 1,
+        "ImpactDamage": 0,
+        "LinearDamping": 0,
+        "Locking": {
+          "X": false,
+          "Y": false,
+          "Z": false,
+          "Pitch": false,
+          "Yaw": false,
+          "Roll": false
+        },
+        "MassCenterOverride": "0,0,0",
+        "MassOverride": 0,
+        "MinImpactDamageSpeed": 500,
+        "MotionEnabled": true,
+        "OverrideMassCenter": false,
+        "RigidbodyFlags": 0,
+        "SleepThreshold": 2,
+        "StartAsleep": false
+      },
+      {
+        "__type": "TestGround.SelfDestruct",
+        "__guid": "188db5e9-f27a-5304-c958-b6e167dd4589",
+        "__enabled": true,
+        "Flags": 0,
+        "Seconds": 6
+      }
+    ],
+    "Children": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 2,
+  "__references": [],
+  "__version": 2
+}

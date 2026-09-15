@@ -21,6 +21,7 @@ scenemenu
 		border: 1px solid #ffffff14;
 		box-shadow: 0px 24px 64px #0009;
 		pointer-events: all;
+		height: 820px;
 	}
 
 	.head
@@ -100,7 +101,8 @@ scenemenu
 	{
 		flex-direction: column;
 		overflow-y: scroll;
-		margin-top: 6px;
+		margin-top: 16px;
+		height: 617px;
 
 		.card
 		{
@@ -112,6 +114,7 @@ scenemenu
 			background-color: #ffffff08;
 			border: 1px solid #ffffff0d;
 			cursor: pointer;
+			flex-shrink: 0;
 			transition: all 0.1s ease-out;
 
 			&:hover
@@ -203,8 +206,6 @@ scenemenu
 	{
 		font-size: 12px;
 		color: #6d7686;
-		margin-top: 14px;
-		padding-top: 14px;
 		border-top: 1px solid #ffffff12;
 	}
 

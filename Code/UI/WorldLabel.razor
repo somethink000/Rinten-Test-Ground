@@ -1,0 +1,28 @@
+@using Rinten;
+@using Rinten.UI;
+@namespace TestGround
+@inherits PanelComponent
+
+@* A name on a card in the world. Lives on a WorldPanel so it sits on an
+   object rather than on the screen. *@
+
+<root>
+	<div class="card">
+		<div class="title">@Title</div>
+		@if ( !string.IsNullOrWhiteSpace( Note ) )
+		{
+			<div class="note">@Note</div>
+		}
+	</div>
+</root>
+
+@code
+{
+	/// <summary>The word on the card.</summary>
+	[Property] public string Title { get; set; } = "Label";
+
+	/// <summary>A line under the word.</summary>
+	[Property, TextArea] public string Note { get; set; }
+
+	protected override int BuildHash() => System.HashCode.Combine( Title, Note );
+}

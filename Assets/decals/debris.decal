@@ -1,0 +1,15 @@
+{
+  "ColorTexture": "textures/fx/debris.png",
+  "NormalTexture": null,
+  "RoughMetalOcclusionTexture": null,
+  "EmissiveTexture": null,
+  "HeightTexture": null,
+  "ParallaxStrength": 1,
+  "Tint": "1,1,1,1",
+  "ColorMix": 1,
+  "Width": 1,
+  "Height": 1,
+  "FilterMode": "Anisotropic",
+  "__references": [],
+  "__version": 0
+}

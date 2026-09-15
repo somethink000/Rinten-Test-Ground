@@ -1,0 +1,1275 @@
+{
+  "__guid": "db1dd123-4463-5669-9e17-d8585cb467b0",
+  "GameObjects": [
+    {
+      "__guid": "a30f5f68-0b69-5dcb-b93d-b4eaad1f2571",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Environment",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "67bea4d1-8b13-54fe-939c-d7c94dee8da4",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Sun",
+          "Position": "0,0,0",
+          "Rotation": "-0.372788548,-0.776215434,-0.149966598,0.485827178",
+          "Scale": "1,1,1",
+          "Tags": "light_directional,light",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.DirectionalLight",
+              "__guid": "e0173bf1-6e25-52fd-869a-7c077998ff84",
+              "__enabled": true,
+              "Flags": 0,
+              "__version": 1,
+              "Attenuation": 1,
+              "Brightness": 1.6,
+              "Contribution": "Diffuse, Specular, Transmissive",
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "1,0.97,0.92,1",
+              "ShadowAngle": 0.6,
+              "ShadowDetail": 64,
+              "Shadows": true,
+              "SkyColor": "0,0,0,0",
+              "SourceRadius": 0.05
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "ff628834-4b8c-5c22-be93-8c4d8fccb1f9",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Ambient",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.AmbientLight",
+              "__guid": "bb3118d8-edb5-59d1-b9aa-522e270921d2",
+              "__enabled": true,
+              "Flags": 0,
+              "Color": "0.18,0.21,0.27,1"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "c90629a1-a902-568f-a2b1-b8891472c599",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "2D Skybox",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "skybox",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.SkyBox2D",
+              "__guid": "541d6d35-558e-53d5-886f-92a429da5318",
+              "__enabled": true,
+              "Flags": 0,
+              "SkyIndirectLighting": true,
+              "SkyMaterial": "materials/skybox/procedural.mat",
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "3685e832-a420-53ae-a305-fc1631a6b0bd",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Ground",
+      "Position": "0,-0.25,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "28,0.5,28",
+      "Tags": "world",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "a0db61e6-9dc8-5522-9ccd-abf612a8cf4b",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": "materials/dev/grid.mat",
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.55,0.58,0.62,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "72275440-d048-54bb-8bd9-58654a431f9b",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "f1706176-3f45-5212-bd9f-8ce0eb302582",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Wall",
+      "Position": "0,1.5,-4",
+      "Rotation": "0,0,0,1",
+      "Scale": "8,3,0.25",
+      "Tags": "world",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "e5158e2e-71e0-573f-ab76-84e59fa5b391",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.72,0.74,0.78,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "cd2a860b-8a27-52f9-8556-7f6885b4b366",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "e3f2351f-92d6-5583-8f4a-a75ad7ca49aa",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Side Wall",
+      "Position": "-5,1.5,-1.5",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.25,3,5",
+      "Tags": "world",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ModelRenderer",
+          "__guid": "aed80835-1404-570e-b73b-591ec9e914dc",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Materials": null,
+          "Model": "models/dev/box.mdl",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.72,0.74,0.78,1"
+        },
+        {
+          "__type": "Rinten.BoxCollider",
+          "__guid": "09c03130-13cf-5312-ad6c-444c793d20f1",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "Scale": "1,1,1",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "RollingResistance": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "e2f855a1-11f8-5234-91f3-1562e6f97464",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Label: Wall",
+      "Position": "0,3.4,-4",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.TextRenderer",
+          "__guid": "42e01efa-a523-556b-88ed-3b7246c21573",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 2,
+          "Billboard": "YOnly",
+          "BlendMode": "Normal",
+          "FogStrength": 1,
+          "HorizontalAlignment": "Center",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "Scale": 0.16,
+          "TextScope": {
+            "Text": "glow, flame, spark",
+            "TextColor": "0.9,0.94,1,1",
+            "FontName": "Poppins",
+            "FontSize": 44,
+            "FontWeight": 700,
+            "FontItalic": false,
+            "FontVariantNumeric": "Normal",
+            "LineHeight": 1.1,
+            "LetterSpacing": 0,
+            "WordSpacing": 0,
+            "FilterMode": "Bilinear",
+            "FontSmooth": "Auto",
+            "Outline": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,1,1"
+            },
+            "Shadow": {
+              "Enabled": true,
+              "Size": 6,
+              "Color": "0,0,0,0.8",
+              "Offset": "3,3"
+            },
+            "OutlineUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,1,0,1"
+            },
+            "ShadowUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            }
+          },
+          "VerticalAlignment": "Center"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "eddb4076-c350-5e68-b27d-8428afbb5c2c",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Label: Floor",
+      "Position": "0,1.6,0.5",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.TextRenderer",
+          "__guid": "0a33f44c-02ba-5926-9661-14db48bd25ed",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 2,
+          "Billboard": "YOnly",
+          "BlendMode": "Normal",
+          "FogStrength": 1,
+          "HorizontalAlignment": "Center",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "Scale": 0.16,
+          "TextScope": {
+            "Text": "ring, smoke, flake",
+            "TextColor": "0.9,0.94,1,1",
+            "FontName": "Poppins",
+            "FontSize": 44,
+            "FontWeight": 700,
+            "FontItalic": false,
+            "FontVariantNumeric": "Normal",
+            "LineHeight": 1.1,
+            "LetterSpacing": 0,
+            "WordSpacing": 0,
+            "FilterMode": "Bilinear",
+            "FontSmooth": "Auto",
+            "Outline": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,1,1"
+            },
+            "Shadow": {
+              "Enabled": true,
+              "Size": 6,
+              "Color": "0,0,0,0.8",
+              "Offset": "3,3"
+            },
+            "OutlineUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,1,0,1"
+            },
+            "ShadowUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            }
+          },
+          "VerticalAlignment": "Center"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "46858688-ffae-5044-a715-31e388a53450",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Floor Ring",
+      "Position": "-1.6,0.08,0.2",
+      "Rotation": "-0.7071068,0,0,0.7071068",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.Decal",
+          "__guid": "1e93fc11-157a-5de5-93fe-c54373909f1e",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 3,
+          "AttenuationAngle": 1,
+          "ColorMix": 1,
+          "ColorTint": {
+            "Type": "Constant",
+            "Evaluation": "Life",
+            "GradientA": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "0.2,0.55,0.95,1"
+                }
+              ],
+              "alpha": []
+            },
+            "GradientB": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "1,1,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "ConstantA": "0.2,0.55,0.95,1",
+            "ConstantB": "1,1,1,1"
+          },
+          "Decals": [
+            "decals/ring.decal"
+          ],
+          "Depth": 0.35,
+          "LifeTime": 0,
+          "Looped": false,
+          "Parallax": 1,
+          "Rotation": 0,
+          "Scale": 1,
+          "SequenceId": 0,
+          "SheetSequence": false,
+          "Size": "1.6,1.6",
+          "SortLayer": 0,
+          "Transient": false
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "093f6244-a0fb-5fbf-8286-bedafb008571",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Floor Smoke",
+      "Position": "0.4,0.08,1.1",
+      "Rotation": "-0.7071068,0,0,0.7071068",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.Decal",
+          "__guid": "c76e5c01-ecc0-590e-9bff-5cd093ed9ca0",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 3,
+          "AttenuationAngle": 1,
+          "ColorMix": 1,
+          "ColorTint": {
+            "Type": "Constant",
+            "Evaluation": "Life",
+            "GradientA": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "0.95,0.45,0.2,1"
+                }
+              ],
+              "alpha": []
+            },
+            "GradientB": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "1,1,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "ConstantA": "0.95,0.45,0.2,1",
+            "ConstantB": "1,1,1,1"
+          },
+          "Decals": [
+            "decals/smoke.decal"
+          ],
+          "Depth": 0.35,
+          "LifeTime": 0,
+          "Looped": false,
+          "Parallax": 1,
+          "Rotation": 0,
+          "Scale": 1,
+          "SequenceId": 0,
+          "SheetSequence": false,
+          "Size": "1.15,1.15",
+          "SortLayer": 0,
+          "Transient": false
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "aa7efa13-e21e-5b6e-82af-c093140f8648",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Floor Flake",
+      "Position": "1.8,0.08,0.0",
+      "Rotation": "-0.7071068,0,0,0.7071068",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.Decal",
+          "__guid": "b188daa6-0b82-51aa-b7e2-e2e950ebbd1e",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 3,
+          "AttenuationAngle": 1,
+          "ColorMix": 1,
+          "ColorTint": {
+            "Type": "Constant",
+            "Evaluation": "Life",
+            "GradientA": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "0.3,0.85,0.45,1"
+                }
+              ],
+              "alpha": []
+            },
+            "GradientB": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "1,1,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "ConstantA": "0.3,0.85,0.45,1",
+            "ConstantB": "1,1,1,1"
+          },
+          "Decals": [
+            "decals/flake.decal"
+          ],
+          "Depth": 0.35,
+          "LifeTime": 0,
+          "Looped": false,
+          "Parallax": 1,
+          "Rotation": 0,
+          "Scale": 1,
+          "SequenceId": 0,
+          "SheetSequence": false,
+          "Size": "0.55,0.55",
+          "SortLayer": 0,
+          "Transient": false
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "2be0e956-a947-5359-927c-c032f75d88e0",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Wall Glow",
+      "Position": "-1.8,1.4,-3.82",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.Decal",
+          "__guid": "08df5704-2f8f-53ff-ae3f-e0c12b74684c",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 3,
+          "AttenuationAngle": 1,
+          "ColorMix": 1,
+          "ColorTint": {
+            "Type": "Constant",
+            "Evaluation": "Life",
+            "GradientA": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "0.25,0.5,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "GradientB": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "1,1,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "ConstantA": "0.25,0.5,1,1",
+            "ConstantB": "1,1,1,1"
+          },
+          "Decals": [
+            "decals/glow.decal"
+          ],
+          "Depth": 0.35,
+          "LifeTime": 0,
+          "Looped": false,
+          "Parallax": 1,
+          "Rotation": 0,
+          "Scale": 1,
+          "SequenceId": 0,
+          "SheetSequence": false,
+          "Size": "1.4,1.4",
+          "SortLayer": 0,
+          "Transient": false
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "2bbfb0dc-88c7-5035-92c4-ea6c4d225614",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Wall Flame",
+      "Position": "0.2,1.7,-3.82",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.Decal",
+          "__guid": "55874974-a893-52e8-b901-b7869f066b5f",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 3,
+          "AttenuationAngle": 1,
+          "ColorMix": 1,
+          "ColorTint": {
+            "Type": "Constant",
+            "Evaluation": "Life",
+            "GradientA": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "1,0.5,0.15,1"
+                }
+              ],
+              "alpha": []
+            },
+            "GradientB": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "1,1,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "ConstantA": "1,0.5,0.15,1",
+            "ConstantB": "1,1,1,1"
+          },
+          "Decals": [
+            "decals/flame.decal"
+          ],
+          "Depth": 0.35,
+          "LifeTime": 0,
+          "Looped": false,
+          "Parallax": 1,
+          "Rotation": 0,
+          "Scale": 1,
+          "SequenceId": 0,
+          "SheetSequence": false,
+          "Size": "0.75,1.35",
+          "SortLayer": 0,
+          "Transient": false
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "cd4098e8-6f94-51ff-bc42-865887c428b3",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Wall Spark",
+      "Position": "1.9,1.1,-3.82",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.Decal",
+          "__guid": "54567bd4-b8cc-5a19-a0e9-43c65f05c5e2",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 3,
+          "AttenuationAngle": 1,
+          "ColorMix": 1,
+          "ColorTint": {
+            "Type": "Constant",
+            "Evaluation": "Life",
+            "GradientA": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "0.3,0.9,0.4,1"
+                }
+              ],
+              "alpha": []
+            },
+            "GradientB": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "1,1,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "ConstantA": "0.3,0.9,0.4,1",
+            "ConstantB": "1,1,1,1"
+          },
+          "Decals": [
+            "decals/spark.decal"
+          ],
+          "Depth": 0.35,
+          "LifeTime": 0,
+          "Looped": false,
+          "Parallax": 1,
+          "Rotation": 0,
+          "Scale": 1,
+          "SequenceId": 0,
+          "SheetSequence": false,
+          "Size": "0.8,0.8",
+          "SortLayer": 0,
+          "Transient": false
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "f8eb50ef-dda2-50a1-8120-50a6eb615254",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Side Flash",
+      "Position": "-4.82,1.5,-1.2",
+      "Rotation": "0,0.7071068,0,0.7071068",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.Decal",
+          "__guid": "a8fe13da-162e-55bc-acdc-246e91b59a55",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 3,
+          "AttenuationAngle": 1,
+          "ColorMix": 1,
+          "ColorTint": {
+            "Type": "Constant",
+            "Evaluation": "Life",
+            "GradientA": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "0.95,0.2,0.25,1"
+                }
+              ],
+              "alpha": []
+            },
+            "GradientB": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "1,1,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "ConstantA": "0.95,0.2,0.25,1",
+            "ConstantB": "1,1,1,1"
+          },
+          "Decals": [
+            "decals/flash.decal"
+          ],
+          "Depth": 0.35,
+          "LifeTime": 0,
+          "Looped": false,
+          "Parallax": 1,
+          "Rotation": 0,
+          "Scale": 1,
+          "SequenceId": 0,
+          "SheetSequence": false,
+          "Size": "1.2,1.2",
+          "SortLayer": 0,
+          "Transient": false
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "ffd7412d-ce52-59c4-b663-30cb9d297ca4",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Player",
+      "Position": "0,2.2,6",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Template.Player",
+          "__guid": "8e47b7d2-8870-5fd9-92e4-177398a18cba",
+          "__enabled": true,
+          "Flags": 0,
+          "Camera": {
+            "_type": "component",
+            "component_id": "d0ef62ac-8983-5c5a-8a87-fe742cce06a7",
+            "go": "e9dea1ce-5108-5b7a-ab66-19410a530b0b",
+            "component_type": "CameraComponent"
+          },
+          "PitchClamp": 89,
+          "RunScale": 3,
+          "Speed": 6.0
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "e9dea1ce-5108-5b7a-ab66-19410a530b0b",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Camera",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "maincamera",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.CameraComponent",
+              "__guid": "d0ef62ac-8983-5c5a-8a87-fe742cce06a7",
+              "__enabled": true,
+              "Flags": 0,
+              "BackgroundColor": "0.05,0.06,0.08,1",
+              "ClearFlags": "All",
+              "EnablePostProcessing": true,
+              "FieldOfView": 70,
+              "FovAxis": "Horizontal",
+              "IsMainCamera": true,
+              "Orthographic": false,
+              "OrthographicHeight": 10,
+              "PostProcessAnchor": null,
+              "Priority": 1,
+              "RenderExcludeTags": "",
+              "RenderTags": "",
+              "RenderTexture": null,
+              "TargetEye": "None",
+              "Viewport": "0,0,1,1",
+              "ZFar": 400,
+              "ZNear": 0.05
+            },
+            {
+              "__type": "Rinten.Bloom",
+              "__guid": "f1755abf-33b8-5dfd-8862-9edb0f08623a",
+              "__enabled": true,
+              "Flags": 0,
+              "__version": 1,
+              "Mode": "Additive",
+              "Strength": 0.5,
+              "Threshold": 1,
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "c698064b-0c06-5ee2-ae47-2fc2d0c47c91",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "HUD",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ScreenPanel",
+          "__guid": "1cbfafdc-410b-5c63-9219-6a593ea59da8",
+          "__enabled": true,
+          "Flags": 0,
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": null,
+          "ZIndex": 100
+        },
+        {
+          "__type": "TestGround.SceneHud",
+          "__guid": "d3c34fa2-04e1-57e6-9648-4c2313fd0b9a",
+          "__enabled": true,
+          "Flags": 0,
+          "Title": "Decals",
+          "Note": "Textures from this project, projected as decals. Ring, smoke and flake on the floor; glow, flame and spark on the wall; flash, debris and paper on the side."
+        },
+        {
+          "__type": "TestGround.ReturnToMenu",
+          "__guid": "0cd604be-6ead-5a05-aca8-9cb938398eb4",
+          "__enabled": true,
+          "Flags": 0,
+          "Key": "Q",
+          "MenuScene": null
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "46eff9c8-47f1-5470-8d83-ca2b648446a2",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Side Debris",
+      "Position": "-4.82,0.7,-2.4",
+      "Rotation": "0,0.7071068,0,0.7071068",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.Decal",
+          "__guid": "b1fad771-d2a0-5609-bc36-918a544398ff",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 3,
+          "AttenuationAngle": 1,
+          "ColorMix": 1,
+          "ColorTint": {
+            "Type": "Constant",
+            "Evaluation": "Life",
+            "GradientA": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "1,1,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "GradientB": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "1,1,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "ConstantA": "1,1,1,1",
+            "ConstantB": "1,1,1,1"
+          },
+          "Decals": [
+            "decals/debris.decal"
+          ],
+          "Depth": 0.35,
+          "LifeTime": 0,
+          "Looped": false,
+          "Parallax": 1,
+          "Rotation": 0,
+          "Scale": 1,
+          "SequenceId": 0,
+          "SheetSequence": false,
+          "Size": "0.85,0.85",
+          "SortLayer": 0,
+          "Transient": false
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "306670dd-843a-5a9c-a369-bc8290daf9b9",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Side Paper",
+      "Position": "-4.82,2.15,-2.6",
+      "Rotation": "0,0.7071068,0,0.7071068",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.Decal",
+          "__guid": "aa6b9033-df5b-50b6-b564-fcf59e05d4a3",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 3,
+          "AttenuationAngle": 1,
+          "ColorMix": 1,
+          "ColorTint": {
+            "Type": "Constant",
+            "Evaluation": "Life",
+            "GradientA": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "0.95,0.85,0.45,1"
+                }
+              ],
+              "alpha": []
+            },
+            "GradientB": {
+              "blend": "Linear",
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "1,1,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "ConstantA": "0.95,0.85,0.45,1",
+            "ConstantB": "1,1,1,1"
+          },
+          "Decals": [
+            "decals/paper.decal"
+          ],
+          "Depth": 0.35,
+          "LifeTime": 0,
+          "Looped": false,
+          "Parallax": 1,
+          "Rotation": 0,
+          "Scale": 1,
+          "SequenceId": 0,
+          "SheetSequence": false,
+          "Size": "1.0,0.7",
+          "SortLayer": 0,
+          "Transient": false
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "b39854d9-ce02-5503-aa48-b05a5f29e45e",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Label: Side",
+      "Position": "-5,3.4,-1.5",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.TextRenderer",
+          "__guid": "4dd09831-6c66-5b8f-a851-02b2f48761c9",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 2,
+          "Billboard": "YOnly",
+          "BlendMode": "Normal",
+          "FogStrength": 1,
+          "HorizontalAlignment": "Center",
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "Scale": 0.16,
+          "TextScope": {
+            "Text": "flash, debris, paper",
+            "TextColor": "0.9,0.94,1,1",
+            "FontName": "Poppins",
+            "FontSize": 44,
+            "FontWeight": 700,
+            "FontItalic": false,
+            "FontVariantNumeric": "Normal",
+            "LineHeight": 1.1,
+            "LetterSpacing": 0,
+            "WordSpacing": 0,
+            "FilterMode": "Bilinear",
+            "FontSmooth": "Auto",
+            "Outline": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,1,1"
+            },
+            "Shadow": {
+              "Enabled": true,
+              "Size": 6,
+              "Color": "0,0,0,0.8",
+              "Offset": "3,3"
+            },
+            "OutlineUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,1,0,1"
+            },
+            "ShadowUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            }
+          },
+          "VerticalAlignment": "Center"
+        }
+      ],
+      "Children": []
+    }
+  ],
+  "SceneProperties": {
+    "NetworkInterpolation": true,
+    "TimeScale": 1,
+    "WantsSystemScene": true,
+    "Metadata": {},
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": false,
+      "AgentHeight": 1.6,
+      "AgentRadius": 0.4,
+      "AgentStepSize": 0.45,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": "",
+      "DeferGeneration": false,
+      "CustomBounds": false
+    },
+    "GameObjectSystems": {}
+  },
+  "ResourceVersion": 4,
+  "Title": null,
+  "Description": null,
+  "__references": [],
+  "__version": 4
+}

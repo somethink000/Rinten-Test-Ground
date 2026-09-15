@@ -10,7 +10,7 @@
         "projectUniqueName": "/home/sampesss/Documents/Projects/Rinten-Engine/game/addons/base/code/Base Library.csproj",
         "projectName": "Base Library",
         "projectPath": "/home/sampesss/Documents/Projects/Rinten-Engine/game/addons/base/code/Base Library.csproj",
-        "packagesPath": "/home/sampesss/.nuget/packages/",
+        "packagesPath": "/tmp/cursor-sandbox-cache/090c44bafc0a3c1968668d3f848c27ec/nuget",
         "outputPath": "/home/sampesss/Documents/Projects/Rinten-Engine/game/addons/base/code/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
@@ -343,7 +343,7 @@
         "projectUniqueName": "/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/test_ground.csproj",
         "projectName": "test_ground",
         "projectPath": "/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/test_ground.csproj",
-        "packagesPath": "/home/sampesss/.nuget/packages/",
+        "packagesPath": "/tmp/cursor-sandbox-cache/090c44bafc0a3c1968668d3f848c27ec/nuget",
         "outputPath": "/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [

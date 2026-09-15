@@ -145,6 +145,69 @@
               "Category": "Interface",
               "Description": "One screen of everything the UI editor handles: type, buttons and states, chips, a switch and a bar from data, cards from a list, keyframes, anchored corners",
               "DisplayName": "UI Showcase"
+            },
+            {
+              "Scene": "scenes/prefabs.scene",
+              "Title": "Prefabs",
+              "Category": "General",
+              "Description": "Clone a prefab on a clock, throw one with the mouse, grab a body, open a door",
+              "DisplayName": "Prefabs"
+            },
+            {
+              "Scene": "scenes/trace.scene",
+              "Title": "Traces",
+              "Category": "Physics",
+              "Description": "Ray, box and sphere traces drawn where they hit",
+              "DisplayName": "Traces"
+            },
+            {
+              "Scene": "scenes/overlay.scene",
+              "Title": "Debug Overlay",
+              "Category": "General",
+              "Description": "Line, text, sphere and box overlays in a row",
+              "DisplayName": "Debug Overlay"
+            },
+            {
+              "Scene": "scenes/lights.scene",
+              "Title": "Lights",
+              "Category": "Rendering",
+              "Description": "Coloured point lights and a spot, with the sun almost out so the pools show",
+              "DisplayName": "Lights"
+            },
+            {
+              "Scene": "scenes/fog.scene",
+              "Title": "Fog",
+              "Category": "Rendering",
+              "Description": "Gradient fog with distance and a volumetric volume in the hollow",
+              "DisplayName": "Fog"
+            },
+            {
+              "Scene": "scenes/worldui.scene",
+              "Title": "World UI",
+              "Category": "Interface",
+              "Description": "Panels sitting on objects in the world, facing the camera",
+              "DisplayName": "World UI"
+            },
+            {
+              "Scene": "scenes/platforms.scene",
+              "Title": "Platforms",
+              "Category": "Physics",
+              "Description": "Walk, jump, stairs, slopes, a gap and a moving pad",
+              "DisplayName": "Platforms"
+            },
+            {
+              "Scene": "scenes/postprocess.scene",
+              "Title": "Postprocess",
+              "Category": "Rendering",
+              "Description": "Number keys toggle SSAO, SSR, bloom, DOF, grain, vignette, chromatic aberration and color",
+              "DisplayName": "Postprocess"
+            },
+            {
+              "Scene": "scenes/decals.scene",
+              "Title": "Decals",
+              "Category": "Rendering",
+              "Description": "Circles projected onto the floor and the walls",
+              "DisplayName": "Decals"
             }
           ],
           "Subheading": "Feature scenes, kept in a working state"

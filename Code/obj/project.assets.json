@@ -27,7 +27,7 @@
     ]
   },
   "packageFolders": {
-    "/home/sampesss/.nuget/packages/": {}
+    "/tmp/cursor-sandbox-cache/090c44bafc0a3c1968668d3f848c27ec/nuget": {}
   },
   "project": {
     "version": "1.0.0",
@@ -35,7 +35,7 @@
       "projectUniqueName": "/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/test_ground.csproj",
       "projectName": "test_ground",
       "projectPath": "/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/test_ground.csproj",
-      "packagesPath": "/home/sampesss/.nuget/packages/",
+      "packagesPath": "/tmp/cursor-sandbox-cache/090c44bafc0a3c1968668d3f848c27ec/nuget",
       "outputPath": "/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
