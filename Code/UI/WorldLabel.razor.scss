@@ -1,5 +1,13 @@
 worldlabel
 {
+	// Fill the world panel, so the card sits in the middle of it rather than
+	// in its top-left corner: a panel root is a flex row and lays a child out
+	// at its own size unless told otherwise.
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	justify-content: center;
 	align-items: center;
 
