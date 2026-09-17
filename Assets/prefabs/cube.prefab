@@ -77,7 +77,7 @@
         "MotionEnabled": true,
         "OverrideMassCenter": false,
         "RigidbodyFlags": 0,
-        "SleepThreshold": 2,
+        "SleepThreshold": 0.05,
         "StartAsleep": false
       },
       {
