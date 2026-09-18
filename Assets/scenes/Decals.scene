@@ -46,7 +46,12 @@
               "FogMode": "Enabled",
               "FogStrength": 1,
               "LightColor": "1,0.97,0.92,1",
-              "ShadowAngle": 0.6,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "ShadowDetail": 64,
               "Shadows": true,
               "SkyColor": "0,0,0,0",
@@ -76,7 +81,13 @@
               "__guid": "bb3118d8-edb5-59d1-b9aa-522e270921d2",
               "__enabled": true,
               "Flags": 0,
-              "Color": "0.18,0.21,0.27,1"
+              "Color": "0.18,0.21,0.27,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
             }
           ],
           "Children": []
@@ -102,6 +113,12 @@
               "__guid": "541d6d35-558e-53d5-886f-92a429da5318",
               "__enabled": true,
               "Flags": 0,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "SkyIndirectLighting": true,
               "SkyMaterial": "materials/skybox/procedural.mat",
               "Tint": "1,1,1,1"
@@ -134,10 +151,17 @@
           "Flags": 0,
           "BodyGroups": 18446744073709551615,
           "CreateAttachments": false,
+          "LodBias": 1,
           "MaterialGroup": null,
           "MaterialOverride": "materials/dev/grid.mat",
           "Materials": null,
           "Model": "models/dev/box.mdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "RenderOptions": {
             "GameLayer": true,
             "OverlayLayer": false,
@@ -153,12 +177,22 @@
           "__enabled": true,
           "Flags": 0,
           "Center": "0,0,0",
-          "Scale": "1,1,1",
           "ColliderFlags": 0,
           "Elasticity": null,
           "Friction": null,
           "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
           "RollingResistance": null,
+          "Scale": "1,1,1",
           "Static": true,
           "Surface": null,
           "SurfaceVelocity": "0,0,0"
@@ -189,10 +223,17 @@
           "Flags": 0,
           "BodyGroups": 18446744073709551615,
           "CreateAttachments": false,
+          "LodBias": 1,
           "MaterialGroup": null,
           "MaterialOverride": null,
           "Materials": null,
           "Model": "models/dev/box.mdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "RenderOptions": {
             "GameLayer": true,
             "OverlayLayer": false,
@@ -208,12 +249,22 @@
           "__enabled": true,
           "Flags": 0,
           "Center": "0,0,0",
-          "Scale": "1,1,1",
           "ColliderFlags": 0,
           "Elasticity": null,
           "Friction": null,
           "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
           "RollingResistance": null,
+          "Scale": "1,1,1",
           "Static": true,
           "Surface": null,
           "SurfaceVelocity": "0,0,0"
@@ -244,10 +295,17 @@
           "Flags": 0,
           "BodyGroups": 18446744073709551615,
           "CreateAttachments": false,
+          "LodBias": 1,
           "MaterialGroup": null,
           "MaterialOverride": null,
           "Materials": null,
           "Model": "models/dev/box.mdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "RenderOptions": {
             "GameLayer": true,
             "OverlayLayer": false,
@@ -263,12 +321,22 @@
           "__enabled": true,
           "Flags": 0,
           "Center": "0,0,0",
-          "Scale": "1,1,1",
           "ColliderFlags": 0,
           "Elasticity": null,
           "Friction": null,
           "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
           "RollingResistance": null,
+          "Scale": "1,1,1",
           "Static": true,
           "Surface": null,
           "SurfaceVelocity": "0,0,0"
@@ -281,7 +349,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Label: Wall",
-      "Position": "0,3.4,-4",
+      "Position": "0,3.4000001,-4",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -302,6 +370,12 @@
           "BlendMode": "Normal",
           "FogStrength": 1,
           "HorizontalAlignment": "Center",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "RenderOptions": {
             "GameLayer": true,
             "OverlayLayer": false,
@@ -355,7 +429,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Label: Floor",
-      "Position": "0,1.6,0.5",
+      "Position": "0,1.60000002,0.5",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -376,6 +450,12 @@
           "BlendMode": "Normal",
           "FogStrength": 1,
           "HorizontalAlignment": "Center",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "RenderOptions": {
             "GameLayer": true,
             "OverlayLayer": false,
@@ -429,8 +509,8 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Floor Ring",
-      "Position": "-1.6,0.08,0.2",
-      "Rotation": "-0.7071068,0,0,0.7071068",
+      "Position": "-4.15301752,0.497444749,0.0902549401",
+      "Rotation": "-0.298836201,-0.640856385,-0.640856385,-0.298836201",
       "Scale": "1,1,1",
       "Tags": "",
       "Enabled": true,
@@ -448,44 +528,27 @@
           "__version": 3,
           "AttenuationAngle": 1,
           "ColorMix": 1,
-          "ColorTint": {
-            "Type": "Constant",
-            "Evaluation": "Life",
-            "GradientA": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "0.2,0.55,0.95,1"
-                }
-              ],
-              "alpha": []
-            },
-            "GradientB": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "1,1,1,1"
-                }
-              ],
-              "alpha": []
-            },
-            "ConstantA": "0.2,0.55,0.95,1",
-            "ConstantB": "1,1,1,1"
-          },
+          "ColorTint": "0.2,0.55,0.95,1",
+          "CoverageAmount": 1,
+          "CoverageRange": 0.07,
           "Decals": [
             "decals/ring.decal"
           ],
-          "Depth": 0.35,
+          "Depth": 2,
           "LifeTime": 0,
           "Looped": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Parallax": 1,
           "Rotation": 0,
           "Scale": 1,
           "SequenceId": 0,
           "SheetSequence": false,
-          "Size": "1.6,1.6",
+          "Size": "1.60000002,1.60000002",
           "SortLayer": 0,
           "Transient": false
         }
@@ -497,8 +560,8 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Floor Smoke",
-      "Position": "0.4,0.08,1.1",
-      "Rotation": "-0.7071068,0,0,0.7071068",
+      "Position": "0.400000006,0.0799999982,1.10000002",
+      "Rotation": "-0.707106829,0,0,0.707106829",
       "Scale": "1,1,1",
       "Tags": "",
       "Enabled": true,
@@ -516,44 +579,27 @@
           "__version": 3,
           "AttenuationAngle": 1,
           "ColorMix": 1,
-          "ColorTint": {
-            "Type": "Constant",
-            "Evaluation": "Life",
-            "GradientA": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "0.95,0.45,0.2,1"
-                }
-              ],
-              "alpha": []
-            },
-            "GradientB": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "1,1,1,1"
-                }
-              ],
-              "alpha": []
-            },
-            "ConstantA": "0.95,0.45,0.2,1",
-            "ConstantB": "1,1,1,1"
-          },
+          "ColorTint": "0.95,0.45,0.2,1",
+          "CoverageAmount": 1,
+          "CoverageRange": 0.07,
           "Decals": [
             "decals/smoke.decal"
           ],
           "Depth": 0.35,
           "LifeTime": 0,
           "Looped": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Parallax": 1,
           "Rotation": 0,
           "Scale": 1,
           "SequenceId": 0,
           "SheetSequence": false,
-          "Size": "1.15,1.15",
+          "Size": "1.14999998,1.14999998",
           "SortLayer": 0,
           "Transient": false
         }
@@ -565,8 +611,8 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Floor Flake",
-      "Position": "1.8,0.08,0.0",
-      "Rotation": "-0.7071068,0,0,0.7071068",
+      "Position": "1.79999995,0.0799999982,0",
+      "Rotation": "-0.707106829,0,0,0.707106829",
       "Scale": "1,1,1",
       "Tags": "",
       "Enabled": true,
@@ -584,44 +630,27 @@
           "__version": 3,
           "AttenuationAngle": 1,
           "ColorMix": 1,
-          "ColorTint": {
-            "Type": "Constant",
-            "Evaluation": "Life",
-            "GradientA": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "0.3,0.85,0.45,1"
-                }
-              ],
-              "alpha": []
-            },
-            "GradientB": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "1,1,1,1"
-                }
-              ],
-              "alpha": []
-            },
-            "ConstantA": "0.3,0.85,0.45,1",
-            "ConstantB": "1,1,1,1"
-          },
+          "ColorTint": "0.3,0.85,0.45,1",
+          "CoverageAmount": 1,
+          "CoverageRange": 0.07,
           "Decals": [
             "decals/flake.decal"
           ],
           "Depth": 0.35,
           "LifeTime": 0,
           "Looped": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Parallax": 1,
           "Rotation": 0,
           "Scale": 1,
           "SequenceId": 0,
           "SheetSequence": false,
-          "Size": "0.55,0.55",
+          "Size": "0.550000012,0.550000012",
           "SortLayer": 0,
           "Transient": false
         }
@@ -633,7 +662,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Wall Glow",
-      "Position": "-1.8,1.4,-3.82",
+      "Position": "-1.79999995,1.39999998,-3.81999993",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -652,44 +681,27 @@
           "__version": 3,
           "AttenuationAngle": 1,
           "ColorMix": 1,
-          "ColorTint": {
-            "Type": "Constant",
-            "Evaluation": "Life",
-            "GradientA": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "0.25,0.5,1,1"
-                }
-              ],
-              "alpha": []
-            },
-            "GradientB": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "1,1,1,1"
-                }
-              ],
-              "alpha": []
-            },
-            "ConstantA": "0.25,0.5,1,1",
-            "ConstantB": "1,1,1,1"
-          },
+          "ColorTint": "0.25,0.5,1,1",
+          "CoverageAmount": 1,
+          "CoverageRange": 0.07,
           "Decals": [
             "decals/glow.decal"
           ],
           "Depth": 0.35,
           "LifeTime": 0,
           "Looped": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Parallax": 1,
           "Rotation": 0,
           "Scale": 1,
           "SequenceId": 0,
           "SheetSequence": false,
-          "Size": "1.4,1.4",
+          "Size": "1.39999998,1.39999998",
           "SortLayer": 0,
           "Transient": false
         }
@@ -701,7 +713,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Wall Flame",
-      "Position": "0.2,1.7,-3.82",
+      "Position": "0.200000003,1.70000005,-3.81999993",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -720,44 +732,27 @@
           "__version": 3,
           "AttenuationAngle": 1,
           "ColorMix": 1,
-          "ColorTint": {
-            "Type": "Constant",
-            "Evaluation": "Life",
-            "GradientA": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "1,0.5,0.15,1"
-                }
-              ],
-              "alpha": []
-            },
-            "GradientB": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "1,1,1,1"
-                }
-              ],
-              "alpha": []
-            },
-            "ConstantA": "1,0.5,0.15,1",
-            "ConstantB": "1,1,1,1"
-          },
+          "ColorTint": "1,0.5,0.15,1",
+          "CoverageAmount": 1,
+          "CoverageRange": 0.07,
           "Decals": [
             "decals/flame.decal"
           ],
           "Depth": 0.35,
           "LifeTime": 0,
           "Looped": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Parallax": 1,
           "Rotation": 0,
           "Scale": 1,
           "SequenceId": 0,
           "SheetSequence": false,
-          "Size": "0.75,1.35",
+          "Size": "0.75,1.35000002",
           "SortLayer": 0,
           "Transient": false
         }
@@ -769,7 +764,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Wall Spark",
-      "Position": "1.9,1.1,-3.82",
+      "Position": "1.89999998,1.10000002,-3.81999993",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -788,44 +783,27 @@
           "__version": 3,
           "AttenuationAngle": 1,
           "ColorMix": 1,
-          "ColorTint": {
-            "Type": "Constant",
-            "Evaluation": "Life",
-            "GradientA": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "0.3,0.9,0.4,1"
-                }
-              ],
-              "alpha": []
-            },
-            "GradientB": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "1,1,1,1"
-                }
-              ],
-              "alpha": []
-            },
-            "ConstantA": "0.3,0.9,0.4,1",
-            "ConstantB": "1,1,1,1"
-          },
+          "ColorTint": "0.3,0.9,0.4,1",
+          "CoverageAmount": 1,
+          "CoverageRange": 0.07,
           "Decals": [
             "decals/spark.decal"
           ],
           "Depth": 0.35,
           "LifeTime": 0,
           "Looped": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Parallax": 1,
           "Rotation": 0,
           "Scale": 1,
           "SequenceId": 0,
           "SheetSequence": false,
-          "Size": "0.8,0.8",
+          "Size": "0.800000012,0.800000012",
           "SortLayer": 0,
           "Transient": false
         }
@@ -837,8 +815,8 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Side Flash",
-      "Position": "-4.82,1.5,-1.2",
-      "Rotation": "0,0.7071068,0,0.7071068",
+      "Position": "-4.93527126,1.5,-1.13470232",
+      "Rotation": "0,0.707106829,0,0.707106829",
       "Scale": "1,1,1",
       "Tags": "",
       "Enabled": true,
@@ -856,44 +834,27 @@
           "__version": 3,
           "AttenuationAngle": 1,
           "ColorMix": 1,
-          "ColorTint": {
-            "Type": "Constant",
-            "Evaluation": "Life",
-            "GradientA": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "0.95,0.2,0.25,1"
-                }
-              ],
-              "alpha": []
-            },
-            "GradientB": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "1,1,1,1"
-                }
-              ],
-              "alpha": []
-            },
-            "ConstantA": "0.95,0.2,0.25,1",
-            "ConstantB": "1,1,1,1"
-          },
+          "ColorTint": "0.95,0.2,0.25,1",
+          "CoverageAmount": 1,
+          "CoverageRange": 0.07,
           "Decals": [
             "decals/flash.decal"
           ],
           "Depth": 0.35,
           "LifeTime": 0,
           "Looped": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Parallax": 1,
           "Rotation": 0,
           "Scale": 1,
           "SequenceId": 0,
           "SheetSequence": false,
-          "Size": "1.2,1.2",
+          "Size": "1.20000005,1.20000005",
           "SortLayer": 0,
           "Transient": false
         }
@@ -905,7 +866,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Player",
-      "Position": "0,2.2,6",
+      "Position": "0,2.20000005,6",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -927,9 +888,15 @@
             "go": "e9dea1ce-5108-5b7a-ab66-19410a530b0b",
             "component_type": "CameraComponent"
           },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "PitchClamp": 89,
           "RunScale": 3,
-          "Speed": 6.0
+          "Speed": 6
         }
       ],
       "Children": [
@@ -960,6 +927,12 @@
               "FieldOfView": 70,
               "FovAxis": "Horizontal",
               "IsMainCamera": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Orthographic": false,
               "OrthographicHeight": 10,
               "PostProcessAnchor": null,
@@ -979,6 +952,13 @@
               "Flags": 0,
               "__version": 1,
               "Mode": "Additive",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Spread": 0.5,
               "Strength": 0.5,
               "Threshold": 1,
               "Tint": "1,1,1,1"
@@ -1010,6 +990,12 @@
           "__enabled": true,
           "Flags": 0,
           "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Opacity": 1,
           "Scale": 1,
           "ScaleStrategy": "ConsistentHeight",
@@ -1021,8 +1007,14 @@
           "__guid": "d3c34fa2-04e1-57e6-9648-4c2313fd0b9a",
           "__enabled": true,
           "Flags": 0,
-          "Title": "Decals",
-          "Note": "Textures from this project, projected as decals. Ring, smoke and flake on the floor; glow, flame and spark on the wall; flash, debris and paper on the side."
+          "Note": "Textures from this project, projected as decals. Ring, smoke and flake on the floor; glow, flame and spark on the wall; flash, debris and paper on the side.",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Title": "Decals"
         },
         {
           "__type": "TestGround.ReturnToMenu",
@@ -1030,7 +1022,13 @@
           "__enabled": true,
           "Flags": 0,
           "Key": "Q",
-          "MenuScene": null
+          "MenuScene": null,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": []
@@ -1040,8 +1038,8 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Side Debris",
-      "Position": "-4.82,0.7,-2.4",
-      "Rotation": "0,0.7071068,0,0.7071068",
+      "Position": "-4.82000017,0.699999988,-2.4000001",
+      "Rotation": "0,0.707106829,0,0.707106829",
       "Scale": "1,1,1",
       "Tags": "",
       "Enabled": true,
@@ -1059,44 +1057,27 @@
           "__version": 3,
           "AttenuationAngle": 1,
           "ColorMix": 1,
-          "ColorTint": {
-            "Type": "Constant",
-            "Evaluation": "Life",
-            "GradientA": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "1,1,1,1"
-                }
-              ],
-              "alpha": []
-            },
-            "GradientB": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "1,1,1,1"
-                }
-              ],
-              "alpha": []
-            },
-            "ConstantA": "1,1,1,1",
-            "ConstantB": "1,1,1,1"
-          },
+          "ColorTint": "1,1,1,1",
+          "CoverageAmount": 1,
+          "CoverageRange": 0.07,
           "Decals": [
             "decals/debris.decal"
           ],
           "Depth": 0.35,
           "LifeTime": 0,
           "Looped": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Parallax": 1,
           "Rotation": 0,
           "Scale": 1,
           "SequenceId": 0,
           "SheetSequence": false,
-          "Size": "0.85,0.85",
+          "Size": "0.850000024,0.850000024",
           "SortLayer": 0,
           "Transient": false
         }
@@ -1108,8 +1089,8 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Side Paper",
-      "Position": "-4.82,2.15,-2.6",
-      "Rotation": "0,0.7071068,0,0.7071068",
+      "Position": "-4.82000017,2.1500001,-2.5999999",
+      "Rotation": "0,0.707106829,0,0.707106829",
       "Scale": "1,1,1",
       "Tags": "",
       "Enabled": true,
@@ -1127,44 +1108,27 @@
           "__version": 3,
           "AttenuationAngle": 1,
           "ColorMix": 1,
-          "ColorTint": {
-            "Type": "Constant",
-            "Evaluation": "Life",
-            "GradientA": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "0.95,0.85,0.45,1"
-                }
-              ],
-              "alpha": []
-            },
-            "GradientB": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "1,1,1,1"
-                }
-              ],
-              "alpha": []
-            },
-            "ConstantA": "0.95,0.85,0.45,1",
-            "ConstantB": "1,1,1,1"
-          },
+          "ColorTint": "0.95,0.85,0.45,1",
+          "CoverageAmount": 1,
+          "CoverageRange": 0.07,
           "Decals": [
             "decals/paper.decal"
           ],
           "Depth": 0.35,
           "LifeTime": 0,
           "Looped": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Parallax": 1,
           "Rotation": 0,
           "Scale": 1,
           "SequenceId": 0,
-          "SheetSequence": false,
-          "Size": "1.0,0.7",
+          "SheetSequence": true,
+          "Size": "1,0.699999988",
           "SortLayer": 0,
           "Transient": false
         }
@@ -1176,7 +1140,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Label: Side",
-      "Position": "-5,3.4,-1.5",
+      "Position": "-5,3.4000001,-1.5",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -1197,6 +1161,12 @@
           "BlendMode": "Normal",
           "FogStrength": 1,
           "HorizontalAlignment": "Center",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "RenderOptions": {
             "GameLayer": true,
             "OverlayLayer": false,
@@ -1244,6 +1214,57 @@
         }
       ],
       "Children": []
+    },
+    {
+      "__guid": "de7a7607-2e96-4e39-a8d6-4d91b73717e5",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "debris",
+      "Position": "2.99999952,0,-1.49999976",
+      "Rotation": "-0.707106769,0,0,0.707106769",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.Decal",
+          "__guid": "cbf0de13-0304-4ca0-80bf-2a194d3013a9",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 3,
+          "AttenuationAngle": 1,
+          "ColorMix": 1,
+          "ColorTint": "1,1,1,1",
+          "CoverageAmount": 1,
+          "CoverageRange": 0.07,
+          "Decals": [
+            "decals/debris.decal"
+          ],
+          "Depth": 0.2,
+          "LifeTime": 0,
+          "Looped": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Parallax": 1,
+          "Rotation": 0,
+          "Scale": 1,
+          "SequenceId": 0,
+          "SheetSequence": false,
+          "Size": "1,1",
+          "SortLayer": 0,
+          "Transient": false
+        }
+      ],
+      "Children": []
     }
   ],
   "SceneProperties": {
@@ -1265,7 +1286,19 @@
       "DeferGeneration": false,
       "CustomBounds": false
     },
-    "GameObjectSystems": {}
+    "GameObjectSystems": {
+      "Rinten.Clutter.ClutterGridSystem": {
+        "Storage": {
+          "$blob": "64db792e-5935-8fbc-8cfa-050cd49fa7fd",
+          "$refs": []
+        }
+      },
+      "Rinten.SelectionSetsSystem": {
+        "Data": {
+          "SelectionSets": []
+        }
+      }
+    }
   },
   "ResourceVersion": 4,
   "Title": null,

@@ -549,7 +549,7 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "Prefab": "prefabs/cube.prefab"
+          "Prefab": "scenes/prefabs/cube.prefab"
         },
         {
           "__type": "Rinten.ModelRenderer",
@@ -1431,7 +1431,7 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "Prefab": "prefabs/cube.prefab",
+          "Prefab": "scenes/prefabs/cube.prefab",
           "Speed": 12
         },
         {

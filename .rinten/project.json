@@ -1,17 +1,17 @@
 {
   "TreeAssetBrowser.Browser_0.State": {
-    "Value": "{\u0022LayoutVersion\u0022:3,\u0022IsTabMode\u0022:false,\u0022ActiveTabIndex\u0022:1,\u0022PanelTypes\u0022:[\u0022Tree\u0022,\u0022IconGrid\u0022],\u0022PanelWidths\u0022:[220,840]}",
-    "Timeout": 1792087374,
+    "Value": "{\u0022LayoutVersion\u0022:3,\u0022IsTabMode\u0022:false,\u0022ActiveTabIndex\u0022:1,\u0022PanelTypes\u0022:[\u0022Tree\u0022,\u0022IconGrid\u0022],\u0022PanelWidths\u0022:[220,286]}",
+    "Timeout": 1792339840,
     "DeleteAt": 0
   },
   "TreeAssetBrowser.AllInstanceIds": {
     "Value": "[\u0022Browser_0\u0022,\u0022ModelEditor\u0022,\u0022Browser_1\u0022,\u0022MdlEditor\u0022]",
-    "Timeout": 1792087374,
+    "Timeout": 1792339840,
     "DeleteAt": 0
   },
   "TreeAssetBrowser.ExpandedPaths": {
-    "Value": "[\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets\u0022,\u0022/home/sampesss/Documents/Projects/Rinten-Engine/game/core\u0022,\u0022/home/sampesss/Documents/Projects/Rinten-Engine/game/core/textures\u0022,\u0022/home/sampesss/Documents/Projects/Rinten-Engine/game/core/shaders\u0022,\u0022/home/sampesss/Documents/Projects/Rinten-Engine/game/core/tools\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets/test.sprite\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets/textures\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets/textures/fx\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets/models\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets/sprites\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets/materials\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets/materials/fx\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets/materials/fx/stylized_ember.mat\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets/models/urn_broken.fbx\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Editor\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Code/UI\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets/scenes\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets/prefabs\u0022]",
-    "Timeout": 1792087705,
+    "Value": "[\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets\u0022,\u0022/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets/decals\u0022]",
+    "Timeout": 1792340052,
     "DeleteAt": 0
   },
   "scenes/minimal.scene.Viewport0": {
@@ -20,18 +20,18 @@
     "DeleteAt": 0
   },
   "SceneView.Viewport0.Settings.v2": {
-    "Value": "{\u0022CameraPosition\u0022:\u0022-0.528664351,-2.13269353,8.2203846\u0022,\u0022CameraRotation\u0022:\u0022-0.0248137005,-0.97125268,-0.11713618,0.205746606\u0022,\u0022View\u0022:0,\u0022RenderMode\u0022:0,\u0022WireframeMode\u0022:false,\u0022EnablePostProcessing\u0022:true,\u0022EnablePrefabLighting\u0022:true,\u0022ShowSkyIn2D\u0022:true,\u0022ShowGrid\u0022:true,\u0022GridOpacity\u0022:0.2,\u0022GridAxis\u0022:2,\u0022CameraOrthoHeight\u0022:25}",
-    "Timeout": 1792088005,
+    "Value": "{\u0022CameraPosition\u0022:\u0022-5.09841299,-0.432952881,1.46113968\u0022,\u0022CameraRotation\u0022:\u0022-0.00664000958,-0.925604343,-0.0162556637,0.378084928\u0022,\u0022View\u0022:0,\u0022RenderMode\u0022:0,\u0022WireframeMode\u0022:false,\u0022EnablePostProcessing\u0022:true,\u0022EnablePrefabLighting\u0022:true,\u0022ShowSkyIn2D\u0022:true,\u0022ShowGrid\u0022:true,\u0022GridOpacity\u0022:0.2,\u0022GridAxis\u0022:2,\u0022CameraOrthoHeight\u0022:25}",
+    "Timeout": 1792340771,
     "DeleteAt": 0
   },
   "editor.openscenes": {
-    "Value": "[\u0022scenes/main.scene\u0022,\u0022scenes/prefabs.scene\u0022,\u0022scenes/overlay.scene\u0022,\u0022scenes/trace.scene\u0022,\u0022scenes/collider.scene\u0022,\u0022scenes/rigidbody.scene\u0022,\u0022scenes/lights.scene\u0022]",
-    "Timeout": 1792087955,
+    "Value": "[\u0022scenes/main.scene\u0022,\u0022scenes/decals.scene\u0022]",
+    "Timeout": 1792340056,
     "DeleteAt": 0
   },
   "editor.activescene": {
-    "Value": "null",
-    "Timeout": 1792087955,
+    "Value": "\u0022scenes/decals.scene\u0022",
+    "Timeout": 1792340057,
     "DeleteAt": 0
   },
   "expand.683e1f05-4f06-4b54-8244-39da79ee3dd4.ParticleConeEmitter": {
@@ -45,18 +45,18 @@
     "DeleteAt": 0
   },
   "TreeAssetBrowser.Browser_0.Section": {
-    "Value": "\u0022Code\u0022",
-    "Timeout": 1792087728,
+    "Value": "\u0022Assets\u0022",
+    "Timeout": 1792330404,
     "DeleteAt": 0
   },
   "Window.RintenSceneEditor.Dock": {
     "Value": "rinten2;s:h:0.17677625;g:Left:0:Hierarchy;s:h:0.7004785;s:v:0.2;g:Top:0:;s:v:0.75;s:v:0.6074962;g:Center:0:CentralWidget;g:Hidden:0:Asset Browser,Console;g:Bottom:0:;g:Right:0:Inspector",
-    "Timeout": 1792087710,
+    "Timeout": 1792340057,
     "DeleteAt": 0
   },
   "SceneView.Layout": {
     "Value": "{\u0022Layout\u0022:0,\u0022SplitterState\u0022:[]}",
-    "Timeout": 1792087966,
+    "Timeout": 1792340057,
     "DeleteAt": 0
   },
   "TreeAssetBrowser.ModelEditor.State": {
@@ -86,27 +86,27 @@
   },
   "TreeAssetBrowser.Settings.ViewMode": {
     "Value": "2",
-    "Timeout": 1792087705,
+    "Timeout": 1792340052,
     "DeleteAt": 0
   },
   "scenes/main.scene.Viewport0": {
-    "Value": "{\u0022CameraPosition\u0022:\u0022-0.528664351,-2.13269353,8.2203846\u0022,\u0022CameraRotation\u0022:\u0022-0.0248137005,-0.97125268,-0.11713618,0.205746606\u0022,\u0022CameraOrthoHeight\u0022:25,\u0022CameraOrtho\u0022:false}",
-    "Timeout": 1792088005,
+    "Value": "{\u0022CameraPosition\u0022:\u0022-5.09841299,-0.432952881,1.46113968\u0022,\u0022CameraRotation\u0022:\u0022-0.00664000958,-0.925604343,-0.0162556637,0.378084928\u0022,\u0022CameraOrthoHeight\u0022:25,\u0022CameraOrtho\u0022:false}",
+    "Timeout": 1792340771,
     "DeleteAt": 0
   },
   ".Viewport0": {
-    "Value": "{\u0022CameraPosition\u0022:\u0022-0.528664351,-2.13269353,8.2203846\u0022,\u0022CameraRotation\u0022:\u0022-0.0248137005,-0.97125268,-0.11713618,0.205746606\u0022,\u0022CameraOrthoHeight\u0022:25,\u0022CameraOrtho\u0022:false}",
-    "Timeout": 1792087966,
+    "Value": "{\u0022CameraPosition\u0022:\u00227.79284191,3.42180037,-5.11240292\u0022,\u0022CameraRotation\u0022:\u0022-0.0662455708,0.772999942,0.0818531588,0.625605881\u0022,\u0022CameraOrthoHeight\u0022:25,\u0022CameraOrtho\u0022:false}",
+    "Timeout": 1792332068,
     "DeleteAt": 0
   },
   "scenes/collider.scene.Viewport0": {
     "Value": "{\u0022CameraPosition\u0022:\u0022-17.5313091,10.8312435,-31.7284222\u0022,\u0022CameraRotation\u0022:\u0022-0.0181181207,-0.981149256,-0.153830454,0.115559563\u0022,\u0022CameraOrthoHeight\u0022:25,\u0022CameraOrtho\u0022:false}",
-    "Timeout": 1792088005,
+    "Timeout": 1792324007,
     "DeleteAt": 0
   },
   "scenes/rigidbody.scene.Viewport0": {
     "Value": "{\u0022CameraPosition\u0022:\u0022-17.5313091,10.8312435,-31.7284222\u0022,\u0022CameraRotation\u0022:\u0022-0.0265610516,-0.966280282,-0.111253135,0.230693907\u0022,\u0022CameraOrthoHeight\u0022:25,\u0022CameraOrtho\u0022:false}",
-    "Timeout": 1792088005,
+    "Timeout": 1792324008,
     "DeleteAt": 0
   },
   "scenes/scene.scene.Viewport0": {
@@ -136,7 +136,7 @@
   },
   "EditorDisplayMode": {
     "Value": "\u002221:9 Aspect\u0022",
-    "Timeout": 1792087966,
+    "Timeout": 1792332068,
     "DeleteAt": 0
   },
   "expand.fd1b10c0-cba9-5646-bd05-035498f16ffe.ScreenPanel": {
@@ -146,12 +146,12 @@
   },
   "scenes/lights.scene.Viewport0": {
     "Value": "{\u0022CameraPosition\u0022:\u0022-13.8498192,8.13229465,-0.690326691\u0022,\u0022CameraRotation\u0022:\u0022-0.0914558843,-0.692233443,-0.0891316235,0.710284591\u0022,\u0022CameraOrthoHeight\u0022:25,\u0022CameraOrtho\u0022:false}",
-    "Timeout": 1792088005,
+    "Timeout": 1792324009,
     "DeleteAt": 0
   },
   "scenes/prefabs.scene.Viewport0": {
     "Value": "{\u0022CameraPosition\u0022:\u0022-5.13373566,1.20527673,-9.92075634\u0022,\u0022CameraRotation\u0022:\u0022-0.0599269047,-0.938515961,-0.266681015,0.210897475\u0022,\u0022CameraOrthoHeight\u0022:25,\u0022CameraOrtho\u0022:false}",
-    "Timeout": 1792088005,
+    "Timeout": 1792324005,
     "DeleteAt": 0
   },
   "scenes/fog.scene.Viewport0": {
@@ -166,12 +166,12 @@
   },
   "scenes/trace.scene.Viewport0": {
     "Value": "{\u0022CameraPosition\u0022:\u002213.6655598,5.30679464,-2.49438334\u0022,\u0022CameraRotation\u0022:\u0022-0.123828143,0.721933663,0.133928388,0.667488933\u0022,\u0022CameraOrthoHeight\u0022:25,\u0022CameraOrtho\u0022:false}",
-    "Timeout": 1792088005,
+    "Timeout": 1792324007,
     "DeleteAt": 0
   },
   "scenes/overlay.scene.Viewport0": {
     "Value": "{\u0022CameraPosition\u0022:\u00228.49969387,3.49464846,22.6922569\u0022,\u0022CameraRotation\u0022:\u0022-0.059233278,0.128528804,0.00769081851,0.989905357\u0022,\u0022CameraOrthoHeight\u0022:25,\u0022CameraOrtho\u0022:false}",
-    "Timeout": 1792088005,
+    "Timeout": 1792324006,
     "DeleteAt": 0
   },
   "scenes/worldui.scene.Viewport0": {
@@ -185,8 +185,8 @@
     "DeleteAt": 0
   },
   "scenes/postprocess.scene.Viewport0": {
-    "Value": "{\u0022CameraPosition\u0022:\u0022-9.14504147,5.53188467,-17.5906391\u0022,\u0022CameraRotation\u0022:\u0022-0.0397356674,-0.953708887,-0.14572984,0.260044605\u0022,\u0022CameraOrthoHeight\u0022:25,\u0022CameraOrtho\u0022:false}",
-    "Timeout": 1792084874,
+    "Value": "{\u0022CameraPosition\u0022:\u0022-5.09841299,-0.432952881,1.46113968\u0022,\u0022CameraRotation\u0022:\u0022-0.00664000958,-0.925604343,-0.0162556637,0.378084928\u0022,\u0022CameraOrthoHeight\u0022:25,\u0022CameraOrtho\u0022:false}",
+    "Timeout": 1792331859,
     "DeleteAt": 0
   },
   "scenes/platforms.scene.Viewport0": {
@@ -195,8 +195,8 @@
     "DeleteAt": 0
   },
   "scenes/decals.scene.Viewport0": {
-    "Value": "{\u0022CameraPosition\u0022:\u0022-9.14504147,5.53188467,-17.5906391\u0022,\u0022CameraRotation\u0022:\u0022-0.0397356674,-0.953708887,-0.14572984,0.260044605\u0022,\u0022CameraOrthoHeight\u0022:25,\u0022CameraOrtho\u0022:false}",
-    "Timeout": 1792085195,
+    "Value": "{\u0022CameraPosition\u0022:\u00220.982674301,0.844377935,-0.0672423318\u0022,\u0022CameraRotation\u0022:\u0022-0.201051116,0.558817148,0.141867101,0.791944146\u0022,\u0022CameraOrthoHeight\u0022:25,\u0022CameraOrtho\u0022:false}",
+    "Timeout": 1792340771,
     "DeleteAt": 0
   },
   "AnimGraph.SecondaryHeight": {
@@ -221,7 +221,7 @@
   },
   "gizmo.settings.metric": {
     "Value": "{\u0022EditMode\u0022:\u0022position\u0022,\u0022Selection\u0022:true,\u0022ViewMode\u0022:\u00223d\u0022,\u0022GizmosEnabled\u0022:true,\u0022GizmoScale\u0022:1,\u0022WorldSpaceGizmos\u0022:false,\u0022GizmoDepthTest\u0022:false,\u0022GizmoRenderDistance\u0022:0,\u0022GridSpacing\u0022:0.5,\u0022SnapToGrid\u0022:true,\u0022SnapToAngles\u0022:true,\u0022AngleSpacing\u0022:15,\u0022GlobalSpace\u0022:false,\u0022DebugActionGraphs\u0022:false,\u0022DisabledGizmos\u0022:{}}",
-    "Timeout": 1792087709,
+    "Timeout": 1792340056,
     "DeleteAt": 0
   }
 }

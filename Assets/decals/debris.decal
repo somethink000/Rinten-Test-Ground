@@ -1,10 +1,42 @@
 {
-  "ColorTexture": "textures/fx/debris.png",
+  "ColorTexture": {
+    "$compiler": "texture",
+    "$source": "random",
+    "data": {
+      "Type": "Random",
+      "Seed": 0,
+      "Size": "64,64",
+      "Offset": "0,0,0",
+      "Scale": 5,
+      "Octaves": 1,
+      "Gradient": {
+        "blend": "Linear",
+        "color": [
+          {
+            "t": 0,
+            "c": "0,0,0,1"
+          },
+          {
+            "t": 1,
+            "c": "1,1,1,1"
+          }
+        ],
+        "alpha": null
+      },
+      "ConvertHeightToNormals": false,
+      "NormalScale": 1,
+      "CacheToDisk": true,
+      "FormatOverride": null
+    },
+    "compiled": null
+  },
   "NormalTexture": null,
   "RoughMetalOcclusionTexture": null,
   "EmissiveTexture": null,
+  "EmissionEnergy": 1,
   "HeightTexture": null,
   "ParallaxStrength": 1,
+  "CoverageAmount": 1,
   "Tint": "1,1,1,1",
   "ColorMix": 1,
   "Width": 1,

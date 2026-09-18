@@ -1,0 +1,3 @@
+# Textures compiled to blocks beside their source - a cache the engine rebuilds
+# whenever the picture is newer than it (CoreSceneRenderer.Compiled).
+*.tex_c*
