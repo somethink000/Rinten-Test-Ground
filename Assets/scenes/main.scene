@@ -7,7 +7,7 @@
       "Flags": 0,
       "Name": "Camera",
       "Position": "0,1,0",
-      "Rotation": "0,0,0,1",
+      "Rotation": "0,-0,-0,1",
       "Scale": "1,1,1",
       "Tags": "maincamera",
       "Enabled": true,
@@ -208,6 +208,13 @@
               "Category": "Rendering",
               "Description": "Circles projected onto the floor and the walls",
               "DisplayName": "Decals"
+            },
+            {
+              "Scene": "scenes/renderers.scene",
+              "Title": "Renderers",
+              "Category": "Rendering",
+              "Description": "Lines, trails, sprites, text, model renderer options, reflection probes and hand-built meshes - a station a setting",
+              "DisplayName": "Renderers"
             }
           ],
           "Subheading": "Feature scenes, kept in a working state"
