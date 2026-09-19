@@ -222,6 +222,13 @@
               "Category": "Rendering",
               "Description": "Roughness against metalness, tint, emission, cutout and translucency, backfaces, maps, shaders, runtime changes, missing assets",
               "DisplayName": "Materials"
+            },
+            {
+              "Scene": "scenes/shadows.scene",
+              "Title": "Shadows",
+              "Category": "Rendering",
+              "Description": "The sun over a long field, every kind of caster, source radii, point and spot shadows, moving lights, receivers and a room; keys change the sun",
+              "DisplayName": "Shadows"
             }
           ],
           "Subheading": "Feature scenes, kept in a working state"

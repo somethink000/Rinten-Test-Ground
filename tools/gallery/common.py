@@ -157,7 +157,9 @@ def yaw(deg):
 
 
 def pitch_yaw(pitch_deg, yaw_deg):
-    """Pitch about X then yaw about Y, as a quaternion string."""
+    """Pitch about X then yaw about Y, as a quaternion string. A negative
+    pitch turns forward (-Z) downward: a sun or a spot pointing at the floor
+    is pitch_yaw(-90, 0)."""
     import math
     cp, sp = math.cos(math.radians(pitch_deg) / 2), math.sin(math.radians(pitch_deg) / 2)
     cy, sy = math.cos(math.radians(yaw_deg) / 2), math.sin(math.radians(yaw_deg) / 2)
