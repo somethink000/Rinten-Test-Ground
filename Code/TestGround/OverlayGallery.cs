@@ -45,6 +45,9 @@ public sealed class OverlayGallery : Component, Component.ExecuteInEditor
 	Texture picture;
 	bool pictureLooked;
 
+	/// <summary>The polyline's points, kept rather than made every frame.</summary>
+	readonly Vector3[] wave = new Vector3[49];
+
 	/// <summary>Where an exhibit stands: a column along the row, a row away from the front.</summary>
 	Vector3 At( int row, int column )
 		=> WorldPosition + Vector3.Up * ( 1.2f + RowRise * row )
@@ -128,12 +131,12 @@ public sealed class OverlayGallery : Component, Component.ExecuteInEditor
 		// A strip rather than a list of pairs: a renderer that draws every
 		// strip as pairs shows every other segment of this wave.
 		var polyline = At( 1, 1 );
-		var points = new Vector3[49];
+		var points = wave;
 		for ( var i = 0; i < points.Length; i++ )
 		{
 			var f = i / (float)( points.Length - 1 );
-			var wave = ( f * 4.0f + Time.Now * 2.0f ) * 3.14159f;
-			points[i] = polyline + WorldRotation.Right * ( f - 0.5f ) + Vector3.Up * ( 0.4f + 0.25f * float.Sin( wave ) );
+			var phase = ( f * 4.0f + Time.Now * 2.0f ) * 3.14159f;
+			points[i] = polyline + WorldRotation.Right * ( f - 0.5f ) + Vector3.Up * ( 0.4f + 0.25f * float.Sin( phase ) );
 		}
 		DebugOverlay.Line( points, Color.Cyan );
 		Label( polyline, "Polyline" );
@@ -421,10 +424,13 @@ public sealed class OverlayGallery : Component, Component.ExecuteInEditor
 		DebugOverlay.ScreenText( new Vector2( 130, 150 ), "DebugOverlay.ScreenText", size: 18, flags: TextFlag.Center );
 		DebugOverlay.ScreenText( new Vector2( 24, 170 ), "left top\nsecond line", size: 14, flags: TextFlag.LeftTop, color: Color.Cyan );
 
-		// On for half a second in every second: a timed screen label.
-		if ( sinceBlink > 1.0f ) sinceBlink = 0;
-		if ( sinceBlink < 0.05f )
+		// On for half a second in every second: one timed screen label, made
+		// once a second and left to expire.
+		if ( sinceBlink > 1.0f )
+		{
+			sinceBlink = 0;
 			DebugOverlay.ScreenText( new Vector2( 130, 215 ), "blink (0.5s)", size: 14, color: Color.Yellow, duration: 0.5f );
+		}
 
 		if ( !pictureLooked )
 		{

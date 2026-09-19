@@ -46,7 +46,12 @@
               "FogMode": "Enabled",
               "FogStrength": 1,
               "LightColor": "1,0.97,0.92,1",
-              "ShadowAngle": 0.6,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "ShadowDetail": 64,
               "Shadows": true,
               "SkyColor": "0,0,0,0",
@@ -76,7 +81,13 @@
               "__guid": "8bea0afd-ca59-5847-92a7-1e97f33b4ca6",
               "__enabled": true,
               "Flags": 0,
-              "Color": "0.18,0.21,0.27,1"
+              "Color": "0.18,0.21,0.27,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
             }
           ],
           "Children": []
@@ -102,6 +113,12 @@
               "__guid": "82eafd9d-9251-59ed-97e9-a311c743dd6e",
               "__enabled": true,
               "Flags": 0,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "SkyIndirectLighting": true,
               "SkyMaterial": "materials/skybox/procedural.mat",
               "Tint": "1,1,1,1"
@@ -134,10 +151,17 @@
           "Flags": 0,
           "BodyGroups": 18446744073709551615,
           "CreateAttachments": false,
+          "LodBias": 1,
           "MaterialGroup": null,
           "MaterialOverride": "materials/dev/grid.mat",
           "Materials": null,
           "Model": "models/dev/box.mdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "RenderOptions": {
             "GameLayer": true,
             "OverlayLayer": false,
@@ -153,12 +177,22 @@
           "__enabled": true,
           "Flags": 0,
           "Center": "0,0,0",
-          "Scale": "1,1,1",
           "ColliderFlags": 0,
           "Elasticity": null,
           "Friction": null,
           "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
           "RollingResistance": null,
+          "Scale": "1,1,1",
           "Static": true,
           "Surface": null,
           "SurfaceVelocity": "0,0,0"
@@ -171,7 +205,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Label: Overlay",
-      "Position": "0,2.6,0",
+      "Position": "0,2.5999999,0",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -192,6 +226,12 @@
           "BlendMode": "Normal",
           "FogStrength": 1,
           "HorizontalAlignment": "Center",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "RenderOptions": {
             "GameLayer": true,
             "OverlayLayer": false,
@@ -245,7 +285,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Gallery",
-      "Position": "-4.8,0,0",
+      "Position": "-4.80000019,0,0",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -265,6 +305,14 @@
             "_type": "gameobject",
             "go": "8ae226a8-cfb2-44f3-b461-3c046ce6305d"
           },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RowRise": 0.8,
+          "RowSpacing": 2.5,
           "Spacing": 1.6
         }
       ],
@@ -297,6 +345,12 @@
               "MaterialOverride": null,
               "Materials": null,
               "Model": "models/urn_broken.mdl",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "RenderOptions": {
                 "GameLayer": true,
                 "OverlayLayer": false,
@@ -313,9 +367,9 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Lid",
-              "Position": "0,1.6,0",
-              "Rotation": "0,0.3826834,0,0.9238795",
-              "Scale": "0.35,0.15,0.35",
+              "Position": "0,1.60000002,0",
+              "Rotation": "0,0.382683396,0,0.923879504",
+              "Scale": "0.349999994,0.150000006,0.349999994",
               "Tags": "",
               "Enabled": true,
               "NetworkMode": 2,
@@ -336,6 +390,12 @@
                   "MaterialOverride": null,
                   "Materials": null,
                   "Model": "models/dev/box.mdl",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
                   "RenderOptions": {
                     "GameLayer": true,
                     "OverlayLayer": false,
@@ -357,7 +417,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Player",
-      "Position": "0,2.2,8",
+      "Position": "0,2.20000005,8",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -379,9 +439,15 @@
             "go": "46f87e9a-022a-5408-92c0-2f62c6f159ae",
             "component_type": "CameraComponent"
           },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "PitchClamp": 89,
           "RunScale": 3,
-          "Speed": 6.0
+          "Speed": 6
         }
       ],
       "Children": [
@@ -412,6 +478,12 @@
               "FieldOfView": 70,
               "FovAxis": "Horizontal",
               "IsMainCamera": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Orthographic": false,
               "OrthographicHeight": 10,
               "PostProcessAnchor": null,
@@ -431,6 +503,13 @@
               "Flags": 0,
               "__version": 1,
               "Mode": "Additive",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Spread": 0.5,
               "Strength": 0.6,
               "Threshold": 1,
               "Tint": "1,1,1,1"
@@ -462,6 +541,12 @@
           "__enabled": true,
           "Flags": 0,
           "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Opacity": 1,
           "Scale": 1,
           "ScaleStrategy": "ConsistentHeight",
@@ -473,8 +558,14 @@
           "__guid": "4a47782c-05d1-5f7c-8d60-a7d0431c79c3",
           "__enabled": true,
           "Flags": 0,
-          "Title": "Overlay",
-          "Note": "One of each debug overlay primitive, drawn every frame. A missing shape means that draw path is broken."
+          "Note": "One of each debug overlay primitive, drawn every frame. A missing shape means that draw path is broken.",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Title": "Overlay"
         },
         {
           "__type": "TestGround.ReturnToMenu",
@@ -482,7 +573,13 @@
           "__enabled": true,
           "Flags": 0,
           "Key": "Q",
-          "MenuScene": null
+          "MenuScene": null,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": []
@@ -507,7 +604,19 @@
       "DeferGeneration": false,
       "CustomBounds": false
     },
-    "GameObjectSystems": {}
+    "GameObjectSystems": {
+      "Rinten.Clutter.ClutterGridSystem": {
+        "Storage": {
+          "$blob": "64db792e-5935-8fbc-8cfa-050cd49fa7fd",
+          "$refs": []
+        }
+      },
+      "Rinten.SelectionSetsSystem": {
+        "Data": {
+          "SelectionSets": []
+        }
+      }
+    }
   },
   "ResourceVersion": 4,
   "Title": null,
