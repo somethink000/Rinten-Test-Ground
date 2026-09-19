@@ -161,7 +161,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Ground",
-      "Position": "0,-0.6,-110",
+      "Position": "0,-0.7,-110",
       "Rotation": "0,0,0,1",
       "Scale": "240,0.5,320",
       "Tags": "world",
@@ -3138,7 +3138,7 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Label: Area: Casters",
-              "Position": "0,7.6,-144.0",
+              "Position": "0,6.9,-144.0",
               "Rotation": "0,0,0,1",
               "Scale": "1,1,1",
               "Tags": "",
@@ -3333,7 +3333,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "RenderType On\nthe plain case",
                         "TextColor": "0.9,0.94,1,1",
@@ -3521,7 +3521,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Caster Shadows only",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -3548,7 +3548,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "RenderType ShadowsOnly\na shadow with nothing over it",
                         "TextColor": "0.9,0.94,1,1",
@@ -3763,7 +3763,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "RenderType Off\na cube that casts nothing",
                         "TextColor": "0.9,0.94,1,1",
@@ -3951,7 +3951,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Caster Sphere",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -3978,7 +3978,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "self-shadowing\nthe terminator",
                         "TextColor": "0.9,0.94,1,1",
@@ -4193,7 +4193,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a masked leaf slab\nthe shadow should be leaf-shaped",
                         "TextColor": "0.9,0.94,1,1",
@@ -4381,7 +4381,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Caster Ring cutout",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -4408,7 +4408,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a masked ring, cutoff 0.5",
                         "TextColor": "0.9,0.94,1,1",
@@ -4623,7 +4623,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Translucent at alpha 0.5\ndoes it cast, and how dark",
                         "TextColor": "0.9,0.94,1,1",
@@ -4811,7 +4811,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Caster Glass",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -4838,7 +4838,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "the project's glass",
                         "TextColor": "0.9,0.94,1,1",
@@ -5053,7 +5053,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a plane facing away from the sun\ndoes its back cast",
                         "TextColor": "0.9,0.94,1,1",
@@ -5241,7 +5241,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Caster Two-sided",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -5268,7 +5268,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "the same plane, two-sided",
                         "TextColor": "0.9,0.94,1,1",
@@ -5483,7 +5483,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a slab tilted 80 degrees to the sun\nacne or peter-panning shows here",
                         "TextColor": "0.9,0.94,1,1",
@@ -5671,7 +5671,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Caster Contact",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -5698,7 +5698,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a small cube on a big one\nthe join should be dark",
                         "TextColor": "0.9,0.94,1,1",
@@ -5958,7 +5958,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a cube 6 m up\nits shadow is far from it",
                         "TextColor": "0.9,0.94,1,1",
@@ -6146,7 +6146,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Caster Thin",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -6173,7 +6173,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a 2 cm rod\nit should keep a shadow at distance",
                         "TextColor": "0.9,0.94,1,1",
@@ -6388,7 +6388,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a sprite with Shadows on",
                         "TextColor": "0.9,0.94,1,1",
@@ -6590,7 +6590,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Caster Line",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -6617,7 +6617,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a LineRenderer with CastShadows",
                         "TextColor": "0.9,0.94,1,1",
@@ -6877,7 +6877,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "the urn, a real model",
                         "TextColor": "0.9,0.94,1,1",
@@ -7015,7 +7015,7 @@
                   "BodyGroups": 18446744073709551615,
                   "CreateAttachments": false,
                   "MaterialGroup": null,
-                  "MaterialOverride": "materials/dev/grid.mat",
+                  "MaterialOverride": null,
                   "Materials": null,
                   "Model": "models/dev/box.mdl",
                   "RenderOptions": {
@@ -7025,7 +7025,7 @@
                     "AfterUILayer": false
                   },
                   "RenderType": "On",
-                  "Tint": "0.34,0.36,0.4,1",
+                  "Tint": "0.12,0.12,0.14,1",
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -7067,7 +7067,7 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Label: Area: Source Radius",
-              "Position": "0,7.6,-164.0",
+              "Position": "0,6.9,-164.0",
               "Rotation": "0,0,0,1",
               "Scale": "1,1,1",
               "Tags": "",
@@ -7262,7 +7262,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "point light, SourceRadius 0.0\nthe edge of the shadow on the backdrop",
                         "TextColor": "0.9,0.94,1,1",
@@ -7536,7 +7536,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Radius 0.05",
-                  "Position": "0,3.8,0",
+                  "Position": "0.0,4.7,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -7563,7 +7563,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "point light, SourceRadius 0.05\nthe edge of the shadow on the backdrop",
                         "TextColor": "0.9,0.94,1,1",
@@ -7864,7 +7864,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "point light, SourceRadius 0.3\nthe edge of the shadow on the backdrop",
                         "TextColor": "0.9,0.94,1,1",
@@ -8138,7 +8138,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Radius 1",
-                  "Position": "0,3.8,0",
+                  "Position": "0.0,4.7,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -8165,7 +8165,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "point light, SourceRadius 1.0\nthe edge of the shadow on the backdrop",
                         "TextColor": "0.9,0.94,1,1",
@@ -8466,7 +8466,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "point light, SourceRadius 3.0\nthe edge of the shadow on the backdrop",
                         "TextColor": "0.9,0.94,1,1",
@@ -8652,161 +8652,71 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Roof: radius",
-              "Position": "0,0,0",
+              "Position": "0,7.0,-158",
               "Rotation": "0,0,0,1",
-              "Scale": "1,1,1",
-              "Tags": "",
+              "Scale": "38.0,0.3,16",
+              "Tags": "world",
               "Enabled": true,
               "NetworkMode": 2,
               "NetworkFlags": 0,
               "NetworkOrphaned": 0,
               "NetworkTransmit": true,
               "OwnerTransfer": 1,
-              "Components": [],
-              "Children": [
+              "Components": [
                 {
-                  "__guid": "d2311e22-acda-5646-9a62-d2cce448d5fe",
-                  "__version": 2,
+                  "__type": "Rinten.ModelRenderer",
+                  "__guid": "e9449317-4d5f-508c-803d-03cb9213ab55",
+                  "__enabled": true,
                   "Flags": 0,
-                  "Name": "Roof slab: radius",
-                  "Position": "0,7.0,-158",
-                  "Rotation": "0,0,0,1",
-                  "Scale": "38.0,0.3,16",
-                  "Tags": "world",
-                  "Enabled": true,
-                  "NetworkMode": 2,
-                  "NetworkFlags": 0,
-                  "NetworkOrphaned": 0,
-                  "NetworkTransmit": true,
-                  "OwnerTransfer": 1,
-                  "Components": [
-                    {
-                      "__type": "Rinten.ModelRenderer",
-                      "__guid": "4ce4e723-bfb1-5b36-876c-d48971e8cc4a",
-                      "__enabled": true,
-                      "Flags": 0,
-                      "BodyGroups": 18446744073709551615,
-                      "CreateAttachments": false,
-                      "MaterialGroup": null,
-                      "MaterialOverride": null,
-                      "Materials": null,
-                      "Model": "models/dev/box.mdl",
-                      "RenderOptions": {
-                        "GameLayer": true,
-                        "OverlayLayer": false,
-                        "BloomLayer": false,
-                        "AfterUILayer": false
-                      },
-                      "RenderType": "On",
-                      "Tint": "0.25,0.26,0.3,1",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null
-                    },
-                    {
-                      "__type": "Rinten.BoxCollider",
-                      "__guid": "3567d0d6-3083-527c-ae37-9e3b54d59166",
-                      "__enabled": true,
-                      "Flags": 0,
-                      "Center": "0,0,0",
-                      "ColliderFlags": 0,
-                      "Elasticity": null,
-                      "Friction": null,
-                      "IsTrigger": false,
-                      "OnObjectTriggerEnter": null,
-                      "OnObjectTriggerExit": null,
-                      "OnTriggerEnter": null,
-                      "OnTriggerExit": null,
-                      "RollingResistance": null,
-                      "Scale": "1,1,1",
-                      "Static": true,
-                      "Surface": null,
-                      "SurfaceVelocity": "0,0,0",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null
-                    }
-                  ],
-                  "Children": []
+                  "BodyGroups": 18446744073709551615,
+                  "CreateAttachments": false,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Materials": null,
+                  "Model": "models/dev/box.mdl",
+                  "RenderOptions": {
+                    "GameLayer": true,
+                    "OverlayLayer": false,
+                    "BloomLayer": false,
+                    "AfterUILayer": false
+                  },
+                  "RenderType": "On",
+                  "Tint": "0.25,0.26,0.3,1",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
                 },
                 {
-                  "__guid": "34f28472-20ef-5886-9cac-e6e0efb17767",
-                  "__version": 2,
+                  "__type": "Rinten.BoxCollider",
+                  "__guid": "6e94db6e-7775-59d3-ad7d-fcd898a972fc",
+                  "__enabled": true,
                   "Flags": 0,
-                  "Name": "Dark floor: radius",
-                  "Position": "0,0.05,-158",
-                  "Rotation": "0,0,0,1",
-                  "Scale": "38.0,0.1,14",
-                  "Tags": "world",
-                  "Enabled": true,
-                  "NetworkMode": 2,
-                  "NetworkFlags": 0,
-                  "NetworkOrphaned": 0,
-                  "NetworkTransmit": true,
-                  "OwnerTransfer": 1,
-                  "Components": [
-                    {
-                      "__type": "Rinten.ModelRenderer",
-                      "__guid": "c399c531-326d-5553-85eb-befee140b260",
-                      "__enabled": true,
-                      "Flags": 0,
-                      "BodyGroups": 18446744073709551615,
-                      "CreateAttachments": false,
-                      "MaterialGroup": null,
-                      "MaterialOverride": null,
-                      "Materials": null,
-                      "Model": "models/dev/box.mdl",
-                      "RenderOptions": {
-                        "GameLayer": true,
-                        "OverlayLayer": false,
-                        "BloomLayer": false,
-                        "AfterUILayer": false
-                      },
-                      "RenderType": "On",
-                      "Tint": "0.12,0.12,0.14,1",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null
-                    },
-                    {
-                      "__type": "Rinten.BoxCollider",
-                      "__guid": "4e31a348-3cad-593d-a964-011e959c2eae",
-                      "__enabled": true,
-                      "Flags": 0,
-                      "Center": "0,0,0",
-                      "ColliderFlags": 0,
-                      "Elasticity": null,
-                      "Friction": null,
-                      "IsTrigger": false,
-                      "OnObjectTriggerEnter": null,
-                      "OnObjectTriggerExit": null,
-                      "OnTriggerEnter": null,
-                      "OnTriggerExit": null,
-                      "RollingResistance": null,
-                      "Scale": "1,1,1",
-                      "Static": true,
-                      "Surface": null,
-                      "SurfaceVelocity": "0,0,0",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null
-                    }
-                  ],
-                  "Children": []
+                  "Center": "0,0,0",
+                  "ColliderFlags": 0,
+                  "Elasticity": null,
+                  "Friction": null,
+                  "IsTrigger": false,
+                  "OnObjectTriggerEnter": null,
+                  "OnObjectTriggerExit": null,
+                  "OnTriggerEnter": null,
+                  "OnTriggerExit": null,
+                  "RollingResistance": null,
+                  "Scale": "1,1,1",
+                  "Static": true,
+                  "Surface": null,
+                  "SurfaceVelocity": "0,0,0",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
                 }
-              ]
+              ],
+              "Children": []
             }
           ]
         },
@@ -8851,7 +8761,7 @@
                   "BodyGroups": 18446744073709551615,
                   "CreateAttachments": false,
                   "MaterialGroup": null,
-                  "MaterialOverride": "materials/dev/grid.mat",
+                  "MaterialOverride": null,
                   "Materials": null,
                   "Model": "models/dev/box.mdl",
                   "RenderOptions": {
@@ -8861,7 +8771,7 @@
                     "AfterUILayer": false
                   },
                   "RenderType": "On",
-                  "Tint": "0.34,0.36,0.4,1",
+                  "Tint": "0.12,0.12,0.14,1",
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -8903,7 +8813,7 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Label: Area: Point and Spot",
-              "Position": "0,7.6,-184.0",
+              "Position": "0,6.9,-184.0",
               "Rotation": "0,0,0,1",
               "Scale": "1,1,1",
               "Tags": "",
@@ -9098,7 +9008,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a point light in eight bars\nshadows every way",
                         "TextColor": "0.9,0.94,1,1",
@@ -9642,7 +9552,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Light Point no shadow",
-                  "Position": "0,3.8,0",
+                  "Position": "0.0,4.7,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -9669,7 +9579,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "the same, Shadows off",
                         "TextColor": "0.9,0.94,1,1",
@@ -10240,7 +10150,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Radius 2, cut off short",
                         "TextColor": "0.9,0.94,1,1",
@@ -10784,7 +10694,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Light Four colours",
-                  "Position": "0,3.8,0",
+                  "Position": "0.0,4.7,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -10811,7 +10721,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "red, green, blue, yellow round one pillar\nfour coloured shadows",
                         "TextColor": "0.9,0.94,1,1",
@@ -11190,7 +11100,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a spot straight down, 35 degrees",
                         "TextColor": "0.9,0.94,1,1",
@@ -11422,7 +11332,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Light Spot narrow",
-                  "Position": "0,3.8,0",
+                  "Position": "0.0,4.7,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -11449,7 +11359,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "ConeOuter 12, ConeInner 4",
                         "TextColor": "0.9,0.94,1,1",
@@ -11708,7 +11618,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "ConeOuter 70, ConeInner 60",
                         "TextColor": "0.9,0.94,1,1",
@@ -11940,7 +11850,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Light Spot cookie",
-                  "Position": "0,3.8,0",
+                  "Position": "0.0,4.7,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -11967,7 +11877,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a ring cookie on the spot",
                         "TextColor": "0.9,0.94,1,1",
@@ -12226,7 +12136,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a spot along the floor onto a wall",
                         "TextColor": "0.9,0.94,1,1",
@@ -12503,7 +12413,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Light Spot no shadow",
-                  "Position": "0,3.8,0",
+                  "Position": "0.0,4.7,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -12530,7 +12440,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "the same, Shadows off",
                         "TextColor": "0.9,0.94,1,1",
@@ -12719,161 +12629,71 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Roof: lights",
-              "Position": "0,0,0",
+              "Position": "0,7.0,-178",
               "Rotation": "0,0,0,1",
-              "Scale": "1,1,1",
-              "Tags": "",
+              "Scale": "68.0,0.3,16",
+              "Tags": "world",
               "Enabled": true,
               "NetworkMode": 2,
               "NetworkFlags": 0,
               "NetworkOrphaned": 0,
               "NetworkTransmit": true,
               "OwnerTransfer": 1,
-              "Components": [],
-              "Children": [
+              "Components": [
                 {
-                  "__guid": "2e629c37-9c44-5268-b3b8-ea059e7fb6a8",
-                  "__version": 2,
+                  "__type": "Rinten.ModelRenderer",
+                  "__guid": "f6454655-7ad9-5092-b778-29ede2d9276b",
+                  "__enabled": true,
                   "Flags": 0,
-                  "Name": "Roof slab: lights",
-                  "Position": "0,7.0,-178",
-                  "Rotation": "0,0,0,1",
-                  "Scale": "68.0,0.3,16",
-                  "Tags": "world",
-                  "Enabled": true,
-                  "NetworkMode": 2,
-                  "NetworkFlags": 0,
-                  "NetworkOrphaned": 0,
-                  "NetworkTransmit": true,
-                  "OwnerTransfer": 1,
-                  "Components": [
-                    {
-                      "__type": "Rinten.ModelRenderer",
-                      "__guid": "d1342199-ddb6-5aef-91a7-23b432193eca",
-                      "__enabled": true,
-                      "Flags": 0,
-                      "BodyGroups": 18446744073709551615,
-                      "CreateAttachments": false,
-                      "MaterialGroup": null,
-                      "MaterialOverride": null,
-                      "Materials": null,
-                      "Model": "models/dev/box.mdl",
-                      "RenderOptions": {
-                        "GameLayer": true,
-                        "OverlayLayer": false,
-                        "BloomLayer": false,
-                        "AfterUILayer": false
-                      },
-                      "RenderType": "On",
-                      "Tint": "0.25,0.26,0.3,1",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null
-                    },
-                    {
-                      "__type": "Rinten.BoxCollider",
-                      "__guid": "3d5986d3-df43-52ad-a38c-d2f800f4e170",
-                      "__enabled": true,
-                      "Flags": 0,
-                      "Center": "0,0,0",
-                      "ColliderFlags": 0,
-                      "Elasticity": null,
-                      "Friction": null,
-                      "IsTrigger": false,
-                      "OnObjectTriggerEnter": null,
-                      "OnObjectTriggerExit": null,
-                      "OnTriggerEnter": null,
-                      "OnTriggerExit": null,
-                      "RollingResistance": null,
-                      "Scale": "1,1,1",
-                      "Static": true,
-                      "Surface": null,
-                      "SurfaceVelocity": "0,0,0",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null
-                    }
-                  ],
-                  "Children": []
+                  "BodyGroups": 18446744073709551615,
+                  "CreateAttachments": false,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Materials": null,
+                  "Model": "models/dev/box.mdl",
+                  "RenderOptions": {
+                    "GameLayer": true,
+                    "OverlayLayer": false,
+                    "BloomLayer": false,
+                    "AfterUILayer": false
+                  },
+                  "RenderType": "On",
+                  "Tint": "0.25,0.26,0.3,1",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
                 },
                 {
-                  "__guid": "cd67029b-3960-5b83-aebe-52302f661401",
-                  "__version": 2,
+                  "__type": "Rinten.BoxCollider",
+                  "__guid": "c4c78f18-d8c3-5a92-9d8c-37d1c57af4b2",
+                  "__enabled": true,
                   "Flags": 0,
-                  "Name": "Dark floor: lights",
-                  "Position": "0,0.05,-178",
-                  "Rotation": "0,0,0,1",
-                  "Scale": "68.0,0.1,14",
-                  "Tags": "world",
-                  "Enabled": true,
-                  "NetworkMode": 2,
-                  "NetworkFlags": 0,
-                  "NetworkOrphaned": 0,
-                  "NetworkTransmit": true,
-                  "OwnerTransfer": 1,
-                  "Components": [
-                    {
-                      "__type": "Rinten.ModelRenderer",
-                      "__guid": "7a8d5fec-4e19-5500-b2a1-3ded3a8b3080",
-                      "__enabled": true,
-                      "Flags": 0,
-                      "BodyGroups": 18446744073709551615,
-                      "CreateAttachments": false,
-                      "MaterialGroup": null,
-                      "MaterialOverride": null,
-                      "Materials": null,
-                      "Model": "models/dev/box.mdl",
-                      "RenderOptions": {
-                        "GameLayer": true,
-                        "OverlayLayer": false,
-                        "BloomLayer": false,
-                        "AfterUILayer": false
-                      },
-                      "RenderType": "On",
-                      "Tint": "0.12,0.12,0.14,1",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null
-                    },
-                    {
-                      "__type": "Rinten.BoxCollider",
-                      "__guid": "6adcd58c-cbf4-5d10-83d1-7b4baab9a8b0",
-                      "__enabled": true,
-                      "Flags": 0,
-                      "Center": "0,0,0",
-                      "ColliderFlags": 0,
-                      "Elasticity": null,
-                      "Friction": null,
-                      "IsTrigger": false,
-                      "OnObjectTriggerEnter": null,
-                      "OnObjectTriggerExit": null,
-                      "OnTriggerEnter": null,
-                      "OnTriggerExit": null,
-                      "RollingResistance": null,
-                      "Scale": "1,1,1",
-                      "Static": true,
-                      "Surface": null,
-                      "SurfaceVelocity": "0,0,0",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null
-                    }
-                  ],
-                  "Children": []
+                  "Center": "0,0,0",
+                  "ColliderFlags": 0,
+                  "Elasticity": null,
+                  "Friction": null,
+                  "IsTrigger": false,
+                  "OnObjectTriggerEnter": null,
+                  "OnObjectTriggerExit": null,
+                  "OnTriggerEnter": null,
+                  "OnTriggerExit": null,
+                  "RollingResistance": null,
+                  "Scale": "1,1,1",
+                  "Static": true,
+                  "Surface": null,
+                  "SurfaceVelocity": "0,0,0",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
                 }
-              ]
+              ],
+              "Children": []
             }
           ]
         },
@@ -12918,7 +12738,7 @@
                   "BodyGroups": 18446744073709551615,
                   "CreateAttachments": false,
                   "MaterialGroup": null,
-                  "MaterialOverride": "materials/dev/grid.mat",
+                  "MaterialOverride": null,
                   "Materials": null,
                   "Model": "models/dev/box.mdl",
                   "RenderOptions": {
@@ -12928,7 +12748,7 @@
                     "AfterUILayer": false
                   },
                   "RenderType": "On",
-                  "Tint": "0.34,0.36,0.4,1",
+                  "Tint": "0.12,0.12,0.14,1",
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -12970,7 +12790,7 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Label: Area: Moving",
-              "Position": "0,7.6,-204.0",
+              "Position": "0,6.9,-204.0",
               "Rotation": "0,0,0,1",
               "Scale": "1,1,1",
               "Tags": "",
@@ -13165,7 +12985,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a cross on a Spinner\nthe shadow turns with it",
                         "TextColor": "0.9,0.94,1,1",
@@ -13433,7 +13253,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Moving Bobbing",
-                  "Position": "0,3.8,0",
+                  "Position": "0.0,4.7,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -13460,7 +13280,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a cube on an Oscillator\nup and down 1.5 m",
                         "TextColor": "0.9,0.94,1,1",
@@ -13691,7 +13511,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a cube sliding sideways",
                         "TextColor": "0.9,0.94,1,1",
@@ -13895,7 +13715,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Moving Turning spot",
-                  "Position": "0,3.8,0",
+                  "Position": "0.0,4.7,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -13922,7 +13742,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a spot light on a Spinner",
                         "TextColor": "0.9,0.94,1,1",
@@ -14351,7 +14171,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a point light on an Orbit round a pillar",
                         "TextColor": "0.9,0.94,1,1",
@@ -14617,7 +14437,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Moving Walking caster",
-                  "Position": "0,3.8,0",
+                  "Position": "0.0,4.7,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -14644,7 +14464,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a cube orbiting in a point light",
                         "TextColor": "0.9,0.94,1,1",
@@ -14822,161 +14642,71 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Roof: moving",
-              "Position": "0,0,0",
+              "Position": "0,7.0,-198",
               "Rotation": "0,0,0,1",
-              "Scale": "1,1,1",
-              "Tags": "",
+              "Scale": "44.0,0.3,16",
+              "Tags": "world",
               "Enabled": true,
               "NetworkMode": 2,
               "NetworkFlags": 0,
               "NetworkOrphaned": 0,
               "NetworkTransmit": true,
               "OwnerTransfer": 1,
-              "Components": [],
-              "Children": [
+              "Components": [
                 {
-                  "__guid": "b3c5996c-97bb-5f0c-a66f-c4f99b1f26e5",
-                  "__version": 2,
+                  "__type": "Rinten.ModelRenderer",
+                  "__guid": "9ae8c0b3-f74f-5bef-887a-9bfd37fd9f18",
+                  "__enabled": true,
                   "Flags": 0,
-                  "Name": "Roof slab: moving",
-                  "Position": "0,7.0,-198",
-                  "Rotation": "0,0,0,1",
-                  "Scale": "44.0,0.3,16",
-                  "Tags": "world",
-                  "Enabled": true,
-                  "NetworkMode": 2,
-                  "NetworkFlags": 0,
-                  "NetworkOrphaned": 0,
-                  "NetworkTransmit": true,
-                  "OwnerTransfer": 1,
-                  "Components": [
-                    {
-                      "__type": "Rinten.ModelRenderer",
-                      "__guid": "4f37e7f0-a576-5439-b754-cf57938b2c39",
-                      "__enabled": true,
-                      "Flags": 0,
-                      "BodyGroups": 18446744073709551615,
-                      "CreateAttachments": false,
-                      "MaterialGroup": null,
-                      "MaterialOverride": null,
-                      "Materials": null,
-                      "Model": "models/dev/box.mdl",
-                      "RenderOptions": {
-                        "GameLayer": true,
-                        "OverlayLayer": false,
-                        "BloomLayer": false,
-                        "AfterUILayer": false
-                      },
-                      "RenderType": "On",
-                      "Tint": "0.25,0.26,0.3,1",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null
-                    },
-                    {
-                      "__type": "Rinten.BoxCollider",
-                      "__guid": "c8d9de4f-5f9f-5eef-a05a-a606dffc5bb9",
-                      "__enabled": true,
-                      "Flags": 0,
-                      "Center": "0,0,0",
-                      "ColliderFlags": 0,
-                      "Elasticity": null,
-                      "Friction": null,
-                      "IsTrigger": false,
-                      "OnObjectTriggerEnter": null,
-                      "OnObjectTriggerExit": null,
-                      "OnTriggerEnter": null,
-                      "OnTriggerExit": null,
-                      "RollingResistance": null,
-                      "Scale": "1,1,1",
-                      "Static": true,
-                      "Surface": null,
-                      "SurfaceVelocity": "0,0,0",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null
-                    }
-                  ],
-                  "Children": []
+                  "BodyGroups": 18446744073709551615,
+                  "CreateAttachments": false,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Materials": null,
+                  "Model": "models/dev/box.mdl",
+                  "RenderOptions": {
+                    "GameLayer": true,
+                    "OverlayLayer": false,
+                    "BloomLayer": false,
+                    "AfterUILayer": false
+                  },
+                  "RenderType": "On",
+                  "Tint": "0.25,0.26,0.3,1",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
                 },
                 {
-                  "__guid": "965d6bd2-57bb-54e0-8199-7e86407a4bb8",
-                  "__version": 2,
+                  "__type": "Rinten.BoxCollider",
+                  "__guid": "b7289691-de9d-542f-a0d2-d980c2c99730",
+                  "__enabled": true,
                   "Flags": 0,
-                  "Name": "Dark floor: moving",
-                  "Position": "0,0.05,-198",
-                  "Rotation": "0,0,0,1",
-                  "Scale": "44.0,0.1,14",
-                  "Tags": "world",
-                  "Enabled": true,
-                  "NetworkMode": 2,
-                  "NetworkFlags": 0,
-                  "NetworkOrphaned": 0,
-                  "NetworkTransmit": true,
-                  "OwnerTransfer": 1,
-                  "Components": [
-                    {
-                      "__type": "Rinten.ModelRenderer",
-                      "__guid": "ab7197ff-f263-5fed-842c-91037fed60ad",
-                      "__enabled": true,
-                      "Flags": 0,
-                      "BodyGroups": 18446744073709551615,
-                      "CreateAttachments": false,
-                      "MaterialGroup": null,
-                      "MaterialOverride": null,
-                      "Materials": null,
-                      "Model": "models/dev/box.mdl",
-                      "RenderOptions": {
-                        "GameLayer": true,
-                        "OverlayLayer": false,
-                        "BloomLayer": false,
-                        "AfterUILayer": false
-                      },
-                      "RenderType": "On",
-                      "Tint": "0.12,0.12,0.14,1",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null
-                    },
-                    {
-                      "__type": "Rinten.BoxCollider",
-                      "__guid": "f4af279c-60be-5df1-b3fb-7f78155383b4",
-                      "__enabled": true,
-                      "Flags": 0,
-                      "Center": "0,0,0",
-                      "ColliderFlags": 0,
-                      "Elasticity": null,
-                      "Friction": null,
-                      "IsTrigger": false,
-                      "OnObjectTriggerEnter": null,
-                      "OnObjectTriggerExit": null,
-                      "OnTriggerEnter": null,
-                      "OnTriggerExit": null,
-                      "RollingResistance": null,
-                      "Scale": "1,1,1",
-                      "Static": true,
-                      "Surface": null,
-                      "SurfaceVelocity": "0,0,0",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null
-                    }
-                  ],
-                  "Children": []
+                  "Center": "0,0,0",
+                  "ColliderFlags": 0,
+                  "Elasticity": null,
+                  "Friction": null,
+                  "IsTrigger": false,
+                  "OnObjectTriggerEnter": null,
+                  "OnObjectTriggerExit": null,
+                  "OnTriggerEnter": null,
+                  "OnTriggerExit": null,
+                  "RollingResistance": null,
+                  "Scale": "1,1,1",
+                  "Static": true,
+                  "Surface": null,
+                  "SurfaceVelocity": "0,0,0",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
                 }
-              ]
+              ],
+              "Children": []
             }
           ]
         },
@@ -15073,7 +14803,7 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Label: Area: Receivers",
-              "Position": "0,7.6,-224.0",
+              "Position": "0,6.9,-224.0",
               "Rotation": "0,0,0,1",
               "Scale": "1,1,1",
               "Tags": "",
@@ -15197,7 +14927,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "the shadow on a rough pale slab",
                         "TextColor": "0.9,0.94,1,1",
@@ -15359,7 +15089,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Receiver Chrome",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -15386,7 +15116,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "on chrome\na shadow on a mirror",
                         "TextColor": "0.9,0.94,1,1",
@@ -15575,7 +15305,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "on brushed metal",
                         "TextColor": "0.9,0.94,1,1",
@@ -15737,7 +15467,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Receiver Normal map",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -15764,7 +15494,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "on the bumps normal map",
                         "TextColor": "0.9,0.94,1,1",
@@ -15953,7 +15683,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "on an emissive slab\nemission should not darken",
                         "TextColor": "0.9,0.94,1,1",
@@ -16115,7 +15845,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Receiver Translucent",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -16142,7 +15872,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "on a translucent slab",
                         "TextColor": "0.9,0.94,1,1",
@@ -16331,7 +16061,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "on an unlit slab\nno shadow can land",
                         "TextColor": "0.9,0.94,1,1",
@@ -16493,7 +16223,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Receiver Dark",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -16520,7 +16250,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "on a nearly black slab",
                         "TextColor": "0.9,0.94,1,1",

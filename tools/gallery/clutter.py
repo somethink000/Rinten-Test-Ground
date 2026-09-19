@@ -129,7 +129,6 @@ ROW3 = [
     ("No physics", "EnablePhysics off\nwalk through it", DEFS["nophysics"], {}),
     ("Tile 256", "TileSize 256 - one tile", DEFS["tile256"], {}),
     ("Tile 4096", "TileSize 4096", DEFS["tile4096"], {}),
-    ("Across tiles", "a 24 m volume on 256 m tiles\nplaced across a tile edge if it lands on one", DEFS["tile256"], dict(size=(24, 4, 24))),
     ("Prefab", "a prefab entry, not a model\nvolumes store models only", DEFS["prefab"], {}),
     ("Empty", "a definition with no entries", DEFS["empty"], {}),
     ("Missing model", "a model that does not exist", DEFS["missing"], {}),
@@ -144,11 +143,23 @@ ROW4 = [
     ("Fast churn", "every 0.3 s", DEFS["mixed"], dict(churn=0.3)),
     ("Tall", "a 10 x 20 x 10 volume\nground is still the floor", DEFS["cubes"], dict(size=(10, 20, 10))),
     ("Flat", "a 10 x 0.5 x 10 volume\nthe floor is inside it", DEFS["cubes"], dict(size=(10, 0.5, 10))),
+    ("Across tiles", "a 24 m volume on 256 m tiles\nplaced across a tile edge if it lands on one", DEFS["tile256"], dict(size=(24, 4, 24))),
     ("Big", "40 x 40 m, density 2\nsome hundreds", DEFS["dense"], dict(size=(40, 4, 40))),
 ]
-kids, width = row(ROW4, 24.0, z - 8)
-areas.append(S.area("Churn and Size", "volumes made again and again, and a big one", z - 8, width, depth=44, wall=False, slab_material=None, children=kids))
-z -= ROW_DEPTH + 40
+
+def sized_row(items, gap, z):
+    """Stations laid by their own widths with a gap between, centred on x."""
+    widths = [kw.get("size", (10, 4, 10))[0] for _, _, _, kw in items]
+    total = sum(widths) + gap * (len(items) - 1)
+    out, x = [], -total / 2
+    for (name, note, d, kw), w in zip(items, widths):
+        out.append(station(name, note, d, (x + w / 2, 0, z), **kw))
+        x += w + gap
+    return out, total + 8
+
+kids, width = sized_row(ROW4, 4.0, z - 12)
+areas.append(S.area("Churn and Size", "volumes made again and again, and big ones", z - 12, width, depth=48, wall=False, slab_material=None, children=kids))
+z -= ROW_DEPTH + 48
 
 # infinite: streams round the camera, everywhere
 infinite = S.go("Infinite", (0, 2, 0), components=[
@@ -160,7 +171,7 @@ infinite_sign = S.label("Infinite", (0, 4.0, -4), "Infinite mode: small spheres 
 
 S.objects = [
     S.environment(sun_brightness=1.4),
-    S.block("Ground", (0, -0.6, -70), (240, 0.5, 220), "0.2,0.21,0.24,1"),
+    S.block("Ground", (0, -0.7, -70), (240, 0.5, 220), "0.2,0.21,0.24,1"),
     S.go("Areas", children=areas),
     infinite, infinite_sign,
     S.player((0, 3.0, 8)),

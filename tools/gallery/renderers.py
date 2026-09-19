@@ -17,7 +17,7 @@ AFTER_UI = {"GameLayer": True, "OverlayLayer": False, "BloomLayer": False, "Afte
 def pedestal(name, size=1.2):
     return S.block(f"Pedestal: {name}", (0, 0.1, 0), (size, 0.2, size), PEDESTAL)
 
-def sign(name, text, y=3.0, scale=0.45):
+def sign(name, text, y=3.0, scale=0.38):
     return S.label(name, (0, y, 0), text, scale=scale, size=44)
 
 def station(name, text, children, pos, sign_y=3.4):
@@ -397,6 +397,7 @@ kids, width = row("Line",LINES, lambda it, p: line_station(it[0], it[1], p, **it
 extra_z = z
 kids.append(moving_line_station((-(len(LINES) / 2) * 4.5 - 4.5, 0, z)))
 kids.append(overlay_line_station(((len(LINES) / 2) * 4.5 + 4.5, 0, z)))
+S.stagger_signs(kids)
 areas.append(S.area("Line Renderer", "points, splines, widths, faces, caps, blending, texture", z, width + 9, children=kids))
 z -= ROW_DEPTH
 
@@ -404,17 +405,20 @@ z -= ROW_DEPTH
 kids, width = row("Trail",TRAILS, lambda it, p: trail_station(it[0], it[1], p, **it[2]), 5.0, z)
 kids.append(trail_station("Pulse", "TrailPulse: 1 s on, 0.5 s off", ((len(TRAILS) / 2) * 5.0 + 5.0, 0, z), extra=[S.comp("TestGround.TrailPulse", "pulse/trail", On=1.0, Off=0.5)]))
 kids.append(trail_station("Fast", "Period 0.7 s\nfew points a turn", (-(len(TRAILS) / 2) * 5.0 - 5.0, 0, z), orbit_kw=dict(period=0.7)))
+S.stagger_signs(kids)
 areas.append(S.area("Trail Renderer", "orbiting emitters: lifetime, spacing, width, blend, faces", z, width + 10, children=kids))
 z -= ROW_DEPTH
 
 # Sprites
 kids, width = row("Sprite",SPRITES, lambda it, p: sprite_station(it[0], it[1], p, **it[2]), 4.0, z)
 kids.append(sorted_station(((len(SPRITES) / 2) * 4.0 + 4.0, 0, z)))
+S.stagger_signs(kids)
 areas.append(S.area("Sprite Renderer", "sprites, animation, billboards, blending, cutout, lighting, sorting", z, width + 8, children=kids))
 z -= ROW_DEPTH
 
 # Text
 kids, width = row("Text",TEXTS, lambda it, p: text_station(it[0], it[1], p, it[2]), 5.0, z)
+S.stagger_signs(kids)
 areas.append(S.area("Text Renderer", "fonts, weights, sizes, colours, billboards, alignment, layout, blending", z, width, children=kids))
 z -= ROW_DEPTH
 
@@ -428,6 +432,7 @@ for k in kids:
                 c["Components"].append(S.comp("TestGround.Spinner", "spin/cube", Axis="0,1,0", Speed=60, Local=True))
 kids.append(instancing_station(((len(MODELS) / 2) * 5.0 + 5.0, 0, z)))
 kids.append(project_models_station((-(len(MODELS) / 2) * 5.0 - 8.0, 0, z)))
+S.stagger_signs(kids)
 areas.append(S.area("Model Renderer", "tint, render type, overrides, layers, disabled, mirrored, nested, instancing, project models", z, width + 22, children=kids))
 z -= ROW_DEPTH
 
@@ -440,6 +445,7 @@ for k in kids:
             S.model("spinner/realtime", "1,0.8,0.2,1"), S.comp("TestGround.Spinner", "spin/realtime", Axis="0,1,0", Speed=90, Local=True)]))
 kids.append(priority_station(((len(REFLECTIONS) / 2) * 6.0 + 6.0, 0, z)))
 kids.append(mirror_station((-(len(REFLECTIONS) / 2) * 6.0 - 6.0, 0, z)))
+S.stagger_signs(kids)
 areas.append(S.area("Reflection Probes", "chrome balls in coloured rooms: sphere and box projection, tint, realtime, priority", z, width + 12, children=kids))
 z -= ROW_DEPTH
 
@@ -448,13 +454,14 @@ kids, width = row("Mesh",PROCEDURAL, lambda it, p: procedural(it[0], it[1], p, *
 for k in kids:
     if k["Name"] == "Station: Mesh Box":
         k["Children"].append(S.go("Model box", (1.4, 0.7, 0), scale=(1, 1, 1), components=[S.model("model box", "1,1,1,1", "materials/dev/grid.mat")]))
+S.stagger_signs(kids)
 areas.append(S.area("Polygon Meshes", "geometry built in code: ramp, stairs, prisms, a ring, smoothing", z, width, children=kids))
 
 # ---------------------------------------------------------------- the scene
 
 S.objects = [
     S.environment(),
-    S.block("Ground", (0, -0.6, -60), (200, 0.5, 180), "0.2,0.21,0.24,1"),
+    S.block("Ground", (0, -0.7, -60), (200, 0.5, 180), "0.2,0.21,0.24,1"),
     S.go("Areas", children=areas),
     S.player((0, 2.6, 14)),
     S.hud("Seven rows, one renderer each. Every station is one setting; a missing thing is a broken path. Q returns."),

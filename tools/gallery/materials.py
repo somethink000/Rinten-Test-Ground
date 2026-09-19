@@ -192,7 +192,7 @@ PEDESTAL = "0.2,0.22,0.26,1"
 def pedestal(name, size=1.2):
     return S.block(f"Pedestal: {name}", (0, 0.1, 0), (size, 0.2, size), PEDESTAL)
 
-def sign(name, text, y=3.0, scale=0.45):
+def sign(name, text, y=3.0, scale=0.38):
     return S.label(name, (0, y, 0), text, scale=scale, size=44)
 
 def station(name, text, children, pos, sign_y=3.0, pedestal_size=1.2):
@@ -264,6 +264,7 @@ def tint_or_emission(item, pos):
     if item[0].startswith("Tint "): return tint_station(item, pos)
     return station(item[0], item[1], [ball(item[0], item[2])], pos)
 kids, width = row("", [("Tint " + n, t, m) for n, t, m in TINTS] + [("Emission " + n, t, m) for n, t, m in EMISSIONS], tint_or_emission, 3.6, z)
+S.stagger_signs(kids)
 areas.append(S.area("Tint and Emission", "material tint against renderer tint; emission strengths, colours and a map", z, width, children=kids))
 z -= ROW_DEPTH
 
@@ -294,6 +295,7 @@ kids.append(station("Sorting", "three translucent slabs, front to back\nblue, gr
     slab("Sort C", BLEND["trans05"], (0, 1.1, -0.6), tint="1,0.3,0.3,1")], (x0, 0, z)))
 kids.append(station("Inside", "a translucent ball around an opaque cube", [
     ball("Inside ball", BLEND["trans05"], r=1.0), cube("Inside cube", TINT["red"], pos=(0, 0.9, 0), size=(0.4, 0.4, 0.4))], (x0 + 4, 0, z)))
+S.stagger_signs(kids)
 areas.append(S.area("Blending", "opaque, cutout at three cutoffs, translucent at three alphas, two-sided, additive, sorting", z, width + 12, children=kids))
 z -= ROW_DEPTH
 
@@ -318,6 +320,7 @@ kids.append(station("Hollow", "one-sided sphere, camera can go in\nthe inside is
 kids.append(station("Two-sided hollow", "two-sided sphere\nthe inside is a wall", [ball("Hollow 2", SIDES["two"], r=2.0, pos=(0, 2.0, 0))], (x0 + 5, 0, z), pedestal_size=0.5))
 kids.append(station("Tiled", "grid on a 6 x 1 x 1 cube\nthe texture stretches with the scale", [cube("Tiled", MAPS["grid"], pos=(0, 0.7, 0), size=(6, 1, 1))], (x0 + 11, 0, z)))
 kids.append(station("Thin", "a 0.01 thick slab, both faces", [slab("Thin", MAPS["grid"], size=(1.4, 1.4, 0.01))], (x0 + 16, 0, z)))
+S.stagger_signs(kids)
 areas.append(S.area("Sides and Surfaces", "one-sided and two-sided planes and spheres, texture over scale, a thin slab", z, width + 22, children=kids))
 z -= ROW_DEPTH
 
@@ -334,6 +337,7 @@ MAP = [
 ]
 kids, width = row("Map", MAP, lambda it, p: station(it[0], it[1], [ball(it[0], it[2], (-0.7, 0.9, 0), r=0.7), slab(f"{it[0]} slab", it[2], (0.7, 0.9, 0), size=(1.2, 1.2, 0.05))], p), 4.0, z)
 kids.append(probe("maps", z))
+S.stagger_signs(kids)
 areas.append(S.area("Maps", "colour, normal, roughness, metalness, ambient occlusion, emission - a ball and a slab each", z, width, children=kids))
 z -= ROW_DEPTH
 
@@ -357,6 +361,7 @@ def shader_station(item, pos):
     thing = ball(name, m) if kind == "ball" else slab(name, m)
     return station(name, text, [thing], pos)
 kids, width = row("Shader", SHADER, shader_station, 3.8, z)
+S.stagger_signs(kids)
 areas.append(S.area("Shaders", "every shader the project can name, and what a missing material, texture or shader looks like", z, width, children=kids))
 z -= ROW_DEPTH
 
@@ -381,13 +386,14 @@ kids.append(station("Shared", "two balls, one material\ntint on the left rendere
 kids.append(station("Shared copy", "the right one is a copy with Roughness swept\nthe left must not change", [
     ball("Shared copy A", GRID[(0, 2)], (-0.6, 0.9, 0), r=0.6), ball("Shared copy B", GRID[(0, 2)], (0.6, 0.9, 0), r=0.6, extra=[probe_comp("shared copy", "Roughness", GRID[(0, 2)])])], (x0 + 4, 0, z)))
 kids.append(probe("runtime", z))
+S.stagger_signs(kids)
 areas.append(S.area("Runtime", "materials changed while the scene runs: tint, copies, swaps, the accessor, the setter, and what is shared", z, width + 10, children=kids))
 
 # ---------------------------------------------------------------- the scene
 
 S.objects = [
     S.environment(sun_brightness=1.4),
-    S.block("Ground", (0, -0.6, -60), (200, 0.5, 180), "0.2,0.21,0.24,1"),
+    S.block("Ground", (0, -0.7, -60), (200, 0.5, 180), "0.2,0.21,0.24,1"),
     S.go("Areas", children=areas),
     S.player((0, 2.6, 14)),
     S.hud("Seven rows: the roughness-metalness grid, tint and emission, blending, sides, maps, shaders, runtime changes. Q returns."),

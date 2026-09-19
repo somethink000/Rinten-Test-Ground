@@ -118,13 +118,27 @@ class Scene:
     SLAB = "0.34,0.36,0.4,1"
     WALL = "0.11,0.12,0.15,1"
 
-    def area(self, title, note, z, width, depth=14, wall=True, wall_height=6, slab_material="materials/dev/grid.mat", children=()):
-        kids = [self.block(f"Slab: {title}", (0, -0.2, z), (width, 0.4, depth), self.SLAB, slab_material)]
+    def area(self, title, note, z, width, depth=14, wall=True, wall_height=6, slab_material="materials/dev/grid.mat", slab_tint=None, children=()):
+        kids = [self.block(f"Slab: {title}", (0, -0.2, z), (width, 0.4, depth), slab_tint or self.SLAB, slab_material)]
         if wall:
             kids.append(self.block(f"Wall: {title}", (0, wall_height / 2, z - depth / 2), (width, wall_height, 0.5), self.WALL))
-        kids.append(self.label(f"Area: {title}", (0, wall_height + 1.6, z - depth / 2 + 1), f"{title}\n{note}", scale=0.9))
+        # Just over the wall: from the spawn's height the next row's title is
+        # behind this row's wall rather than stacked over it.
+        kids.append(self.label(f"Area: {title}", (0, wall_height + 0.9, z - depth / 2 + 1), f"{title}\n{note}", scale=0.9))
         kids.extend(children)
         return self.go(f"Area: {title}", children=kids)
+
+    @staticmethod
+    def stagger_signs(stations, rise=0.9):
+        """Every other station's sign a step higher, so two signs wider than
+        the gap between their stands never sit side by side."""
+        for i, station in enumerate(stations):
+            if i % 2 == 0: continue
+            for child in station.get("Children", []):
+                if child["Name"].startswith("Label:"):
+                    x, y, z = (float(c) for c in child["Position"].split(","))
+                    child["Position"] = v(x, y + rise, z)
+        return stations
 
     # -- out ------------------------------------------------------------------
 

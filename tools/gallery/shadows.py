@@ -13,7 +13,7 @@ S = Scene("shadows", "Shadows",
 PEDESTAL = "0.2,0.22,0.26,1"
 FLOOR = "0.62,0.6,0.56,1"
 
-def sign(name, text, pos, scale=0.45):
+def sign(name, text, pos, scale=0.38):
     return S.label(name, pos, text, scale=scale, size=44)
 
 def station(name, text, children, pos, sign_y=3.0, pedestal=True):
@@ -122,6 +122,7 @@ def caster_station(item, pos):
     return station(name, text, kids, pos)
 
 kids, width = row("Caster", CASTERS, caster_station, 3.4, z - 130)
+S.stagger_signs(kids)
 areas.append(S.area("Casters", "every kind of thing that can cast a shadow, and two that should not", z - 130, width, slab_material=None, children=kids))
 z -= 130 + ROW_DEPTH
 
@@ -132,14 +133,16 @@ def radius_station(item, pos):
     kids = [cube(f"{name} pillar", (0, 1.2, 0), (0.3, 2.4, 0.3)), cube(f"{name} backdrop", (0, 1.5, -2.4), (5, 3, 0.2), tint="0.6,0.6,0.6,1"),
             point_light(name, (0, 2.5, 2.5), color=color, brightness=8, radius=9, source=r)]
     return station(name, f"point light, SourceRadius {r}\nthe edge of the shadow on the backdrop", kids, pos, sign_y=3.8)
+DARK = "0.12,0.12,0.14,1"
+
 def roof(name, z, width):
-    """A slab over a row and a dark floor under it, so the sun stays out and the row's own lights are what shows."""
-    return S.go(f"Roof: {name}", children=[S.block(f"Roof slab: {name}", (0, 7.0, z), (width, 0.3, 16), "0.25,0.26,0.3,1"),
-                                          S.block(f"Dark floor: {name}", (0, 0.05, z), (width, 0.1, 14), "0.12,0.12,0.14,1")])
+    """A slab over a row, so the sun stays out and the row's own lights are what shows; the row's own slab is dark."""
+    return S.block(f"Roof: {name}", (0, 7.0, z), (width, 0.3, 16), "0.25,0.26,0.3,1")
 
 kids, width = row("Radius", RADII, radius_station, 6.0, z)
 kids.append(roof("radius", z, width))
-areas.append(S.area("Source Radius", "five point lights under a roof, the same but for the size of the source: the penumbra widens", z, width, wall=False, children=kids))
+S.stagger_signs(kids)
+areas.append(S.area("Source Radius", "five point lights under a roof, the same but for the size of the source: the penumbra widens", z, width, wall=False, slab_material=None, slab_tint=DARK, children=kids))
 z -= ROW_DEPTH
 
 # -- point and spot lights -----------------------------------------------------------
@@ -168,7 +171,8 @@ LIGHTS = [
 ]
 kids, width = row("Light", LIGHTS, lambda it, p: station(it[0], it[1], it[2], p, sign_y=3.8), 6.0, z)
 kids.append(roof("lights", z, width))
-areas.append(S.area("Point and Spot", "lights with their own shadow maps: cages, colours, cones, a cookie, and the same without shadows", z, width, wall=False, children=kids))
+S.stagger_signs(kids)
+areas.append(S.area("Point and Spot", "lights with their own shadow maps: cages, colours, cones, a cookie, and the same without shadows", z, width, wall=False, slab_material=None, slab_tint=DARK, children=kids))
 z -= ROW_DEPTH
 
 # -- moving --------------------------------------------------------------------------
@@ -187,7 +191,8 @@ MOVING = [
 ]
 kids, width = row("Moving", MOVING, lambda it, p: station(it[0], it[1], it[2], p, sign_y=3.8), 6.0, z)
 kids.append(roof("moving", z, width))
-areas.append(S.area("Moving", "casters that turn, bob and slide; a spot that turns; a point that orbits; a caster that orbits a light", z, width, wall=False, children=kids))
+S.stagger_signs(kids)
+areas.append(S.area("Moving", "casters that turn, bob and slide; a spot that turns; a point that orbits; a caster that orbits a light", z, width, wall=False, slab_material=None, slab_tint=DARK, children=kids))
 z -= ROW_DEPTH
 
 # -- receivers -----------------------------------------------------------------------
@@ -206,6 +211,7 @@ def receiver_station(item, pos):
     kids = [cube(f"{name} slab", (0, 0.25, 0), (2.4, 0.1, 2.4), material=m, tint="1,1,1,1"), cube(f"{name} caster", (0, 1.3, 0), (0.6, 0.6, 0.6))]
     return station(name, text, kids, pos, pedestal=False)
 kids, width = row("Receiver", RECEIVERS, receiver_station, 4.0, z)
+S.stagger_signs(kids)
 areas.append(S.area("Receivers", "the same cube's shadow on eight surfaces", z, width, wall=False, children=kids))
 z -= ROW_DEPTH
 
@@ -231,7 +237,7 @@ areas.append(S.go("Room", (0, 0, z), children=room))
 S.objects = [
     # A sun from behind the spawn, high enough that shadows land on the slabs in front of the walls.
     S.environment(sun_brightness=1.6, sun_rot=pitch_yaw(-40, 210), ambient="0.12,0.13,0.17,1", shadow_detail=64, source_radius=0.05),
-    S.block("Ground", (0, -0.6, -110), (240, 0.5, 320), FLOOR),
+    S.block("Ground", (0, -0.7, -110), (240, 0.5, 320), FLOOR),
     field,
     S.go("Areas", children=areas),
     S.player((0, 2.6, 6)),

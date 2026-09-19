@@ -161,7 +161,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Ground",
-      "Position": "0,-0.6,-60",
+      "Position": "0,-0.7,-60",
       "Rotation": "0,0,0,1",
       "Scale": "200,0.5,180",
       "Tags": "world",
@@ -408,7 +408,7 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Label: Area: Roughness and Metalness",
-              "Position": "0,7.6,-14.0",
+              "Position": "0,6.9,-14.0",
               "Rotation": "0,0,0,1",
               "Scale": "1,1,1",
               "Tags": "",
@@ -2106,7 +2106,7 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Label: Area: Tint and Emission",
-              "Position": "0,7.6,-32.0",
+              "Position": "0,6.9,-32.0",
               "Rotation": "0,0,0,1",
               "Scale": "1,1,1",
               "Tags": "",
@@ -2301,7 +2301,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Tint 1, 0.2, 0.2",
                         "TextColor": "0.9,0.94,1,1",
@@ -2489,7 +2489,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Tint Green",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -2516,7 +2516,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Tint 0.2, 1, 0.3",
                         "TextColor": "0.9,0.94,1,1",
@@ -2731,7 +2731,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Tint 0.3, 0.4, 1",
                         "TextColor": "0.9,0.94,1,1",
@@ -2919,7 +2919,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Tint Dark",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -2946,7 +2946,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Tint 0.1 - nearly black",
                         "TextColor": "0.9,0.94,1,1",
@@ -3161,7 +3161,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Tint alpha 0.5, opaque blend\nshould stay solid",
                         "TextColor": "0.9,0.94,1,1",
@@ -3349,7 +3349,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Tint HDR tint",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -3376,7 +3376,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Tint 4, 4, 4\nbloom should catch it",
                         "TextColor": "0.9,0.94,1,1",
@@ -3591,7 +3591,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "the material is white\nModelRenderer.Tint is purple",
                         "TextColor": "0.9,0.94,1,1",
@@ -3779,7 +3779,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Tint Both tints",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -3806,7 +3806,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "material tint red\nrenderer tint blue",
                         "TextColor": "0.9,0.94,1,1",
@@ -4021,7 +4021,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "EmissionStrength 0.5",
                         "TextColor": "0.9,0.94,1,1",
@@ -4209,7 +4209,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Emission 2",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -4236,7 +4236,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "EmissionStrength 2",
                         "TextColor": "0.9,0.94,1,1",
@@ -4451,7 +4451,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "EmissionStrength 8",
                         "TextColor": "0.9,0.94,1,1",
@@ -4639,7 +4639,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Emission Cyan",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -4666,7 +4666,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "cyan emission on a dark tint",
                         "TextColor": "0.9,0.94,1,1",
@@ -4881,7 +4881,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "emission from a striped map",
                         "TextColor": "0.9,0.94,1,1",
@@ -5069,7 +5069,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Emission Black map",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -5096,7 +5096,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "strength 8, black map\nshould not glow",
                         "TextColor": "0.9,0.94,1,1",
@@ -5357,7 +5357,7 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Label: Area: Blending",
-              "Position": "0,7.6,-50.0",
+              "Position": "0,6.9,-50.0",
               "Rotation": "0,0,0,1",
               "Scale": "1,1,1",
               "Tags": "",
@@ -5552,7 +5552,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "ring.png, Opaque\nthe alpha is ignored",
                         "TextColor": "0.9,0.94,1,1",
@@ -5785,7 +5785,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Blend Cutoff 0.1",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -5812,7 +5812,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Masked, AlphaCutoff 0.1",
                         "TextColor": "0.9,0.94,1,1",
@@ -6072,7 +6072,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Masked, AlphaCutoff 0.5",
                         "TextColor": "0.9,0.94,1,1",
@@ -6305,7 +6305,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Blend Cutoff 0.9",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -6332,7 +6332,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Masked, AlphaCutoff 0.9",
                         "TextColor": "0.9,0.94,1,1",
@@ -6592,7 +6592,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a cutout leaf, two-sided",
                         "TextColor": "0.9,0.94,1,1",
@@ -6825,7 +6825,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Blend Translucent 0.2",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -6852,7 +6852,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Translucent, alpha 0.2",
                         "TextColor": "0.9,0.94,1,1",
@@ -7112,7 +7112,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Translucent, alpha 0.5",
                         "TextColor": "0.9,0.94,1,1",
@@ -7345,7 +7345,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Blend Translucent 0.8",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -7372,7 +7372,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Translucent, alpha 0.8",
                         "TextColor": "0.9,0.94,1,1",
@@ -7632,7 +7632,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Translucent, two-sided\nthe far side should show",
                         "TextColor": "0.9,0.94,1,1",
@@ -7865,7 +7865,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Blend Additive",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -7892,7 +7892,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Blend Additive",
                         "TextColor": "0.9,0.94,1,1",
@@ -8152,7 +8152,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "ring.png, Translucent at 0.6",
                         "TextColor": "0.9,0.94,1,1",
@@ -8385,7 +8385,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Sorting",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -8412,7 +8412,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "three translucent slabs, front to back\nblue, green, red - all three should show",
                         "TextColor": "0.9,0.94,1,1",
@@ -8717,7 +8717,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a translucent ball around an opaque cube",
                         "TextColor": "0.9,0.94,1,1",
@@ -9023,7 +9023,7 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Label: Area: Sides and Surfaces",
-              "Position": "0,7.6,-68.0",
+              "Position": "0,6.9,-68.0",
               "Rotation": "0,0,0,1",
               "Scale": "1,1,1",
               "Tags": "",
@@ -9218,7 +9218,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a plane facing you, one-sided",
                         "TextColor": "0.9,0.94,1,1",
@@ -9406,7 +9406,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Side One-sided back",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -9433,7 +9433,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "the same plane turned round\nyou see through it",
                         "TextColor": "0.9,0.94,1,1",
@@ -9648,7 +9648,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "turned round, two-sided\nlit from behind",
                         "TextColor": "0.9,0.94,1,1",
@@ -9836,7 +9836,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Side Edge on",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -9863,7 +9863,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a plane edge-on",
                         "TextColor": "0.9,0.94,1,1",
@@ -10078,7 +10078,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a plane lying flat, as the model comes",
                         "TextColor": "0.9,0.94,1,1",
@@ -10266,7 +10266,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Hollow",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -10293,7 +10293,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "one-sided sphere, camera can go in\nthe inside is invisible",
                         "TextColor": "0.9,0.94,1,1",
@@ -10508,7 +10508,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "two-sided sphere\nthe inside is a wall",
                         "TextColor": "0.9,0.94,1,1",
@@ -10696,7 +10696,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Tiled",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -10723,7 +10723,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "grid on a 6 x 1 x 1 cube\nthe texture stretches with the scale",
                         "TextColor": "0.9,0.94,1,1",
@@ -10938,7 +10938,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a 0.01 thick slab, both faces",
                         "TextColor": "0.9,0.94,1,1",
@@ -11199,7 +11199,7 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Label: Area: Maps",
-              "Position": "0,7.6,-86.0",
+              "Position": "0,6.9,-86.0",
               "Rotation": "0,0,0,1",
               "Scale": "1,1,1",
               "Tags": "",
@@ -11394,7 +11394,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a checker colour map",
                         "TextColor": "0.9,0.94,1,1",
@@ -11627,7 +11627,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Map Grid",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -11654,7 +11654,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "the dev grid",
                         "TextColor": "0.9,0.94,1,1",
@@ -11914,7 +11914,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "hemispherical bumps normal map\nthe light should catch them",
                         "TextColor": "0.9,0.94,1,1",
@@ -12147,7 +12147,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Map Normal metal",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -12174,7 +12174,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "the same bumps, metal 1, rough 0.3",
                         "TextColor": "0.9,0.94,1,1",
@@ -12434,7 +12434,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "roughness 0 to 1 left to right\nmetal 1",
                         "TextColor": "0.9,0.94,1,1",
@@ -12667,7 +12667,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Map Metalness map",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -12694,7 +12694,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "metal 0 left, 1 right",
                         "TextColor": "0.9,0.94,1,1",
@@ -12954,7 +12954,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "rings of ambient occlusion",
                         "TextColor": "0.9,0.94,1,1",
@@ -13187,7 +13187,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Map All maps",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -13214,7 +13214,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "colour, normal, roughness, AO, emission",
                         "TextColor": "0.9,0.94,1,1",
@@ -13572,7 +13572,7 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Label: Area: Shaders",
-              "Position": "0,7.6,-104.0",
+              "Position": "0,6.9,-104.0",
               "Rotation": "0,0,0,1",
               "Scale": "1,1,1",
               "Tags": "",
@@ -13767,7 +13767,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "shaders/complex.shader\nthe standard one",
                         "TextColor": "0.9,0.94,1,1",
@@ -13955,7 +13955,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Shader Glass",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -13982,7 +13982,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "shaders/glass.shader\ntranslucent, two-sided, rough 0.05",
                         "TextColor": "0.9,0.94,1,1",
@@ -14197,7 +14197,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "shaders/foliage.shader\ncutout leaf with F_WIND",
                         "TextColor": "0.9,0.94,1,1",
@@ -14385,7 +14385,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Shader Unlit",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -14412,7 +14412,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "shaders/engine/unlit.shader\nno lighting at all",
                         "TextColor": "0.9,0.94,1,1",
@@ -14627,7 +14627,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "shaders/engine/vertex_color.shader\nthe dev models carry none",
                         "TextColor": "0.9,0.94,1,1",
@@ -14815,7 +14815,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Shader Stylized",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -14842,7 +14842,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "shaders/effects/stylized.shader\ntwo colours and noise from Numbers",
                         "TextColor": "0.9,0.94,1,1",
@@ -15057,7 +15057,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "materials/error.mat",
                         "TextColor": "0.9,0.94,1,1",
@@ -15245,7 +15245,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Shader Missing material",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -15272,7 +15272,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a .mat that does not exist",
                         "TextColor": "0.9,0.94,1,1",
@@ -15487,7 +15487,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a colour map that does not exist",
                         "TextColor": "0.9,0.94,1,1",
@@ -15675,7 +15675,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Shader Missing shader",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -15702,7 +15702,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a shader that does not exist",
                         "TextColor": "0.9,0.94,1,1",
@@ -15917,7 +15917,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Shader left empty\nshould be the standard one",
                         "TextColor": "0.9,0.94,1,1",
@@ -16105,7 +16105,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Shader No override",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -16132,7 +16132,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "MaterialOverride null\nthe model's own material",
                         "TextColor": "0.9,0.94,1,1",
@@ -16393,7 +16393,7 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Label: Area: Runtime",
-              "Position": "0,7.6,-122.0",
+              "Position": "0,6.9,-122.0",
               "Rotation": "0,0,0,1",
               "Scale": "1,1,1",
               "Tags": "",
@@ -16588,7 +16588,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "ModelRenderer.Tint cycles hue",
                         "TextColor": "0.9,0.94,1,1",
@@ -16792,7 +16792,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Runtime Roughness",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -16819,7 +16819,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a copied material, Roughness swept 0..1",
                         "TextColor": "0.9,0.94,1,1",
@@ -17050,7 +17050,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "a copied material, its Tint cycled",
                         "TextColor": "0.9,0.94,1,1",
@@ -17254,7 +17254,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Runtime Swap",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -17281,7 +17281,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "MaterialOverride flips red / blue",
                         "TextColor": "0.9,0.94,1,1",
@@ -17512,7 +17512,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "Materials.SetOverride( 0 ) flips",
                         "TextColor": "0.9,0.94,1,1",
@@ -17716,7 +17716,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Runtime Setter",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -17743,7 +17743,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "IMaterialSetter.SetMaterial flips",
                         "TextColor": "0.9,0.94,1,1",
@@ -17974,7 +17974,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "two balls, one material\ntint on the left renderer only",
                         "TextColor": "0.9,0.94,1,1",
@@ -18207,7 +18207,7 @@
                   "__version": 2,
                   "Flags": 0,
                   "Name": "Label: Shared copy",
-                  "Position": "0,3.0,0",
+                  "Position": "0.0,3.9,0.0",
                   "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
@@ -18234,7 +18234,7 @@
                         "BloomLayer": false,
                         "AfterUILayer": false
                       },
-                      "Scale": 0.45,
+                      "Scale": 0.38,
                       "TextScope": {
                         "Text": "the right one is a copy with Roughness swept\nthe left must not change",
                         "TextColor": "0.9,0.94,1,1",
