@@ -142,9 +142,10 @@ public sealed class OverlayGallery : Component, Component.ExecuteInEditor
 		DebugOverlay.Frustum( frustumShape, Color.White );
 		Label( frustum, "Frustum" );
 
-		// Straight down into the floor: white ray, red hit, red normal.
+		// Straight down into the floor: white ray, red hit, red normal. The row
+		// stands a way above the floor, so the ray is long enough to reach it.
 		var trace = At( 1, 6 );
-		var hit = Scene.Trace.Ray( trace + Vector3.Up * 0.8f, trace + Vector3.Down * 0.5f )
+		var hit = Scene.Trace.Ray( trace + Vector3.Up * 0.8f, trace + Vector3.Down * 4.0f )
 			.IgnoreGameObjectHierarchy( GameObject )
 			.Run();
 		DebugOverlay.Trace( hit );
