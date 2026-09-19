@@ -1,3 +1,49 @@
-# Textures compiled to blocks beside their source - a cache the engine rebuilds
-# whenever the picture is newer than it (CoreSceneRenderer.Compiled).
+# ---------------------------------------------------------------------------
+# Rinten
+# ---------------------------------------------------------------------------
+
+# The editor's cache folder (Project.CacheFolder): thumbnails, mesh previews,
+# undo journals, UI layout state, cloud.db. All of it is rebuilt on open.
+.rinten/
+
+# Compiled resources. The editor recompiles them from the definition beside
+# them whenever it is newer or the compiled file is missing (AssetSystem
+# compiles anything that is not compiled on scan), so a clone starts clean.
+#   picture.png -> picture.png.tex_c / .data.tex_c / .tex_c.bc
+#   thing.mdl   -> thing.mdl_c (+ thing.mdl_c.baked baseline)
+#   graph       -> thing.mdl_ag_c
 *.tex_c*
+*.mdl_c*
+*.mdl_ag_c
+
+# NOT ignored on purpose: *.scene_d is the scene's binary half (its meshes),
+# written by the resource itself when saved - a scene without it loads empty.
+
+# ---------------------------------------------------------------------------
+# .NET / MSBuild
+# ---------------------------------------------------------------------------
+bin/
+obj/
+*.user
+*.suo
+.vs/
+TestResults/
+
+# ---------------------------------------------------------------------------
+# Python (tools/, .gen_scenes.py)
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+
+# ---------------------------------------------------------------------------
+# Editors / OS
+# ---------------------------------------------------------------------------
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+*~
+.DS_Store
+Thumbs.db
