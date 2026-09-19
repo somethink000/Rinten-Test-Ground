@@ -229,6 +229,13 @@
               "Category": "Rendering",
               "Description": "The sun over a long field, every kind of caster, source radii, point and spot shadows, moving lights, receivers and a room; keys change the sun",
               "DisplayName": "Shadows"
+            },
+            {
+              "Scene": "scenes/clutter.scene",
+              "Title": "Clutter",
+              "Category": "Rendering",
+              "Description": "Clutter volumes: density, scale, weights, placement, slopes, seeds, shadows, physics, tiles, churn, a big one, and the infinite mode",
+              "DisplayName": "Clutter"
             }
           ],
           "Subheading": "Feature scenes, kept in a working state"

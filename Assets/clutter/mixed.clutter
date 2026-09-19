@@ -1,0 +1,41 @@
+{
+  "Entries": [
+    {
+      "Prefab": null,
+      "Model": "models/dev/box.mdl",
+      "Weight": 1.0,
+      "LocalScale": 0.4,
+      "CastShadows": true,
+      "EnablePhysics": true
+    },
+    {
+      "Prefab": null,
+      "Model": "models/dev/sphere.mdl",
+      "Weight": 0.3,
+      "LocalScale": 0.4,
+      "CastShadows": true,
+      "EnablePhysics": true
+    },
+    {
+      "Prefab": null,
+      "Model": "models/urn_broken.mdl",
+      "Weight": 0.1,
+      "LocalScale": 0.25,
+      "CastShadows": true,
+      "EnablePhysics": true
+    }
+  ],
+  "IsEmpty": false,
+  "TileSizeEnum": "Size512",
+  "TileRadius": 4,
+  "Scatterer": {
+    "Type": "SimpleScatterer",
+    "Scale": "0.8 1.2",
+    "Density": 2.0,
+    "PlaceOnGround": true,
+    "HeightOffset": 0.0,
+    "AlignToNormal": false
+  },
+  "__references": [],
+  "__version": 0
+}

@@ -18,6 +18,8 @@ public sealed class TrailPulse : Component
 
 	TimeSince since;
 
+	protected override void OnEnabled() => since = 0;
+
 	protected override void OnUpdate()
 	{
 		var trail = GameObject.GetComponent<TrailRenderer>();

@@ -1,0 +1,25 @@
+{
+  "Entries": [
+    {
+      "Prefab": null,
+      "Model": "models/dev/box.mdl",
+      "Weight": 1.0,
+      "LocalScale": 0.4,
+      "CastShadows": false,
+      "EnablePhysics": true
+    }
+  ],
+  "IsEmpty": false,
+  "TileSizeEnum": "Size512",
+  "TileRadius": 4,
+  "Scatterer": {
+    "Type": "SimpleScatterer",
+    "Scale": "0.8 1.2",
+    "Density": 1.5,
+    "PlaceOnGround": true,
+    "HeightOffset": 0.0,
+    "AlignToNormal": false
+  },
+  "__references": [],
+  "__version": 0
+}

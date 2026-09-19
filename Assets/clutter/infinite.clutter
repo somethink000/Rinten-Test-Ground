@@ -1,0 +1,25 @@
+{
+  "Entries": [
+    {
+      "Prefab": null,
+      "Model": "models/dev/sphere.mdl",
+      "Weight": 1.0,
+      "LocalScale": 0.15,
+      "CastShadows": true,
+      "EnablePhysics": true
+    }
+  ],
+  "IsEmpty": false,
+  "TileSizeEnum": "Size256",
+  "TileRadius": 2,
+  "Scatterer": {
+    "Type": "SimpleScatterer",
+    "Scale": "0.8 1.2",
+    "Density": 0.02,
+    "PlaceOnGround": true,
+    "HeightOffset": 0.0,
+    "AlignToNormal": false
+  },
+  "__references": [],
+  "__version": 0
+}
