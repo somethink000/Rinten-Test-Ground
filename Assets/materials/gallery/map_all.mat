@@ -1,0 +1,28 @@
+{
+  "Shader": "shaders/complex.shader",
+  "Features": {
+    "F_NORMAL_MAP": 1,
+    "F_ROUGHNESS": 1,
+    "F_AO": 1
+  },
+  "Numbers": {},
+  "Textures": {
+    "g_tRoughness": "textures/gallery/roughness_gradient.png",
+    "g_tAO": "textures/gallery/ao_rings.png"
+  },
+  "Tint": "1,1,1,1",
+  "ColorMap": "textures/gallery/checker.png",
+  "Normal": "textures/gallery/bumps_normal.png",
+  "RoughMetalAmbient": "materials/default/roughmetal.png",
+  "Emission": "textures/gallery/emission_stripes.png",
+  "Roughness": 0.5,
+  "Metalness": 0.0,
+  "EmissionStrength": 1.5,
+  "PhysicsSurface": "",
+  "TwoSided": false,
+  "Filtering": "Smooth",
+  "Blend": "Opaque",
+  "AlphaCutoff": 0.5,
+  "__references": [],
+  "__version": 0
+}

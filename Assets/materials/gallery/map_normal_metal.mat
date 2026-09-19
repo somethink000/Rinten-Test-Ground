@@ -1,0 +1,23 @@
+{
+  "Shader": "shaders/complex.shader",
+  "Features": {
+    "F_NORMAL_MAP": 1
+  },
+  "Numbers": {},
+  "Textures": {},
+  "Tint": "1,1,1,1",
+  "ColorMap": "materials/default/white.png",
+  "Normal": "textures/gallery/bumps_normal.png",
+  "RoughMetalAmbient": "materials/default/roughmetal.png",
+  "Emission": "materials/default/black.png",
+  "Roughness": 0.3,
+  "Metalness": 1.0,
+  "EmissionStrength": 0.0,
+  "PhysicsSurface": "",
+  "TwoSided": false,
+  "Filtering": "Smooth",
+  "Blend": "Opaque",
+  "AlphaCutoff": 0.5,
+  "__references": [],
+  "__version": 0
+}

@@ -215,6 +215,13 @@
               "Category": "Rendering",
               "Description": "Lines, trails, sprites, text, model renderer options, reflection probes and hand-built meshes - a station a setting",
               "DisplayName": "Renderers"
+            },
+            {
+              "Scene": "scenes/materials.scene",
+              "Title": "Materials",
+              "Category": "Rendering",
+              "Description": "Roughness against metalness, tint, emission, cutout and translucency, backfaces, maps, shaders, runtime changes, missing assets",
+              "DisplayName": "Materials"
             }
           ],
           "Subheading": "Feature scenes, kept in a working state"

@@ -1,0 +1,21 @@
+{
+  "Shader": "shaders/complex.shader",
+  "Features": {},
+  "Numbers": {},
+  "Textures": {},
+  "Tint": "1,1,1,1",
+  "ColorMap": "textures/fx/ring.png",
+  "Normal": "materials/default/normal.png",
+  "RoughMetalAmbient": "materials/default/roughmetal.png",
+  "Emission": "materials/default/black.png",
+  "Roughness": 0.5,
+  "Metalness": 0.0,
+  "EmissionStrength": 0.0,
+  "PhysicsSurface": "",
+  "TwoSided": false,
+  "Filtering": "Smooth",
+  "Blend": "Masked",
+  "AlphaCutoff": 0.9,
+  "__references": [],
+  "__version": 0
+}
