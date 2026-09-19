@@ -261,10 +261,55 @@
           "__guid": "2cf2aa29-5b94-5a23-b409-f4453f3087a3",
           "__enabled": true,
           "Flags": 0,
+          "Ghost": {
+            "_type": "gameobject",
+            "go": "8ae226a8-cfb2-44f3-b461-3c046ce6305d"
+          },
           "Spacing": 1.6
         }
       ],
-      "Children": []
+      "Children": [
+        {
+          "__guid": "8ae226a8-cfb2-44f3-b461-3c046ce6305d",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Ghost",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": false,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ModelRenderer",
+              "__guid": "c1d4f01e-623a-4697-bf69-5a57675261fe",
+              "__enabled": true,
+              "Flags": 0,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "LodBias": 1,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Materials": null,
+              "Model": "models/urn_broken.mdl",
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": []
+        }
+      ]
     },
     {
       "__guid": "73ebba67-04c1-5926-bec5-a4407b4b88a5",
