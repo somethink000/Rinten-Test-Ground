@@ -307,7 +307,48 @@
               "Tint": "1,1,1,1"
             }
           ],
-          "Children": []
+          "Children": [
+            {
+              "__guid": "5b1c0d4e-7a2f-4c3b-9e8d-1f6a2b3c4d5e",
+              "__version": 2,
+              "Flags": 0,
+              "Name": "Lid",
+              "Position": "0,1.6,0",
+              "Rotation": "0,0.3826834,0,0.9238795",
+              "Scale": "0.35,0.15,0.35",
+              "Tags": "",
+              "Enabled": true,
+              "NetworkMode": 2,
+              "NetworkFlags": 0,
+              "NetworkOrphaned": 0,
+              "NetworkTransmit": true,
+              "OwnerTransfer": 1,
+              "Components": [
+                {
+                  "__type": "Rinten.ModelRenderer",
+                  "__guid": "9d8e7f60-1a2b-4c3d-8e9f-0a1b2c3d4e5f",
+                  "__enabled": true,
+                  "Flags": 0,
+                  "BodyGroups": 18446744073709551615,
+                  "CreateAttachments": false,
+                  "LodBias": 1,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Materials": null,
+                  "Model": "models/dev/box.mdl",
+                  "RenderOptions": {
+                    "GameLayer": true,
+                    "OverlayLayer": false,
+                    "BloomLayer": false,
+                    "AfterUILayer": false
+                  },
+                  "RenderType": "On",
+                  "Tint": "1,1,1,1"
+                }
+              ],
+              "Children": []
+            }
+          ]
         }
       ]
     },
