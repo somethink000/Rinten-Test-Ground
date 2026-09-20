@@ -1,0 +1,28 @@
+{
+  "Shader": "shaders/complex.shader",
+  "Features": {
+    "F_NORMAL_MAP": 1,
+    "F_ROUGHNESS": 1
+  },
+  "Numbers": {
+    "g_flRoughness": "0.62,0,0,0"
+  },
+  "Textures": {
+    "g_tRoughness": "textures/jungle/vine_r.png"
+  },
+  "Tint": "1,1,1,1",
+  "ColorMap": "textures/jungle/vine.png",
+  "Normal": "textures/jungle/vine_n.png",
+  "RoughMetalAmbient": "materials/default/roughmetal.png",
+  "Emission": "materials/default/black.png",
+  "Roughness": 0.62,
+  "Metalness": 0.0,
+  "EmissionStrength": 0.0,
+  "PhysicsSurface": "",
+  "TwoSided": false,
+  "Filtering": "Smooth",
+  "Blend": "Opaque",
+  "AlphaCutoff": 0.5,
+  "__references": [],
+  "__version": 0
+}

@@ -1,0 +1,137 @@
+{
+  "Entries": [
+    {
+      "Prefab": null,
+      "Model": "models/jungle/litter_a.mdl",
+      "Weight": 2,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/litter_b.mdl",
+      "Weight": 1,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/pebbles_a.mdl",
+      "Weight": 0.6,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/mosscushion_a.mdl",
+      "Weight": 1,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/mosscushion_b.mdl",
+      "Weight": 0.5,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/mosscushion_c.mdl",
+      "Weight": 0.5,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/debris_a.mdl",
+      "Weight": 0.7,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/debris_b.mdl",
+      "Weight": 0.3,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/debris_c.mdl",
+      "Weight": 0.8,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/fallenfrond_a.mdl",
+      "Weight": 0.4,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/fallenfrond_b.mdl",
+      "Weight": 0.2,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/rock_a.mdl",
+      "Weight": 0.5,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/streamstone_a.mdl",
+      "Weight": 0.3,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/vinetangle_a.mdl",
+      "Weight": 0.15,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/mosscarpet_a.mdl",
+      "Weight": 0.3,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    }
+  ],
+  "IsEmpty": false,
+  "TileSizeEnum": "Size256",
+  "TileRadius": 4,
+  "Scatterer": {
+    "Type": "SimpleScatterer",
+    "Scale": "0.8 1.2",
+    "Density": 1.8,
+    "PlaceOnGround": true,
+    "HeightOffset": -0.02,
+    "AlignToNormal": true
+  },
+  "__references": [],
+  "__version": 0
+}

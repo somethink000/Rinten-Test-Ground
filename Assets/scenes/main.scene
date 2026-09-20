@@ -229,6 +229,13 @@
               "Category": "Rendering",
               "Description": "Clutter volumes: density, scale, weights, placement, slopes, seeds, shadows, physics, tiles, churn, a big one, and the infinite mode",
               "DisplayName": "Clutter"
+            },
+            {
+              "Scene": "scenes/rendering/jungle.scene",
+              "Title": "Jungle",
+              "Category": "Rendering",
+              "Description": "A rainforest: stream, path, giants, stranglers, banyans, palms, bamboo, ferns, dead wood, moss and fog",
+              "DisplayName": "Jungle"
             }
           ],
           "Subheading": "Feature scenes, kept in a working state"

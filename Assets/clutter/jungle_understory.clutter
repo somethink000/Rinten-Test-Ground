@@ -1,0 +1,177 @@
+{
+  "Entries": [
+    {
+      "Prefab": null,
+      "Model": "models/jungle/fern_a.mdl",
+      "Weight": 3,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/fern_b.mdl",
+      "Weight": 2,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/fern_c.mdl",
+      "Weight": 2.5,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/fern_d.mdl",
+      "Weight": 1,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/broadleaf_a.mdl",
+      "Weight": 1,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/broadleaf_b.mdl",
+      "Weight": 1.2,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/elephant_a.mdl",
+      "Weight": 0.4,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/elephant_b.mdl",
+      "Weight": 0.2,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/lily_a.mdl",
+      "Weight": 1,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/lily_b.mdl",
+      "Weight": 0.5,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/fanplant_a.mdl",
+      "Weight": 0.7,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/fanplant_b.mdl",
+      "Weight": 0.4,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/sapling_a.mdl",
+      "Weight": 1,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/sapling_b.mdl",
+      "Weight": 0.6,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/bush_a.mdl",
+      "Weight": 0.8,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/bush_b.mdl",
+      "Weight": 0.4,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/grass_a.mdl",
+      "Weight": 2,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/grass_b.mdl",
+      "Weight": 1.5,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/cycad_a.mdl",
+      "Weight": 0.15,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    },
+    {
+      "Prefab": null,
+      "Model": "models/jungle/banana_a.mdl",
+      "Weight": 0.1,
+      "LocalScale": 1.0,
+      "CastShadows": true,
+      "EnablePhysics": false
+    }
+  ],
+  "IsEmpty": false,
+  "TileSizeEnum": "Size256",
+  "TileRadius": 4,
+  "Scatterer": {
+    "Type": "SimpleScatterer",
+    "Scale": "0.75 1.3",
+    "Density": 6.0,
+    "PlaceOnGround": true,
+    "HeightOffset": -0.02,
+    "AlignToNormal": false
+  },
+  "__references": [],
+  "__version": 0
+}

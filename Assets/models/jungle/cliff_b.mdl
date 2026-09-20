@@ -1,9 +1,10 @@
 {
+  "Steps": [],
   "Meshes": [
     {
       "Name": "",
       "File": "models/jungle/cliff_b.fbx",
-      "Scale": 1.0,
+      "Scale": 1,
       "Include": [],
       "Enabled": true,
       "Position": "0,0,0",
@@ -11,8 +12,98 @@
       "Parent": ""
     }
   ],
-  "Scale": 1.0,
+  "Scale": 1,
   "Material": "",
   "Materials": [],
-  "MaterialRemaps": []
+  "MaterialRemaps": [
+    {
+      "Surface": "Bark",
+      "Material": "materials/jungle/bark.mat"
+    },
+    {
+      "Surface": "Leaf",
+      "Material": "materials/jungle/leaf.mat"
+    },
+    {
+      "Surface": "Frond",
+      "Material": "materials/jungle/frond.mat"
+    },
+    {
+      "Surface": "Bamboo",
+      "Material": "materials/jungle/bamboo.mat"
+    },
+    {
+      "Surface": "Rock",
+      "Material": "materials/jungle/rock.mat"
+    },
+    {
+      "Surface": "Ground",
+      "Material": "materials/jungle/ground.mat"
+    },
+    {
+      "Surface": "Vine",
+      "Material": "materials/jungle/vine.mat"
+    },
+    {
+      "Surface": "Moss",
+      "Material": "materials/jungle/moss.mat"
+    },
+    {
+      "Surface": "Fungus",
+      "Material": "materials/jungle/fungus.mat"
+    },
+    {
+      "Surface": "Litter",
+      "Material": "materials/jungle/litter.mat"
+    }
+  ],
+  "ArtSurfaces": "Unchosen",
+  "Clips": [],
+  "Transform": {
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0",
+    "Scale": "1,1,1",
+    "IsIdentity": true
+  },
+  "Mirror": {
+    "Enabled": false,
+    "Axis": "X",
+    "FlipWinding": true,
+    "RemapLeftRight": true
+  },
+  "Joints": [],
+  "LookAtChains": [],
+  "IkChains": [],
+  "WeightLists": [],
+  "Morphs": [],
+  "BodyGroups": [],
+  "Folders": [],
+  "CoarseMeshes": [],
+  "MaterialGroups": [],
+  "Hulls": [
+    {
+      "__type": "RenderMesh",
+      "Name": "",
+      "Enabled": true,
+      "Bone": "",
+      "Surface": "",
+      "Tags": "",
+      "Folder": ""
+    }
+  ],
+  "Surface": "",
+  "Mass": 0,
+  "OverrideBounds": false,
+  "Bounds": {
+    "Mins": "-16,-16,-16",
+    "Maxs": "16,16,16"
+  },
+  "JiggleBones": [],
+  "JiggleColliders": [],
+  "Attachments": [],
+  "Bones": [],
+  "Constraints": [],
+  "__references": [],
+  "__version": 2
 }

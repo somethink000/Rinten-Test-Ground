@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Jungle geometry, grown from seeds inside Blender and written out as FBX with
-a .mdl beside each - no materials, no textures, just the shapes.
+a .mdl beside each. Faces carry named material slots; verts carry UVs so a leaf
+texture sits on a leaf, bark tiles along a trunk, moss along a sleeve.
 
 Everything comes from a handful of primitives: a `sweep` (a tube along any
 path, its radius a function of how far along), a `strip` (a leaf or frond: a
@@ -27,7 +28,22 @@ OUT = "models/jungle"
 # Every face is tagged with one of these, and they become material slots of
 # the same name in the FBX - so a material can be pinned to "Leaf" later by a
 # remap, without touching the geometry again.
-MATERIALS = ["Bark", "Leaf", "Bamboo", "Rock", "Ground", "Vine", "Moss", "Fungus", "Litter"]
+# Frond is the tiling vein sheet on ferns and palms; Leaf is the cutout atlas
+# on each oval or heart blade.
+MATERIALS = ["Bark", "Leaf", "Frond", "Bamboo", "Rock", "Ground", "Vine", "Moss", "Fungus", "Litter"]
+
+SLOT_MATERIALS = {
+    "Bark": "materials/jungle/bark.mat",
+    "Leaf": "materials/jungle/leaf.mat",
+    "Frond": "materials/jungle/frond.mat",
+    "Bamboo": "materials/jungle/bamboo.mat",
+    "Rock": "materials/jungle/rock.mat",
+    "Ground": "materials/jungle/ground.mat",
+    "Vine": "materials/jungle/vine.mat",
+    "Moss": "materials/jungle/moss.mat",
+    "Fungus": "materials/jungle/fungus.mat",
+    "Litter": "materials/jungle/litter.mat",
+}
 
 TAU = math.tau
 Z = Vector((0, 0, 1))
@@ -83,12 +99,27 @@ def around(d, rng, spread):
     return (d * math.cos(tilt) + (a * math.cos(ang) + b * math.sin(ang)) * math.sin(tilt)).normalized()
 
 
+def box_uv(p, center, scale):
+    """Planar UV on the dominant axis of p about center, tiled by `scale` metres."""
+    q = p - center
+    ax, ay, az = abs(q.x), abs(q.y), abs(q.z)
+    s = max(scale, 0.15)
+    if az >= ax and az >= ay:
+        return (q.x / s, q.y / s)
+    if ay >= ax:
+        return (q.x / s, q.z / s)
+    return (q.y / s, q.z / s)
+
+
 class Mesh:
-    """Positions and faces collected by the generators, turned into one Blender
-    object at the end. Faces carry the index of their material slot."""
+    """Positions, UVs and faces collected by the generators, turned into one
+    Blender object at the end. Faces carry the index of their material slot.
+    UVs are per vertex: a strip's 0-1, a tube's seam-duplicated cylinder, a
+    rock's box map. Welding is skipped so those seams stay put."""
 
     def __init__(self):
         self.verts = []
+        self.uvs = []
         self.faces = []
         # What a tree generator leaves behind for the things that grow on it:
         # the trunk's frames, each first-order limb's frames, the tip of every
@@ -98,8 +129,9 @@ class Mesh:
         self.tips = []
         self.smooth = True
 
-    def vert(self, p):
+    def vert(self, p, uv=None):
         self.verts.append(Vector(p))
+        self.uvs.append(None if uv is None else Vector((uv[0], uv[1])))
         return len(self.verts) - 1
 
     def face(self, idx, mat):
@@ -113,26 +145,34 @@ class Mesh:
             self.face((ring_a[i], ring_a[j], ring_b[j], ring_b[i]), mat)
 
     def tube(self, rings, mat, cap=True):
+        # Rings carry a duplicated seam vertex, so the strip is open.
         for a, b in zip(rings, rings[1:]):
-            self.quad_strip(a, b, mat)
+            self.quad_strip(a, b, mat, closed=False)
         if cap:
-            self.face(list(reversed(rings[-1])), mat)
+            self.face(list(reversed(rings[-1][:-1])), mat)
 
     def to_object(self, name):
+        for i, uv in enumerate(self.uvs):
+            if uv is None:
+                p = self.verts[i]
+                self.uvs[i] = Vector((p.x * 0.35, p.y * 0.35))
         me = bpy.data.meshes.new(name)
         me.from_pydata([tuple(v) for v in self.verts], [], [f for f, _ in self.faces])
         for m in MATERIALS:
             me.materials.append(bpy.data.materials.get(m) or bpy.data.materials.new(m))
         me.polygons.foreach_set("material_index", [m for _, m in self.faces])
         me.polygons.foreach_set("use_smooth", [self.smooth] * len(me.polygons))
-        me.validate()
         me.update()
         ob = bpy.data.objects.new(name, me)
         bpy.context.scene.collection.objects.link(ob)
         bm = bmesh.new()
         bm.from_mesh(me)
-        bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=1e-4)
         bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+        uv_layer = bm.loops.layers.uv.new("UVMap")
+        for face in bm.faces:
+            for loop in face.loops:
+                uv = self.uvs[loop.vert.index]
+                loop[uv_layer].uv = (uv.x, uv.y)
         bm.to_mesh(me)
         bm.free()
         me.update()
@@ -169,8 +209,10 @@ def sweep(mesh, path, radius_at, sides, mat, seed=0, lumps=0.05, grooves=0.0, kn
         u = arc / total
         r = radius_at(u)
         ring = []
-        for k in range(sides):
-            ang = k / sides * TAU
+        # One extra vertex at the seam so U wraps 0..1 without a squeezed face.
+        v_tile = 1.0 / 0.45
+        for k in range(sides + 1):
+            ang = (k % sides) / sides * TAU
             c, s = math.cos(ang), math.sin(ang)
             rad = r * (1.0 + lumps * fbm(Vector((c * 2 + seed, s * 2, arc * 1.5))))
             if grooves:
@@ -182,7 +224,8 @@ def sweep(mesh, path, radius_at, sides, mat, seed=0, lumps=0.05, grooves=0.0, kn
             if flutes and u < flute_height:
                 ridge = max(0.0, math.cos(flutes * ang + seed)) ** 6
                 rad += flare * radius_at(0) * ridge * (1.0 - u / flute_height) ** 1.3
-            ring.append(mesh.vert(path[i] + nrm * (c * rad) + bn * (s * rad)))
+            ring.append(mesh.vert(path[i] + nrm * (c * rad) + bn * (s * rad),
+                                  uv=(k / sides, arc * v_tile)))
         rings.append(ring)
         frames.append((path[i], t, nrm, bn, r, u))
     mesh.tube(rings, mat, cap)
@@ -229,13 +272,21 @@ def winding_path(rng, start, height, amp, lean, steps, knots_n=5):
 
 
 def strip(mesh, rng, base, d, up, length, width, profile, droop, segs=12, cross=3,
-          crease=0.25, cup=0.0, twist=0.0, mat="Leaf"):
+          crease=0.25, cup=0.0, twist=0.0, mat="Leaf", uv_mode="auto"):
     """A leaf or frond: `cross` verts across, swept along an arch that rises
     with `up` and falls with `droop`, its width `width * profile(s)`. The
-    middle vert is raised by `crease` so a flat strip still has a rib."""
+    middle vert is raised by `crease` so a flat strip still has a rib.
+    `uv_mode` 'leaf' maps one atlas cell 0-1; 'tile' repeats along the length
+    so a fern keeps its leaflets instead of wearing one stretched leaf."""
     d = d.normalized()
     side = d.cross(Z)
     side = side.normalized() if side.length > 1e-4 else Vector((1, 0, 0))
+    if uv_mode == "auto":
+        uv_mode = "leaf" if mat in ("Leaf", "Litter") else "tile"
+    cell = rng.randrange(4) if uv_mode == "leaf" else 0
+    au, av = (cell % 2) * 0.5, (cell // 2) * 0.5
+    flip = uv_mode == "leaf" and rng.random() < 0.5
+    v_scale = length / 0.14 if uv_mode == "tile" else 1.0
     rows = []
     for i in range(segs + 1):
         s = i / segs
@@ -247,7 +298,14 @@ def strip(mesh, rng, base, d, up, length, width, profile, droop, segs=12, cross=
             u = -1 + 2 * c / (cross - 1) if cross > 1 else 0.0
             lift = -w * crease * abs(u) + w * cup * u * u
             q = p + side * (u * w * math.cos(tw)) + Z * (lift + u * w * math.sin(tw))
-            row.append(mesh.vert(q))
+            across = c / (cross - 1) if cross > 1 else 0.5
+            if flip:
+                across = 1.0 - across
+            if uv_mode == "leaf":
+                uv = (au + 0.02 + across * 0.46, av + 0.02 + s * 0.46)
+            else:
+                uv = (across, s * v_scale)
+            row.append(mesh.vert(q, uv=uv))
         rows.append(row)
     for a, b in zip(rows, rows[1:]):
         mesh.quad_strip(a, b, mat, closed=False)
@@ -281,7 +339,7 @@ def fan(mesh, rng, base, d, radius, blades=14, spread=2.4, pleat=0.45):
         a = -spread / 2 + spread * i / (blades - 1)
         bd = Matrix.Rotation(a, 3, axis) @ d
         strip(mesh, rng, base, bd, 0.2 + 0.4 * math.cos(a), radius * (0.8 + 0.2 * math.cos(a)), radius * 0.11, BLADE,
-              0.5 + rng.uniform(0, 0.3), segs=5, cross=3, crease=pleat)
+              0.5 + rng.uniform(0, 0.3), segs=5, cross=3, crease=pleat, mat="Frond", uv_mode="tile")
 
 
 # ---------------------------------------------------------------------------
@@ -402,7 +460,7 @@ def rosette(mesh, rng, base, up_dir, count, length, width=0.1, mat="Leaf"):
         flat = flat.normalized() if flat.length > 0.05 else a
         L = length * rng.uniform(0.7, 1.2)
         strip(mesh, rng, base, flat, max(d.z, 0.1) * 1.6, L, width * L / length, STRAP, rng.uniform(0.8, 1.4),
-              segs=6, cross=3, crease=0.35, mat=mat)
+              segs=6, cross=3, crease=0.35, mat=mat, uv_mode="tile")
 
 
 def tree(seed, height, r0, r1, spec=None, wind=0.0, lean=0.0, flutes=0, flare=0.0, flute_height=0.25,
@@ -501,15 +559,16 @@ def palm(seed, height, r, fronds=12, frond_len=3.0, wind=0.08, lean=0.15, fan_le
         L = frond_len * rng.uniform(0.8, 1.15)
         if fan_leaf:
             stalk = bent_path(top, (d + Z * rng.uniform(0.4, 1.2)).normalized(), L * 0.5, 0.1, Z, 0.0, seed + i, 4)
-            sweep(mesh, stalk, lambda u: 0.03, 5, "Leaf", seed + i, lumps=0, cap=False)
+            sweep(mesh, stalk, lambda u: 0.03, 5, "Bark", seed + i, lumps=0, cap=False)
             fan(mesh, rng, stalk[-1], (stalk[-1] - stalk[-2]).normalized(), L * 0.55, blades=13)
         else:
             strip(mesh, rng, top, d, rng.uniform(0.5, 1.3), L, L * 0.15, pinnate(30, 0.65), rng.uniform(0.9, 1.5),
-                  segs=40, cross=3, crease=0.35)
+                  segs=40, cross=3, crease=0.35, mat="Frond", uv_mode="tile")
     for i in range(dead):
         ang = rng.uniform(0, TAU)
         d = Vector((math.cos(ang), math.sin(ang), 0))
-        strip(mesh, rng, top - Z * 0.2, d, 0.0, frond_len * 0.7, frond_len * 0.1, pinnate(16, 0.5), 2.2, segs=16, cross=3, crease=0.4)
+        strip(mesh, rng, top - Z * 0.2, d, 0.0, frond_len * 0.7, frond_len * 0.1, pinnate(16, 0.5), 2.2, segs=16, cross=3, crease=0.4,
+              mat="Frond", uv_mode="tile")
     return mesh
 
 
@@ -524,7 +583,8 @@ def tree_fern(seed, height, fronds=12, frond_len=1.8):
         ang = i / fronds * TAU + rng.uniform(-0.3, 0.3)
         d = Vector((math.cos(ang), math.sin(ang), 0))
         L = frond_len * rng.uniform(0.8, 1.2)
-        strip(mesh, rng, top, d, rng.uniform(0.7, 1.4), L, L * 0.14, pinnate(14), rng.uniform(0.8, 1.3), segs=26, cross=3, crease=0.3)
+        strip(mesh, rng, top, d, rng.uniform(0.7, 1.4), L, L * 0.14, pinnate(14), rng.uniform(0.8, 1.3), segs=26, cross=3, crease=0.3,
+              mat="Frond", uv_mode="tile")
     return mesh
 
 
@@ -571,7 +631,12 @@ def culm(mesh, rng, base, height, radius, lean_dir, lean, seed):
         r = radius * lerp(1.0, 0.7, z / height)
         for nz in nodes:
             r *= 1.0 + 0.14 * math.exp(-((z - nz) / 0.035) ** 2)
-        rings.append([mesh.vert(at(z) + Vector((math.cos(k / sides * TAU) * r, math.sin(k / sides * TAU) * r, 0))) for k in range(sides)])
+        ring = []
+        for k in range(sides + 1):
+            ang = (k % sides) / sides * TAU
+            ring.append(mesh.vert(at(z) + Vector((math.cos(ang) * r, math.sin(ang) * r, 0)),
+                                  uv=(k / sides, z / 0.4)))
+        rings.append(ring)
     mesh.tube(rings, "Bamboo")
     for nz in [n for n in nodes if n > height * 0.45]:
         for _ in range(rng.randint(2, 4)):
@@ -584,7 +649,8 @@ def culm(mesh, rng, base, height, radius, lean_dir, lean, seed):
                 for _ in range(rng.randint(4, 7)):
                     dd = (tdir + Vector((rng.gauss(0, 0.6), rng.gauss(0, 0.6), rng.gauss(-0.2, 0.3)))).normalized()
                     strip(mesh, rng, anchor, dd, rng.uniform(0.0, 0.25), rng.uniform(0.28, 0.42), 0.035,
-                          lambda s: math.sin(math.pi * s ** 0.8) ** 0.7, rng.uniform(0.4, 0.8), segs=5, cross=2, crease=0)
+                          lambda s: math.sin(math.pi * s ** 0.8) ** 0.7, rng.uniform(0.4, 0.8), segs=5, cross=2, crease=0,
+                          mat="Frond", uv_mode="tile")
 
 
 # ---------------------------------------------------------------------------
@@ -601,7 +667,8 @@ def fern(seed, fronds, length, up=(0.9, 1.7)):
         L = length * rng.uniform(0.7, 1.15)
         rise = rng.uniform(*up)
         strip(mesh, rng, Vector((0, 0, 0.02)), d, rise, L, L * 0.1, pinnate(rng.randint(15, 22), 0.6),
-              rise * 0.75 + rng.uniform(0.1, 0.3), segs=44, cross=3, crease=0.35, twist=rng.uniform(-0.3, 0.3))
+              rise * 0.75 + rng.uniform(0.1, 0.3), segs=44, cross=3, crease=0.35, twist=rng.uniform(-0.3, 0.3),
+              mat="Frond", uv_mode="tile")
     return mesh
 
 
@@ -633,7 +700,8 @@ def grass(seed, blades, length):
         d = Vector((math.cos(ang), math.sin(ang), 0))
         L = length * rng.uniform(0.6, 1.3)
         base = Vector((rng.gauss(0, 0.08), rng.gauss(0, 0.08), 0))
-        strip(mesh, rng, base, d, rng.uniform(1.4, 2.6), L, L * 0.035, BLADE, rng.uniform(1.0, 2.0), segs=4, cross=2, crease=0)
+        strip(mesh, rng, base, d, rng.uniform(1.4, 2.6), L, L * 0.035, BLADE, rng.uniform(1.0, 2.0), segs=4, cross=2, crease=0,
+              mat="Frond", uv_mode="tile")
     return mesh
 
 
@@ -769,7 +837,7 @@ def rock_geom(mesh, rng, center, size, seed, stretch=(1.0, 1.0, 0.65), flat_top=
     bm.normal_update()
     base = len(mesh.verts)
     for v in bm.verts:
-        mesh.vert(v.co)
+        mesh.vert(v.co, uv=box_uv(v.co, center, size * 0.55))
     for f in bm.faces:
         mesh.face([base + v.index for v in f.verts], mat)
     if moss:
@@ -791,7 +859,8 @@ def rock_geom(mesh, rng, center, size, seed, stretch=(1.0, 1.0, 0.65), flat_top=
                 if v.index not in shell:
                     w = weight[v.index]
                     lump = 1.0 + 0.5 * fbm((v.co - center) * (6.0 / size) + Vector((0, seed, 0)), 2)
-                    shell[v.index] = mesh.vert(v.co + v.normal * (size * 0.035 * w * lump))
+                    p = v.co + v.normal * (size * 0.035 * w * lump)
+                    shell[v.index] = mesh.vert(p, uv=box_uv(p, center, size * 0.35))
             mesh.face([shell[v.index] for v in f.verts], "Moss")
     bm.free()
 
@@ -840,7 +909,7 @@ def ground(seed, size, step=0.75):
             px = cx + 8.0 + fbm(Vector((y * 0.07, seed + 13, 0))) * 2.0
             path = 1.0 - smoothstep(0.5, 1.5, abs(x - px))
             h = lerp(h, h * 0.4 - 0.1, path)
-            row.append(mesh.vert((x, y, h)))
+            row.append(mesh.vert((x, y, h), uv=(x / 4.0, y / 4.0)))
         grid.append(row)
     for a, b in zip(grid, grid[1:]):
         mesh.quad_strip(a, b, "Ground", closed=False)
@@ -860,14 +929,14 @@ def blob(mesh, center, radius, seed, flat=0.5, up=Z, mat="Moss", rings=5, segs=1
     for i in range(rings + 1):
         phi = i / rings * (math.pi / 2)
         row = []
-        for k in range(segs):
-            th = k / segs * TAU
+        for k in range(segs + 1):
+            th = (k % segs) / segs * TAU
             r = radius * (1 + rough * fbm(Vector((math.cos(th) * 2 + seed * 0.1, math.sin(th) * 2, phi * 3))))
             p = center + (a * math.cos(th) + b * math.sin(th)) * (r * math.sin(phi)) + up * (r * flat * math.cos(phi)) - up * radius * 0.08
-            row.append(mesh.vert(p))
+            row.append(mesh.vert(p, uv=(k / segs, i / rings)))
         rows.append(row)
     for r0, r1 in zip(rows, rows[1:]):
-        mesh.quad_strip(r0, r1, mat)
+        mesh.quad_strip(r0, r1, mat, closed=False)
 
 
 def densify(frames, step):
@@ -914,7 +983,7 @@ def moss_sleeve(mesh, frames, u0, u1, angle, width, thick, seed, segs=11, mat="M
             n = nrm * math.cos(ang) + bn * math.sin(ang)
             lump = 0.5 + 0.5 * abs(fbm(Vector((u * 14 + seed, f * 6, 2.0)), 3))
             h = thick * max(0.0, along) * across * lump
-            row.append(mesh.vert(p + n * (r * 1.003 + h)))
+            row.append(mesh.vert(p + n * (r * 1.003 + h), uv=(f, u * 4.0)))
         rows.append(row)
     for a, b in zip(rows, rows[1:]):
         mesh.quad_strip(a, b, mat, closed=False)
@@ -1001,9 +1070,15 @@ def fungus_at(mesh, rng, base, out, count, radius, seed):
                 a = -math.pi / 2 + math.pi * k / 8
                 q = b + (Matrix.Rotation(a, 3, Z) @ out) * rr * (1 + 0.1 * fbm(Vector((k, ring, seed + i))))
                 q.z += -rr * 0.25 * (ring / 3) ** 2
-                row.append(mesh.vert(q))
+                row.append(mesh.vert(q, uv=(k / 8.0, ring / 3.0)))
             rows.append(row)
-        under = [[mesh.vert(mesh.verts[v] - Z * 0.02) for v in row] for row in rows]
+        under = []
+        for row in rows:
+            urow = []
+            for v in row:
+                u = mesh.uvs[v]
+                urow.append(mesh.vert(mesh.verts[v] - Z * 0.02, uv=(u.x, u.y + 0.05)))
+            under.append(urow)
         for r0, r1 in zip(rows, rows[1:]):
             mesh.quad_strip(r0, r1, "Fungus", closed=False)
         for r0, r1 in zip(under, under[1:]):
@@ -1272,7 +1347,8 @@ def cycad(seed, height, fronds):
         a = i / fronds * TAU + rng.uniform(-0.2, 0.2)
         d = Vector((math.cos(a), math.sin(a), 0))
         L = rng.uniform(1.4, 2.2)
-        strip(mesh, rng, top, d, rng.uniform(0.7, 1.3), L, L * 0.12, pinnate(26, 0.7), rng.uniform(0.5, 0.8), segs=36, cross=3, crease=0.4)
+        strip(mesh, rng, top, d, rng.uniform(0.7, 1.3), L, L * 0.12, pinnate(26, 0.7), rng.uniform(0.5, 0.8), segs=36, cross=3, crease=0.4,
+              mat="Frond", uv_mode="tile")
     return mesh
 
 
@@ -1297,7 +1373,7 @@ def banana(seed, stalks, height):
             L = H * rng.uniform(0.6, 0.9)
             base = frames[max(len(frames) - 1 - j * 2, 1)][0]
             strip(mesh, rng, base, d, rng.uniform(0.8, 1.5), L, L * 0.22, torn, rng.uniform(0.9, 1.4), segs=14, cross=5, crease=0.25, cup=0.05,
-                  twist=rng.uniform(-0.3, 0.3))
+                  twist=rng.uniform(-0.3, 0.3), mat="Frond", uv_mode="tile")
     return mesh
 
 
@@ -1316,7 +1392,8 @@ def reeds(seed, stalks, height):
             a = rng.uniform(0, TAU)
             ld = (nrm * math.cos(a) + bn * math.sin(a) + t * 0.6).normalized()
             L = rng.uniform(0.3, 0.6)
-            strip(mesh, rng, p, Vector((ld.x, ld.y, 0)).normalized(), max(ld.z, 0.1) * 1.4, L, L * 0.05, BLADE, rng.uniform(0.6, 1.4), segs=4, cross=2, crease=0)
+            strip(mesh, rng, p, Vector((ld.x, ld.y, 0)).normalized(), max(ld.z, 0.1) * 1.4, L, L * 0.05, BLADE, rng.uniform(0.6, 1.4), segs=4, cross=2, crease=0,
+                  mat="Frond", uv_mode="tile")
     return mesh
 
 
@@ -1377,7 +1454,7 @@ def fallen_frond(seed, length):
     rng = random.Random(seed)
     mesh = Mesh()
     strip(mesh, rng, Vector((-length / 2, 0, 0.03)), Vector((1, 0, 0)), 0.12, length, length * 0.14, pinnate(20, 0.6), 0.12,
-          segs=30, cross=3, crease=0.3, twist=rng.uniform(-0.4, 0.4), mat="Litter")
+          segs=30, cross=3, crease=0.3, twist=rng.uniform(-0.4, 0.4), mat="Frond", uv_mode="tile")
     return mesh
 
 
@@ -1441,8 +1518,7 @@ def vine_rope(seed, length, r):
 
 def export(ob, name):
     """One FBX for the object, at the origin, and a .mdl beside it that names
-    the FBX and leaves the material to the default until one is chosen. An
-    existing .mdl is kept - the editor fills it out on compile."""
+    the FBX and pins each art surface to the jungle material of the same name."""
     out_dir = os.path.join(ROOT, "Assets", OUT)
     os.makedirs(out_dir, exist_ok=True)
     ob.name = name
@@ -1457,14 +1533,20 @@ def export(ob, name):
                              mesh_smooth_type="FACE", use_mesh_modifiers=True, add_leaf_bones=False,
                              bake_anim=False, path_mode="AUTO")
     mdl_path = os.path.join(out_dir, name + ".mdl")
-    if not os.path.exists(mdl_path):
+    remaps = [{"Surface": s, "Material": m} for s, m in SLOT_MATERIALS.items()]
+    if os.path.exists(mdl_path):
+        with open(mdl_path) as f:
+            mdl = json.load(f)
+        mdl["MaterialRemaps"] = remaps
+    else:
         mdl = {
             "Meshes": [{"Name": "", "File": f"{OUT}/{name}.fbx", "Scale": 1.0, "Include": [],
                         "Enabled": True, "Position": "0,0,0", "Rotation": "0,0,0", "Parent": ""}],
-            "Scale": 1.0, "Material": "", "Materials": [], "MaterialRemaps": [],
+            "Scale": 1.0, "Material": "", "Materials": [], "MaterialRemaps": remaps,
         }
-        with open(mdl_path, "w") as f:
-            json.dump(mdl, f, indent=2)
+    with open(mdl_path, "w") as f:
+        json.dump(mdl, f, indent=2)
+        f.write("\n")
     return fbx
 
 
