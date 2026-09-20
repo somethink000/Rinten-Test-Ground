@@ -84,7 +84,8 @@ class Scene:
     # -- the furniture every scene has --------------------------------------
 
     def environment(self, sun_brightness=1.2, sun_rot="-0.4508033,0.1919843,0.0999407,0.8659851", sun_color="1,0.95,0.88,1",
-                    ambient="0.2,0.22,0.3,1", sky_tint="0.75,0.8,0.9,1", shadows=True, shadow_detail=64, source_radius=0.05, sky_indirect=True):
+                    ambient="0.2,0.22,0.3,1", sky_tint="0.75,0.8,0.9,1", shadows=True, shadow_detail=64, source_radius=0.05, sky_indirect=True,
+                    sky_material="materials/skybox/procedural.mat"):
         return self.go("Environment", children=[
             self.go("Sun", rot=sun_rot, tags="light_directional,light", components=[
                 self.comp("Rinten.DirectionalLight", "sun", __version=1, Attenuation=1, Brightness=sun_brightness,
@@ -92,7 +93,7 @@ class Scene:
                           ShadowAngle=0.6, ShadowDetail=shadow_detail, Shadows=shadows, SkyColor="0,0,0,0", SourceRadius=source_radius)]),
             self.go("Ambient", components=[self.comp("Rinten.AmbientLight", "ambient", Color=ambient)]),
             self.go("2D Skybox", tags="skybox", components=[self.comp("Rinten.SkyBox2D", "sky", SkyIndirectLighting=sky_indirect,
-                    SkyMaterial="materials/skybox/procedural.mat", Tint=sky_tint)]),
+                    SkyMaterial=sky_material, Tint=sky_tint)]),
         ])
 
     def player(self, pos, pitch_rot="-0.0697565,0,0,0.9975641", fov=75, speed=7, bloom=True):

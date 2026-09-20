@@ -569,11 +569,14 @@ objects += scatter(rng, ["litter_a", "litter_b"], 260, 0.4, sink=0.02, align=1.0
 # -- light, fog, the player, the HUD ----------------------------------------
 # The sun low, from behind and to the left of the walk, so trunks are lit on
 # their edges and the fog glows between them.
+# An overcast sky - materials/skybox/overcast.mat, the engine's sky shader with
+# its cloud cover nearly full - and the distance fog takes its colour from that
+# sky, so what is far away sinks into the same white the sky is.
 objects += [
-    S.environment(sun_brightness=1.0, sun_rot=pitch_yaw(-28, 155), sun_color="1,0.93,0.8,1", ambient="0.16,0.22,0.18,1",
-                  sky_tint="0.6,0.7,0.68,1", shadow_detail=96),
-    S.go("Gradient Fog", components=[S.comp("Rinten.GradientFog", "fog/gradient", Color="0.62,0.70,0.66,0.8", Height=18,
-                                            VerticalFalloffExponent=1.1, StartDistance=6, EndDistance=58, FalloffExponent=1.25)]),
+    S.environment(sun_brightness=0.7, sun_rot=pitch_yaw(-34, 155), sun_color="1,0.96,0.9,1", ambient="0.16,0.22,0.18,1",
+                  sky_tint="0.9,0.93,0.92,1", shadow_detail=96, sky_material="materials/skybox/overcast.mat"),
+    S.go("Distance Fog", components=[S.comp("Rinten.CubemapFog", "fog/distance", Tint="0.82,0.86,0.84,0.85", StartDistance=6, EndDistance=60,
+                                            FalloffExponent=1.25, HeightStart=-6, HeightWidth=26, HeightExponent=1.1)]),
     S.go("Volume Fog", (0, 4, 0), components=[S.comp("Rinten.VolumetricFogVolume", "fog/volume", Bounds={"Mins": "-32,-6,-32", "Maxs": "32,10,32"},
                                                      Strength=0.08, FalloffExponent=0.8, Color="0.68,0.78,0.74,1")]),
 ]
