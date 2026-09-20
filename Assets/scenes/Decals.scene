@@ -1029,6 +1029,14 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null
+        },
+        {
+          "__type": "TestGround.FrameStats",
+          "__guid": "2bd4449a-c1e0-5709-be66-c56a8930cf84",
+          "__enabled": true,
+          "Flags": 0,
+          "Key": "F1",
+          "Showing": true
         }
       ],
       "Children": []

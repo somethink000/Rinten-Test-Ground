@@ -1160,6 +1160,14 @@
             "go": "a1019563-371b-5b2f-a1e8-30547128df45",
             "component_type": "CameraComponent"
           }
+        },
+        {
+          "__type": "TestGround.FrameStats",
+          "__guid": "7e875448-3d97-597a-8338-48f85e3f5d8c",
+          "__enabled": true,
+          "Flags": 0,
+          "Key": "F1",
+          "Showing": true
         }
       ],
       "Children": []

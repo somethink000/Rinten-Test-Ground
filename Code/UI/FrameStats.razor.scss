@@ -1,0 +1,53 @@
+// What a scene is costing, read off the corner of the screen - the same rows,
+// thresholds and colours the editor's own stats panel uses.
+framestats
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	pointer-events: none;
+
+	.stats
+	{
+		position: absolute;
+		top: 24px;
+		right: 24px;
+		flex-direction: column;
+		width: 152px;
+		flex-shrink: 0;
+		padding: 6px;
+		border-radius: 6px;
+		background-color: #05050abf;
+
+		.row
+		{
+			flex-direction: row;
+			align-items: center;
+			height: 15px;
+			flex-shrink: 0;
+
+			// Monospaced, so a number changing doesn't shuffle the ones beside it
+			font-family: Roboto Mono;
+			font-size: 11px;
+			font-weight: 500;
+
+			.name
+			{
+				flex-grow: 1;
+				color: #ffffff8c;
+			}
+
+			.value
+			{
+				text-align: right;
+				color: #ffffff;
+
+				&.good { color: #50c878; }
+				&.warn { color: #f0c828; }
+				&.bad { color: #dc3c3c; }
+			}
+		}
+	}
+}

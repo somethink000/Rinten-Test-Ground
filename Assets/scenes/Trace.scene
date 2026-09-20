@@ -771,6 +771,14 @@
           "Flags": 0,
           "Key": "Q",
           "MenuScene": null
+        },
+        {
+          "__type": "TestGround.FrameStats",
+          "__guid": "a87b32dc-cc02-5a1a-9e94-3a9f822c11ba",
+          "__enabled": true,
+          "Flags": 0,
+          "Key": "F1",
+          "Showing": true
         }
       ],
       "Children": []

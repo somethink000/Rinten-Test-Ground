@@ -119,13 +119,6 @@
               "DisplayName": "Rigid Bodies"
             },
             {
-              "Scene": "scenes/minimal.scene",
-              "Title": "Minimal",
-              "Category": "Scratch",
-              "Description": "The template scene this project started from",
-              "DisplayName": "Minimal"
-            },
-            {
               "Scene": "scenes/fx.scene",
               "Title": "Particles",
               "Category": "FX",
@@ -239,6 +232,14 @@
             }
           ],
           "Subheading": "Feature scenes, kept in a working state"
+        },
+        {
+          "__type": "TestGround.FrameStats",
+          "__guid": "c6e5eabe-1750-5a6c-a464-1171ca5fe27a",
+          "__enabled": true,
+          "Flags": 0,
+          "Key": "F1",
+          "Showing": true
         }
       ],
       "Children": []

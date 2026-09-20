@@ -1833,6 +1833,14 @@
           "Flags": 0,
           "Key": "Q",
           "MenuScene": null
+        },
+        {
+          "__type": "TestGround.FrameStats",
+          "__guid": "dd840a49-6e6c-541d-8065-13d80fa9e0e3",
+          "__enabled": true,
+          "Flags": 0,
+          "Key": "F1",
+          "Showing": true
         }
       ],
       "Children": []

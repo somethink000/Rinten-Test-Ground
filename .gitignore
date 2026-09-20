@@ -1,26 +1,62 @@
+# What a project keeps out of its history: everything the editor makes again by
+# itself, and everything that is true of this machine rather than of the game.
+# Copied into a new project when it is created - see ProjectCreation.CopyGitIgnore.
+
 # ---------------------------------------------------------------------------
-# Rinten
+# The editor's own
 # ---------------------------------------------------------------------------
 
-# The editor's cache folder (Project.CacheFolder): thumbnails, mesh previews,
-# undo journals, UI layout state, cloud.db. All of it is rebuilt on open.
+# Thumbnails, mesh previews, undo journals, the layout of your docks, cloud.db.
+# Rebuilt on open, and no two people want each other's.
 .rinten/
 
-# Compiled resources. The editor recompiles them from the definition beside
-# them whenever it is newer or the compiled file is missing (AssetSystem
-# compiles anything that is not compiled on scan), so a clone starts clean.
-#   picture.png -> picture.png.tex_c / .data.tex_c / .tex_c.bc
-#   thing.mdl   -> thing.mdl_c (+ thing.mdl_c.baked baseline)
-#   graph       -> thing.mdl_ag_c
-*.tex_c*
-*.mdl_c*
-*.mdl_ag_c
+# Compiled resources: everything beside its definition with _c on the end, and
+# the sidecars beside those - picture.png.tex_c, picture.png.tex_c.bc,
+# thing.mdl_c, thing.mdl_c.baked, scenes/main.scene_c. The editor compiles
+# whatever it finds uncompiled when it scans, so a fresh clone builds its own.
+#
+# One exception, and it matters: a model with no art file behind it - one built
+# in the model editor, or ported - has nothing to be rebuilt from, so its _c is
+# the only copy there is. Keep those: git add -f the/model.mdl_c
+#
+# By these three shapes rather than *_c.* - a picture of yours called
+# shield_c.png is not a compiled anything.
+*_c
+*_c.bc
+*_c.baked
 
-# NOT ignored on purpose: *.scene_d is the scene's binary half (its meshes),
-# written by the resource itself when saved - a scene without it loads empty.
+# On purpose NOT ignored: *.scene_d, the scene's binary half. It is written by
+# the scene itself when you save, not compiled from anything, and a scene
+# without it opens empty.
 
 # ---------------------------------------------------------------------------
-# .NET / MSBuild
+# Written for this machine
+# ---------------------------------------------------------------------------
+
+# The solution, the C# projects and their launch settings are generated every
+# time the project opens, and they carry absolute paths to the engine on this
+# computer - committing them means a diff on every open and a broken path on
+# everybody else's. Yours to keep anyway? git add -f the/file
+*.slnx
+*.csproj
+**/Properties/launchSettings.json
+
+# Written by the editor: file associations and the shader include paths, which
+# are again this machine's.
+.vscode/
+
+# ---------------------------------------------------------------------------
+# Output
+# ---------------------------------------------------------------------------
+
+# Exported games - every platform, every build.
+Builds/
+
+# Libraries the project fetches for itself, named in the .rinproj.
+Libraries/
+
+# ---------------------------------------------------------------------------
+# .NET
 # ---------------------------------------------------------------------------
 bin/
 obj/
@@ -30,19 +66,12 @@ obj/
 TestResults/
 
 # ---------------------------------------------------------------------------
-# Python (tools/, .gen_scenes.py)
+# Odds and ends
 # ---------------------------------------------------------------------------
 __pycache__/
 *.py[cod]
 .venv/
-
-# ---------------------------------------------------------------------------
-# Editors / OS
-# ---------------------------------------------------------------------------
 .idea/
-.vscode/*
-!.vscode/settings.json
-!.vscode/extensions.json
 *.swp
 *~
 .DS_Store

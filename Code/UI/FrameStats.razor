@@ -1,0 +1,126 @@
+@using Rinten;
+@using Rinten.UI;
+@using Rinten.Diagnostics;
+@using System;
+@namespace TestGround
+@inherits PanelComponent
+
+<root>
+
+	@if ( Showing )
+	{
+		<div class="stats">
+			<div class="row"><div class="name">FPS</div><div class="value @fpsTone">@fps</div></div>
+			<div class="row"><div class="name">Cap</div><div class="value @capTone">@cap</div></div>
+			<div class="row"><div class="name">CPU</div><div class="value @cpuTone">@cpu</div></div>
+			<div class="row"><div class="name">GPU</div><div class="value @gpuTone">@gpu</div></div>
+			<div class="row"><div class="name">VRAM</div><div class="value">@vram</div></div>
+			<div class="row"><div class="name">RAM</div><div class="value">@ram</div></div>
+		</div>
+	}
+
+</root>
+
+@code
+{
+	/// <summary>Whether the numbers are up. The key below toggles it.</summary>
+	[Property] public bool Showing { get; set; } = true;
+
+	/// <summary>The key that shows and hides it, raw keyboard so a scene binds nothing.</summary>
+	[Property] public string Key { get; set; } = "F1";
+
+	/// <summary>Four times a second - every frame the numbers are a blur.</summary>
+	private const float RefreshInterval = 0.25f;
+
+	private RealTimeSince timeSinceRead;
+
+	private string fps = "-", cap = "-", cpu = "-", gpu = "-", vram = "-", ram = "-";
+	private string fpsTone = "", capTone = "", cpuTone = "", gpuTone = "";
+
+	protected override void OnStart() => Read();
+
+	protected override void OnUpdate()
+	{
+		if ( !string.IsNullOrWhiteSpace( Key ) && Input.Keyboard.Pressed( Key ) ) Showing = !Showing;
+
+		if ( !Showing ) return;
+		if ( timeSinceRead < RefreshInterval ) return;
+
+		timeSinceRead = 0.0f;
+
+		Read();
+	}
+
+	private void Read()
+	{
+		// The frame rate over the last second rather than this frame's, which jumps around too much to read
+		var frameMs = PerformanceStats.LastSecond.FrameAvg;
+		var perSecond = frameMs > 0.0f ? 1000.0f / frameMs : 0.0f;
+
+		fps = $"{perSecond:0} · {frameMs:0.0} ms";
+		fpsTone = FrameRateTone( frameMs );
+
+		// Which limit the frame rate is actually under: the one in settings is only one of four, and in
+		// the background the inactive cap takes over
+		var limit = PerformanceStats.FrameRateCap;
+		var atCap = limit > 0.0f && perSecond >= limit * 0.95f;
+
+		cap = limit > 0.0f ? $"{limit:0} · {CapSourceName( PerformanceStats.FrameRateCapSource )}" : "off";
+		capTone = atCap ? "warn" : "";
+
+		// The main thread against its own frame, not the process against every core - a hundred means the
+		// frame is waiting on this thread
+		var cpuPct = PerformanceStats.MainThreadUsage;
+
+		cpu = $"{PerformanceStats.MainThreadTime:0.00} ms · {cpuPct:0} %";
+		cpuTone = LoadTone( cpuPct );
+
+		var gpuMs = PerformanceStats.GpuFrametime;
+		var gpuPct = frameMs > 0.0f ? Math.Clamp( gpuMs / frameMs * 100.0f, 0.0f, 100.0f ) : 0.0f;
+
+		// Nothing measures the GPU until the renderer has drawn a frame and its fence has proved it
+		// finished - a dash beats a confident zero
+		gpu = gpuMs > 0.0f ? $"{gpuMs:0.00} ms · {gpuPct:0} %" : "-";
+		gpuTone = gpuMs > 0.0f ? LoadTone( gpuPct ) : "";
+
+		vram = FormatBytes( PerformanceStats.GpuMemoryUsage );
+		ram = FormatBytes( PerformanceStats.ApproximateProcessMemoryUsage );
+	}
+
+	/// <summary>The caps by the names a person picked them under.</summary>
+	private static string CapSourceName( string source ) => source switch
+	{
+		"fps_max" => "limit",
+		"fps_max_inactive" => "background",
+		"fps_max_menu" => "menu",
+		"vsync" => "vsync",
+		_ => source
+	};
+
+	/// <summary>Past ninety the frame is waiting on that one thing and nothing else will help.</summary>
+	private static string LoadTone( float pct ) => pct switch
+	{
+		<= 0.0f => "",
+		> 90.0f => "bad",
+		> 70.0f => "warn",
+		_ => ""
+	};
+
+	private static string FrameRateTone( float frameMs ) => frameMs switch
+	{
+		<= 0.0f => "",
+		> 33.3f => "bad",
+		> 16.7f => "warn",
+		_ => "good"
+	};
+
+	private static string FormatBytes( ulong bytes ) => bytes switch
+	{
+		>= 1024UL * 1024UL * 1024UL => $"{bytes / ( 1024.0 * 1024.0 * 1024.0 ):0.0} GB",
+		>= 1024UL * 1024UL => $"{bytes / ( 1024.0 * 1024.0 ):0} MB",
+		>= 1024UL => $"{bytes / 1024.0:0} KB",
+		_ => $"{bytes} B"
+	};
+
+	protected override int BuildHash() => HashCode.Combine( Showing, fps, cap, cpu, gpu, vram, ram );
+}
