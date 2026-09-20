@@ -891,29 +891,69 @@ def log(seed, length, r, stubs=3):
     return mesh
 
 
-def ground(seed, size, step=0.75):
-    """A square of ground that rolls gently, a stream bed wandering along its
-    length and a path worn beside it."""
+GROUND_SIZE = 60      # the square the scene is laid out on
+APRON_SIZE = 140      # the ground beyond it, rising into the walls of the valley
+
+
+def ground_lines(y, seed):
+    """Where the stream bed and the path cross the row at y: their x."""
+    cx = math.sin(y * 0.09) * 4.0 + fbm(Vector((y * 0.05, seed + 9, 0))) * 3.0
+    px = cx + 8.0 + fbm(Vector((y * 0.07, seed + 13, 0))) * 2.0
+    return cx, px
+
+
+def ground_height(x, y, seed):
+    """The ground's height at (x, y): rolling, a stream bed wandering along
+    y and a path worn beside it, and beyond the scene's square the valley's
+    sides rising, where the bed and the path fade out."""
+    h = fbm(Vector((x * 0.06, y * 0.06, seed))) * 1.4 + fbm(Vector((x * 0.25, y * 0.25, seed + 5))) * 0.25
+    cx, px = ground_lines(y, seed)
+    out = smoothstep(GROUND_SIZE / 2, GROUND_SIZE / 2 + 12, max(abs(x), abs(y)))
+    bed = (1.0 - smoothstep(0.4, 1.6, abs(x - cx))) * (1.0 - out)
+    h -= bed * 0.8
+    path = (1.0 - smoothstep(0.5, 1.5, abs(x - px))) * (1.0 - out)
+    h = lerp(h, h * 0.4 - 0.1, path)
+    rise = smoothstep(GROUND_SIZE / 2 - 2, APRON_SIZE / 2, max(abs(x), abs(y)))
+    h += rise ** 1.6 * 14.0 + rise * fbm(Vector((x * 0.04, y * 0.04, seed + 21))) * 5.0
+    return h
+
+
+def ground(seed, size, step=0.75, hole=0.0):
+    """A square of ground, `size` across, cut from ground_height; with `hole`
+    the square that size in the middle is left out - the apron round the
+    scene's own ground."""
     mesh = Mesh()
-    n = int(size / step)
+    n = int(round(size / step))
     grid = []
     for iy in range(n + 1):
         row = []
         for ix in range(n + 1):
             x = -size / 2 + ix * step
             y = -size / 2 + iy * step
-            h = fbm(Vector((x * 0.06, y * 0.06, seed))) * 1.4 + fbm(Vector((x * 0.25, y * 0.25, seed + 5))) * 0.25
-            cx = math.sin(y * 0.09) * 4.0 + fbm(Vector((y * 0.05, seed + 9, 0))) * 3.0
-            bed = 1.0 - smoothstep(0.4, 1.6, abs(x - cx))
-            h -= bed * 0.8
-            px = cx + 8.0 + fbm(Vector((y * 0.07, seed + 13, 0))) * 2.0
-            path = 1.0 - smoothstep(0.5, 1.5, abs(x - px))
-            h = lerp(h, h * 0.4 - 0.1, path)
-            row.append(mesh.vert((x, y, h), uv=(x / 4.0, y / 4.0)))
+            row.append(mesh.vert((x, y, ground_height(x, y, seed)), uv=(x / 4.0, y / 4.0)))
         grid.append(row)
-    for a, b in zip(grid, grid[1:]):
-        mesh.quad_strip(a, b, "Ground", closed=False)
+    for iy, (a, b) in enumerate(zip(grid, grid[1:])):
+        for ix in range(n):
+            x0, y0 = -size / 2 + ix * step, -size / 2 + iy * step
+            if hole and max(abs(x0 + step / 2), abs(y0 + step / 2)) < hole / 2:
+                continue
+            mesh.face((a[ix], a[ix + 1], b[ix + 1], b[ix]), "Ground")
     return mesh
+
+
+def write_ground_json(seed=191, step=0.5, size=APRON_SIZE):
+    """tools/jungle/ground.json: the height grid the scene generator stands
+    things on, and the stream's and the path's x on every row."""
+    n = int(round(size / step))
+    heights, stream_x, path_x = [], [], []
+    for iy in range(n + 1):
+        y = -size / 2 + iy * step
+        heights.append([round(ground_height(-size / 2 + ix * step, y, seed), 3) for ix in range(n + 1)])
+        cx, px = ground_lines(y, seed)
+        stream_x.append(round(cx, 3))
+        path_x.append(round(px, 3))
+    with open(os.path.join(ROOT, "tools", "jungle", "ground.json"), "w") as f:
+        json.dump({"n": n + 1, "step": step, "size": size, "seed": seed, "heights": heights, "stream_x": stream_x, "path_x": path_x}, f)
 
 
 # ---------------------------------------------------------------------------
@@ -1726,7 +1766,8 @@ CATALOGUE = {
     "rockstack_a": lambda: rock_stack(651, [1.6, 1.1, 0.7]),
     "rockstack_b": lambda: rock_stack(652, [2.4, 1.5]),
     # -- the ground, 60 m square ---------------------------------------------
-    "ground": lambda: ground(191, 60),
+    "ground": lambda: ground(191, GROUND_SIZE),
+    "ground_apron": lambda: ground(191, APRON_SIZE, step=1.0, hole=GROUND_SIZE),
 }
 
 # Which row of the review layout each model stands in: the word before the
@@ -1750,6 +1791,7 @@ def build_all(names=None, keep=True, export_files=True):
     for n in names:
         rows.setdefault(row_of(n), []).append(n)
     written = []
+    sockets = {}
     y = 0.0
     for key, group in rows.items():
         x = 0.0
@@ -1758,8 +1800,10 @@ def build_all(names=None, keep=True, export_files=True):
             old = bpy.data.objects.get(name)
             if old:
                 bpy.data.objects.remove(old, do_unlink=True)
-            ob = to_ob(CATALOGUE[name](), name)
+            grown = CATALOGUE[name]()
+            ob = to_ob(grown, name)
             ob.name = name
+            sockets[name] = sockets_of(grown, ob)
             if export_files:
                 written.append(export(ob, name))
             if keep:
@@ -1771,7 +1815,40 @@ def build_all(names=None, keep=True, export_files=True):
             else:
                 bpy.data.objects.remove(ob, do_unlink=True)
         y -= deepest + 12.0
+    if export_files:
+        # A partial build updates its models' entries and keeps the rest.
+        path = os.path.join(ROOT, "tools", "jungle", "sockets.json")
+        if len(names) < len(CATALOGUE) and os.path.exists(path):
+            with open(path) as f:
+                merged = json.load(f)
+            merged.update(sockets)
+            sockets = merged
+        with open(path, "w") as f:
+            json.dump(sockets, f)
     return written
+
+
+def sockets_of(grown, ob):
+    """What a scene can hang things on: the frames of a tree's trunk and of
+    its limbs, the tips of its twigs, and the box every model fills. In the
+    generator's own frame (Blender's, z up), as everything here is."""
+    bb = [ob.matrix_world @ Vector(c) for c in ob.bound_box]
+    out = {"bounds": [round(min(v.x for v in bb), 3), round(min(v.y for v in bb), 3), round(min(v.z for v in bb), 3),
+                      round(max(v.x for v in bb), 3), round(max(v.y for v in bb), 3), round(max(v.z for v in bb), 3)]}
+    if not isinstance(grown, Mesh):
+        return out
+
+    def frame_row(fr):
+        p, t, nrm, bn, r, u = fr
+        return [round(p.x, 3), round(p.y, 3), round(p.z, 3), round(t.x, 3), round(t.y, 3), round(t.z, 3), round(r, 3), round(u, 3)]
+
+    if grown.trunk:
+        out["trunk"] = [frame_row(fr) for fr in grown.trunk]
+    if grown.limbs:
+        out["limbs"] = [[frame_row(fr) for fr in limb] for limb in grown.limbs]
+    if grown.tips:
+        out["tips"] = [[round(p.x, 3), round(p.y, 3), round(p.z, 3), round(d.x, 3), round(d.y, 3), round(d.z, 3)] for p, d in grown.tips]
+    return out
 
 
 if __name__ == "__main__":

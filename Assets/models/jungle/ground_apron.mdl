@@ -3,7 +3,7 @@
   "Meshes": [
     {
       "Name": "",
-      "File": "models/jungle/mosscarpet_a.fbx",
+      "File": "models/jungle/ground_apron.fbx",
       "Scale": 1,
       "Include": [],
       "Enabled": true,

@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """scenes/rendering/jungle.scene - the jungle, laid out on the ground that
 grow.py cut: a stream down the middle, a path beside it, and everything from
-the catalogue placed by hand where the references put it, with the
-undergrowth and the litter scattered by clutter.
+the catalogue placed as an object of its own - no clutter volumes. Every
+thing stands on the ground at the ground's height, tilted to its slope
+where it should be, sunk into it where it should be; a vine hangs from a
+limb the tree really has, an arch runs from one trunk's bark to another's,
+a log lies along the slope it fell on.
 
 Positions here are in Blender's frame, the one grow.py thinks in (x, y along
 the ground, z up), and turned into the engine's (x, up, -y) on the way out.
 tools/jungle/ground.json is the ground's height grid and the lines of the
-stream and the path, sampled from the same noise grow.py's ground uses.
+stream and the path; tools/jungle/sockets.json is what grow.py wrote about
+each model - its box, and for a tree the frames of its trunk and limbs.
 
     python3 tools/jungle/scene.py
 """
@@ -18,6 +22,7 @@ from common import Scene, ROOT, v, yaw, pitch_yaw, register_in_menu
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 GROUND = json.load(open(os.path.join(HERE, "ground.json")))
+SOCKETS = json.load(open(os.path.join(HERE, "sockets.json")))
 MODELS = os.path.join(ROOT, "models", "jungle")
 
 S = Scene("jungle", "Jungle",
@@ -26,7 +31,7 @@ S = Scene("jungle", "Jungle",
 
 
 # ---------------------------------------------------------------------------
-# The ground: heights and the two lines through it
+# The ground: heights, slopes and the two lines through it
 # ---------------------------------------------------------------------------
 
 def height(x, y):
@@ -41,6 +46,19 @@ def height(x, y):
     a = h[iy][ix] * (1 - tx) + h[iy][ix + 1] * tx
     b = h[iy + 1][ix] * (1 - tx) + h[iy + 1][ix + 1] * tx
     return a * (1 - ty) + b * ty
+
+
+def normal(x, y, d=0.4):
+    """The ground's normal at (x, y), Blender frame, unit length."""
+    dx = (height(x + d, y) - height(x - d, y)) / (2 * d)
+    dy = (height(x, y + d) - height(x, y - d)) / (2 * d)
+    L = math.sqrt(dx * dx + dy * dy + 1.0)
+    return (-dx / L, -dy / L, 1.0 / L)
+
+
+def slope(x, y):
+    """Degrees off level."""
+    return math.degrees(math.acos(max(-1.0, min(1.0, normal(x, y)[2]))))
 
 
 def line_at(key, y):
@@ -60,19 +78,87 @@ def px(y):
     return line_at("path_x", y)
 
 
+def on_path(x, y, margin=0.0):
+    return abs(x - px(y)) < 1.6 + margin
+
+
+def in_stream(x, y, margin=0.0):
+    return abs(x - sx(y)) < 1.8 + margin
+
+
+SCENE = 60        # the square the walk is laid out on; the apron beyond it rises into the valley's sides
+APRON = GROUND["size"]
+
+
+def inside(x, y, edge=0.5):
+    half = SCENE / 2 - edge
+    return -half < x < half and -half < y < half
+
+
+# ---------------------------------------------------------------------------
+# Rotations: yaw about up, then the tilt that lays a thing on a slope
+# ---------------------------------------------------------------------------
+
+def q_mul(a, b):
+    ax, ay, az, aw = a
+    bx, by, bz, bw = b
+    return (aw * bx + ax * bw + ay * bz - az * by,
+            aw * by - ax * bz + ay * bw + az * bx,
+            aw * bz + ax * by - ay * bx + az * bw,
+            aw * bw - ax * bx - ay * by - az * bz)
+
+
+def q_yaw(deg):
+    h = math.radians(deg) / 2
+    return (0.0, math.sin(h), 0.0, math.cos(h))
+
+
+def q_tilt_to(n_engine):
+    """The rotation that takes the engine's up onto a normal."""
+    nx, ny, nz = n_engine
+    c = max(-1.0, min(1.0, ny))
+    if c > 0.99999:
+        return (0.0, 0.0, 0.0, 1.0)
+    # axis = up x n = (0,1,0) x (nx,ny,nz) = (nz, 0, -nx)
+    ax, ay, az = nz, 0.0, -nx
+    L = math.sqrt(ax * ax + az * az) or 1.0
+    ang = math.acos(c)
+    s = math.sin(ang / 2)
+    return (ax / L * s, 0.0, az / L * s, math.cos(ang / 2))
+
+
+def rotation(turn, x=None, y=None, align=0.0):
+    """A quaternion string: yaw, and `align` (0..1) of the ground's tilt."""
+    q = q_yaw(turn)
+    if align > 0.0 and x is not None:
+        nb = normal(x, y)
+        ne = (nb[0] * align, nb[2], -nb[1] * align)
+        L = math.sqrt(sum(c * c for c in ne))
+        q = q_mul(q_tilt_to((ne[0] / L, ne[1] / L, ne[2] / L)), q)
+    return v(*(round(c, 7) for c in q))
+
+
 # ---------------------------------------------------------------------------
 # Placing a model
 # ---------------------------------------------------------------------------
 
-placed = []   # (x, y, radius) of everything big, so the scatter keeps clear
+placed = []   # (x, y, radius) of everything that takes room, so the scatter keeps clear
 names = set()
 
 
-def put(model, x, y, turn=0.0, scale=1.0, lift=0.0, on_ground=True, collide=False, clear=0.0, name=None):
-    """A model at Blender (x, y), standing on the ground (or `lift` above it),
-    turned `turn` degrees about up. `collide` adds a ModelCollider - the
-    model's .mdl must carry a hull for that to do anything."""
-    z = (height(x, y) if on_ground else 0.0) + lift
+def bounds_of(model):
+    return SOCKETS.get(model, {}).get("bounds", [-0.5, -0.5, 0, 0.5, 0.5, 1])
+
+
+def put(model, x, y, turn=0.0, scale=1.0, lift=0.0, sink=0.0, align=0.0, on_ground=True, collide=False, clear=0.0, name=None):
+    """A model at Blender (x, y). It stands at the ground's height there, less
+    `sink` (a fraction of its own height buried) plus `lift` metres; `align`
+    tilts it to the slope, one being flat against it. `collide` adds a
+    ModelCollider - the model's .mdl must carry a hull for that to do
+    anything. `clear` reserves a footprint the scatter keeps out of."""
+    bb = bounds_of(model)
+    tall = (bb[5] - bb[2]) * scale
+    z = (height(x, y) if on_ground else 0.0) + lift - sink * tall
     name = name or f"{model} @ {x:.1f},{y:.1f}"
     while name in names:
         name += "'"
@@ -85,25 +171,86 @@ def put(model, x, y, turn=0.0, scale=1.0, lift=0.0, on_ground=True, collide=Fals
                             OnTriggerEnter=None, OnTriggerExit=None, OnObjectTriggerEnter=None, OnObjectTriggerExit=None))
     if clear:
         placed.append((x, y, clear))
-    return S.go(name, (x, z, -y), rot=yaw(turn), scale=(scale, scale, scale), tags="world", components=comps)
+    return S.go(name, (x, z, -y), rot=rotation(turn, x, y, align), scale=(scale, scale, scale), tags="world", components=comps)
 
 
-def free(x, y, radius):
-    """Whether a spot is clear of the stream, the path and what is placed."""
-    if abs(x - px(y)) < 1.6 + radius * 0.35 or abs(x - sx(y)) < 1.8 + radius * 0.35:
+def free(x, y, radius, path_margin=0.0, stream_margin=0.0):
+    """Clear of the path, the stream and everything placed."""
+    if not inside(x, y, radius):
+        return False
+    if on_path(x, y, path_margin + radius * 0.5) or in_stream(x, y, stream_margin + radius * 0.5):
         return False
     return all(math.hypot(x - qx, y - qy) > r + radius for qx, qy, r in placed)
 
 
-def scatter(rng, models, count, radius, tries=400, scale=(0.85, 1.15), collide=False):
+def nearest_tree(x, y):
+    """How far the nearest big trunk is - the shade a plant stands in."""
+    return min((math.hypot(x - tx, y - ty) for tx, ty in tree_pos.values()), default=99.0)
+
+
+def scatter(rng, models, count, radius, tries=60, scale=(0.85, 1.15), collide=False, clear=None, sink=0.0, align=0.0,
+            path_margin=0.0, stream_margin=0.0, prefer=None, weights=None, max_slope=45.0, allow_path=False, allow_stream=False):
+    """`count` models dropped where `free` says, `prefer(x, y)` (0..1) thinning
+    the ones the dice put where they do not belong."""
     out = []
     for _ in range(count):
         for _ in range(tries):
-            x, y = rng.uniform(-29, 29), rng.uniform(-29, 29)
-            if free(x, y, radius):
-                out.append(put(rng.choice(models), x, y, rng.uniform(0, 360), rng.uniform(*scale), collide=collide, clear=radius))
-                break
+            x, y = rng.uniform(-29.5, 29.5), rng.uniform(-29.5, 29.5)
+            if not inside(x, y, radius):
+                continue
+            if not allow_path and on_path(x, y, path_margin + radius * 0.5):
+                continue
+            if not allow_stream and in_stream(x, y, stream_margin + radius * 0.5):
+                continue
+            if not all(math.hypot(x - qx, y - qy) > r + radius for qx, qy, r in placed):
+                continue
+            if slope(x, y) > max_slope:
+                continue
+            if prefer is not None and rng.random() > prefer(x, y):
+                continue
+            m = rng.choices(models, weights=weights)[0] if weights else rng.choice(models)
+            out.append(put(m, x, y, rng.uniform(0, 360), rng.uniform(*scale), sink=sink, align=align, collide=collide, clear=clear or radius))
+            break
     return out
+
+
+# ---------------------------------------------------------------------------
+# Sockets: where on a placed tree a thing can hang
+# ---------------------------------------------------------------------------
+
+def to_world(tree, p):
+    """A point in a placed tree's own (Blender) frame into the scene's Blender frame."""
+    x, y, turn, scale = tree_place[tree]
+    c, s = math.cos(math.radians(turn)), math.sin(math.radians(turn))
+    lx, ly, lz = p[0] * scale, p[1] * scale, p[2] * scale
+    return (x + lx * c - ly * s, y + lx * s + ly * c, height(x, y) + lz)
+
+
+def limb_points(tree, min_z=4.0, min_r=0.0):
+    """Points on a placed tree's limbs, high enough and thick enough, with the
+    world point on the limb's underside and the limb's radius."""
+    model = tree_model[tree]
+    out = []
+    for limb in SOCKETS.get(model, {}).get("limbs", []):
+        for fr in limb[1:-1]:
+            px_, py_, pz_, tx, ty, tz, r, u = fr
+            if pz_ < min_z or r < min_r:
+                continue
+            wx, wy, wz = to_world(tree, (px_, py_, pz_))
+            out.append(((wx, wy, wz - r * tree_place[tree][3]), r))
+    return out
+
+
+def trunk_point(tree, z):
+    """The trunk's centre and radius at about height z (the tree's own frame), in the world."""
+    model = tree_model[tree]
+    frames = SOCKETS.get(model, {}).get("trunk", [])
+    if not frames:
+        x, y, turn, scale = tree_place[tree]
+        return (x, y, height(x, y) + z), 0.5
+    best = min(frames, key=lambda fr: abs(fr[2] - z))
+    wx, wy, wz = to_world(tree, best[:3])
+    return (wx, wy, wz), best[6] * tree_place[tree][3]
 
 
 # ---------------------------------------------------------------------------
@@ -113,15 +260,12 @@ def scatter(rng, models, count, radius, tries=400, scale=(0.85, 1.15), collide=F
 
 HULL = {"__type": "RenderMesh", "Name": "", "Enabled": True, "Bone": "", "Surface": "", "Tags": "", "Folder": ""}
 
-MESH_COLLIDERS = ["ground", "log_a", "log_b", "logmossy_a", "logmossy_b", "logmossy_c", "uprooted_a", "uprooted_b",
+MESH_COLLIDERS = ["ground", "ground_apron", "log_a", "log_b", "logmossy_a", "logmossy_b", "logmossy_c", "uprooted_a", "uprooted_b",
                   "rootmat_a", "rootmat_b", "stump_a", "stump_b", "stump_c", "broken_a", "broken_b",
                   "rock_a", "rock_b", "rock_c", "rockflat_a", "rockflat_b", "rockflat_c", "rockflat_d", "rockslab_a",
                   "boulder_a", "boulder_b", "rockmid_a", "rockmid_b", "rockmid_c", "rockbig_a", "rockbig_b", "rockbig_c",
                   "cliff_a", "cliff_b", "streamstone_a", "streamstone_b", "streamstone_c", "rockstack_a", "rockstack_b"]
 
-# (trunk radius at the base, how high the capsule goes), in metres, from the
-# catalogue's numbers. The capsule stands straight up the model's Y, which is
-# close enough for a leaning trunk to stop a player walking through its foot.
 TRUNK_CAPSULES = {
     "tree_giant_a": (1.5, 10), "tree_giant_b": (1.8, 9), "tree_giant_c": (1.3, 9), "mossy_giant": (1.4, 9),
     "tree_winding_a": (0.8, 6), "tree_winding_b": (0.7, 5), "tree_winding_c": (0.9, 6),
@@ -135,7 +279,6 @@ TRUNK_CAPSULES = {
 
 
 def ensure_hulls():
-    """Writes the collision each model wants into its .mdl, once."""
     changed = 0
     for name in MESH_COLLIDERS:
         changed += set_hulls(name, [dict(HULL)])
@@ -157,253 +300,271 @@ def set_hulls(name, hulls):
 
 
 # ---------------------------------------------------------------------------
-# Clutter: the undergrowth, the litter, the saplings
-# ---------------------------------------------------------------------------
-
-DEF_DIR = os.path.join(ROOT, "clutter")
-
-
-def entry(model, weight=1.0, scale=1.0, shadows=True):
-    return {"Prefab": None, "Model": f"models/jungle/{model}.mdl", "Weight": weight, "LocalScale": scale, "CastShadows": shadows, "EnablePhysics": False}
-
-
-def definition(name, entries, density, scale=(0.75, 1.3), align=False):
-    d = {"Entries": entries, "IsEmpty": False, "TileSizeEnum": "Size256", "TileRadius": 4,
-         "Scatterer": {"Type": "SimpleScatterer", "Scale": f"{scale[0]} {scale[1]}", "Density": density,
-                       "PlaceOnGround": True, "HeightOffset": -0.02, "AlignToNormal": align},
-         "__references": [], "__version": 0}
-    with open(os.path.join(DEF_DIR, name + ".clutter"), "w") as f:
-        json.dump(d, f, indent=2)
-        f.write("\n")
-    return f"clutter/{name}.clutter"
-
-
-UNDERSTORY = [entry("fern_a", 3), entry("fern_b", 2), entry("fern_c", 2.5), entry("fern_d", 1), entry("broadleaf_a", 1),
-              entry("broadleaf_b", 1.2), entry("elephant_a", 0.4), entry("elephant_b", 0.2), entry("lily_a", 1), entry("lily_b", 0.5),
-              entry("fanplant_a", 0.7), entry("fanplant_b", 0.4), entry("sapling_a", 1), entry("sapling_b", 0.6), entry("bush_a", 0.8),
-              entry("bush_b", 0.4), entry("grass_a", 2), entry("grass_b", 1.5), entry("cycad_a", 0.15), entry("banana_a", 0.1)]
-FLOOR = [entry("litter_a", 2), entry("litter_b", 1), entry("pebbles_a", 0.6), entry("mosscushion_a", 1), entry("mosscushion_b", 0.5),
-         entry("mosscushion_c", 0.5), entry("debris_a", 0.7), entry("debris_b", 0.3), entry("debris_c", 0.8), entry("fallenfrond_a", 0.4),
-         entry("fallenfrond_b", 0.2), entry("rock_a", 0.5), entry("streamstone_a", 0.3), entry("vinetangle_a", 0.15), entry("mosscarpet_a", 0.3)]
-SAPLINGS = [entry("tree_thin_a", 1), entry("tree_thin_b", 1), entry("tree_arch_a", 0.6), entry("tree_arch_b", 0.6), entry("treefern_a", 0.5),
-            entry("bamboo_a", 0.5), entry("bamboo_b", 0.4), entry("bamboo_c", 0.6), entry("sapling_b", 0.8)]
-
-# Density is points per m², then the scatterer divides by 10 - 0.5 is grass-dense
-# in the clutter test scene, 6 is a fern thicket.
-DEFS = {
-    "understory": definition("jungle_understory", UNDERSTORY, density=6.0),
-    "understory_thin": definition("jungle_understory_thin", UNDERSTORY, density=2.4),
-    "floor": definition("jungle_floor", FLOOR, density=4.0, scale=(0.8, 1.2), align=True),
-    "floor_thin": definition("jungle_floor_thin", FLOOR, density=1.8, scale=(0.8, 1.2), align=True),
-    "saplings": definition("jungle_saplings", SAPLINGS, density=0.4, scale=(0.8, 1.2)),
-}
-
-
-def clutter_volume(name, definition, x0, x1, y0, y1, seed):
-    """A clutter volume over a rectangle of ground (Blender x and y).
-
-    ClutterProbe is what actually fills the volume - a ClutterComponent written
-    into a scene file has empty Storage until Generate runs, and the probe does
-    that on the first frames once the ground is in the physics world.
-    """
-    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
-    hx, hy = (x1 - x0) / 2, (y1 - y0) / 2
-    return S.go(f"Clutter: {name}", (cx, 1.0, -cy), components=[
-        S.comp("Rinten.ClutterComponent", "clutter/" + name, Clutter=definition, Seed=seed, Mode="Volume",
-               Bounds={"Mins": v(-hx, -5, -hy), "Maxs": v(hx, 8, hy)}),
-        S.comp("TestGround.ClutterProbe", "probe/" + name, Churn=0.0, Note=name, Overlay=False)])
-
-
-def clutter_strips(name, definition, x0f, x1f, seed, step=10.0):
-    """Clutter volumes that follow a meandering x-range along y, so the path
-    and the stream stay clear while the forest comes up to their banks."""
-    out, y, i = [], -30.0, 0
-    while y < 30:
-        y1 = min(y + step, 30.0)
-        ym = (y + y1) / 2
-        a, b = x0f(ym), x1f(ym)
-        if b > a + 0.9:
-            out.append(clutter_volume(f"{name} {i}", definition, a, b, y, y1, seed + i))
-            i += 1
-        y = y1
-    return out
-
-
-# ---------------------------------------------------------------------------
 # The layout
 # ---------------------------------------------------------------------------
 
 rng = random.Random(7)
-objects = [put("ground", 0, 0, on_ground=False, collide=True, name="Ground")]
+objects = [put("ground", 0, 0, on_ground=False, collide=True, name="Ground"),
+           put("ground_apron", 0, 0, on_ground=False, collide=True, name="Ground apron")]
 
-# -- the big trees, by hand ------------------------------------------------
-hero = [
-    put("tree_lean_a", px(-15) - 3.2, -15, turn=15, collide=True, clear=2.5),
-    put("tree_giant_b", px(-2) + 9, -2, turn=40, collide=True, clear=4),
-    put("mossy_giant", px(8) - 12, 8, turn=200, collide=True, clear=4),
-    put("tree_giant_a", sx(16) - 9, 16, turn=110, collide=True, clear=4),
-    put("tree_giant_c", px(-27) + 9, -27, turn=300, collide=True, clear=3.5),
-    put("banyan_a", px(20) + 13, 20, turn=70, collide=True, clear=6),
-    put("banyan_b", px(-24) + 12, -24, turn=250, collide=True, clear=5),
-    put("strangler_a", px(-16) - 8, -16, turn=0, collide=True, clear=2.5),
-    put("strangler_b", sx(4) - 14, 4, turn=130, collide=True, clear=2.5),
-    put("tree_winding_a", px(2) + 5, 2, turn=170, collide=True, clear=2.5),
-    put("tree_winding_b", sx(-12) - 6, -12, turn=20, collide=True, clear=2.5),
-    put("tree_winding_c", px(26) - 6, 26, turn=95, collide=True, clear=2.5),
-    put("tree_lean_b", sx(24) - 5, 24, turn=60, collide=True, clear=2.5),
-    put("tree_forked_a", px(14) + 6, 14, turn=210, collide=True, clear=2),
-    put("tree_forked_b", sx(-22) - 9, -22, turn=340, collide=True, clear=2),
-    put("climbed_a", px(-12) + 7, -12, turn=0, collide=True, clear=2),
-    put("climbed_b", sx(12) - 4, 12, turn=45, collide=True, clear=2),
-]
-objects += hero
-tree_pos = {}
-for o in hero:
-    x, hh, z = (float(c) for c in o["Position"].split(","))
-    tree_pos[o["Name"].split(" @ ")[0]] = (x, -z)
+tree_place = {}   # name -> (x, y, turn, scale)
+tree_model = {}   # name -> model
 
-# -- palms, tree ferns, bamboo, the odd ones -------------------------------
+
+def tree(model, x, y, turn, clear, scale=1.0, name=None):
+    name = name or model
+    o = put(model, x, y, turn=turn, scale=scale, collide=True, clear=clear, name=name)
+    tree_place[name] = (x, y, turn, scale)
+    tree_model[name] = model
+    return o
+
+
+# -- the big trees, by hand: the composition the references have ------------
 objects += [
-    put("palm_a", px(-12) + 4, -12, turn=30, collide=True, clear=1.5),
-    put("palm_c", sx(-5) - 5, -5, turn=200, collide=True, clear=1.5),
-    put("palm_b", px(12) + 4, 12, turn=110, collide=True, clear=1.5),
-    put("palm_fan_a", px(4) - 5, 4, turn=0, collide=True, clear=1.5),
-    put("palm_fan_b", sx(-14) + 4, -14, turn=80, collide=True, clear=1.2),
-    put("treefern_a", sx(-8) + 3.5, -8, turn=0, collide=True, clear=1.2),
-    put("treefern_b", sx(6) + 3.5, 6, turn=140, collide=True, clear=1.2),
-    put("bambooclump_a", px(-23) - 3.1, -22.2, turn=15, clear=1.5),
-    put("bambooclump_b", px(-23) + 3.4, -21.5, turn=200, clear=1.8),
-    put("bamboo_a", px(-23) - 2.2, -23.4, turn=8, clear=0.4),
-    put("bamboo_c", px(-23) + 2.4, -22.6, turn=95, clear=0.4),
-    put("bambooclump_a", px(-18) + 4, -18, turn=0, scale=0.9, clear=1.5),
-    put("bambooclump_b", px(-26) - 4, -26, turn=60, clear=1.8),
-    put("bambooclump_a", px(-20) - 4.5, -20, turn=200, scale=0.9, clear=1.5),
-    put("bamboo_b", px(-15) - 3.5, -15, turn=0, clear=0.5),
-    put("bamboo_c", px(-22) + 3.5, -22, turn=90, clear=0.5),
-    put("fern_a", px(-23) - 1.5, -22.8),
-    put("fern_c", px(-23) + 1.3, -22.4),
-    put("fern_b", px(-23) - 1.1, -21.6),
-    put("fern_d", px(-23) + 1.7, -23.2),
-    put("broadleaf_a", px(-23) - 2.6, -21.0, turn=40),
-    put("boulder_a", sx(-21) + 1.4, -21, turn=50, lift=-0.12, collide=True, clear=1.2),
-    put("rockflat_c", sx(-23) - 0.3, -22.5, turn=20, lift=-0.18, collide=True),
-    put("streamstone_b", sx(-22), -22, turn=80, lift=-0.1, collide=True),
-    put("rockmid_a", sx(-20) - 2.4, -20.5, turn=110, lift=-0.15, collide=True, clear=1.2),
-    put("stilt_a", sx(10) + 4, 10, turn=0, clear=1.5),
-    put("stilt_b", sx(-20) - 4, -20, turn=120, clear=1.5),
-    put("stilt_c", px(28) + 6, 28, turn=0, clear=1.5),
-    put("cycad_a", px(0) - 4, 0, turn=40, clear=1),
-    put("cycad_b", px(24) + 5, 24, turn=0, clear=1.2),
-    put("banana_a", px(14) - 5, 14, turn=0, clear=1.5),
-    put("banana_b", sx(22) + 5, 22, turn=180, clear=1.8),
-    put("reeds_a", sx(-16) + 2.6, -16, clear=0.5),
-    put("reeds_b", sx(2) - 2.6, 2, turn=50, clear=0.5),
-    put("reeds_a", sx(20) + 2.6, 20, turn=120, clear=0.5),
+    tree("tree_lean_a", px(-8) - 3.5, -8, 15, 2.5),           # the trunk over the path
+    tree("tree_giant_b", px(-2) + 9, -2, 40, 4),
+    tree("mossy_giant", px(8) - 12, 8, 200, 4),
+    tree("tree_giant_a", sx(16) - 9, 16, 110, 4),
+    tree("tree_giant_c", px(-27) + 9, -27, 300, 3.5),
+    tree("banyan_a", px(20) + 13, 20, 70, 6),
+    tree("banyan_b", px(-24) + 12, -24, 250, 5),
+    tree("strangler_a", px(-16) - 8, -16, 0, 2.5),
+    tree("strangler_b", sx(4) - 14, 4, 130, 2.5),
+    tree("tree_winding_a", px(2) + 5, 2, 170, 2.5),
+    tree("tree_winding_b", sx(-12) - 6, -12, 20, 2.5),
+    tree("tree_winding_c", px(26) - 6, 26, 95, 2.5),
+    tree("tree_lean_b", sx(24) - 5, 24, 60, 2.5),
+    tree("tree_forked_a", px(14) + 6, 14, 210, 2),
+    tree("tree_forked_b", sx(-22) - 9, -22, 340, 2),
+    tree("climbed_a", px(-12) + 7, -12, 0, 2),
+    tree("climbed_b", sx(12) - 4, 12, 45, 2),
 ]
+tree_pos = {n: (p[0], p[1]) for n, p in tree_place.items()}
 
-# -- dead wood -------------------------------------------------------------
+# -- the picket behind: tall trunks that go into the fog --------------------
+for i in range(34):
+    for _ in range(80):
+        x, y = rng.uniform(-29, 29), rng.uniform(-29, 29)
+        if free(x, y, 2.2, path_margin=1.5, stream_margin=1.0) and slope(x, y) < 30:
+            m = rng.choice(["tree_tall_a", "tree_tall_b", "tree_tall_c", "tree_tall_d"])
+            objects.append(tree(m, x, y, rng.uniform(0, 360), 2.2, scale=rng.uniform(0.85, 1.15), name=f"{m} #{i}"))
+            break
+tree_pos = {n: (p[0], p[1]) for n, p in tree_place.items()}
+
+# -- the wall of forest on the valley's sides, beyond the walk: what the fog
+# shows as silhouettes and what fills the horizon --------------------------
+wall = []
+big = ["tree_giant_a", "tree_giant_b", "tree_giant_c", "banyan_a", "strangler_a", "mossy_giant"]
+for i in range(150):
+    for _ in range(60):
+        x, y = rng.uniform(-APRON / 2 + 6, APRON / 2 - 6), rng.uniform(-APRON / 2 + 6, APRON / 2 - 6)
+        d = max(abs(x), abs(y))
+        if d < SCENE / 2 + 1.5 or (x < 0 and y > 0 and rng.random() < 0.5):
+            continue
+        r = 3.0 if d < 42 else 5.0
+        if not all(math.hypot(x - qx, y - qy) > r for qx, qy, _ in wall):
+            continue
+        if d < 45 and rng.random() < 0.3:
+            m = rng.choice(big)
+        else:
+            m = rng.choice(["tree_tall_a", "tree_tall_b", "tree_tall_c", "tree_tall_d", "tree_tall_b", "palm_c", "tree_arch_a"])
+        wall.append((x, y, r))
+        objects.append(put(m, x, y, rng.uniform(0, 360), rng.uniform(0.9, 1.3), name=f"wall {m} #{i}"))
+        break
+for i in range(90):
+    for _ in range(40):
+        x, y = rng.uniform(-APRON / 2 + 4, APRON / 2 - 4), rng.uniform(-APRON / 2 + 4, APRON / 2 - 4)
+        if max(abs(x), abs(y)) < SCENE / 2 + 1.0:
+            continue
+        m = rng.choice(["bush_a", "bush_b", "fern_a", "fern_c", "broadleaf_a", "palm_fan_a", "treefern_a", "banana_b", "elephant_a"])
+        objects.append(put(m, x, y, rng.uniform(0, 360), rng.uniform(1.2, 2.2), sink=0.03, align=0.5, name=f"wall {m} #{i}"))
+        break
+
+# -- palms, tree ferns, bamboo, the odd ones, by hand near the walk ----------
 objects += [
-    put("logmossy_a", px(6) + 2, 6, turn=70, collide=True, clear=1.5),
-    put("logmossy_b", sx(-2) + 6, -2, turn=20, collide=True, clear=2),
-    put("log_a", px(-28) + 6, -28, turn=150, collide=True, clear=1.5),
-    put("log_b", sx(28) - 7, 28, turn=100, collide=True, clear=2),
-    put("logmossy_c", px(18) - 4, 18, turn=10, collide=True, clear=1),
-    put("uprooted_a", sx(28) - 4, 30, turn=30, collide=True, clear=3),
-    put("uprooted_b", px(-30) + 10, -30, turn=200, collide=True, clear=2.5),
-    put("snag_a", px(18) - 7, 18, turn=0, collide=True, clear=1.2),
-    put("snag_b", sx(-10) - 8, -10, turn=90, collide=True, clear=1.5),
-    put("snag_c", px(-4) + 7, -4, turn=200, collide=True, clear=1),
-    put("stump_a", px(10) - 3.5, 10, turn=0, collide=True, clear=1),
-    put("stump_b", sx(-24) + 5, -24, turn=90, collide=True, clear=1.2),
-    put("stump_c", px(-8) + 4, -8, turn=180, collide=True, clear=0.8),
-    put("broken_a", px(26) - 9, 26, turn=250, collide=True, clear=2),
-    put("broken_b", sx(-28) - 6, -28, turn=30, collide=True, clear=2),
-    put("rootmat_a", px(8) - 12, 8, turn=20, collide=True),
-    put("rootmat_b", sx(16) - 9, 16, turn=70, collide=True),
-    put("vinetangle_b", px(10) - 4.5, 10.8),
+    tree("palm_a", px(-12) + 4, -12, 30, 1.5),
+    tree("palm_c", sx(-5) - 5, -5, 200, 1.5),
+    tree("palm_b", px(12) + 4, 12, 110, 1.5),
+    tree("palm_fan_a", px(4) - 5, 4, 0, 1.5),
+    tree("palm_fan_b", sx(-14) + 4, -14, 80, 1.2),
+    tree("treefern_a", sx(-8) + 3.5, -8, 0, 1.2),
+    tree("treefern_b", sx(6) + 3.5, 6, 140, 1.2),
+    put("bambooclump_a", px(-18) + 4, -18, turn=0, clear=1.5, sink=0.01),
+    put("bambooclump_b", px(-26) - 4, -26, turn=60, clear=1.8, sink=0.01),
+    put("bambooclump_a", px(-20) - 4.5, -20, turn=200, scale=0.9, clear=1.5, sink=0.01),
+    put("bamboo_b", px(-15) - 3.5, -15, turn=0, clear=0.5, sink=0.01),
+    put("bamboo_c", px(-22) + 3.5, -22, turn=90, clear=0.5, sink=0.01),
+    put("stilt_a", sx(10) + 4, 10, turn=0, clear=1.5, sink=0.02),
+    put("stilt_b", sx(-20) - 4, -20, turn=120, clear=1.5, sink=0.02),
+    put("stilt_c", px(28) + 6, 28, turn=0, clear=1.5, sink=0.02),
+    put("cycad_a", px(0) - 4, 0, turn=40, clear=1, sink=0.03, align=0.5),
+    put("cycad_b", px(24) + 5, 24, turn=0, clear=1.2, sink=0.03, align=0.5),
+    put("banana_a", px(14) - 5, 14, turn=0, clear=1.5, sink=0.02),
+    put("banana_b", sx(22) + 5, 22, turn=180, clear=1.8, sink=0.02),
+    put("reeds_a", sx(-16) + 2.6, -16, clear=0.5, sink=0.03, align=0.6),
+    put("reeds_b", sx(2) - 2.6, 2, turn=50, clear=0.5, sink=0.03, align=0.6),
+    put("reeds_a", sx(20) + 2.6, 20, turn=120, clear=0.5, sink=0.03, align=0.6),
 ]
+# more palms and tree ferns, scattered where the walk can see them
+objects += scatter(rng, ["palm_a", "palm_b", "palm_fan_a", "palm_fan_b", "treefern_a", "treefern_b", "cycad_b", "banana_a"], 14, 1.5,
+                   collide=True, sink=0.02, path_margin=1.0, stream_margin=0.5, max_slope=30)
+objects += scatter(rng, ["tree_thin_a", "tree_thin_b", "tree_arch_a", "tree_arch_b"], 26, 1.0, sink=0.02, path_margin=1.0,
+                   stream_margin=0.5, max_slope=35)
 
-# -- the stream: stones in the bed, boulders on the banks ------------------
+# -- dead wood: logs lie along the slope, sunk a little; stumps and snags stand
+objects += [
+    put("logmossy_a", px(6) + 2, 6, turn=70, collide=True, clear=1.5, sink=0.12, align=1.0),
+    put("logmossy_b", sx(-2) + 6, -2, turn=20, collide=True, clear=2, sink=0.12, align=1.0),
+    put("log_a", px(-28) + 6, -28, turn=150, collide=True, clear=1.5, sink=0.12, align=1.0),
+    put("log_b", sx(28) - 7, 28, turn=100, collide=True, clear=2, sink=0.12, align=1.0),
+    put("logmossy_c", px(18) - 4, 18, turn=10, collide=True, clear=1, sink=0.15, align=1.0),
+    put("uprooted_a", sx(28) - 4, 28, turn=30, collide=True, clear=3, sink=0.05, align=0.6),
+    put("uprooted_b", px(-30) + 10, -29, turn=200, collide=True, clear=2.5, sink=0.05, align=0.6),
+    tree("snag_a", px(18) - 7, 18, 0, 1.2),
+    tree("snag_b", sx(-10) - 8, -10, 90, 1.5),
+    tree("snag_c", px(-4) + 7, -4, 200, 1),
+    put("stump_a", px(10) - 3.5, 10, turn=0, collide=True, clear=1, sink=0.06, align=0.7),
+    put("stump_b", sx(-24) + 5, -24, turn=90, collide=True, clear=1.2, sink=0.06, align=0.7),
+    put("stump_c", px(-8) + 4, -8, turn=180, collide=True, clear=0.8, sink=0.06, align=0.7),
+    put("broken_a", px(26) - 9, 26, turn=250, collide=True, clear=2, sink=0.03),
+    put("broken_b", sx(-28) - 6, -28, turn=30, collide=True, clear=2, sink=0.03),
+    put("rootmat_a", *tree_pos["mossy_giant"], turn=20, collide=True, sink=0.15, align=1.0),
+    put("rootmat_b", *tree_pos["tree_giant_a"], turn=70, collide=True, sink=0.15, align=1.0),
+    put("vinetangle_b", px(10) - 4.5, 10.8, sink=0.05, align=1.0),
+]
+objects += scatter(rng, ["debris_a", "debris_b", "debris_c"], 30, 0.8, sink=0.25, align=1.0, path_margin=0.5, allow_path=False)
+objects += scatter(rng, ["fallenfrond_a", "fallenfrond_b"], 14, 0.6, sink=0.0, align=1.0, path_margin=0.0, allow_path=True)
+
+# -- the stream: stones in the bed, sunk and tilted with it; boulders on the banks
 bed = ["streamstone_a", "streamstone_b", "streamstone_c", "rockflat_a", "rockflat_b", "rockflat_d", "rock_b", "streamstone_b"]
 bank = ["boulder_a", "boulder_b", "rockbig_a", "rockmid_a", "rockmid_b", "rockmid_c", "rockstack_a", "rockflat_c", "rockslab_a"]
 y = -29.0
 i = 0
 while y < 29:
-    objects.append(put(bed[i % len(bed)], sx(y) + rng.uniform(-1.4, 1.4), y, turn=rng.uniform(0, 360), scale=rng.uniform(0.7, 1.2), lift=-0.15, collide=True))
+    x = sx(y) + rng.uniform(-1.3, 1.3)
+    objects.append(put(bed[i % len(bed)], x, y, turn=rng.uniform(0, 360), scale=rng.uniform(0.7, 1.2), sink=0.3, align=1.0, collide=True, clear=0.8))
+    if i % 3 != 2:
+        x2 = sx(y) + rng.uniform(-1.5, 1.5)
+        objects.append(put("streamstone_a", x2, y + 1.2, turn=rng.uniform(0, 360), scale=rng.uniform(0.5, 0.9), sink=0.35, align=1.0, clear=0.4))
     if i % 2 == 0:
         side = 1 if i % 4 == 0 else -1
-        objects.append(put(bank[(i // 2) % len(bank)], sx(y) + side * rng.uniform(2.8, 4.2), y + rng.uniform(-1, 1),
-                           turn=rng.uniform(0, 360), lift=-0.2, collide=True, clear=1.5))
+        bx, by = sx(y) + side * rng.uniform(2.6, 4.0), y + rng.uniform(-1, 1)
+        objects.append(put(bank[(i // 2) % len(bank)], bx, by, turn=rng.uniform(0, 360), sink=0.25, align=0.9, collide=True, clear=1.5))
     y += rng.uniform(2.0, 3.2)
     i += 1
 objects += [
-    put("cliff_a", -26, 10, turn=20, collide=True, clear=5),
-    put("cliff_b", 27, -14, turn=110, collide=True, clear=6),
-    put("rockbig_b", -22, -6, turn=60, collide=True, clear=3),
-    put("rockbig_c", 24, 6, turn=300, collide=True, clear=3.5),
-    put("rockstack_b", px(-6) + 10, -6, turn=0, collide=True, clear=1.5),
+    put("cliff_a", -26, 10, turn=20, collide=True, clear=5, sink=0.2, align=0.5),
+    put("cliff_b", 27, -14, turn=110, collide=True, clear=6, sink=0.2, align=0.5),
+    put("rockbig_b", -22, -6, turn=60, collide=True, clear=3, sink=0.25, align=0.8),
+    put("rockbig_c", 24, 6, turn=300, collide=True, clear=3.5, sink=0.25, align=0.8),
+    put("rockstack_b", px(-6) + 10, -6, turn=0, collide=True, clear=1.5, sink=0.1, align=0.8),
 ]
-
-# -- the picket behind: tall trunks that go into the fog --------------------
-objects += scatter(rng, ["tree_tall_a", "tree_tall_b", "tree_tall_c", "tree_tall_d"], 34, 2.2, collide=True)
-objects += scatter(rng, ["tree_thin_a", "tree_thin_b", "tree_arch_a", "tree_arch_b"], 22, 1.0)
-objects += scatter(rng, ["palm_a", "palm_b", "palm_fan_a", "treefern_b", "cycad_b", "banana_a"], 12, 1.5, collide=True)
-
-
-# -- vines: hung from limbs, strung between trunks, coiled on the ground ---
-def hang(model, tree, dx, dy, h, turn=0, scale=1.0):
-    x, y = tree_pos[tree]
-    return put(model, x + dx, y + dy, turn=turn, scale=scale, lift=h)
+objects += scatter(rng, ["rock_a", "rock_b", "rockmid_a", "rockflat_a"], 24, 0.8, sink=0.3, align=1.0, collide=True, path_margin=0.3,
+                   stream_margin=0.0, weights=[3, 2, 1, 1])
+objects += scatter(rng, ["pebbles_a", "pebbles_b"], 20, 0.8, sink=0.35, align=1.0, allow_path=True, allow_stream=True,
+                   prefer=lambda x, y: 1.0 if in_stream(x, y, 3.0) else 0.25)
 
 
-def strung(model, span, a, b, h):
-    (ax, ay), (bx, by) = tree_pos[a], tree_pos[b]
+# -- vines: hung from limbs the trees have, strung from bark to bark --------
+def hang(model, tree, choose, turn=None, scale=1.0, lift=0.0, name=None):
+    """A model whose origin is its top, at a limb's underside."""
+    points = limb_points(tree, min_z=4.5, min_r=0.12)
+    if not points:
+        return None
+    (wx, wy, wz), r = choose(points)
+    return put(model, wx, wy, turn=turn if turn is not None else rng.uniform(0, 360), scale=scale, lift=wz - height(wx, wy) + lift, name=name)
+
+
+def strung(model, span, a, b, z):
+    """An arch from tree a's bark to tree b's, at about height z."""
+    (ax, ay, az), ra = trunk_point(a, z)
+    (bx, by, bz), rb = trunk_point(b, z)
+    d = math.hypot(bx - ax, by - ay)
+    ux, uy = (bx - ax) / d, (by - ay) / d
+    ax, ay = ax + ux * ra, ay + uy * ra
+    bx, by = bx - ux * rb, by - uy * rb
     dist = math.hypot(bx - ax, by - ay)
-    return put(model, ax, ay, turn=math.degrees(math.atan2(by - ay, bx - ax)), scale=dist / span, lift=h)
+    turn = math.degrees(math.atan2(by - ay, bx - ax))
+    return put(model, ax, ay, turn=turn, scale=dist / span, lift=az - height(ax, ay), name=f"{model} {a}-{b}")
 
 
-objects += [
-    hang("vinehang_b", "tree_giant_b", 3.0, 0.5, 9.0),
-    hang("vinehang_a", "mossy_giant", -3.0, 2.0, 8.0, turn=40),
-    hang("vinehang_c", "tree_lean_a", 4.5, 1.2, 5.5),
-    hang("vinehang_b", "banyan_a", -4.0, 3.0, 8.5, turn=90, scale=0.8),
-    hang("vinerope_a", "banyan_a", 5.0, -2.0, 9.0),
-    hang("vinerope_b", "tree_giant_a", 3.5, 3.0, 10.0),
-    hang("mossdrape_b", "tree_giant_b", -3.5, 2.5, 8.0),
-    hang("mossdrape_a", "tree_winding_c", 2.0, 1.0, 6.0),
-    hang("mossdrape_b", "mossy_giant", 4.0, -2.5, 9.0, turn=30),
-    hang("aerialroots_b", "strangler_a", 1.5, 0.0, 6.0),
-    hang("aerialroots_a", "banyan_b", -3.0, 2.0, 5.5),
+def highest(points):
+    return max(points, key=lambda p: p[0][2])
+
+
+def pick(rng, k=0):
+    return lambda points: sorted(points, key=lambda p: -p[0][2])[min(k, len(points) - 1)]
+
+
+def outermost(tree):
+    x0, y0 = tree_pos[tree]
+    return lambda points: max(points, key=lambda p: math.hypot(p[0][0] - x0, p[0][1] - y0))
+
+
+vines = [
+    hang("vinehang_b", "tree_giant_b", outermost("tree_giant_b")),
+    hang("vinehang_a", "tree_giant_b", pick(rng, 3)),
+    hang("mossdrape_b", "tree_giant_b", pick(rng, 6)),
+    hang("vinehang_a", "mossy_giant", outermost("mossy_giant")),
+    hang("mossdrape_b", "mossy_giant", pick(rng, 4)),
+    hang("vinehang_c", "tree_lean_a", outermost("tree_lean_a")),
+    hang("mossdrape_a", "tree_lean_a", pick(rng, 2)),
+    hang("vinehang_b", "banyan_a", outermost("banyan_a"), scale=0.8),
+    hang("vinerope_a", "banyan_a", pick(rng, 2)),
+    hang("aerialroots_a", "banyan_b", outermost("banyan_b")),
+    hang("vinerope_b", "tree_giant_a", outermost("tree_giant_a")),
+    hang("mossdrape_a", "tree_giant_a", pick(rng, 3)),
+    hang("aerialroots_b", "strangler_a", pick(rng, 1)),
+    hang("mossdrape_a", "tree_winding_c", pick(rng, 1)),
+    hang("vinehang_c", "tree_winding_a", pick(rng, 1)),
+    hang("mossdrape_b", "tree_giant_c", pick(rng, 2)),
+    hang("vinehang_a", "climbed_b", pick(rng, 1)),
     strung("vinearch_a", 8, "tree_lean_a", "tree_giant_b", 7.0),
     strung("vinearch_b", 12, "mossy_giant", "strangler_b", 8.0),
     strung("vinearch_a", 8, "tree_winding_a", "tree_forked_a", 6.5),
-    put("liana_a", px(-13) + 6, -13, turn=200),
-    put("liana_b", sx(-6) - 7, -6, turn=30),
-    put("liana_c", px(16) - 6, 16, turn=300),
-    put("brackets_b", tree_pos["tree_giant_b"][0] - 1.7, tree_pos["tree_giant_b"][1], turn=180, lift=1.2),
-    put("brackets_a", px(18) - 7 + 0.5, 18, turn=0, lift=1.6),
+    strung("vinearch_b", 12, "tree_giant_a", "climbed_b", 7.5),
 ]
+objects += [o for o in vines if o is not None]
+# and a curtain from a few of the tall picket trees
+tall = [n for n in tree_place if n.startswith("tree_tall")]
+for n in rng.sample(tall, 8):
+    o = hang(rng.choice(["vinehang_a", "vinehang_c", "mossdrape_a"]), n, pick(rng, 0), scale=rng.uniform(0.7, 1.0), name=f"vines on {n}")
+    if o:
+        objects.append(o)
+# lianas coiled on the ground, where it is nearly level
+objects += scatter(rng, ["liana_a", "liana_b", "liana_c"], 6, 2.5, sink=0.02, align=1.0, max_slope=8, path_margin=1.0)
+objects += scatter(rng, ["vinetangle_a", "vinetangle_b"], 8, 1.2, sink=0.05, align=1.0, max_slope=15, path_margin=0.5)
 
-# -- the scatter: dense forest up to the banks, a narrow path, a stream bed --
-# The path and stream meander, so these are short strips rather than one 20 m
-# clearing down the middle - that left the first view looking like a field.
-objects += clutter_strips("understory west", DEFS["understory"],
-                          lambda y: -30.0, lambda y: sx(y) - 1.6, 110)
-objects += clutter_strips("understory between", DEFS["understory"],
-                          lambda y: sx(y) + 1.7, lambda y: px(y) - 1.5, 130)
-objects += clutter_strips("understory east", DEFS["understory"],
-                          lambda y: px(y) + 1.5, lambda y: 30.0, 150)
-objects += clutter_strips("floor west", DEFS["floor"],
-                          lambda y: -30.0, lambda y: sx(y) - 1.4, 210)
-objects += clutter_strips("floor stream", DEFS["floor"],
-                          lambda y: sx(y) - 1.4, lambda y: sx(y) + 1.7, 230)
-objects += clutter_strips("floor between", DEFS["floor"],
-                          lambda y: sx(y) + 1.7, lambda y: px(y) - 1.3, 250)
-objects += clutter_strips("floor path", DEFS["floor_thin"],
-                          lambda y: px(y) - 1.3, lambda y: px(y) + 1.3, 270)
-objects += clutter_strips("floor east", DEFS["floor"],
-                          lambda y: px(y) + 1.3, lambda y: 30.0, 290)
-objects += [clutter_volume("saplings", DEFS["saplings"], -30, 30, -30, 30, 31)]
+# -- shelf fungi on the dead wood, facing out of the bark --------------------
+for snag_name, z in (("snag_a", 1.6), ("snag_b", 1.2), ("snag_c", 0.9), ("snag_b", 3.0)):
+    (cx, cy, cz), r = trunk_point(snag_name, z)
+    a = rng.uniform(0, 360)
+    fx, fy = cx + math.cos(math.radians(a)) * r * 0.95, cy + math.sin(math.radians(a)) * r * 0.95
+    objects.append(put(rng.choice(["brackets_a", "brackets_b"]), fx, fy, turn=a, lift=cz - height(fx, fy), name=f"brackets on {snag_name} {z}"))
+
+# -- the understory, by rule rather than by volume ---------------------------
+def shade(x, y):
+    d = nearest_tree(x, y)
+    return 1.0 if d < 5 else 0.75 if d < 9 else 0.45
+
+
+def damp(x, y):
+    d = abs(x - sx(y))
+    return 1.0 if d < 6 else 0.5 if d < 10 else 0.2
+
+
+ferns = ["fern_a", "fern_b", "fern_c", "fern_d"]
+objects += scatter(rng, ferns, 520, 0.55, sink=0.04, align=0.8, prefer=shade, weights=[3, 2, 3, 1], path_margin=0.4, max_slope=40)
+objects += scatter(rng, ["broadleaf_a", "broadleaf_b", "elephant_a", "elephant_b"], 90, 0.7, sink=0.03, align=0.5, prefer=damp,
+                   weights=[3, 3, 1, 1], path_margin=0.6)
+objects += scatter(rng, ["lily_a", "lily_b", "fanplant_a", "fanplant_b"], 70, 0.6, sink=0.03, align=0.6, path_margin=0.4)
+objects += scatter(rng, ["bush_a", "bush_b"], 40, 1.0, sink=0.03, align=0.4, prefer=shade, path_margin=0.8)
+objects += scatter(rng, ["sapling_a", "sapling_b"], 60, 0.4, sink=0.03, align=0.3, path_margin=0.5)
+objects += scatter(rng, ["grass_a", "grass_b"], 260, 0.45, sink=0.04, align=0.9, allow_path=False, allow_stream=False, scale=(0.6, 0.95),
+                   path_margin=0.2, prefer=lambda x, y: 0.9 if on_path(x, y, 2.5) or in_stream(x, y, 3.5) else 0.3)
+objects += scatter(rng, ["mosscushion_a", "mosscushion_b", "mosscushion_c", "mosscarpet_a"], 120, 0.5, sink=0.12, align=1.0,
+                   prefer=lambda x, y: min(1.0, 0.5 * shade(x, y) + 0.5 * damp(x, y)), path_margin=0.3)
+objects += scatter(rng, ["litter_a", "litter_b"], 260, 0.4, sink=0.02, align=1.0, allow_path=True, prefer=shade, clear=0.0)
 
 # -- light, fog, the player, the HUD ----------------------------------------
 # The sun low, from behind and to the left of the walk, so trunks are lit on
@@ -411,10 +572,10 @@ objects += [clutter_volume("saplings", DEFS["saplings"], -30, 30, -30, 30, 31)]
 objects += [
     S.environment(sun_brightness=1.0, sun_rot=pitch_yaw(-28, 155), sun_color="1,0.93,0.8,1", ambient="0.16,0.22,0.18,1",
                   sky_tint="0.6,0.7,0.68,1", shadow_detail=96),
-    S.go("Gradient Fog", components=[S.comp("Rinten.GradientFog", "fog/gradient", Color="0.55,0.66,0.62,0.92", Height=16,
-                                            VerticalFalloffExponent=1.1, StartDistance=4, EndDistance=36, FalloffExponent=1.15)]),
+    S.go("Gradient Fog", components=[S.comp("Rinten.GradientFog", "fog/gradient", Color="0.62,0.70,0.66,0.8", Height=18,
+                                            VerticalFalloffExponent=1.1, StartDistance=6, EndDistance=58, FalloffExponent=1.25)]),
     S.go("Volume Fog", (0, 4, 0), components=[S.comp("Rinten.VolumetricFogVolume", "fog/volume", Bounds={"Mins": "-32,-6,-32", "Maxs": "32,10,32"},
-                                                     Strength=0.48, FalloffExponent=0.8, Color="0.68,0.78,0.74,1")]),
+                                                     Strength=0.08, FalloffExponent=0.8, Color="0.68,0.78,0.74,1")]),
 ]
 
 pl = S.player((px(-23), height(px(-23), -23) + 1.15, 23), speed=4.5)
