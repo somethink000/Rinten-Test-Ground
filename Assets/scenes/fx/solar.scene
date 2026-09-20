@@ -1,0 +1,1485 @@
+{
+  "__guid": "7c1d3a52-0e8b-4a1f-9f0e-5b2c6d7e8f90",
+  "GameObjects": [
+    {
+      "__guid": "ecb6b63c-22b2-567e-b5c0-14089b3468da",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Environment",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "6d9e83ac-0682-5066-b1f1-ae91444d0a89",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Ambient",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.AmbientLight",
+              "__guid": "672401ac-3d22-56a7-8b9c-495ddecde4f7",
+              "__enabled": true,
+              "Flags": 0,
+              "Color": "0.02,0.02,0.04,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "d372c26b-d2fb-5c12-9c53-d51c62bcf7fa",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "2D Skybox",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "skybox",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.SkyBox2D",
+              "__guid": "e22dfe6e-31a3-5e8f-887a-754295cdda7b",
+              "__enabled": true,
+              "Flags": 0,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SkyIndirectLighting": false,
+              "SkyMaterial": "materials/skybox/procedural.mat",
+              "Tint": "0,0,0,1"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "eaeaa505-7730-5ad7-8aea-7b269a4b3595",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Sun",
+      "Position": "0,3,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "73bb41cb-955b-5e88-a5bd-7a5145bbb6a6",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Sun Effect",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "cdaaf78f-b5f4-5774-a125-ca5f38dea24e",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/sun.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "88f0b663-7385-5fa4-a2d4-8d1944ec91c1",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Planets",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "697a920b-7b16-5aa6-9a31-0db6f0debbda",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Mercury",
+          "Position": "3.88053155,2.21783543,6.37021923",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "TestGround.Orbit",
+              "__guid": "73495371-6b93-59c8-bd9a-6d5e29af1149",
+              "__enabled": true,
+              "Flags": 0,
+              "Centre": {
+                "_type": "gameobject",
+                "go": "eaeaa505-7730-5ad7-8aea-7b269a4b3595"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Period": 24,
+              "Phase": 0.1,
+              "Radius": 7.5,
+              "Tilt": 7
+            },
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "8e47de9e-2336-5704-9860-b01f64497ef1",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/mercury.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "1c657d00-14e9-5ed8-b5c4-75a8209495a4",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Venus",
+          "Position": "-8.50764942,3.3116827,-5.24621534",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "TestGround.Orbit",
+              "__guid": "9a58e9de-038e-569a-92b0-5e5f7d831cb8",
+              "__enabled": true,
+              "Flags": 0,
+              "Centre": {
+                "_type": "gameobject",
+                "go": "eaeaa505-7730-5ad7-8aea-7b269a4b3595"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Period": 40,
+              "Phase": 0.55,
+              "Radius": 10,
+              "Tilt": 3.4
+            },
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "319de6ea-c9e9-5dc2-a826-6216c66d5278",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/venus.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "c3b8cc47-3975-5038-8e8d-c46df5bbaebb",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Earth",
+          "Position": "12.8350601,3,2.06427312",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "TestGround.Orbit",
+              "__guid": "bd0d7fd0-bbff-53ae-a4d0-60c1ba3f6a30",
+              "__enabled": true,
+              "Flags": 0,
+              "Centre": {
+                "_type": "gameobject",
+                "go": "eaeaa505-7730-5ad7-8aea-7b269a4b3595"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Period": 60,
+              "Phase": 0,
+              "Radius": 13,
+              "Tilt": 0
+            },
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "a7155cab-f881-5fd5-a4cc-381a073bc149",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/earth.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "855d2f60-bca7-5d2f-b456-40b8c1de659d",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Mars",
+          "Position": "6.77384281,3.48976111,-15.5844526",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "TestGround.Orbit",
+              "__guid": "cc3c906e-0c6a-5c58-a2d6-c25e971c5061",
+              "__enabled": true,
+              "Flags": 0,
+              "Centre": {
+                "_type": "gameobject",
+                "go": "eaeaa505-7730-5ad7-8aea-7b269a4b3595"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Period": 100,
+              "Phase": 0.8,
+              "Radius": 17,
+              "Tilt": 1.8
+            },
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "89f2d53c-4bcf-5166-a6f8-2c5ce4f62eab",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/mars.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "7a1add8d-00f9-5695-b1ec-317721fb775a",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Jupiter",
+          "Position": "-11.0015507,2.31825948,30.0416546",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "TestGround.Orbit",
+              "__guid": "28345ee2-0197-5aac-a740-dce8149862b8",
+              "__enabled": true,
+              "Flags": 0,
+              "Centre": {
+                "_type": "gameobject",
+                "go": "eaeaa505-7730-5ad7-8aea-7b269a4b3595"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Period": 260,
+              "Phase": 0.3,
+              "Radius": 32,
+              "Tilt": 1.3
+            },
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "789de88e-26a5-5634-90fd-f61964750ff1",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/jupiter.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "38a34cab-d7ef-5ac4-9a34-9dafbee40603",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Saturn",
+          "Position": "-25.0449905,4.57800245,-36.1421928",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "TestGround.Orbit",
+              "__guid": "09f51d88-bc21-529c-b734-3bcbb0f155c0",
+              "__enabled": true,
+              "Flags": 0,
+              "Centre": {
+                "_type": "gameobject",
+                "go": "eaeaa505-7730-5ad7-8aea-7b269a4b3595"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Period": 420,
+              "Phase": 0.65,
+              "Radius": 44,
+              "Tilt": 2.5
+            },
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "1411bc9b-3692-5cd7-a3d8-ae0ad6defbcc",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/saturn.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "86f2761c-cd58-588b-88a1-e576eec353b8",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Uranus",
+          "Position": "15.9834032,2.27982616,51.5753021",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "TestGround.Orbit",
+              "__guid": "07ce38ee-a44e-5474-86bf-ddb73a1d6166",
+              "__enabled": true,
+              "Flags": 0,
+              "Centre": {
+                "_type": "gameobject",
+                "go": "eaeaa505-7730-5ad7-8aea-7b269a4b3595"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Period": 700,
+              "Phase": 0.2,
+              "Radius": 54,
+              "Tilt": 0.8
+            },
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "2f7d8690-7590-504d-8c74-d5561c192ebd",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/uranus.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "ea634e80-045c-5e5b-a75e-054355faaaf9",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Neptune",
+          "Position": "-57.2572746,2.43670034,17.92449",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "TestGround.Orbit",
+              "__guid": "6a79f164-551f-5764-aec8-86b5153e1e74",
+              "__enabled": true,
+              "Flags": 0,
+              "Centre": {
+                "_type": "gameobject",
+                "go": "eaeaa505-7730-5ad7-8aea-7b269a4b3595"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Period": 900,
+              "Phase": 0.45,
+              "Radius": 60,
+              "Tilt": 1.8
+            },
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "9214e6c8-8145-59f9-bca8-82772f542efc",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/neptune.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "a809de31-1140-5610-ba91-cd2b84e18815",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Pluto",
+          "Position": "55.3300858,14.5573072,-37.8022537",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "TestGround.Orbit",
+              "__guid": "865b1b70-51e6-5179-b9ad-3aadd33bb947",
+              "__enabled": true,
+              "Flags": 0,
+              "Centre": {
+                "_type": "gameobject",
+                "go": "eaeaa505-7730-5ad7-8aea-7b269a4b3595"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Period": 1200,
+              "Phase": 0.9,
+              "Radius": 68,
+              "Tilt": 17
+            },
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "281068fe-2a6b-5399-9b56-cfee3eca5ded",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/pluto.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "c88c785e-d563-57a3-a18b-a6084263cdda",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Ceres",
+          "Position": "-20.224781,0.623122215,12.7007332",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "TestGround.Orbit",
+              "__guid": "ee54c727-a585-5f9e-98e9-3707fe55c1b9",
+              "__enabled": true,
+              "Flags": 0,
+              "Centre": {
+                "_type": "gameobject",
+                "go": "eaeaa505-7730-5ad7-8aea-7b269a4b3595"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Period": 160,
+              "Phase": 0.4,
+              "Radius": 24,
+              "Tilt": 10.6
+            },
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "08542e89-a3e2-5b8c-82dc-d475a7092f5e",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/ceres.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "192f15a1-a07a-58b7-b2b2-c4499c84b35a",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Eris",
+          "Position": "43.1133537,-38.7791786,43.2636032",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "TestGround.Orbit",
+              "__guid": "1b0e7874-b860-5bdc-a900-db5ed6294b28",
+              "__enabled": true,
+              "Flags": 0,
+              "Centre": {
+                "_type": "gameobject",
+                "go": "eaeaa505-7730-5ad7-8aea-7b269a4b3595"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Period": 1500,
+              "Phase": 0.15,
+              "Radius": 74,
+              "Tilt": 44
+            },
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "4a664d3f-9ad3-5a9f-9834-d7cf9df1b85d",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/eris.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "6e6220bc-fec6-597d-a57c-0ac4394a0c11",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Belts",
+      "Position": "0,3,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "487e0038-332c-5634-ad45-cbeaa0cd7a79",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Asteroid Belt",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "4efb6320-ac0b-5577-b062-0112a8873551",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/belt.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "2e6a4c79-4ca5-5c8b-a3b0-9ecf663ee388",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Kuiper Belt",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "afa555f5-6540-5b6f-8fb6-95dab77c1421",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/kuiper.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "583fce83-3809-5ddd-bf3a-cbebe5687fad",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Trojans",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "1fbe2968-1d84-58cc-aae9-8e648a54394b",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/trojans.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "95470c2b-1eeb-515e-a926-c3764385b867",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Probes",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "3b0a8d6e-10a8-59ee-bd30-7d09bd144682",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Voyager 1",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "2216ed51-f2bb-5b83-a280-d8c05518f944",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/voyager1.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "22db206a-87dc-50e0-a14f-01f2f382402f",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Voyager 2",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "7a1b23be-af57-5439-8465-34e9020ce2da",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/voyager2.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "d9de0fce-32d1-54d2-89ea-e53df3aabb62",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "New Horizons",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "c25fa1a7-bfff-5c9b-94d7-df2a3b53a0ca",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/newhorizons.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "41280005-7b6b-5fa1-be70-ec20555462a5",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Orbits",
+      "Position": "0,3,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "58e5fdf1-675f-560f-ba98-11c29aed3d15",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Orbit Lines",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "445e5e53-4b0c-5c13-b94e-d7e9f518b823",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/orbits.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "960d34d1-97b4-50fc-bd3a-c9c92a1cfd8d",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Stars",
+      "Position": "0,3,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "1ec841fc-726e-511a-93e2-231a87931abb",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Starfield",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ParticlePlayer",
+              "__guid": "01735e76-84de-5716-bf2c-9d0e96d03a82",
+              "__enabled": true,
+              "Flags": 0,
+              "AnchorBindings": [],
+              "ColorOverrides": {},
+              "Definition": "fx/solar/stars.fx",
+              "DestroyOnEnd": false,
+              "FloatOverrides": {
+                "Speed": 1
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayOnce": false,
+              "Seed": 0,
+              "VectorOverrides": {}
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "2d1a77a8-8037-57cd-a25f-76ccfc8671fe",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Player",
+      "Position": "0,8,40",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Template.Player",
+          "__guid": "12b45ab8-8d45-5ae3-8ac2-167429c52e1f",
+          "__enabled": true,
+          "Flags": 0,
+          "Camera": {
+            "_type": "component",
+            "component_id": "c79afacf-9413-5d19-bac8-04c14cc26370",
+            "go": "9ba2999b-86c6-5cdd-a581-bb4be032157f",
+            "component_type": "CameraComponent"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PitchClamp": 89,
+          "RunScale": 4,
+          "Speed": 12
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "9ba2999b-86c6-5cdd-a581-bb4be032157f",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Camera",
+          "Position": "0,0,0",
+          "Rotation": "-0.0697565004,0,0,0.997564077",
+          "Scale": "1,1,1",
+          "Tags": "maincamera",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.CameraComponent",
+              "__guid": "c79afacf-9413-5d19-bac8-04c14cc26370",
+              "__enabled": true,
+              "Flags": 0,
+              "BackgroundColor": "0.01,0.01,0.02,1",
+              "ClearFlags": "All",
+              "EnablePostProcessing": true,
+              "FieldOfView": 75,
+              "FovAxis": "Horizontal",
+              "IsMainCamera": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Orthographic": false,
+              "OrthographicHeight": 10,
+              "PostProcessAnchor": null,
+              "Priority": 1,
+              "RenderExcludeTags": "",
+              "RenderTags": "",
+              "RenderTexture": null,
+              "TargetEye": "None",
+              "Viewport": "0,0,1,1",
+              "ZFar": 600,
+              "ZNear": 0.05
+            },
+            {
+              "__type": "Rinten.Bloom",
+              "__guid": "635b1958-a3b4-5253-8559-2cf3ed3fd542",
+              "__enabled": true,
+              "Flags": 0,
+              "__version": 1,
+              "Mode": "Additive",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Spread": 0.7,
+              "Strength": 1,
+              "Threshold": 1,
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "61e4d7cc-57b2-54bd-bec1-84d451c214d1",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "HUD",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Rinten.ScreenPanel",
+          "__guid": "e200d175-6703-5127-951c-34b524fcb5e6",
+          "__enabled": true,
+          "Flags": 0,
+          "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": null,
+          "ZIndex": 100
+        },
+        {
+          "__type": "TestGround.SolarClock",
+          "__guid": "34a95c10-38b3-5087-926f-1ed9899b1e15",
+          "__enabled": true,
+          "Flags": 0,
+          "Epoch": "2026-01-01",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Scale": 1,
+          "SecondsPerYear": 60
+        },
+        {
+          "__type": "TestGround.SolarHud",
+          "__guid": "f7c6d782-4814-58ab-9295-096c5baaee5b",
+          "__enabled": true,
+          "Flags": 0,
+          "Clock": {
+            "_type": "component",
+            "component_id": "34a95c10-38b3-5087-926f-1ed9899b1e15",
+            "go": "61e4d7cc-57b2-54bd-bec1-84d451c214d1",
+            "component_type": "SolarClock"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Player": {
+            "_type": "gameobject",
+            "go": "2d1a77a8-8037-57cd-a25f-76ccfc8671fe"
+          }
+        },
+        {
+          "__type": "TestGround.ReturnToMenu",
+          "__guid": "1704c136-6790-53e7-856c-6b42ca64ae6f",
+          "__enabled": true,
+          "Flags": 0,
+          "Key": "Q",
+          "MenuScene": null,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "TestGround.FrameStats",
+          "__guid": "5763ac21-a48c-5987-97e3-1fb0a9c3f2b7",
+          "__enabled": true,
+          "Flags": 0,
+          "Key": "F1",
+          "Showing": true
+        }
+      ],
+      "Children": []
+    }
+  ],
+  "SceneProperties": {
+    "NetworkInterpolation": true,
+    "TimeScale": 1,
+    "WantsSystemScene": true,
+    "Metadata": {},
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": false,
+      "AgentHeight": 1.6,
+      "AgentRadius": 0.4,
+      "AgentStepSize": 0.45,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": "",
+      "DeferGeneration": false,
+      "CustomBounds": false
+    },
+    "GameObjectSystems": {
+      "Rinten.Clutter.ClutterGridSystem": {
+        "Storage": {
+          "$blob": "64db792e-5935-8fbc-8cfa-050cd49fa7fd",
+          "$refs": []
+        }
+      },
+      "Rinten.SelectionSetsSystem": {
+        "Data": {
+          "SelectionSets": []
+        }
+      }
+    }
+  },
+  "ResourceVersion": 4,
+  "Title": null,
+  "Description": null,
+  "__references": [],
+  "__version": 4
+}

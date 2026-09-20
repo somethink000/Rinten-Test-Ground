@@ -1,0 +1,20 @@
+{
+  "Meshes": [
+    {
+      "Name": "",
+      "File": "models/fx/flame.fbx",
+      "Scale": 1.0,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1.0,
+  "Material": "materials/fx/stylized_fire.mat",
+  "Materials": [
+    "materials/fx/stylized_fire.mat"
+  ],
+  "MaterialRemaps": []
+}

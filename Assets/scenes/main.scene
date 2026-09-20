@@ -98,133 +98,133 @@
           "OnComponentUpdate": null,
           "Scenes": [
             {
-              "Scene": "scenes/scene.scene",
+              "Scene": "scenes/general/basics.scene",
               "Title": "Scene",
               "Category": "General",
               "Description": "Plain sandbox - transforms, renderers, lights, a fly camera",
               "DisplayName": "Scene"
             },
             {
-              "Scene": "scenes/collider.scene",
+              "Scene": "scenes/physics/collider.scene",
               "Title": "Colliders & Triggers",
               "Category": "Physics",
               "Description": "Static and keyframed shapes, trigger volumes, enter/exit events",
               "DisplayName": "Colliders & Triggers"
             },
             {
-              "Scene": "scenes/rigidbody.scene",
+              "Scene": "scenes/physics/rigidbody.scene",
               "Title": "Rigid Bodies",
               "Category": "Physics",
               "Description": "Joints, locks, damping, gravity scale and a paddle churning a box of debris",
               "DisplayName": "Rigid Bodies"
             },
             {
-              "Scene": "scenes/fx.scene",
+              "Scene": "scenes/fx/particles.scene",
               "Title": "Particles",
               "Category": "FX",
               "Description": "Six rows of effects from the FX editor: basics, weather, magic, shapes and slots, meshes, anchors and events",
               "DisplayName": "Particles"
             },
             {
-              "Scene": "scenes/solar.scene",
+              "Scene": "scenes/fx/solar.scene",
               "Title": "Solar System",
               "Category": "FX",
               "Description": "The sun, nine worlds with moons and rings, two belts and a comet - every one an effect, with planet and sun shaders",
               "DisplayName": "Solar System"
             },
             {
-              "Scene": "scenes/uishowcase.scene",
+              "Scene": "scenes/ui/showcase.scene",
               "Title": "UI Showcase",
               "Category": "Interface",
               "Description": "One screen of everything the UI editor handles: type, buttons and states, chips, a switch and a bar from data, cards from a list, keyframes, anchored corners",
               "DisplayName": "UI Showcase"
             },
             {
-              "Scene": "scenes/prefabs.scene",
+              "Scene": "scenes/general/prefabs.scene",
               "Title": "Prefabs",
               "Category": "General",
               "Description": "Clone a prefab on a clock, throw one with the mouse, grab a body, open a door",
               "DisplayName": "Prefabs"
             },
             {
-              "Scene": "scenes/trace.scene",
+              "Scene": "scenes/physics/trace.scene",
               "Title": "Traces",
               "Category": "Physics",
               "Description": "Ray, box and sphere traces drawn where they hit",
               "DisplayName": "Traces"
             },
             {
-              "Scene": "scenes/overlay.scene",
+              "Scene": "scenes/general/overlay.scene",
               "Title": "Debug Overlay",
               "Category": "General",
               "Description": "Line, text, sphere and box overlays in a row",
               "DisplayName": "Debug Overlay"
             },
             {
-              "Scene": "scenes/lights.scene",
+              "Scene": "scenes/rendering/lights.scene",
               "Title": "Lights",
               "Category": "Rendering",
               "Description": "Coloured point lights and a spot, with the sun almost out so the pools show",
               "DisplayName": "Lights"
             },
             {
-              "Scene": "scenes/fog.scene",
+              "Scene": "scenes/rendering/fog.scene",
               "Title": "Fog",
               "Category": "Rendering",
               "Description": "Gradient fog with distance and a volumetric volume in the hollow",
               "DisplayName": "Fog"
             },
             {
-              "Scene": "scenes/worldui.scene",
+              "Scene": "scenes/ui/world.scene",
               "Title": "World UI",
               "Category": "Interface",
               "Description": "Panels sitting on objects in the world, facing the camera",
               "DisplayName": "World UI"
             },
             {
-              "Scene": "scenes/platforms.scene",
+              "Scene": "scenes/physics/platforms.scene",
               "Title": "Platforms",
               "Category": "Physics",
               "Description": "Walk, jump, stairs, slopes, a gap and a moving pad",
               "DisplayName": "Platforms"
             },
             {
-              "Scene": "scenes/postprocess.scene",
+              "Scene": "scenes/rendering/postprocess.scene",
               "Title": "Postprocess",
               "Category": "Rendering",
               "Description": "Number keys toggle SSAO, SSR, bloom, DOF, grain, vignette, chromatic aberration and color",
               "DisplayName": "Postprocess"
             },
             {
-              "Scene": "scenes/decals.scene",
+              "Scene": "scenes/rendering/decals.scene",
               "Title": "Decals",
               "Category": "Rendering",
               "Description": "Circles projected onto the floor and the walls",
               "DisplayName": "Decals"
             },
             {
-              "Scene": "scenes/renderers.scene",
+              "Scene": "scenes/rendering/renderers.scene",
               "Title": "Renderers",
               "Category": "Rendering",
               "Description": "Lines, trails, sprites, text, model renderer options, reflection probes and hand-built meshes - a station a setting",
               "DisplayName": "Renderers"
             },
             {
-              "Scene": "scenes/materials.scene",
+              "Scene": "scenes/rendering/materials.scene",
               "Title": "Materials",
               "Category": "Rendering",
               "Description": "Roughness against metalness, tint, emission, cutout and translucency, backfaces, maps, shaders, runtime changes, missing assets",
               "DisplayName": "Materials"
             },
             {
-              "Scene": "scenes/shadows.scene",
+              "Scene": "scenes/rendering/shadows.scene",
               "Title": "Shadows",
               "Category": "Rendering",
               "Description": "The sun over a long field, every kind of caster, source radii, point and spot shadows, moving lights, receivers and a room; keys change the sun",
               "DisplayName": "Shadows"
             },
             {
-              "Scene": "scenes/clutter.scene",
+              "Scene": "scenes/rendering/clutter.scene",
               "Title": "Clutter",
               "Category": "Rendering",
               "Description": "Clutter volumes: density, scale, weights, placement, slopes, seeds, shadows, physics, tiles, churn, a big one, and the infinite mode",

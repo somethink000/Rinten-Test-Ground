@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Writes the material gallery: the textures it needs (made here, no image
-library), the .mat files under materials/gallery, and scenes/Materials.scene
+library), the .mat files under materials/gallery, and scenes/rendering/materials.scene
 - rows of spheres and slabs, one material property a station."""
 import os, sys, json, math, struct, zlib
 sys.path.insert(0, os.path.dirname(__file__))
@@ -100,7 +100,9 @@ def mat(name, tint="1,1,1,1", rough=0.5, metal=0.0, color="materials/default/whi
          "ColorMap": color, "Normal": normal, "RoughMetalAmbient": "materials/default/roughmetal.png", "Emission": emission,
          "Roughness": rough, "Metalness": metal, "EmissionStrength": emission_strength, "PhysicsSurface": "", "TwoSided": two_sided,
          "Filtering": "Smooth", "Blend": blend, "AlphaCutoff": cutoff, "__references": [], "__version": 0}
-    with open(os.path.join(MAT_DIR, name + ".mat"), "w") as f:
+    path = os.path.join(MAT_DIR, name + ".mat")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w") as f:
         json.dump(d, f, indent=2)
         f.write("\n")
     return f"materials/gallery/{name}.mat"
@@ -112,77 +114,77 @@ made = 0
 GRID = {}
 for mi, metal in enumerate((0.0, 0.5, 1.0)):
     for ri, rough in enumerate((0.0, 0.25, 0.5, 0.75, 1.0)):
-        GRID[(ri, mi)] = mat(f"grid_r{ri}_m{mi}", tint=WARM, rough=rough, metal=metal)
+        GRID[(ri, mi)] = mat(f"grid/r{ri}_m{mi}", tint=WARM, rough=rough, metal=metal)
 
 TINT = {
-    "red": mat("tint_red", tint="1,0.2,0.2,1"),
-    "green": mat("tint_green", tint="0.2,1,0.3,1"),
-    "blue": mat("tint_blue", tint="0.3,0.4,1,1"),
-    "dark": mat("tint_dark", tint="0.1,0.1,0.12,1"),
-    "half": mat("tint_half", tint="1,1,1,0.5"),
-    "hdr": mat("tint_hdr", tint="4,4,4,1"),
+    "red": mat("tint/red", tint="1,0.2,0.2,1"),
+    "green": mat("tint/green", tint="0.2,1,0.3,1"),
+    "blue": mat("tint/blue", tint="0.3,0.4,1,1"),
+    "dark": mat("tint/dark", tint="0.1,0.1,0.12,1"),
+    "half": mat("tint/half", tint="1,1,1,0.5"),
+    "hdr": mat("tint/hdr", tint="4,4,4,1"),
 }
 
 EMISSION = {
-    "0.5": mat("emission_05", emission=flat(1, 0.5, 0.1), emission_strength=0.5),
-    "2": mat("emission_2", emission=flat(1, 0.5, 0.1), emission_strength=2),
-    "8": mat("emission_8", emission=flat(1, 0.5, 0.1), emission_strength=8),
-    "cyan": mat("emission_cyan", emission=flat(0.2, 0.9, 1), emission_strength=3, tint="0.1,0.1,0.1,1"),
-    "map": mat("emission_map", emission=tex("emission_stripes.png"), emission_strength=3, tint="0.2,0.2,0.2,1"),
-    "black": mat("emission_black", emission="materials/default/black.png", emission_strength=8),
+    "0.5": mat("emission/strength_05", emission=flat(1, 0.5, 0.1), emission_strength=0.5),
+    "2": mat("emission/strength_2", emission=flat(1, 0.5, 0.1), emission_strength=2),
+    "8": mat("emission/strength_8", emission=flat(1, 0.5, 0.1), emission_strength=8),
+    "cyan": mat("emission/cyan", emission=flat(0.2, 0.9, 1), emission_strength=3, tint="0.1,0.1,0.1,1"),
+    "map": mat("emission/map", emission=tex("emission_stripes.png"), emission_strength=3, tint="0.2,0.2,0.2,1"),
+    "black": mat("emission/black", emission="materials/default/black.png", emission_strength=8),
 }
 
 BLEND = {
-    "opaque": mat("blend_opaque", color="textures/fx/ring.png"),
-    "cut01": mat("blend_cut_01", color="textures/fx/ring.png", blend="Masked", cutoff=0.1),
-    "cut05": mat("blend_cut_05", color="textures/fx/ring.png", blend="Masked", cutoff=0.5),
-    "cut09": mat("blend_cut_09", color="textures/fx/ring.png", blend="Masked", cutoff=0.9),
-    "leaf": mat("blend_leaf", color=tex("leaf.png"), blend="Masked", cutoff=0.5, two_sided=True),
-    "trans02": mat("blend_trans_02", tint="0.4,0.8,1,0.2", blend="Translucent"),
-    "trans05": mat("blend_trans_05", tint="0.4,0.8,1,0.5", blend="Translucent"),
-    "trans08": mat("blend_trans_08", tint="0.4,0.8,1,0.8", blend="Translucent"),
-    "trans2s": mat("blend_trans_2s", tint="1,0.6,0.2,0.4", blend="Translucent", two_sided=True),
-    "additive": mat("blend_additive", tint="0.3,1,0.5,0.6", blend="Additive"),
-    "transtex": mat("blend_trans_tex", color="textures/fx/ring.png", tint="1,1,1,0.6", blend="Translucent"),
+    "opaque": mat("blend/opaque", color="textures/fx/ring.png"),
+    "cut01": mat("blend/cut_01", color="textures/fx/ring.png", blend="Masked", cutoff=0.1),
+    "cut05": mat("blend/cut_05", color="textures/fx/ring.png", blend="Masked", cutoff=0.5),
+    "cut09": mat("blend/cut_09", color="textures/fx/ring.png", blend="Masked", cutoff=0.9),
+    "leaf": mat("blend/leaf", color=tex("leaf.png"), blend="Masked", cutoff=0.5, two_sided=True),
+    "trans02": mat("blend/trans_02", tint="0.4,0.8,1,0.2", blend="Translucent"),
+    "trans05": mat("blend/trans_05", tint="0.4,0.8,1,0.5", blend="Translucent"),
+    "trans08": mat("blend/trans_08", tint="0.4,0.8,1,0.8", blend="Translucent"),
+    "trans2s": mat("blend/trans_2s", tint="1,0.6,0.2,0.4", blend="Translucent", two_sided=True),
+    "additive": mat("blend/additive", tint="0.3,1,0.5,0.6", blend="Additive"),
+    "transtex": mat("blend/trans_tex", color="textures/fx/ring.png", tint="1,1,1,0.6", blend="Translucent"),
 }
 
 SIDES = {
-    "one": mat("sides_one", tint="0.9,0.5,0.2,1"),
-    "two": mat("sides_two", tint="0.9,0.5,0.2,1", two_sided=True),
+    "one": mat("sides/one", tint="0.9,0.5,0.2,1"),
+    "two": mat("sides/two", tint="0.9,0.5,0.2,1", two_sided=True),
 }
 
 MAPS = {
-    "colour": mat("map_colour", color=tex("checker.png")),
-    "grid": mat("map_grid", color="materials/dev/grid.png"),
-    "normal": mat("map_normal", normal=tex("bumps_normal.png"), tint=WARM, features={"F_NORMAL_MAP": 1}),
-    "normal_metal": mat("map_normal_metal", normal=tex("bumps_normal.png"), metal=1.0, rough=0.3, features={"F_NORMAL_MAP": 1}),
-    "rough": mat("map_roughness", metal=1.0, textures={"g_tRoughness": tex("roughness_gradient.png")}, features={"F_ROUGHNESS": 1}),
-    "metal": mat("map_metalness", rough=0.2, textures={"g_tMetalness": tex("metal_split.png")}, features={"F_METALNESS": 1}),
-    "ao": mat("map_ao", textures={"g_tAO": tex("ao_rings.png")}, features={"F_AO": 1}),
-    "all": mat("map_all", color=tex("checker.png"), normal=tex("bumps_normal.png"), emission=tex("emission_stripes.png"), emission_strength=1.5,
+    "colour": mat("maps/colour", color=tex("checker.png")),
+    "grid": mat("maps/grid", color="materials/dev/grid.png"),
+    "normal": mat("maps/normal", normal=tex("bumps_normal.png"), tint=WARM, features={"F_NORMAL_MAP": 1}),
+    "normal_metal": mat("maps/normal_metal", normal=tex("bumps_normal.png"), metal=1.0, rough=0.3, features={"F_NORMAL_MAP": 1}),
+    "rough": mat("maps/roughness", metal=1.0, textures={"g_tRoughness": tex("roughness_gradient.png")}, features={"F_ROUGHNESS": 1}),
+    "metal": mat("maps/metalness", rough=0.2, textures={"g_tMetalness": tex("metal_split.png")}, features={"F_METALNESS": 1}),
+    "ao": mat("maps/ao", textures={"g_tAO": tex("ao_rings.png")}, features={"F_AO": 1}),
+    "all": mat("maps/all", color=tex("checker.png"), normal=tex("bumps_normal.png"), emission=tex("emission_stripes.png"), emission_strength=1.5,
                textures={"g_tRoughness": tex("roughness_gradient.png"), "g_tAO": tex("ao_rings.png")},
                features={"F_NORMAL_MAP": 1, "F_ROUGHNESS": 1, "F_AO": 1}),
 }
 
 SHADERS = {
-    "complex": mat("shader_complex", tint=WARM),
-    "glass": mat("shader_glass", shader="shaders/glass.shader", tint="0.7,0.85,1,0.3", blend="Translucent", two_sided=True, rough=0.05),
-    "foliage": mat("shader_foliage", shader="shaders/foliage.shader", color=tex("leaf.png"), blend="Masked", two_sided=True,
+    "complex": mat("shaders/complex", tint=WARM),
+    "glass": mat("shaders/glass", shader="shaders/glass.shader", tint="0.7,0.85,1,0.3", blend="Translucent", two_sided=True, rough=0.05),
+    "foliage": mat("shaders/foliage", shader="shaders/foliage.shader", color=tex("leaf.png"), blend="Masked", two_sided=True,
                    numbers={"g_flWindStrength": "0.4,0,0,0", "g_flWindSpeed": "2,0,0,0", "g_flWindHeight": "1,0,0,0", "g_vWindDirection": "1,0,0.3,0"},
                    features={"F_WIND": 1}),
-    "unlit": mat("shader_unlit", shader="shaders/engine/unlit.shader", tint="1,0.6,0.2,1"),
-    "vertex_color": mat("shader_vertex_color", shader="shaders/engine/vertex_color.shader"),
-    "stylized": mat("shader_stylized", shader="shaders/effects/stylized.shader", numbers={
+    "unlit": mat("shaders/unlit", shader="shaders/engine/unlit.shader", tint="1,0.6,0.2,1"),
+    "vertex_color": mat("shaders/vertex_color", shader="shaders/engine/vertex_color.shader"),
+    "stylized": mat("shaders/stylized", shader="shaders/effects/stylized.shader", numbers={
         "g_vColourA": "0.9,0.3,0.3,1", "g_vColourB": "0.2,0.2,0.6,1", "g_flNoiseScale": "3,0,0,0", "g_flNoiseOctaves": "2,0,0,0", "g_vScrollDirection": "0,0,0,0"}),
     "error": "materials/error.mat",
-    "missing": "materials/gallery/does_not_exist.mat",
-    "missing_tex": mat("shader_missing_tex", color="textures/gallery/does_not_exist.png"),
-    "missing_shader": mat("shader_missing_shader", shader="shaders/does_not_exist.shader", tint=WARM),
-    "no_shader": mat("shader_empty", shader="", tint=WARM),
+    "missing": "materials/gallery/shaders/does_not_exist.mat",
+    "missing_tex": mat("shaders/missing_tex", color="textures/gallery/does_not_exist.png"),
+    "missing_shader": mat("shaders/missing_shader", shader="shaders/does_not_exist.shader", tint=WARM),
+    "no_shader": mat("shaders/empty", shader="", tint=WARM),
 }
 
 SURFACE = {
-    "physics": mat("surface_physics", tint="0.5,0.9,0.5,1"),
+    "physics": mat("surface/physics", tint="0.5,0.9,0.5,1"),
 }
 
 # ---------------------------------------------------------------- stations
@@ -409,6 +411,6 @@ def check_unique(objects):
     for o in objects: walk(o)
 check_unique(S.objects)
 
-S.write("Materials.scene")
-register_in_menu("materials.scene", "Materials", "Rendering",
+S.write("rendering/materials.scene")
+register_in_menu("rendering/materials.scene", "Materials", "Rendering",
                  "Roughness against metalness, tint, emission, cutout and translucency, backfaces, maps, shaders, runtime changes, missing assets")

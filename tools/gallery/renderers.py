@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Writes scenes/Renderers.scene: one row of stations per renderer component -
+"""Writes scenes/rendering/renderers.scene: one row of stations per renderer component -
 lines, trails, sprites, text, the model renderer's options, reflection probes
 and meshes built by hand - each station one setting, labelled."""
 import os, sys
@@ -256,7 +256,7 @@ def cube(name, pos, tint="1,1,1,1", material=None, model="models/dev/box.mdl", s
 def model_station(name, text, pos, kids):
     return station(name, text, kids, pos)
 
-PROJECT_MODELS = ["models/urn_broken.mdl", "models/shield.mdl", "models/flame.mdl", "models/space/rover.mdl", "models/space/iss.mdl",
+PROJECT_MODELS = ["models/props/urn_broken.mdl", "models/fx/shield.mdl", "models/fx/flame.mdl", "models/space/rover.mdl", "models/space/iss.mdl",
                   "models/space/satellite.mdl", "models/space/voyager.mdl", "models/space/hubble.mdl"]
 
 def instancing_station(pos):
@@ -276,7 +276,7 @@ MODELS = [
     ("Material override", "grid, metal, glass on a sphere", [
         cube("Override grid", (-0.9, 0.7, 0), material="materials/dev/grid.mat", model="models/dev/sphere.mdl"),
         cube("Override metal", (0, 0.7, 0), material="materials/dev/metal.mat", model="models/dev/sphere.mdl"),
-        cube("Override glass", (0.9, 0.7, 0), material="materials/glass.mat", model="models/dev/sphere.mdl")]),
+        cube("Override glass", (0.9, 0.7, 0), material="materials/common/glass.mat", model="models/dev/sphere.mdl")]),
     ("Overlay layer", "OverlayLayer behind a wall", [
         S.block("Wall: Model Overlay", (0, 1.2, 0.6), (2.6, 2.2, 0.2), "0.5,0.2,0.2,1"),
         cube("Overlay cube", (0, 0.8, -0.3), "0.3,1,0.5,1", options=OVERLAY)]),
@@ -305,8 +305,8 @@ def project_models_station(pos):
 
 # ---------------------------------------------------------------- reflections
 
-CHROME = "materials/gallery/chrome.mat"
-BRUSHED = "materials/gallery/brushed.mat"
+CHROME = "materials/gallery/surface/chrome.mat"
+BRUSHED = "materials/gallery/surface/brushed.mat"
 
 def probe(name, mode="Baked", projection="Sphere", bounds=(6, 6, 6), tint="1,1,1,1", feather=0.2, priority=0, update="OnEnabled", interval=5, max_distance=6):
     hx, hy, hz = bounds[0] / 2, bounds[1] / 2, bounds[2] / 2
@@ -373,7 +373,7 @@ PROCEDURAL = [
     ("Cylinder", "24 sides, SmoothingAngle 60", dict(shape="Prism", segments=24, size=(1.6, 1.4, 1.6), smoothing=60)),
     ("Ring", "12 sides, hollow", dict(shape="Ring", segments=12, size=(2.0, 0.5, 2.0))),
     ("Box", "a built box beside the model box", dict(shape="Box", size=(1.0, 1.0, 1.0))),
-    ("Glass", "glass material, backfaces", dict(shape="Prism", segments=8, size=(1.4, 1.4, 1.4), material="materials/glass.mat", smoothing=60)),
+    ("Glass", "glass material, backfaces", dict(shape="Prism", segments=8, size=(1.4, 1.4, 1.4), material="materials/common/glass.mat", smoothing=60)),
 ]
 
 # ---------------------------------------------------------------- areas
@@ -477,6 +477,6 @@ def check_unique(objects):
     for o in objects: walk(o)
 check_unique(S.objects)
 
-S.write("Renderers.scene")
-register_in_menu("renderers.scene", "Renderers", "Rendering",
+S.write("rendering/renderers.scene")
+register_in_menu("rendering/renderers.scene", "Renderers", "Rendering",
                  "Lines, trails, sprites, text, model renderer options, reflection probes and hand-built meshes - a station a setting")

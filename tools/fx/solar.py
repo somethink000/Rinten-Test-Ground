@@ -3,7 +3,7 @@ the asteroid belt, a comet, the orbit lines and the stars - and the scene that
 puts them together. Not to scale, but everything in it is what it is."""
 import json, os, math
 from fxgen import *          # the helpers; this also regenerates the showcase effects
-import scenegen as sg        # the scene helpers (go, comp, label, ...); this regenerates FX.scene too
+import scenegen as sg        # the scene helpers (go, comp, label, ...); this regenerates the particles scene too
 
 SUN = (0.0, 3.0, 0.0)
 M = "materials/solar/"
@@ -130,7 +130,7 @@ def orbit_shape(name, radius, tilt=0.0, count=0):
 
 # ------------------------------------------------------------------ the sun
 
-effect("sol_sun", [
+effect("solar/sun", [
     body("Star", M + "sun.mat", 5.0, spin_deg=2.0, shadows=False, emission=fb(1.0, "Glow")),
     glow("Corona", hexc("ffc070"), 8.0, alpha=0.14,
          light_=light(hexc("fff0d0"), brightness=40, radius=90, ratio=1, max_lights=1, use_particle=False, param="Glow")),
@@ -157,7 +157,7 @@ effect("sol_sun", [
         size(curve([(0, 0.5), (0.5, 5.0), (1, 9.0)], top=10)),
         color(gradient([(0, hexc("fff0c0")), (0.4, hexc("ff9040")), (1, hexc("ff4010"))]), alpha=curve([(0, 0.7), (0.5, 0.3), (1, 0)]), brightness=2.0),
         attractor(strength=5.0, size=1.0, falloff=0.0, invert=True, space="Local"),
-        event("OnBirth", "Skin", effect_="sol_cme_skin", follow=True, max_alive=3, context=[]),
+        event("OnBirth", "Skin", effect_="solar/cme_skin", follow=True, max_alive=3, context=[]),
         sprite_render("glow", additive=True),
         light(hexc("ffa060"), brightness=6, radius=20, ratio=1, max_lights=2, use_particle=False),
         max_particles=3),
@@ -238,12 +238,12 @@ def planet_effect(name, material, diameter, atmosphere=None, moons=(), rings=(),
             sname = f"Ring {i}.{b}"
             shapes_.append(orbit_shape(sname, r, tilt, count))
             emitters.append(ring_band(f"Ring {i}.{b}", sname, count, size_, colour, alpha, 0.02 * (inner / r)))
-    effect(f"sol_{name}", emitters, duration=10, looping=True, shapes=shapes_, anchors=anchors_,
+    effect(f"solar/{name}", emitters, duration=10, looping=True, shapes=shapes_, anchors=anchors_,
            floats=[param_float("Speed", 1, 0, 3)])
 
 # Io's volcanoes: plumes of sulphur thrown up and falling back, riding the
 # moon through an Event on its birth that spawns this and carries it along.
-effect("sol_io_plumes", [
+effect("solar/io_plumes", [
     emitter("Plumes",
         rate(14),
         position("Sphere", radius=0.1, shell=True),
@@ -275,7 +275,7 @@ def aurora(name, y):
 planet_effect("mercury", "mercury.mat", 0.38)
 planet_effect("venus", "venus.mat", 0.95, atmosphere=(hexc("ffd890"), 1.5, 0.25))
 planet_effect("earth", "earth.mat", 1.0, atmosphere=(hexc("80b0ff"), 1.45, 0.22),
-              moons=[("Moon", "moon.mat", 0.27, 1.6, 18.0, 5.0, 0.0, "sol_apollo")], spin_deg=0,
+              moons=[("Moon", "moon.mat", 0.27, 1.6, 18.0, 5.0, 0.0, "solar/apollo")], spin_deg=0,
               extra=[aurora("North", 0.46), aurora("South", -0.46),
                      craft("ISS", "LEO", "iss", 0.09, 3.2, 0.0, light_=light(hexc("ffffff"), brightness=0.6, radius=0.5, ratio=1, max_lights=1, use_particle=False)),
                      craft("Hubble", "LEO High", "hubble", 0.05, 3.6, 0.5),
@@ -302,7 +302,7 @@ planet_effect("mars", "mars.mat", 0.53, atmosphere=(hexc("ff9060"), 1.35, 0.12),
                      lander("Rover", "rover", 0.05, "Surface", 0.265),
                      craft("Orbiter", "Mars Orbit", "satellite", 0.03, 4.0, 0.0)])
 planet_effect("jupiter", "jupiter.mat", 2.6, atmosphere=(hexc("ffd0a0"), 1.25, 0.12),
-              moons=[("Io", "io.mat", 0.2, 2.2, 9.0, 1.0, 0.0, "sol_io_plumes"), ("Europa", "europa.mat", 0.18, 2.8, 14.0, 0.5, 0.3),
+              moons=[("Io", "io.mat", 0.2, 2.2, 9.0, 1.0, 0.0, "solar/io_plumes"), ("Europa", "europa.mat", 0.18, 2.8, 14.0, 0.5, 0.3),
                      ("Ganymede", "moon.mat", 0.28, 3.5, 22.0, 0.2, 0.6), ("Callisto", "mercury.mat", 0.26, 4.4, 36.0, 0.3, 0.85)],
               # Jupiter's own ring: faint, thin, close in.
               rings=[(1.55, 1.75, 2, 160, 0.025, hexc("b0a090"), 0.3, 3.0)],
@@ -310,7 +310,7 @@ planet_effect("jupiter", "jupiter.mat", 2.6, atmosphere=(hexc("ffd0a0"), 1.25, 0
               extra_shapes=[orbit_shape("Polar", 1.9, 90.0)])
 planet_effect("saturn", "saturn.mat", 2.2, atmosphere=(hexc("ffe8b0"), 1.2, 0.1),
               moons=[("Titan", "titan.mat", 0.24, 4.2, 30.0, 0.5, 0.2), ("Rhea", "europa.mat", 0.1, 3.3, 16.0, 0.3, 0.7),
-                     ("Enceladus", "europa.mat", 0.06, 2.95, 9.0, 26.7, 0.4, "sol_geysers"),
+                     ("Enceladus", "europa.mat", 0.06, 2.95, 9.0, 26.7, 0.4, "solar/geysers"),
                      ("Mimas", "mimas.mat", 0.06, 2.78, 7.5, 26.7, 0.1),
                      # The shepherds either side of the F ring, keeping it thin.
                      ("Prometheus", "rock.mat", 0.035, 2.58, 6.2, 26.7, 0.0), ("Pandora", "rock.mat", 0.03, 2.71, 6.6, 26.7, 0.5)],
@@ -324,7 +324,7 @@ planet_effect("uranus", "uranus.mat", 1.6, atmosphere=(hexc("a0f0ff"), 1.3, 0.14
               moons=[("Titania", "europa.mat", 0.12, 1.9, 16.0, 97.0, 0.0), ("Oberon", "moon.mat", 0.11, 2.4, 24.0, 97.0, 0.5)],
               rings=[(1.25, 1.6, 5, 220, 0.035, hexc("c0d0d8"), 0.6, 97.0)])
 planet_effect("neptune", "neptune.mat", 1.55, atmosphere=(hexc("6090ff"), 1.3, 0.16),
-              moons=[("Triton", "europa.mat", 0.18, 1.7, 14.0, 157.0, 0.0, "sol_cryo")])
+              moons=[("Triton", "europa.mat", 0.18, 1.7, 14.0, 157.0, 0.0, "solar/cryo")])
 planet_effect("pluto", "pluto.mat", 0.25, moons=[("Charon", "moon.mat", 0.12, 0.45, 8.0, 120.0, 0.0)], wobble=(0.06, 8.0, 0.5))
 
 # ------------------------------------------------------------------ the belts, the comet, the orbits, the stars
@@ -358,7 +358,7 @@ def belt(name, inner, outer, bands, count, size_, tilt_spread=2.0, speed=0.006):
         max_particles=500))
     effect(name, emitters, duration=10, looping=True, shapes=shapes_, floats=[param_float("Speed", 1, 0, 3)])
 
-belt("sol_belt", 22.0, 26.0, 7, 90, 0.07)
+belt("solar/belt", 22.0, 26.0, 7, 90, 0.07)
 
 # The Trojans: two swarms sixty degrees ahead of and behind Jupiter on its
 # own orbit, riding round with it.
@@ -376,14 +376,14 @@ def trojans(name, along_lo, along_hi):
                     shader=[("Dissolve", 1, fb(0.0)), ("Emission", 1, fb(0.8))]),
         max_particles=70)
 
-effect("sol_trojans", [trojans("Greeks (L4)", 0.30 + 0.1667 - 0.02, 0.30 + 0.1667 + 0.02), trojans("Trojans (L5)", 0.30 - 0.1667 - 0.02, 0.30 - 0.1667 + 0.02)],
+effect("solar/trojans", [trojans("Greeks (L4)", 0.30 + 0.1667 - 0.02, 0.30 + 0.1667 + 0.02), trojans("Trojans (L5)", 0.30 - 0.1667 - 0.02, 0.30 - 0.1667 + 0.02)],
        duration=10, looping=True, shapes=[orbit_shape("Jupiter Orbit", 32.0, 1.3)], floats=[param_float("Speed", 1, 0, 3)])
-belt("sol_kuiper", 62.0, 72.0, 5, 120, 0.12, tilt_spread=8.0, speed=0.003)
+belt("solar/kuiper", 62.0, 72.0, 5, 120, 0.12, tilt_spread=8.0, speed=0.003)
 
 # The comet: a rock on a long loop, a dust tail behind it and an ion tail
 # blown straight away from the sun by an attractor pushing from the star.
 COMET_PATH = [(-4.0, 0.5, -3.0), (10.0, 1.5, 12.0), (34.0, 3.0, 40.0), (60.0, 2.0, 30.0), (52.0, -1.0, -8.0), (24.0, -2.0, -30.0), (2.0, -0.5, -18.0)]
-effect("sol_comet", [
+effect("solar/comet", [
     emitter("Nucleus",
         burst(1),
         position_on("Path", "ByTime", along=fb(0.0)),
@@ -398,7 +398,7 @@ effect("sol_comet", [
         # The dust tail: narrow at the nucleus, spreading wide behind it.
         trail_render(width=1.4, color=hexc("e0f0ff", 0.35), life=6.0, max_points=120, point_distance=0.1, scale_from=False, tint=False, taper=(0.2, 1.0), fade=(1.0, 0.0)),
         light(hexc("c0e0ff"), brightness=2, radius=6, ratio=1, max_lights=1, use_particle=False),
-        event("OnBirth", "Tail", effect_="sol_comet_tail", follow=True, max_alive=1, context=[]),
+        event("OnBirth", "Tail", effect_="solar/comet_tail", follow=True, max_alive=1, context=[]),
         max_particles=1),
 ], duration=10, looping=True,
    shapes=[shape("Path", "Spline", points=COMET_PATH, closed=True)], anchors=[anchor("Comet")],
@@ -408,7 +408,7 @@ effect("sol_comet", [
 # along with it (Event, Follow): the coma glow, and an ion tail born on the
 # nucleus and pushed off by an attractor at the sun - so it points away from
 # the star whichever way the comet is going, the way a real one does.
-effect("sol_comet_tail", [
+effect("solar/comet_tail", [
     emitter("Coma",
         rate(30),
         position("Sphere", radius=0.15),
@@ -449,14 +449,14 @@ PLANETS = [  # name, orbit radius, period s, tilt deg, phase
     ("uranus", 54.0, 700.0, 0.8, 0.2), ("neptune", 60.0, 900.0, 1.8, 0.45), ("pluto", 68.0, 1200.0, 17.0, 0.9),
     ("ceres", 24.0, 160.0, 10.6, 0.4), ("eris", 74.0, 1500.0, 44.0, 0.15),
 ]
-effect("sol_orbits", [
+effect("solar/orbits", [
     ring_band(f"Orbit {n}", f"Orbit {n}", int(60 + r * 6), 0.03, hexc("8090b0"), 0.35, 0.0) for n, r, p, t, ph in PLANETS
 ], duration=10, looping=True,
    shapes=[orbit_shape(f"Orbit {n}", r, t, int(60 + r * 6)) for n, r, p, t, ph in PLANETS],
    floats=[param_float("Speed", 1, 0, 3)])
 
 # Stars: parked once on a far shell, twinkling by a curve read by seed.
-effect("sol_stars", [
+effect("solar/stars", [
     emitter("Stars",
         burst(1600),
         position("Sphere", radius=160.0, shell=True),
@@ -515,12 +515,12 @@ objects = [
         sg.go("2D Skybox", tags="skybox", components=[sg.comp("Rinten.SkyBox2D", "solar/sky", SkyIndirectLighting=False,
             SkyMaterial="materials/skybox/procedural.mat", Tint="0,0,0,1")]),
     ]),
-    sg.go("Sun", SUN, children=[player_at("Sun Effect", "sol_sun")]),
-    sg.go("Planets", children=[orbiting(n.capitalize(), f"sol_{n}", r, p, t, ph) for n, r, p, t, ph in PLANETS]),
-    sg.go("Belts", SUN, children=[player_at("Asteroid Belt", "sol_belt"), player_at("Kuiper Belt", "sol_kuiper"), player_at("Trojans", "sol_trojans")]),
-    sg.go("Probes", (0, 0, 0), children=[player_at("Voyager 1", "sol_voyager1"), player_at("Voyager 2", "sol_voyager2"), player_at("New Horizons", "sol_newhorizons")]),
-    sg.go("Orbits", SUN, children=[player_at("Orbit Lines", "sol_orbits")]),
-    sg.go("Stars", SUN, children=[player_at("Starfield", "sol_stars")]),
+    sg.go("Sun", SUN, children=[player_at("Sun Effect", "solar/sun")]),
+    sg.go("Planets", children=[orbiting(n.capitalize(), f"solar/{n}", r, p, t, ph) for n, r, p, t, ph in PLANETS]),
+    sg.go("Belts", SUN, children=[player_at("Asteroid Belt", "solar/belt"), player_at("Kuiper Belt", "solar/kuiper"), player_at("Trojans", "solar/trojans")]),
+    sg.go("Probes", (0, 0, 0), children=[player_at("Voyager 1", "solar/voyager1"), player_at("Voyager 2", "solar/voyager2"), player_at("New Horizons", "solar/newhorizons")]),
+    sg.go("Orbits", SUN, children=[player_at("Orbit Lines", "solar/orbits")]),
+    sg.go("Stars", SUN, children=[player_at("Starfield", "solar/stars")]),
     sg.go("Player", (0, 8, 40), components=[sg.comp("Template.Player", "solar/player",
         Camera={"_type": "component", "component_id": sg.guid("comp/solar/camera"), "go": sg.guid("go/Camera"), "component_type": "CameraComponent"},
         PitchClamp=89, RunScale=4, Speed=12)], children=[
@@ -554,13 +554,13 @@ scene = {
     "__references": [], "__version": 4,
 }
 
-path = os.path.join(sg.ROOT, "scenes/Solar.scene")
+path = os.path.join(sg.ROOT, "scenes/fx/solar.scene")
 with open(path, "w") as f:
     json.dump(scene, f, indent=2)
 print("wrote", path)
 
 # The skin of a coronal mass ejection: sparks flung along with the bubble.
-effect("sol_cme_skin", [
+effect("solar/cme_skin", [
     emitter("Sparks",
         rate(80),
         position("Sphere", radius=0.6, shell=True),
@@ -590,12 +590,12 @@ def plume_effect(name, colours, size_, rate_, up):
             max_particles=int(rate_ * 2)),
     ], duration=100000, looping=False)
 
-plume_effect("sol_geysers", [(0, hexc("ffffff")), (0.5, hexc("c0e8ff")), (1, hexc("80a0c0"))], 0.06, 12, -0.4)
-plume_effect("sol_cryo", [(0, hexc("606070")), (0.5, hexc("404050")), (1, hexc("202030"))], 0.05, 6, 0.3)
+plume_effect("solar/geysers", [(0, hexc("ffffff")), (0.5, hexc("c0e8ff")), (1, hexc("80a0c0"))], 0.06, 12, -0.4)
+plume_effect("solar/cryo", [(0, hexc("606070")), (0.5, hexc("404050")), (1, hexc("202030"))], 0.05, 6, 0.3)
 
 # Apollo: the lander and the flag, standing on the Moon - a followed child of
 # the Moon's particle, parked on a sphere the Moon's size, facing out.
-effect("sol_apollo", [
+effect("solar/apollo", [
     lander("Eagle", "apollo", 0.06, "Moon Surface", 0.135),
 ], duration=100000, looping=False, shapes=[shape("Moon Surface", "Sphere", radius=0.137, shell=True, count=1)])
 
@@ -620,6 +620,6 @@ def probe(name, model, path_points, period, diameter, material=None):
     ], duration=period, looping=True, shapes=[shape("Route", "Spline", points=path_points, closed=False)], anchors=[anchor("Probe")],
        floats=[param_float("Speed", 1, 0.1, 5)])
 
-probe("sol_voyager1", "voyager", [(13.0, 3.0, 0.0), (30.0, 3.5, -12.0), (44.0, 6.0, -20.0), (70.0, 22.0, -40.0), (110.0, 48.0, -70.0)], 240.0, 0.16, M + "gold.mat")
-probe("sol_voyager2", "voyager", [(13.0, 3.0, 0.0), (32.0, 2.6, 8.0), (44.0, 2.4, 14.0), (56.0, 1.5, 30.0), (62.0, -4.0, 50.0), (100.0, -30.0, 90.0)], 300.0, 0.16, M + "gold.mat")
-probe("sol_newhorizons", "newhorizons", [(13.0, 3.0, 0.0), (32.0, 4.0, -6.0), (68.0, 8.0, -14.0), (120.0, 12.0, -30.0)], 260.0, 0.12, M + "gold.mat")
+probe("solar/voyager1", "voyager", [(13.0, 3.0, 0.0), (30.0, 3.5, -12.0), (44.0, 6.0, -20.0), (70.0, 22.0, -40.0), (110.0, 48.0, -70.0)], 240.0, 0.16, M + "gold.mat")
+probe("solar/voyager2", "voyager", [(13.0, 3.0, 0.0), (32.0, 2.6, 8.0), (44.0, 2.4, 14.0), (56.0, 1.5, 30.0), (62.0, -4.0, 50.0), (100.0, -30.0, 90.0)], 300.0, 0.16, M + "gold.mat")
+probe("solar/newhorizons", "newhorizons", [(13.0, 3.0, 0.0), (32.0, 4.0, -6.0), (68.0, 8.0, -14.0), (120.0, 12.0, -30.0)], 260.0, 0.12, M + "gold.mat")

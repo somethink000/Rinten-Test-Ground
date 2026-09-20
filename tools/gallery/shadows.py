@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Writes scenes/Shadows.scene: the sun over a long field for its cascades and
+"""Writes scenes/rendering/shadows.scene: the sun over a long field for its cascades and
 detail, every kind of caster, source radii, point and spot lights with their
 own shadows, lights and casters that move, and the surfaces shadows land on.
 The sun's own settings are on the number keys - see ShadowRack."""
@@ -77,12 +77,12 @@ kids.append(sign("Field", "the field\nposts every 6 m, beams every 24 m, a gate 
 field = S.go("Field", (0, 0, 0), children=kids)
 
 # -- casters ---------------------------------------------------------------------
-CUT_LEAF = "materials/gallery/blend_leaf.mat"
-CUT_RING = "materials/gallery/blend_cut_05.mat"
-TRANS = "materials/gallery/blend_trans_05.mat"
-GLASS = "materials/glass.mat"
-ONE_SIDED = "materials/gallery/sides_one.mat"
-TWO_SIDED = "materials/gallery/sides_two.mat"
+CUT_LEAF = "materials/gallery/blend/leaf.mat"
+CUT_RING = "materials/gallery/blend/cut_05.mat"
+TRANS = "materials/gallery/blend/trans_05.mat"
+GLASS = "materials/common/glass.mat"
+ONE_SIDED = "materials/gallery/sides/one.mat"
+TWO_SIDED = "materials/gallery/sides/two.mat"
 UPRIGHT = "0.7071068,0,0,0.7071068"
 
 CASTERS = [
@@ -110,7 +110,7 @@ CASTERS = [
         SplineBias=0, SplineContinuity=0, SplineInterpolation=0, SplineTension=0, StartCap="None",
         Texturing={"Texture": None, "Material": None, "WorldSpace": True, "UnitsPerTexture": 1, "Scale": 1, "Offset": 0, "Scroll": 0, "FilterMode": "Anisotropic", "TextureAddressMode": "Wrap", "Clamp": False},
         UseVectorPoints=True, VectorPoints=None, Width=[{"x": 0.5, "y": 0.25, "in": 0, "out": 0, "mode": "Mirrored"}], Wireframe=False)])]),
-    ("Model", "the urn, a real model", [cube("Caster urn", (0, 0.2, 0), (0.5, 0.5, 0.5), model="models/urn_broken.mdl")]),
+    ("Model", "the urn, a real model", [cube("Caster urn", (0, 0.2, 0), (0.5, 0.5, 0.5), model="models/props/urn_broken.mdl")]),
 ]
 
 def caster_station(item, pos):
@@ -197,14 +197,14 @@ z -= ROW_DEPTH
 
 # -- receivers -----------------------------------------------------------------------
 RECEIVERS = [
-    ("Rough", "the shadow on a rough pale slab", "materials/gallery/grid_r4_m0.mat"),
-    ("Chrome", "on chrome\na shadow on a mirror", "materials/gallery/chrome.mat"),
-    ("Metal", "on brushed metal", "materials/gallery/brushed.mat"),
-    ("Normal map", "on the bumps normal map", "materials/gallery/map_normal.mat"),
-    ("Emissive", "on an emissive slab\nemission should not darken", "materials/gallery/emission_2.mat"),
-    ("Translucent", "on a translucent slab", "materials/gallery/blend_trans_05.mat"),
-    ("Unlit", "on an unlit slab\nno shadow can land", "materials/gallery/shader_unlit.mat"),
-    ("Dark", "on a nearly black slab", "materials/gallery/tint_dark.mat"),
+    ("Rough", "the shadow on a rough pale slab", "materials/gallery/grid/r4_m0.mat"),
+    ("Chrome", "on chrome\na shadow on a mirror", "materials/gallery/surface/chrome.mat"),
+    ("Metal", "on brushed metal", "materials/gallery/surface/brushed.mat"),
+    ("Normal map", "on the bumps normal map", "materials/gallery/maps/normal.mat"),
+    ("Emissive", "on an emissive slab\nemission should not darken", "materials/gallery/emission/strength_2.mat"),
+    ("Translucent", "on a translucent slab", "materials/gallery/blend/trans_05.mat"),
+    ("Unlit", "on an unlit slab\nno shadow can land", "materials/gallery/shaders/unlit.mat"),
+    ("Dark", "on a nearly black slab", "materials/gallery/tint/dark.mat"),
 ]
 def receiver_station(item, pos):
     name, text, m = item
@@ -228,7 +228,7 @@ for i in range(5):
     room.append(cube(f"Room bar {i}", (-4, 2.0, -3.2 + i * 1.6), (0.2, 1.8, 0.3)))
 room.append(cube("Room sill", (-4, 2.0, 0), (0.2, 0.15, 8)))
 room.append(cube("Room table", (0, 0.6, 0), (1.5, 0.1, 1.0)))
-room.append(cube("Room vase", (0, 1.0, 0), (0.3, 0.3, 0.3), model="models/urn_broken.mdl"))
+room.append(cube("Room vase", (0, 1.0, 0), (0.3, 0.3, 0.3), model="models/props/urn_broken.mdl"))
 room.append(sign("Room", "a room open on the front\nthe sun comes through the lattice on the left\ninside is what the ambient light gives", (0, 5.2, 0), scale=0.5))
 areas.append(S.go("Room", (0, 0, z), children=room))
 
@@ -255,6 +255,6 @@ def check_unique(objects):
     for o in objects: walk(o)
 check_unique(S.objects)
 
-S.write("Shadows.scene")
-register_in_menu("shadows.scene", "Shadows", "Rendering",
+S.write("rendering/shadows.scene")
+register_in_menu("rendering/shadows.scene", "Shadows", "Rendering",
                  "The sun over a long field, every kind of caster, source radii, point and spot shadows, moving lights, receivers and a room; keys change the sun")

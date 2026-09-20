@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Writes the clutter gallery: the .clutter definitions under clutter/ and
-scenes/Clutter.scene - a volume a station, each with a ClutterProbe that fills
+scenes/rendering/clutter.scene - a volume a station, each with a ClutterProbe that fills
 it and says what it got."""
 import os, sys, json
 sys.path.insert(0, os.path.dirname(__file__))
@@ -29,7 +29,7 @@ def definition(name, entries, density=1.0, scale=(0.8, 1.2), ground=True, offset
 
 BOX = "models/dev/box.mdl"
 SPHERE = "models/dev/sphere.mdl"
-URN = "models/urn_broken.mdl"
+URN = "models/props/urn_broken.mdl"
 
 DEFS = {
     "cubes": definition("cubes", [entry(BOX, scale=0.4)], density=1.5),
@@ -188,6 +188,6 @@ def check_unique(objects):
     for o in objects: walk(o)
 check_unique(S.objects)
 
-S.write("Clutter.scene")
-register_in_menu("clutter.scene", "Clutter", "Rendering",
+S.write("rendering/clutter.scene")
+register_in_menu("rendering/clutter.scene", "Clutter", "Rendering",
                  "Clutter volumes: density, scale, weights, placement, slopes, seeds, shadows, physics, tiles, churn, a big one, and the infinite mode")

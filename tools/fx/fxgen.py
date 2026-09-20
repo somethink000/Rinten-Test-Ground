@@ -303,7 +303,7 @@ sprite("flame", [f"flame{i}" for i in range(1, 9)], fps=12)
 # --- Campfire -------------------------------------------------------------
 FIRE = gradient([(0, hexc("fff0b0")), (0.12, hexc("ffa020")), (0.45, hexc("ff5a0a")), (0.8, hexc("a01000")), (1, hexc("200000"))])
 
-effect("fire", [
+effect("ambient/fire", [
     emitter("Flames",
         rate(18, "Intensity"),
         position("Circle", radius=0.22),
@@ -360,7 +360,7 @@ BLAST = gradient([(0, hexc("ffffff")), (0.15, hexc("ffe080")), (0.4, hexc("ff702
 def scatter_velocity(y, amount):
     return velocity(0, y, 0, scatter=fb(amount, "Power"), scale="Power")
 
-effect("explosion", [
+effect("combat/explosion", [
     emitter("Flash",
         burst(1),
         position("Point"),
@@ -426,7 +426,7 @@ effect("explosion", [
    colors=[param_color("Blast", BLAST), param_color("Flash", hexc("ffe4b0"))], slots=["Spin"])
 
 # --- Gunshot --------------------------------------------------------------
-effect("gunshot", [
+effect("combat/gunshot", [
     emitter("Flash",
         burst(1),
         position("Point"),
@@ -509,7 +509,7 @@ effect("gunshot", [
 # --- Magic orb ------------------------------------------------------------
 AURA = gradient([(0, hexc("40e0ff")), (0.5, hexc("c060ff")), (1, hexc("ff60c0"))])
 
-effect("magic_orb", [
+effect("magic/magic_orb", [
     emitter("Core",
         rate(1.5, "Density"),
         position("Point"),
@@ -558,7 +558,7 @@ effect("magic_orb", [
    colors=[param_color("Aura", AURA), param_color("Core", gradient([(0, hexc("ffffff")), (1, hexc("80d0ff"))]))])
 
 # --- Fountain -------------------------------------------------------------
-effect("fountain", [
+effect("ambient/fountain", [
     emitter("Jet",
         rate(250, "Amount"),
         position("Circle", radius=0.05),
@@ -601,7 +601,7 @@ effect("fountain", [
    colors=[param_color("Water", gradient([(0, hexc("ffffff")), (0.3, hexc("bfe2ff")), (1, hexc("6fb0ff"))]))])
 
 # --- Snow -----------------------------------------------------------------
-effect("snow", [
+effect("ambient/snow", [
     emitter("Flakes",
         rate(160, "Density"),
         position("Box", box=(7, 0.4, 7)),
@@ -638,7 +638,7 @@ effect("snow", [
 # --- Portal ---------------------------------------------------------------
 GLOW = gradient([(0, hexc("8040ff")), (0.5, hexc("ff60c0")), (1, hexc("ffffff"))])
 
-effect("portal", [
+effect("magic/portal", [
     emitter("Rim",
         rate(90, "Rim"),
         position("Circle", radius=1.5, shell=True),
@@ -675,7 +675,7 @@ effect("portal", [
    colors=[param_color("Glow", GLOW), param_color("Inner Color", hexc("c0a0ff")), param_color("Sheet", hexc("6030c0"))])
 
 # --- Chimney smoke --------------------------------------------------------
-effect("chimney", [
+effect("ambient/chimney", [
     emitter("Smoke",
         rate(9, "Volume"),
         position("Circle", radius=0.25),
@@ -711,7 +711,7 @@ effect("chimney", [
    colors=[param_color("Smoke", gradient([(0, hexc("6a6660")), (0.5, hexc("3c3a38")), (1, hexc("242424"))]))])
 
 # --- Tornado / dust devil -------------------------------------------------
-effect("tornado", [
+effect("ambient/tornado", [
     emitter("Funnel",
         rate(140, "Density"),
         position("Circle", radius=0.5, shell=True),
@@ -755,7 +755,7 @@ effect("tornado", [
    colors=[param_color("Dust", gradient([(0, hexc("b09a78")), (1, hexc("7a6a52"))]))])
 
 # --- Fireflies ------------------------------------------------------------
-effect("fireflies", [
+effect("ambient/fireflies", [
     emitter("Flies",
         rate(9, "Count"),
         position("Box", box=(5, 2.5, 5)),
@@ -783,7 +783,7 @@ effect("fireflies", [
    colors=[param_color("Glow", gradient([(0, hexc("c8ff70")), (1, hexc("70ff90"))]))])
 
 # --- Confetti -------------------------------------------------------------
-effect("confetti", [
+effect("fireworks/confetti", [
     emitter("Paper",
         burst(160, "Amount"),
         position("Point"),
@@ -815,7 +815,7 @@ effect("confetti", [
    colors=[param_color("Paper", color_range(hexc("ff3060"), hexc("30c0ff")))])
 
 # --- Firework -------------------------------------------------------------
-effect("firework", [
+effect("fireworks/firework", [
     emitter("Rocket",
         burst(1),
         position("Point"),
@@ -866,7 +866,7 @@ effect("firework", [
            param_color("Rocket", hexc("ffd8a0"))])
 
 # --- Energy beam ----------------------------------------------------------
-effect("beam", [
+effect("combat/beam", [
     emitter("Core",
         rate(500, "Density"),
         position("Line", line=((0, 0, 0), (0, 0, -6))),
@@ -913,7 +913,7 @@ effect("beam", [
 # --- Rain -----------------------------------------------------------------
 # The player stands on the ground: the drops are born seven metres up and
 # the splashes where they land, which is where the effect's origin is.
-effect("rain", [
+effect("ambient/rain", [
     emitter("Drops",
         rate(700, "Density"),
         position("Box", box=(7, 0.3, 7), offset=(0, 7, 0)),
@@ -956,7 +956,7 @@ print("done")
 # particle of another one died - see SpawnEffectOnDeathModule.
 
 # --- Crackle: the last stage of the firework chain -------------------------
-effect("crackle", [
+effect("fireworks/crackle", [
     emitter("Crackle",
         burst(10, "Count"),
         position("Point"),
@@ -973,7 +973,7 @@ effect("crackle", [
    colors=[param_color("Color", hexc("ffffff"))])
 
 # --- Firework burst: stars with ribbons, each crackling as it goes out ------
-effect("firework_burst", [
+effect("fireworks/firework_burst", [
     emitter("Stars",
         burst(70, "Stars"),
         position("Point"),
@@ -985,7 +985,7 @@ effect("firework_burst", [
         drag(1.1),
         sprite_render("spark", additive=True, face=True),
         trail_render(width=0.03, color=gradient([(0, hexc("ffffff", 0.9)), (1, hexc("ff8040", 0.0))]), life=0.45, max_points=24, point_distance=0.06),
-        on_death("crackle", chance=0.6, scale=1.0, max_alive=40),
+        on_death("fireworks/crackle", chance=0.6, scale=1.0, max_alive=40),
         max_particles=120),
     emitter("Flash",
         burst(1),
@@ -1002,7 +1002,7 @@ effect("firework_burst", [
    colors=[param_color("Stars Color", gradient([(0, hexc("ffffff")), (0.3, hexc("ffd040")), (0.7, hexc("ff4080")), (1, hexc("6030ff"))]))])
 
 # --- Firework, chained: rocket -> burst where it actually died -> crackles --
-effect("firework_chain", [
+effect("fireworks/firework_chain", [
     emitter("Rocket",
         burst(1),
         position("Point"),
@@ -1014,7 +1014,7 @@ effect("firework_chain", [
         gravity(0, -9.8, 0),
         sprite_render("spark", additive=True, face=True),
         trail_render(width=0.035, color=gradient([(0, hexc("ffd8a0", 0.9)), (1, hexc("ff6020", 0.0))]), life=0.6, max_points=40, point_distance=0.08),
-        on_death("firework_burst", scale=1.0, max_alive=6, scale_param="Burst Size"),
+        on_death("fireworks/firework_burst", scale=1.0, max_alive=6, scale_param="Burst Size"),
         light(hexc("ffc890"), brightness=3, radius=3, ratio=1, max_lights=1, use_particle=False),
         max_particles=4),
     emitter("Launch Smoke",
@@ -1033,7 +1033,7 @@ effect("firework_chain", [
    colors=[param_color("Rocket", hexc("ffd8a0"))])
 
 # --- Impact: what a meteor leaves - 3D rubble, a shockwave, dust -----------
-effect("impact", [
+effect("combat/impact", [
     emitter("Flash",
         burst(1),
         position("Point"),
@@ -1100,7 +1100,7 @@ effect("impact", [
            param_float("Brightness"), param_float("Glow")])
 
 # --- Meteor: a 3D sphere falling with a fire trail, impacting where it lands -
-effect("meteor", [
+effect("combat/meteor", [
     emitter("Rock",
         burst(1),
         position("Box", box=(3, 0.5, 3), offset=(-7, 9, 0)),
@@ -1115,7 +1115,7 @@ effect("meteor", [
         model_render(("models/dev/sphere.mdl",), scale=1.0, shadows=True),
         trail_render(width=0.18, color=gradient([(0, hexc("ffd090", 0.8)), (0.5, hexc("ff6020", 0.5)), (1, hexc("401000", 0.0))]),
                      life=0.7, max_points=48, point_distance=0.1, width_param="Trail"),
-        on_death("impact", scale=1.0, max_alive=3, on_expiry=False, scale_param="Impact"),
+        on_death("combat/impact", scale=1.0, max_alive=3, on_expiry=False, scale_param="Impact"),
         light(hexc("ff9040"), brightness=8, radius=5, ratio=1, max_lights=1, use_particle=False, param="Glow"),
         max_particles=4),
     emitter("Fire Puffs",
@@ -1178,7 +1178,7 @@ def orbit_ring(name, shape_name, count):
         sprite_render("dot", additive=True),
         max_particles=count, places=count)
 
-effect("swarm", [
+effect("shapes/swarm", [
     emitter("Sun",
         burst(1),
         position("Point"),
@@ -1232,7 +1232,7 @@ effect("swarm", [
    colors=[param_color("Inner", hexc("60d0ff")), param_color("Middle", hexc("ffb060")), param_color("Outer", hexc("c080ff"))])
 
 # --- Sparkler: sparks with ribbons, thrown from a spinning point -----------
-effect("sparkler", [
+effect("fireworks/sparkler", [
     emitter("Sparks",
         rate(50, "Rate"),
         position("Point"),
@@ -1262,7 +1262,7 @@ effect("sparkler", [
    colors=[param_color("Color", gradient([(0, hexc("ffffff")), (0.5, hexc("ffd080")), (1, hexc("ff8040"))]))])
 
 # --- Singularity: everything falls in, ribbons streak to a 3D core ---------
-effect("singularity", [
+effect("magic/singularity", [
     emitter("Core",
         rate(1),
         position("Point"),
@@ -1317,14 +1317,14 @@ def wobble(*vals):
     pts = [(i / (len(vals) - 1), v) for i, v in enumerate(vals)]
     return curve(pts, top=1.0)
 
-effect("mesh_fire", [
+effect("ambient/mesh_fire", [
     emitter("Flame",
         burst(1),
         position("Point"),
         lifetime(4.0),
         size(1.0, "Size"),
         color(param="Tint", brightness=1.0),
-        mesh_render("models/flame.mdl", "materials/fx/stylized_fire.mat", scale=1.0, rotate=True,
+        mesh_render("models/fx/flame.mdl", "materials/fx/stylized_fire.mat", scale=1.0, rotate=True,
                     morphs=[("Lean", fb(wobble(0.1, 0.7, 0.2, 0.9, 0.4, 0.8, 0.1), "Sway")),
                             ("Flicker", fb(wobble(0.3, 0.9, 0.2, 0.7, 1.0, 0.4, 0.3), "Flicker")),
                             ("Bulge", fb(wobble(0.0, 0.5, 0.1, 0.6, 0.2, 0.0), "Flicker"))],
@@ -1341,7 +1341,7 @@ effect("mesh_fire", [
         lifetime(4.0),
         size(0.55, "Size"),
         color(hexc("fff4d0"), brightness=1.0),
-        mesh_render("models/flame.mdl", "materials/fx/stylized_fire.mat", scale=1.0, rotate=True,
+        mesh_render("models/fx/flame.mdl", "materials/fx/stylized_fire.mat", scale=1.0, rotate=True,
                     morphs=[("Flicker", fb(wobble(0.8, 0.3, 1.0, 0.5, 0.9, 0.8), "Flicker")),
                             ("Lean", fb(wobble(0.0, 0.3, 0.0, 0.4, 0.1, 0.0), "Sway"))],
                     shader=[("Dissolve", 1, fb(0.45, "Burn")), ("Edge", 1, fb(0.15)), ("Emission", 1, fb(1.8, "Intensity")), ("Scroll", 1, fb(2.0, "Speed"))]),
@@ -1363,14 +1363,14 @@ effect("mesh_fire", [
    colors=[param_color("Tint", hexc("ffffff"))])
 
 # --- Shield: a sphere that breathes, rim-lit, spiking when hit -----------
-effect("mesh_shield", [
+effect("magic/mesh_shield", [
     emitter("Shell",
         burst(1),
         position("Point"),
         lifetime(3.0),
         size(1.0, "Size"),
         color(param="Tint", brightness=1.0),
-        mesh_render("models/shield.mdl", "materials/fx/stylized_shield.mat", scale=1.0, rotate=True,
+        mesh_render("models/fx/shield.mdl", "materials/fx/stylized_shield.mat", scale=1.0, rotate=True,
                     morphs=[("Breathe", fb(wobble(0.0, 1.0, 0.0), "Breathe")),
                             ("Spike", fb(curve([(0, 0), (0.1, 0.8), (0.4, 0.1), (0.7, 0.6), (1, 0)]), "Spikes"))],
                     shader=[("Dissolve", 1, fb(0.35, "Holes")), ("Edge", 1, fb(0.12)), ("Emission", 1, fb(0.9, "Intensity")),
@@ -1392,7 +1392,7 @@ effect("mesh_shield", [
    colors=[param_color("Tint", hexc("ffffff"))])
 
 # --- Dissolving shards: 3D chunks that burn away as they lie there --------
-effect("mesh_shards", [
+effect("combat/mesh_shards", [
     emitter("Shards",
         burst(18, "Count"),
         position("Sphere", radius=0.2),
@@ -1437,7 +1437,7 @@ effect("mesh_shards", [
 # last rather than a random one.
 RAINBOW = gradient_by_index([(0, hexc("ff4060")), (0.25, hexc("ffc040")), (0.5, hexc("40ff90")), (0.75, hexc("40a0ff")), (1, hexc("e060ff"))])
 
-effect("formation", [
+effect("shapes/formation", [
     emitter("Beads",
         burst(96),
         position_on("Grid", "ByIndex"),
@@ -1474,7 +1474,7 @@ effect("formation", [
 # every particle.
 SNAKE_PATH = [(-2.2, 0.6, -0.8), (-1.2, 1.6, 0.9), (0.4, 0.5, 1.4), (1.9, 1.3, 0.3), (2.3, 0.7, -1.2), (0.8, 1.9, -1.8), (-0.9, 0.9, -1.9)]
 
-effect("snake", [
+effect("shapes/snake", [
     # One head that never dies, moved by the clock (Speed: a lap every four
     # seconds) rather than by its life - so the ribbon behind it is one ribbon.
     emitter("Head",
@@ -1522,7 +1522,7 @@ effect("snake", [
 # never pop), streamers riding a helix up over their life with ribbons,
 # motes born on the rim of a cone. Every shape is offset from the player's
 # feet, so the effect is dropped on a character and just fits.
-effect("buff_aura", [
+effect("magic/buff_aura", [
     emitter("Runes",
         burst(8),
         position_on("Ring", "ByIndex"),
@@ -1569,7 +1569,7 @@ effect("buff_aura", [
 
 # --- DNA: two helix shapes, one turned half round, and beads that sit
 #     between them - a chain of Follow Shape weights, not a special module.
-effect("dna", [
+effect("shapes/dna", [
     emitter("Strand A",
         burst(44),
         position_on("Strand A", "ByIndex"),
@@ -1617,7 +1617,7 @@ effect("dna", [
 #     each remembers where it was born, and one attractor whose position is
 #     read out of that slot springs every one of them back home - so noise
 #     can shake the cube and it wobbles rather than scatters.
-effect("jelly", [
+effect("shapes/jelly", [
     emitter("Motes",
         burst(400),
         position_on("Body", "Random"),
@@ -1647,7 +1647,7 @@ effect("jelly", [
 # --- Homing: missiles thrown any which way that a Goal pulls onto a moving
 #     anchor over their life; puffs at the launcher shaped by Transform Over
 #     Life; a glow that rides the target through an emitter anchor.
-effect("homing", [
+effect("combat/homing", [
     emitter("Missiles",
         rate(5, "Rate"),
         position("Sphere", radius=0.15, offset=(0, 0.4, 0)),
@@ -1660,7 +1660,7 @@ effect("homing", [
         goal("Anchor", anchor="Target", position=fb(curve([(0, 0), (0.3, 0.0), (0.75, 0.9), (1, 1)]), "Pull"), align=True),
         sprite_render("glow", additive=True),
         trail_render(width=0.06, color=hexc("ff9040"), life=0.5, max_points=40, point_distance=0.03, scale_from=True, tint=True),
-        event("OnGoalReached", "Hit", distance=0.12, effect_="crackle", scale=0.5, max_alive=8,
+        event("OnGoalReached", "Hit", distance=0.12, effect_="fireworks/crackle", scale=0.5, max_alive=8,
               sets=[set_row("LifeLeft", value=(0, 0, 0))], context=[ctx("Color", "Color")]),
         max_particles=40),
     emitter("Launch Puffs",
@@ -1730,7 +1730,7 @@ def crescent(tag, arc, delay, colour, core):
 
 CUT_A, CUT_B = hexc("60d0ff"), hexc("ff70c0")
 
-effect("slash", [
+effect("combat/slash", [
     *crescent("A", "Arc A", 0.0, CUT_A, hexc("e0f8ff")),
     *crescent("B", "Arc B", 0.42, CUT_B, hexc("ffe0f8")),
     emitter("Shockwave",
@@ -1773,7 +1773,7 @@ effect("slash", [
 #     then burn away, with ribbons while they fly and a crackle as they go.
 GATHER = curve([(0, 0), (0.12, 0), (0.45, 1), (1, 1)])
 
-effect("assemble", [
+effect("magic/assemble", [
     emitter("Shards",
         burst(48),
         position_on("Scatter", "Random"),
@@ -1790,7 +1790,7 @@ effect("assemble", [
                             ("Edge", 1, fb(0.15)),
                             ("Emission", 1, fb(curve([(0, 3.0), (0.45, 1.2), (0.8, 1.0), (1, 3.5)], top=4), "Glow")),
                             ("Scroll", 1, fb(0.6))]),
-        on_death("crackle", chance=1.0, scale=0.4, on_collision=False, on_expiry=True, max_alive=16),
+        on_death("fireworks/crackle", chance=1.0, scale=0.4, on_collision=False, on_expiry=True, max_alive=16),
         max_particles=48, places=48),
     emitter("Lock Flash",
         burst(1),
@@ -1858,7 +1858,7 @@ def tesla_end(anchor_name):
             max_particles=60, anchor=anchor_name),
     ]
 
-effect("tesla", [
+effect("combat/tesla", [
     bolt("Bolts", 4, 0.35),
     *tesla_end("A"),
     *tesla_end("B"),
@@ -1875,7 +1875,7 @@ effect("tesla", [
 #     back gathers them home, turning them upright on the way.
 WHOLE = curve([(0, 0), (0.42, 0), (0.62, 1), (1, 1)])
 
-effect("shatter", [
+effect("combat/shatter", [
     emitter("Pieces",
         burst(16),
         position_on("Urn", "ByIndex"),
@@ -1890,7 +1890,7 @@ effect("shatter", [
         gravity(0, -9.8, 0),
         drag(0.2),
         goal("Shape", shape_name="Urn", sample="ByIndex", position=fb(WHOLE, "Assemble"), rotation=fb(WHOLE, "Assemble"), write_velocity=False),
-        mesh_render("models/urn_broken.mdl", "materials/fx/stylized_clay.mat", scale=1.0, rotate=False, shadows=True, part_from_particle=True,
+        mesh_render("models/props/urn_broken.mdl", "materials/fx/stylized_clay.mat", scale=1.0, rotate=False, shadows=True, part_from_particle=True,
                     shader=[("Dissolve", 1, fb(0.0)), ("Edge", 1, fb(0.1)),
                             ("Emission", 1, fb(curve([(0, 3.0), (0.15, 1.2), (0.7, 1.0), (0.8, 2.5), (1, 0.9)], top=3), "Glow")),
                             ("Scroll", 1, fb(0.1))]),
@@ -1917,7 +1917,7 @@ effect("shatter", [
         sprite_render("smoke1", additive=False, lighting=True, sort=True),
         max_particles=40, delay=0.0),
 ], duration=5.0, looping=True,
-   shapes=[shape("Urn", "Model", model="models/urn_broken.mdl", model_sample="Parts", offset=(0, 0, 0))],
+   shapes=[shape("Urn", "Model", model="models/props/urn_broken.mdl", model_sample="Parts", offset=(0, 0, 0))],
    slots=["Spin"], floats=[param_float("Assemble", 1, 0, 1), param_float("Force", 1, 0, 3), param_float("Glow", 1, 0, 3)])
 
 # --- Chain reaction: three effects handing colour and direction down.
@@ -1926,7 +1926,7 @@ effect("shatter", [
 #     Direction); each spark of the burst that hits the ground spawns a pop
 #     told the colour again. Nothing here knows the next effect's insides -
 #     only the names of its parameters.
-effect("chain_pop", [
+effect("fireworks/chain_pop", [
     emitter("Ring",
         burst(1),
         position("Point"),
@@ -1949,7 +1949,7 @@ effect("chain_pop", [
         max_particles=8),
 ], duration=0.6, looping=False, colors=[param_color("Color", hexc("ffffff"))])
 
-effect("chain_burst", [
+effect("fireworks/chain_burst", [
     emitter("Sparks",
         burst(36),
         position("Sphere", radius=0.05),
@@ -1961,7 +1961,7 @@ effect("chain_burst", [
         collision(radius=0.02, bounce=0.3, friction=0.6),
         gravity(0, -9.8, 0),
         drag(0.5),
-        event("OnCollision", "Pop", once=True, chance=0.6, effect_="chain_pop", scale=0.6, max_alive=12, context=[ctx("Color", "Color")]),
+        event("OnCollision", "Pop", once=True, chance=0.6, effect_="fireworks/chain_pop", scale=0.6, max_alive=12, context=[ctx("Color", "Color")]),
         sprite_render("spark", additive=True, face=True),
         trail_render(width=0.014, color=hexc("ffffff"), life=0.25, max_points=16, point_distance=0.03, scale_from=False, tint=True),
         max_particles=40),
@@ -1977,7 +1977,7 @@ effect("chain_burst", [
 ], duration=1.5, looping=False,
    vectors=[param_vec("Direction", (0, 6, 0))], colors=[param_color("Color", hexc("ffffff"))])
 
-effect("chain_rocket", [
+effect("fireworks/chain_rocket", [
     emitter("Rockets",
         rate(1.2, "Rate"),
         position("Circle", radius=0.15),
@@ -1986,7 +1986,7 @@ effect("chain_rocket", [
         size(0.06),
         color(color_range(hexc("ff5050"), hexc("50a0ff")), brightness=2.0),
         gravity(0, -3, 0),
-        event("OnTime", "Burst", at=1.0, at_param="Fuse", effect_="chain_burst", max_alive=6,
+        event("OnTime", "Burst", at=1.0, at_param="Fuse", effect_="fireworks/chain_burst", max_alive=6,
               sets=[set_row("LifeLeft", value=(0, 0, 0))],
               context=[ctx("Color", "Color"), ctx("Velocity", "Direction")]),
         sprite_render("glow", additive=True),

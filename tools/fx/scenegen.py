@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Writes scenes/FX.scene for the test ground: a row of stations, one effect each."""
+"""Writes scenes/fx/particles.scene for the test ground: a row of stations, one effect each."""
 import json, uuid, os
 
 ROOT = "/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets"
@@ -135,7 +135,7 @@ def tesla_station(x, name, title, note):
         return go(f"Tesla Arm {tag}", (x_, 1.5, 0), components=[swing(f"Tesla Arm {tag}", (0, 1, 0), 55, 2.6, phase=phase)], children=[ball])
     def build(px, pz):
         kids = [block(f"Pedestal: {name}", (0, 0.1, 0), (1.4, 0.2, 1.4), PEDESTAL), arm("A", -1.4, 0.0), arm("B", 1.4, 0.5),
-                bound_player(name, "tesla", (0, 0, 0), [("A", "Tesla Ball A"), ("B", "Tesla Ball B")]),
+                bound_player(name, "combat/tesla", (0, 0, 0), [("A", "Tesla Ball A"), ("B", "Tesla Ball B")]),
                 label(name, (0, 4.6, 0), sign(name, title, note))]
         return go(f"Station: {name}", (px, 0, pz), children=kids)
     registry[name] = build
@@ -145,7 +145,7 @@ def homing_station(x, name, title, note):
     arm = go("Homing Arm", (0, 1.6, 0), components=[swing("Homing Arm", (0, 1, 0), 70, 3.2)], children=[ball])
     def build(px, pz):
         kids = [block(f"Pedestal: {name}", (0, 0.1, 0), (1.4, 0.2, 1.4), PEDESTAL), arm,
-                bound_player(name, "homing", (0, 0, 0), [("Target", "Homing Target")]),
+                bound_player(name, "combat/homing", (0, 0, 0), [("Target", "Homing Target")]),
                 label(name, (0, 4.6, 0), sign(name, title, note))]
         return go(f"Station: {name}", (px, 0, pz), children=kids)
     registry[name] = build
@@ -154,78 +154,78 @@ def homing_station(x, name, title, note):
 # spawn in the middle of it.
 X = iter(range(-224, 225, 14))
 
-station(next(X), "Mesh Fire", "mesh_fire", "Stylised Fire (mesh)",
+station(next(X), "Mesh Fire", "ambient/mesh_fire", "Stylised Fire (mesh)",
         "one flame mesh: three blend shapes on curves, a dissolve shader driven per particle\nIntensity, Flicker, Sway, Burn, Speed and Tint are parameters", y=0.3)
-station(next(X), "Shield", "mesh_shield", "Shield (mesh)",
+station(next(X), "Shield", "magic/mesh_shield", "Shield (mesh)",
         "a sphere that breathes and spikes by morph, rim-lit and holed by the same shader\nBreathe, Spikes, Holes, Rim and Tint are parameters", y=1.6)
-station(next(X), "Shards", "mesh_shards", "Dissolving Shards (mesh)",
+station(next(X), "Shards", "combat/mesh_shards", "Dissolving Shards (mesh)",
         "3D chunks that bounce and burn away - Dissolve and Emission on curves over each life\nCount, Force, Burn and Intensity are parameters", y=0.3)
-station(next(X), "Formation", "formation", "Formation (shapes)",
+station(next(X), "Formation", "shapes/formation", "Formation (shapes)",
         "96 beads parked on a Grid shape By Index, blended to a Ring and a Helix by Follow Shape -\ncolour and size read By Index. Ring, Helix, Spin and Size are parameters", y=0.3)
-station(next(X), "Snake", "snake", "Snake (spline + slots)",
+station(next(X), "Snake", "shapes/snake", "Snake (spline + slots)",
         "a head riding a closed Spline shape by time with a ribbon body, scales on the same path,\nsparks that Remember their birth point in a slot and are pulled back to it. Speed, Sparks and Pull are parameters", y=0.3)
-station(next(X), "Buff Aura", "buff_aura", "Buff Aura (real case)",
+station(next(X), "Buff Aura", "magic/buff_aura", "Buff Aura (real case)",
         "what a heal or level-up needs: runes on a ring By Index turned by the clock, streamers riding a helix\nwith ribbons, motes off a cone's rim - every shape offset from the feet. Spin, Rise, Intensity, Size are parameters", y=0.3)
-station(next(X), "DNA", "dna", "DNA (two shapes, chained weights)",
+station(next(X), "DNA", "shapes/dna", "DNA (two shapes, chained weights)",
         "two helix shapes, one turned half a circle; beads parked By Index on each and turned by Speed;\nrungs are Follow A then Follow B at weight 0.5 - the midpoint. Spin, Size and Fizz are parameters", y=0.3)
-station(next(X), "Jelly", "jelly", "Jelly (slots)",
+station(next(X), "Jelly", "shapes/jelly", "Jelly (slots)",
         "400 motes fill a box, each Remembers its birth point in slot Home, and one attractor reading\nthat slot springs every mote back - noise shakes it, it wobbles. Stiffness, Shake, Damping are parameters", y=0.3)
-station(next(X), "Slash", "slash", "Slash (shapes + drivers)",
+station(next(X), "Slash", "combat/slash", "Slash (shapes + drivers)",
         "the cut, not the sword: two crescents in an X, each one particle riding an arc of a Circle shape with a\ntapering ribbon and a white core, sparks on the arc, a ring pushed out by Transform Over Life. Width, Sparks", y=1.3)
-station(next(X), "Assemble", "assemble", "Assemble (Goal + mesh + shader)",
+station(next(X), "Assemble", "magic/assemble", "Assemble (Goal + mesh + shader)",
         "48 dissolve-shader shards scattered in a sphere, pulled by a Goal onto a grid wall By Index - position and\nrotation on one curve - lock, hold, burn away with a crackle each. Gather, Glow, Size are parameters", y=0.3)
-station(next(X), "Shatter", "shatter", "Shatter / Assemble (model parts)",
+station(next(X), "Shatter", "combat/shatter", "Shatter / Assemble (model parts)",
         "a real urn broken into 16 pieces in Blender: each particle is born on the Model shape By Parts and draws\nonly its piece; a Goal back to the same shape is the urn whole. Assemble, Force, Glow are parameters", y=0.3)
-station(next(X), "Chain Reaction", "chain_rocket", "Chain Reaction (events + context)",
+station(next(X), "Chain Reaction", "fireworks/chain_rocket", "Chain Reaction (events + context)",
         "a rocket born a random colour kills itself On Time and spawns a burst told its Color and Velocity;\neach spark that lands spawns a pop told the colour again. Rate and Fuse are parameters", y=0.3)
 tesla_station(next(X), "Tesla", "Tesla (anchors + Goal)",
         "arcs between two anchors on two swinging arms: each bolt is a particle whose Goal runs it along the Line\nbetween them at weight 0.8 - the rest is its own noised motion, the zigzag. Arcs is a parameter")
 homing_station(next(X), "Homing", "Homing (Goal + Transform Over Life)",
         "missiles thrown anywhere, pulled onto a moving anchor by a Goal weight curve; launch puffs rise and grow\nby Transform Over Life; the glow rides the target. Rate and Pull are parameters")
-station(next(X), "Meteor", "meteor", "Meteor",
+station(next(X), "Meteor", "combat/meteor", "Meteor",
         "a 3D sphere falling with a fire ribbon; where it lands it plays impact.fx -\n3D rubble that bounces, a shockwave, dust. Speed, Trail and Impact are parameters", y=0.3, label_y=5.2)
-station(next(X), "Singularity", "singularity", "Singularity",
+station(next(X), "Singularity", "magic/singularity", "Singularity",
         "a 3D core, an accretion disc and infalling streaks with ribbons\nSpin, Pull, Density and three gradients are parameters", y=2.4)
 
-station(next(X), "Snowfall", "snow", "Snowfall",
+station(next(X), "Snowfall", "ambient/snow", "Snowfall",
         "a seven metre box of flakes drifting on curl noise, lit\nDensity and Wind are parameters", y=5.2, pedestal=False, label_y=7.4)
-station(next(X), "Rain", "rain", "Rain",
+station(next(X), "Rain", "ambient/rain", "Rain",
         "stretched drops born seven metres up, splashes and rings where they land\nDensity, Speed, Splash, Wind and the Water colour are parameters", y=0.05, pedestal=False, label_y=8.6)
-station(next(X), "Tornado", "tornado", "Dust Devil",
+station(next(X), "Tornado", "ambient/tornado", "Dust Devil",
         "a shell of dust spun up by a vortex and pushed out as it climbs\nSpin and Density are parameters", y=0.1)
-station(next(X), "Chimney", "chimney", "Chimney",
+station(next(X), "Chimney", "ambient/chimney", "Chimney",
         "slow lit smoke carried off by the wind, with faster wisps inside it\nVolume and Wind are parameters", y=0.3)
-station(next(X), "Campfire", "fire", "Campfire",
+station(next(X), "Campfire", "ambient/fire", "Campfire",
         "flames, embers and smoke\nIntensity, Wind and the Flame gradient are parameters")
-station(next(X), "Explosion", "explosion", "Explosion",
+station(next(X), "Explosion", "combat/explosion", "Explosion",
         "flash, shockwave, fireball, sparks that bounce, 3D stone chunks that land and lie still, smoke\nPower, Sparks and Debris scale it - bursts every 3.5 s")
 next(X)
 registry["Gunshot"] = lambda px, pz: go("Station: Gunshot", (px, 0, pz), children=[
     block("Post: Gunshot", (0, 0.6, 0), (0.18, 1.2, 0.18), PEDESTAL),
-    player("Gunshot", "gunshot", (0, 1.25, 0), "0,-0.5,0,0.8660254"),
+    player("Gunshot", "combat/gunshot", (0, 1.25, 0), "0,-0.5,0,0.8660254"),
     label("Gunshot", (0, 4.6, 0), sign("Gunshot", "Gunshot", "")),
 ])
-station(next(X), "Magic Orb", "magic_orb", "Magic Orb",
+station(next(X), "Magic Orb", "magic/magic_orb", "Magic Orb",
         "a sphere shell pulled inward and spun by a vortex, motion-blurred\nSpin, Pull and the Aura gradient are parameters", y=1.7)
-station(next(X), "Portal", "portal", "Portal",
+station(next(X), "Portal", "magic/portal", "Portal",
         "two counter-flowing rings on a vertical circle, lit from the sheet\nSpeed and the Glow gradient are parameters",
         y=2.0, rot="-0.7071068,0,0,0.7071068")
 # Turned to run along the row, so the beam is seen side-on rather than end-on.
-station(next(X), "Beam", "beam", "Energy Beam",
+station(next(X), "Beam", "combat/beam", "Energy Beam",
         "particles born along a line, an impact at the far end\nthe Beam gradient is a parameter", y=1.4, rot="0,-0.7071068,0,0.7071068")
-station(next(X), "Fountain", "fountain", "Fountain",
+station(next(X), "Fountain", "ambient/fountain", "Fountain",
         "a jet under gravity, droplets that collide with the ground and die\nJet velocity and Water colour are parameters", y=0.25)
-station(next(X), "Firework", "firework", "Firework (timed)",
+station(next(X), "Firework", "fireworks/firework", "Firework (timed)",
         "a rocket, its trail, and a burst timed to where it should be by then\nStars, Size and the Stars gradient are parameters", y=0.3, label_y=3.2)
-station(next(X), "Firework Chain", "firework_chain", "Firework (chained)",
+station(next(X), "Firework Chain", "fireworks/firework_chain", "Firework (chained)",
         "the rocket plays firework_burst.fx where it actually dies, and every star\nplays crackle.fx where it goes out - three files, Effect On Death between them", y=0.3, label_y=3.2)
-station(next(X), "Sparkler", "sparkler", "Sparkler",
+station(next(X), "Sparkler", "fireworks/sparkler", "Sparkler",
         "sparks with ribbons behind them, bouncing off the ground\nRate, Force and the Color gradient are parameters", y=1.6)
-station(next(X), "Orrery", "swarm", "Orrery",
+station(next(X), "Orrery", "shapes/swarm", "Orrery",
         "a sun mesh in the ember shader, three mesh planets parked on tilted Circle shapes and turned by the clock,\neach with a ribbon and a light; orbits are dots parked By Index. Spin, Glow and the planet colours are parameters", y=2.4)
-station(next(X), "Confetti", "confetti", "Confetti",
+station(next(X), "Confetti", "fireworks/confetti", "Confetti",
         "tumbling paper on its own rotation, colliding with the ground\nAmount and the Paper colours are parameters", y=0.4)
-station(next(X), "Fireflies", "fireflies", "Fireflies",
+station(next(X), "Fireflies", "ambient/fireflies", "Fireflies",
         "slow motes on curl noise, each one a flicker and a light\nCount and the Glow gradient are parameters", y=1.8, pedestal=False)
 
 # ---------------------------------------------------------------- the areas
@@ -321,7 +321,7 @@ scene = {
     "__references": [], "__version": 4,
 }
 
-path = os.path.join(ROOT, "scenes/FX.scene")
+path = os.path.join(ROOT, "scenes/fx/particles.scene")
 with open(path, "w") as f:
     json.dump(scene, f, indent=2)
 print("wrote", path)
