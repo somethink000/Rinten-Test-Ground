@@ -1,0 +1,41 @@
+{
+  "Shader": "shaders/foliage.shader",
+  "Features": {
+    "F_WIND": 1,
+    "F_NORMAL_MAP": 1,
+    "F_ROUGHNESS": 1,
+    "F_ALPHA": 1,
+    "F_BACKFACES": 1,
+    "F_TRANSMISSION": 1
+  },
+  "Numbers": {
+    "g_flWindStrength": "0.12,0,0,0",
+    "g_flWindSpeed": "1.8,0,0,0",
+    "g_flWindHeight": "8,0,0,0",
+    "g_vWindDirection": "1,0,0.25,0",
+    "g_flRoughness": "0.62,0,0,0",
+    "g_flOpacityMipBoost": "0.45,0,0,0",
+    "g_flAlphaCutoff": "0.4,0,0,0",
+    "g_flTransmission": "0.7,0,0,0",
+    "g_vTransmissionColour": "0.85,1,0.45,0",
+    "g_flTransmissionSpread": "4,0,0,0"
+  },
+  "Textures": {
+    "g_tRoughness": "textures/jungle/canopy_r.png"
+  },
+  "Tint": "1,1,1,1",
+  "ColorMap": "textures/jungle/canopy.png",
+  "Normal": "textures/jungle/canopy_n.png",
+  "RoughMetalAmbient": "materials/default/roughmetal.png",
+  "Emission": "materials/default/black.png",
+  "Roughness": 0.42,
+  "Metalness": 0.0,
+  "EmissionStrength": 0.0,
+  "PhysicsSurface": "",
+  "TwoSided": true,
+  "Filtering": "Smooth",
+  "Blend": "Masked",
+  "AlphaCutoff": 0.4,
+  "__references": [],
+  "__version": 0
+}

@@ -11,7 +11,7 @@ numpy if it is there, otherwise a slower pure-python path.
 from __future__ import annotations
 
 import json
-import math
+import math, random
 import os
 import struct
 import zlib
@@ -38,6 +38,7 @@ SLOT_MATERIALS = {
     "Moss": "materials/jungle/moss.mat",
     "Fungus": "materials/jungle/fungus.mat",
     "Litter": "materials/jungle/litter.mat",
+    "Canopy": "materials/jungle/canopy.mat",
 }
 
 
@@ -163,6 +164,72 @@ def mix3(a, b, t):
     return a * (1.0 - t) + b * t
 
 
+LEAF_SPECS = [
+    dict(w=0.42, p=0.58, curve=0.05, holes=0.0, dark=0.0, ruffle=0.03, seed=11, theta=50),
+    dict(w=0.30, p=0.78, curve=-0.06, holes=0.0, dark=-0.1, ruffle=0.02, seed=23, theta=46),
+    dict(w=0.50, p=0.52, curve=0.02, holes=0.04, dark=0.05, ruffle=0.04, seed=41, theta=58),
+    dict(w=0.36, p=0.66, curve=0.09, holes=0.012, dark=0.12, ruffle=0.055, seed=67, theta=53),
+]
+
+
+def leaf_shape(lu, lv, spec, dry, edge_px=None):
+    """One leaf on its own coordinates: `lu` across (0 at the left edge, 1 at
+    the right), `lv` along (petiole at 0, tip at 1). Returns colour, height,
+    roughness and alpha for every sample given - a leaf drawn straight into a
+    cell, or one stamped into a sprig at any angle, is the same function."""
+    lx = (lu - 0.5) * 2.0
+    ly = lv
+    outside = (lu < 0.0) | (lu > 1.0) | (lv < 0.0) | (lv > 1.0)
+    lu = np.clip(lu, 0, 1)
+    lv = np.clip(lv, 0, 1)
+    nedge = (fbm(lu * 20, lv * 16, 3, seed=spec["seed"]) - 0.5) * spec["ruffle"]
+    width = spec["w"] * np.sin(np.pi * np.clip(ly, 0, 1) ** spec["p"]) ** 0.72
+    width = np.maximum(width * (1.0 + spec["curve"] * lx) + nedge, 0.0)
+    stem = np.exp(-(ly / 0.05) ** 2) * 0.05
+    width = np.maximum(width, stem)
+    dist = np.abs(lx) - width
+    a = np.clip(0.5 - dist * (edge_px or SIZE / 2) * 0.35, 0.0, 1.0)
+    a = np.where(outside | (lu < 0.015) | (lu > 0.985) | (lv < 0.008) | (lv > 0.992), 0.0, a)
+    if spec["holes"] > 0:
+        holes = fbm(lu * 24, lv * 20, 3, seed=spec["seed"] + 9)
+        a = np.where((holes > 1.0 - spec["holes"]) & (np.abs(lx) < width * 0.65) & (ly > 0.22) & (ly < 0.82), 0.0, a)
+
+    mx = spec["curve"] * 0.18 * np.sin(ly * math.pi)
+    dx = lx - mx
+    mid = np.exp(-(dx / 0.028) ** 2)
+    # Pinnate veins: a diagonal sine, so they leave the midrib and run toward the tip.
+    tan = math.tan(math.radians(spec["theta"]))
+    diag = ly * 13.0 - np.abs(dx) * tan * 0.55
+    vein = np.exp(-(np.sin(diag * math.pi) ** 2) * 22.0)
+    vein = vein * (1.0 - np.exp(-(np.abs(dx) / 0.05) ** 2)) * np.clip(ly * 8.0, 0, 1)
+    tert = ridged(lu * 32 + dx * 4, lv * 26, 3, seed=spec["seed"] + 3) * 0.2 * (1.0 - mid)
+    h = (mid * 0.7 + vein * 0.45 + tert * 0.15) * a
+
+    if dry:
+        base = np.array([0.18, 0.10, 0.04])
+        lit = np.array([0.36, 0.22, 0.08])
+        vein_c = np.array([0.28, 0.16, 0.06])
+        edge_c = np.array([0.12, 0.07, 0.03])
+    else:
+        base = np.array([0.028, 0.075, 0.016]) * (1.0 + spec["dark"])
+        lit = np.array([0.055, 0.14, 0.028])
+        vein_c = np.array([0.09, 0.17, 0.035])
+        edge_c = np.array([0.016, 0.042, 0.01])
+        if spec["dark"] < 0:
+            lit = np.array([0.09, 0.17, 0.038])
+
+    inside = np.clip(1.0 - np.abs(lx) / (width + 1e-4), 0, 1)
+    mottling = fbm(lu * 10, lv * 9, 4, seed=spec["seed"] + 5)
+    col = mix3(edge_c, base, inside ** 0.55)
+    col = mix3(col, lit, mottling * 0.4 + mid * 0.2)
+    col = mix3(col, vein_c, np.clip(vein * 1.1 + mid * 0.65, 0, 1))
+    speckle = np.clip(fbm(lu * 42, lv * 38, 2, seed=spec["seed"] + 7) - 0.64, 0, 1) * 2.2
+    col = col + speckle[..., None] * (np.array([0.04, 0.07, 0.015]) if not dry else np.array([0.06, 0.04, 0.01]))
+
+    rgh = (0.36 + 0.28 * (1.0 - mid) + 0.1 * mottling) if not dry else (0.7 + 0.18 * mottling)
+    return col, h, rgh, a
+
+
 def leaf_atlas(dry=False):
     """2x2 of distinct blades. Each cell is one leaf, petiole at v=0, tip at v=1."""
     u, v = grid()
@@ -170,72 +237,85 @@ def leaf_atlas(dry=False):
     height = np.zeros((SIZE, SIZE))
     rough = np.ones((SIZE, SIZE)) * 0.55
     alpha = np.zeros((SIZE, SIZE))
-
-    specs = [
-        dict(w=0.42, p=0.58, curve=0.05, holes=0.0, dark=0.0, ruffle=0.03, seed=11, theta=50),
-        dict(w=0.30, p=0.78, curve=-0.06, holes=0.0, dark=-0.1, ruffle=0.02, seed=23, theta=46),
-        dict(w=0.50, p=0.52, curve=0.02, holes=0.04, dark=0.05, ruffle=0.04, seed=41, theta=58),
-        dict(w=0.36, p=0.66, curve=0.09, holes=0.012, dark=0.12, ruffle=0.055, seed=67, theta=53),
-    ]
-    for i, spec in enumerate(specs):
+    for i, spec in enumerate(LEAF_SPECS):
         cu, cv = (i % 2) * 0.5, (i // 2) * 0.5
         in_cell = (u >= cu) & (u < cu + 0.5) & (v >= cv) & (v < cv + 0.5)
         lu = np.clip((u - cu) / 0.5, 0, 1)
         lv = np.clip((v - cv) / 0.5, 0, 1)
-        lx = (lu - 0.5) * 2.0
-        ly = lv
-        nedge = (fbm(lu * 20, lv * 16, 3, seed=spec["seed"]) - 0.5) * spec["ruffle"]
-        width = spec["w"] * np.sin(np.pi * np.clip(ly, 0, 1) ** spec["p"]) ** 0.72
-        width = np.maximum(width * (1.0 + spec["curve"] * lx) + nedge, 0.0)
-        stem = np.exp(-(ly / 0.05) ** 2) * 0.05
-        width = np.maximum(width, stem)
-        dist = np.abs(lx) - width
-        a = np.clip(0.5 - dist * (SIZE / 2) * 0.35, 0.0, 1.0)
-        a = np.where((lu < 0.015) | (lu > 0.985) | (lv < 0.008) | (lv > 0.992), 0.0, a)
-        if spec["holes"] > 0:
-            holes = fbm(lu * 24, lv * 20, 3, seed=spec["seed"] + 9)
-            a = np.where((holes > 1.0 - spec["holes"]) & (np.abs(lx) < width * 0.65) & (ly > 0.22) & (ly < 0.82), 0.0, a)
-
-        mx = spec["curve"] * 0.18 * np.sin(ly * math.pi)
-        dx = lx - mx
-        mid = np.exp(-(dx / 0.028) ** 2)
-        # Pinnate veins: a diagonal sine, so they leave the midrib and run toward the tip.
-        tan = math.tan(math.radians(spec["theta"]))
-        diag = ly * 13.0 - np.abs(dx) * tan * 0.55
-        vein = np.exp(-(np.sin(diag * math.pi) ** 2) * 22.0)
-        vein = vein * (1.0 - np.exp(-(np.abs(dx) / 0.05) ** 2)) * np.clip(ly * 8.0, 0, 1)
-        tert = ridged(lu * 32 + dx * 4, lv * 26, 3, seed=spec["seed"] + 3) * 0.2 * (1.0 - mid)
-        h = (mid * 0.7 + vein * 0.45 + tert * 0.15) * a
-
-        if dry:
-            base = np.array([0.18, 0.10, 0.04])
-            lit = np.array([0.36, 0.22, 0.08])
-            vein_c = np.array([0.28, 0.16, 0.06])
-            edge_c = np.array([0.12, 0.07, 0.03])
-        else:
-            base = np.array([0.028, 0.075, 0.016]) * (1.0 + spec["dark"])
-            lit = np.array([0.055, 0.14, 0.028])
-            vein_c = np.array([0.09, 0.17, 0.035])
-            edge_c = np.array([0.016, 0.042, 0.01])
-            if spec["dark"] < 0:
-                lit = np.array([0.09, 0.17, 0.038])
-
-        inside = np.clip(1.0 - np.abs(lx) / (width + 1e-4), 0, 1)
-        mottling = fbm(lu * 10, lv * 9, 4, seed=spec["seed"] + 5)
-        col = mix3(edge_c, base, inside ** 0.55)
-        col = mix3(col, lit, mottling * 0.4 + mid * 0.2)
-        col = mix3(col, vein_c, np.clip(vein * 1.1 + mid * 0.65, 0, 1))
-        speckle = np.clip(fbm(lu * 42, lv * 38, 2, seed=spec["seed"] + 7) - 0.64, 0, 1) * 2.2
-        col = col + speckle[..., None] * (np.array([0.04, 0.07, 0.015]) if not dry else np.array([0.06, 0.04, 0.01]))
+        col, h, rgh, a = leaf_shape(lu, lv, spec, dry)
         col = col * a[..., None]
-
-        rgh = (0.36 + 0.28 * (1.0 - mid) + 0.1 * mottling) if not dry else (0.7 + 0.18 * mottling)
-
         rgb = np.where(in_cell[..., None], col, rgb)
         height = np.where(in_cell, h, height)
         rough = np.where(in_cell, rgh, rough)
         alpha = np.where(in_cell, a, alpha)
+    return rgb, height, rough, alpha
 
+
+def sprig_atlas():
+    """2x2 of sprigs: a twig's worth of leaves on one card - six to nine of
+    them fanned from a stalk at the bottom of the cell, overlapping, the
+    later ones over the earlier. One card of this at a twig's end is a bunch
+    of leaves for two triangles, which is what fills a canopy."""
+    u, v = grid()
+    rgb = np.zeros((SIZE, SIZE, 3))
+    height = np.zeros((SIZE, SIZE))
+    rough = np.ones((SIZE, SIZE)) * 0.55
+    alpha = np.zeros((SIZE, SIZE))
+    rng = random.Random(5)
+    layouts = [
+        dict(count=7, fan=2.9, leaf=(0.5, 0.68), seed=3),
+        dict(count=9, fan=3.3, leaf=(0.42, 0.58), seed=17),
+        dict(count=6, fan=2.6, leaf=(0.58, 0.75), seed=29),
+        dict(count=8, fan=3.1, leaf=(0.46, 0.62), seed=43),
+    ]
+    for i, lay in enumerate(layouts):
+        cu, cv = (i % 2) * 0.5, (i // 2) * 0.5
+        in_cell = (u >= cu) & (u < cu + 0.5) & (v >= cv) & (v < cv + 0.5)
+        # The cell's own coordinates: x across (-1..1), y up (0 at the stalk's foot).
+        cx = ((u - cu) / 0.5 - 0.5) * 2.0
+        cy = (v - cv) / 0.5
+        cell_rgb = np.zeros((SIZE, SIZE, 3))
+        cell_h = np.zeros((SIZE, SIZE))
+        cell_r = np.ones((SIZE, SIZE)) * 0.55
+        cell_a = np.zeros((SIZE, SIZE))
+        rng = random.Random(lay["seed"])
+        # The stalk: a thin dark line from the foot up the middle, under everything.
+        stalk = np.exp(-((cx - 0.04 * np.sin(cy * 5)) / 0.018) ** 2) * (cy < 0.58) * (cy > 0.0)
+        cell_a = np.maximum(cell_a, stalk)
+        cell_rgb += stalk[..., None] * np.array([0.05, 0.045, 0.02])
+        cell_h = np.maximum(cell_h, stalk * 0.5)
+        n = lay["count"]
+        for k in range(n):
+            # Where along the stalk and which way this leaf points: alternating
+            # sides, the top ones pointing up, the low ones out and down a little.
+            t = 0.04 + 0.5 * (k / max(n - 1, 1))
+            side = 1 if k % 2 == 0 else -1
+            ang = side * (lay["fan"] / 2) * (1.0 - t * 0.7) + rng.uniform(-0.2, 0.2)
+            if k == n - 1:
+                ang = rng.uniform(-0.2, 0.2)
+                t = 0.54
+            L = rng.uniform(*lay["leaf"])
+            ox, oy = 0.04 * math.sin(t * 5), t
+            spec = LEAF_SPECS[rng.randrange(4)]
+            # Into the leaf's coordinates: along its direction is lv (0..1 over
+            # its length), across is lu (0..1 over its width).
+            dx, dy = cx - ox, cy - oy
+            along = dx * math.sin(ang) + dy * math.cos(ang)
+            across = dx * math.cos(ang) - dy * math.sin(ang)
+            w = L * spec["w"] * 1.05
+            lv = along / L
+            lu = across / (2 * w) + 0.5
+            col, h, rgh, a = leaf_shape(lu, lv, spec, False, edge_px=SIZE / (2 * w * 2))
+            a = a * (cell_a * 0 + 1)
+            # Over what is there already.
+            cell_rgb = cell_rgb * (1 - a[..., None]) + col * a[..., None]
+            cell_h = cell_h * (1 - a) + h * a
+            cell_r = cell_r * (1 - a) + rgh * a
+            cell_a = np.maximum(cell_a, a)
+        rgb = np.where(in_cell[..., None], cell_rgb * cell_a[..., None], rgb)
+        height = np.where(in_cell, cell_h, height)
+        rough = np.where(in_cell, cell_r, rough)
+        alpha = np.where(in_cell, cell_a, alpha)
     return rgb, height, rough, alpha
 
 
@@ -371,6 +451,8 @@ def make_all():
     print("textures")
     rgb, h, r, a = leaf_atlas(dry=False)
     save("leaf", rgb, h, r, a, nstr=10.0)
+    rgb, h, r, a = sprig_atlas()
+    save("canopy", rgb, h, r, a, nstr=8.0)
     rgb, h, r, a = frond_sheet()
     save("frond", rgb, h, r, a, nstr=8.0)
     rgb, h, r = bark_sheet(green=0.35, rings=10, seed=2)
@@ -437,7 +519,7 @@ def write_materials():
         "g_flWindSpeed": "1.8,0,0,0",
         "g_flWindHeight": "8,0,0,0",
         "g_vWindDirection": "1,0,0.25,0",
-        "g_flRoughness": "0.42,0,0,0",
+        "g_flRoughness": "0.62,0,0,0",
         "g_flOpacityMipBoost": "0.35,0,0,0",
         "g_flAlphaCutoff": "0.4,0,0,0",
     }
@@ -451,6 +533,12 @@ def write_materials():
     leaf_wind["g_flTransmissionSpread"] = "4,0,0,0"
     mat("leaf", "shaders/foliage.shader", c, n, r, 0.42, True, "Masked", 0.4,
         features=leaf_features, numbers=leaf_wind, textures={"g_tRoughness": r})
+    # The sprig cards: the same leaf, a bunch of it on a card - see sprig_atlas.
+    c, n, r = maps("canopy")
+    canopy_wind = dict(leaf_wind)
+    canopy_wind["g_flOpacityMipBoost"] = "0.45,0,0,0"
+    mat("canopy", "shaders/foliage.shader", c, n, r, 0.42, True, "Masked", 0.4,
+        features=leaf_features, numbers=canopy_wind, textures={"g_tRoughness": r})
     c, n, r = maps("frond")
     frond_wind = dict(wind)
     frond_wind["g_flWindStrength"] = "0.18,0,0,0"

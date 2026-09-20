@@ -30,7 +30,7 @@ OUT = "models/jungle"
 # remap, without touching the geometry again.
 # Frond is the tiling vein sheet on ferns and palms; Leaf is the cutout atlas
 # on each oval or heart blade.
-MATERIALS = ["Bark", "Leaf", "Frond", "Bamboo", "Rock", "Ground", "Vine", "Moss", "Fungus", "Litter"]
+MATERIALS = ["Bark", "Leaf", "Frond", "Bamboo", "Rock", "Ground", "Vine", "Moss", "Fungus", "Litter", "Canopy"]
 
 SLOT_MATERIALS = {
     "Bark": "materials/jungle/bark.mat",
@@ -43,6 +43,7 @@ SLOT_MATERIALS = {
     "Moss": "materials/jungle/moss.mat",
     "Fungus": "materials/jungle/fungus.mat",
     "Litter": "materials/jungle/litter.mat",
+    "Canopy": "materials/jungle/canopy.mat",
 }
 
 TAU = math.tau
@@ -331,6 +332,49 @@ def leaves(mesh, rng, center, d, count, length, width, spread=1.2, up=(0.0, 0.3)
               rng.uniform(*droop), segs=3, cross=3, crease=0.15, twist=rng.uniform(-0.4, 0.4))
 
 
+def sprig(mesh, rng, base, d, size, droop=0.35):
+    """A twig's worth of leaves on one card: a quad, bent a little along its
+    length, wearing one cell of the canopy atlas - a stalk with six to nine
+    leaves fanned off it, the shape cut by the alpha. Two triangles a row for
+    a bunch of leaves, which is what fills a canopy; the single leaves go on
+    top of these for the silhouette. The card's length runs along `d` from
+    `base`, its width across, and it turns about `d` at random so a cluster
+    of them faces every way."""
+    d = d.normalized()
+    a = perp(d)
+    b = d.cross(a)
+    roll = rng.uniform(0, TAU)
+    side = (a * math.cos(roll) + b * math.sin(roll)).normalized()
+    up = side.cross(d)
+    cell = rng.randrange(4)
+    au, av = (cell % 2) * 0.5, (cell // 2) * 0.5
+    flip = rng.random() < 0.5
+    w = size * 0.42
+    rows = []
+    for i in range(3):
+        t = i / 2
+        p = base + d * (t * size) - up * (droop * size * t * t) * (1 if up.z > 0 else -1)
+        row = []
+        for c in range(2):
+            u = -1 if c == 0 else 1
+            across = c if not flip else 1 - c
+            row.append(mesh.vert(p + side * (u * w), uv=(au + 0.01 + across * 0.48, av + 0.005 + t * 0.49)))
+        rows.append(row)
+    for r0, r1 in zip(rows, rows[1:]):
+        mesh.quad_strip(r0, r1, "Canopy", closed=False)
+
+
+def foliage(mesh, rng, center, d, count, length, width, spread=1.4, up=(0.0, 0.3), droop=(0.2, 0.7)):
+    """What a twig's end wears: sprig cards for the bulk of it - each a bunch
+    of leaves - and a few single leaves over them for the edge. `count` is
+    the leaf count it stands in for; a card counts for about six."""
+    cards = max(2, count // 5)
+    for _ in range(cards):
+        dd = around(d, rng, spread)
+        sprig(mesh, rng, center + dd * rng.uniform(0, 0.05), dd, length * rng.uniform(2.6, 3.4), droop=rng.uniform(0.2, 0.5))
+    leaves(mesh, rng, center, d, max(2, count // 4), length, width, spread=spread, up=up, droop=droop)
+
+
 def fan(mesh, rng, base, d, radius, blades=14, spread=2.4, pleat=0.45):
     """A fan palm leaf: pleated blades in an arc about d, drooping at the rim."""
     d = d.normalized()
@@ -377,12 +421,12 @@ def branch(mesh, rng, start, d, length, r0, r1, depth, spec, seed):
             tips += branch(mesh, rng, p + out * r * 0.6, cd, cl, cr, cr * 0.3, depth + 1, spec, seed * 7 + i + depth * 131)
         for u in (0.6, 0.85):
             k = int(u * (len(frames) - 1))
-            leaves(mesh, rng, frames[k][0], frames[k][1], spec["leaves"] // 3, spec["leaf"], 0.45, spread=1.8)
+            foliage(mesh, rng, frames[k][0], frames[k][1], spec["leaves"] // 3, spec["leaf"], 0.45, spread=1.8)
     else:
-        leaves(mesh, rng, frames[-1][0], frames[-1][1], spec["leaves"], spec["leaf"], 0.45, spread=1.4)
+        foliage(mesh, rng, frames[-1][0], frames[-1][1], spec["leaves"], spec["leaf"], 0.45, spread=1.4)
         for u in (0.35, 0.5, 0.65, 0.8):
             k = int(u * (len(frames) - 1))
-            leaves(mesh, rng, frames[k][0], frames[k][1], spec["leaves"] // 2, spec["leaf"], 0.45, spread=1.7)
+            foliage(mesh, rng, frames[k][0], frames[k][1], spec["leaves"] // 2, spec["leaf"], 0.45, spread=1.7)
     return tips
 
 

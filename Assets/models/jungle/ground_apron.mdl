@@ -81,7 +81,17 @@
   "Folders": [],
   "CoarseMeshes": [],
   "MaterialGroups": [],
-  "Hulls": [],
+  "Hulls": [
+    {
+      "__type": "RenderMesh",
+      "Name": "",
+      "Enabled": true,
+      "Bone": "",
+      "Surface": "",
+      "Tags": "",
+      "Folder": ""
+    }
+  ],
   "Surface": "",
   "Mass": 0,
   "OverrideBounds": false,
