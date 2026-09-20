@@ -18,7 +18,8 @@
     "g_flAlphaCutoff": "0.4,0,0,0",
     "g_flTransmission": "0.7,0,0,0",
     "g_vTransmissionColour": "0.85,1,0.45,0",
-    "g_flTransmissionSpread": "4,0,0,0"
+    "g_flTransmissionSpread": "4,0,0,0",
+    "g_flVariation": "0.7,0,0,0"
   },
   "Textures": {
     "g_tRoughness": "textures/jungle/leaf_r.png"

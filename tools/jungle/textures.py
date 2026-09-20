@@ -531,6 +531,7 @@ def write_materials():
     leaf_wind["g_flTransmission"] = "0.7,0,0,0"
     leaf_wind["g_vTransmissionColour"] = "0.85,1,0.45,0"
     leaf_wind["g_flTransmissionSpread"] = "4,0,0,0"
+    leaf_wind["g_flVariation"] = "0.7,0,0,0"
     mat("leaf", "shaders/foliage.shader", c, n, r, 0.42, True, "Masked", 0.4,
         features=leaf_features, numbers=leaf_wind, textures={"g_tRoughness": r})
     # The sprig cards: the same leaf, a bunch of it on a card - see sprig_atlas.
@@ -547,6 +548,7 @@ def write_materials():
     frond_wind["g_flTransmission"] = "0.45,0,0,0"
     frond_wind["g_vTransmissionColour"] = "0.8,1,0.5,0"
     frond_wind["g_flTransmissionSpread"] = "6,0,0,0"
+    frond_wind["g_flVariation"] = "0.6,0,0,0"
     mat("frond", "shaders/foliage.shader", c, n, r, 0.45, True, "Masked", 0.15,
         features=leaf_features, numbers=frond_wind, textures={"g_tRoughness": r})
     c, n, r = maps("litter")
