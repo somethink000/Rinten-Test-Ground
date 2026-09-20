@@ -27,7 +27,7 @@ OUT = "models/jungle"
 # Every face is tagged with one of these, and they become material slots of
 # the same name in the FBX - so a material can be pinned to "Leaf" later by a
 # remap, without touching the geometry again.
-MATERIALS = ["Bark", "Leaf", "Bamboo", "Rock", "Ground", "Vine"]
+MATERIALS = ["Bark", "Leaf", "Bamboo", "Rock", "Ground", "Vine", "Moss", "Fungus", "Litter"]
 
 TAU = math.tau
 Z = Vector((0, 0, 1))
@@ -90,6 +90,13 @@ class Mesh:
     def __init__(self):
         self.verts = []
         self.faces = []
+        # What a tree generator leaves behind for the things that grow on it:
+        # the trunk's frames, each first-order limb's frames, the tip of every
+        # twig. Empty for anything that is not a tree.
+        self.trunk = []
+        self.limbs = []
+        self.tips = []
+        self.smooth = True
 
     def vert(self, p):
         self.verts.append(Vector(p))
@@ -117,7 +124,7 @@ class Mesh:
         for m in MATERIALS:
             me.materials.append(bpy.data.materials.get(m) or bpy.data.materials.new(m))
         me.polygons.foreach_set("material_index", [m for _, m in self.faces])
-        me.polygons.foreach_set("use_smooth", [True] * len(me.polygons))
+        me.polygons.foreach_set("use_smooth", [self.smooth] * len(me.polygons))
         me.validate()
         me.update()
         ob = bpy.data.objects.new(name, me)
@@ -293,7 +300,10 @@ def branch(mesh, rng, start, d, length, r0, r1, depth, spec, seed):
     sides = max(5, spec["sides"] - depth * 4)
     frames = sweep(mesh, path, lambda u: lerp(r0, r1, u ** spec["taper"]), sides, "Bark", seed,
                    lumps=spec["lumps"] * (1 if depth == 0 else 0.5), knots=spec.get("knots", 0.0) * (1 if depth == 0 else 0.5))
+    if depth <= 1:
+        mesh.limbs.append(frames)
     tips = [(frames[-1][0], frames[-1][1])]
+    mesh.tips.append(tips[0])
     if depth < len(kids):
         n = rng.randint(max(1, kids[depth] - 1), kids[depth] + 1)
         for i in range(n):
@@ -397,19 +407,19 @@ def rosette(mesh, rng, base, up_dir, count, length, width=0.1, mat="Leaf"):
 
 def tree(seed, height, r0, r1, spec=None, wind=0.0, lean=0.0, flutes=0, flare=0.0, flute_height=0.25,
          grooves=0.0, knots=0.0, roots=0, root_len=3.0, vines=0, hang=0, epiphytes=0, fork=0, sides=None,
-         taper=1.0, lumps=0.06, first_limb=0.5, steps=None):
+         taper=1.0, lumps=0.06, first_limb=0.5, steps=None, start_z=0.0, moss=0, climber=0, mesh=None):
     """A tree of some habit. The trunk winds by `wind` and leans by `lean`;
     limbs follow `spec` (see DEFAULT_SPEC); the base can have buttress flutes,
     surface roots, vines wound about it, strands hanging from the limbs, and
     epiphyte rosettes sitting on its upper side. `fork` splits the trunk into
     that many stems partway up instead of one crown."""
     rng = random.Random(seed)
-    mesh = Mesh()
+    mesh = mesh or Mesh()
     spec = dict(DEFAULT_SPEC, **(spec or {}))
     spec = dict(spec, where=(first_limb, spec["where"][1]))
     sides = sides or (20 if flutes else 12)
     steps = steps or max(12, int(height * 2))
-    path = winding_path(rng, Vector((0, 0, 0)), height, wind, lean, steps)
+    path = winding_path(rng, Vector((0, 0, start_z)), height, wind, lean, steps)
     kids = spec["kids"]
     if fork:
         # The trunk stops at the fork; the stems carry on from there.
@@ -448,10 +458,17 @@ def tree(seed, height, r0, r1, spec=None, wind=0.0, lean=0.0, flutes=0, flare=0.
             out = nrm * math.cos(ang) + bn * math.sin(ang)
             d = (t + out * rng.uniform(0.4, 0.9)).normalized()
             branch(mesh, rng, p - t * r * 0.5, d, height * rng.uniform(0.2, 0.35), r * 0.7, r * 0.15, 1, spec, seed * 13 + i)
+    mesh.trunk = frames
     if roots:
         surface_roots(mesh, rng, r0, roots, root_len, seed)
     if vines:
         helix_vines(mesh, rng, frames, vines, seed)
+    if climber:
+        climbers(mesh, rng, frames, climber, seed)
+    if moss:
+        moss_on(mesh, rng, frames, moss, seed)
+        for limb in mesh.limbs[:4]:
+            moss_on(mesh, rng, limb, max(1, moss // 3), seed + 1)
     for i in range(hang):
         u = rng.uniform(0.45, 0.9)
         p, t, nrm, bn, r, _ = frames[int(u * (len(frames) - 1))]
@@ -512,12 +529,28 @@ def tree_fern(seed, height, fronds=12, frond_len=1.8):
 
 
 def bamboo(seed, height, radius, lean=0.03):
-    """A culm with a collar at every node, and twigs with leaf tufts along
-    the upper half."""
     rng = random.Random(seed)
     mesh = Mesh()
     yaw = rng.uniform(0, TAU)
-    lean_dir = Vector((math.cos(yaw), math.sin(yaw), 0))
+    culm(mesh, rng, Vector((0, 0, 0)), height, radius, Vector((math.cos(yaw), math.sin(yaw), 0)), lean, seed)
+    return mesh
+
+
+def bamboo_clump(seed, count, height, radius):
+    """Several culms from one root, leaning away from each other."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    for i in range(count):
+        ang = i / count * TAU + rng.uniform(-0.4, 0.4)
+        out = Vector((math.cos(ang), math.sin(ang), 0))
+        base = out * rng.uniform(0.1, 0.45)
+        culm(mesh, rng, base, height * rng.uniform(0.6, 1.1), radius * rng.uniform(0.7, 1.1), out, rng.uniform(0.04, 0.14), seed + i)
+    return mesh
+
+
+def culm(mesh, rng, base, height, radius, lean_dir, lean, seed):
+    """A bamboo culm with a collar at every node, and twigs with leaf tufts
+    along the upper half."""
     z = 0.0
     nodes = []
     while z < height:
@@ -530,7 +563,7 @@ def bamboo(seed, height, radius, lean=0.03):
 
     def at(z):
         t = z / height
-        return Vector((0, 0, z)) + lean_dir * (lean * z + 0.25 * t * t * height * lean * 6)
+        return base + Vector((0, 0, z)) + lean_dir * (lean * z + 0.25 * t * t * height * lean * 6)
 
     rings = []
     sides = 10
@@ -552,7 +585,6 @@ def bamboo(seed, height, radius, lean=0.03):
                     dd = (tdir + Vector((rng.gauss(0, 0.6), rng.gauss(0, 0.6), rng.gauss(-0.2, 0.3)))).normalized()
                     strip(mesh, rng, anchor, dd, rng.uniform(0.0, 0.25), rng.uniform(0.28, 0.42), 0.035,
                           lambda s: math.sin(math.pi * s ** 0.8) ** 0.7, rng.uniform(0.4, 0.8), segs=5, cross=2, crease=0)
-    return mesh
 
 
 # ---------------------------------------------------------------------------
@@ -710,34 +742,50 @@ def vine_arch(seed, span, height, r=0.05):
 # Rocks, logs and the ground
 # ---------------------------------------------------------------------------
 
-def rock(seed, size, stretch=(1.0, 1.0, 0.65), flat_top=0.0, subdiv=3, rough=0.35, warp=0.3):
+def rock_geom(mesh, rng, center, size, seed, stretch=(1.0, 1.0, 0.65), flat_top=0.0, subdiv=3, rough=0.35,
+              warp=0.3, yaw=0.0, moss=0, mat="Rock"):
     """An icosphere pushed about by noise, squashed, cut flat underneath, and
     with `flat_top` the top sliced off too - a slab, a stepping stone. `warp`
     is a slow noise that pulls the whole shape out of round; `rough` the fast
-    one that breaks the surface."""
+    one that breaks the surface. `moss` cushions sit on its upper faces."""
     bm = bmesh.new()
     bmesh.ops.create_icosphere(bm, subdivisions=subdiv, radius=1.0)
     for v in bm.verts:
         p = v.co * 1.4 + Vector((seed * 3.1, seed * 1.7, 0))
         v.co += v.normal * (fbm(p * 0.5, octaves=2) * warp + fbm(p, octaves=4) * rough + fbm(p * 3.5, octaves=2) * 0.06)
     hz = size * 0.5 * stretch[2]
+    rot = Matrix.Rotation(yaw, 3, Z)
+    tops = []
     for v in bm.verts:
         v.co = Vector((v.co.x * stretch[0], v.co.y * stretch[1], v.co.z * stretch[2])) * size * 0.5
         v.co.z = max(v.co.z, -hz * 0.55)
         if flat_top:
             v.co.z = min(v.co.z, hz * (1 - flat_top) + fbm(v.co * 2) * hz * 0.08)
         v.co.z += hz * 0.45
-    me = bpy.data.meshes.new("rock")
-    bm.to_mesh(me)
+        v.co = rot @ v.co + center
+    bm.verts.ensure_lookup_table()
+    bm.normal_update()
+    base = len(mesh.verts)
+    for v in bm.verts:
+        mesh.vert(v.co)
+        if v.normal.z > 0.55 and v.co.z > center.z + hz * 0.5:
+            tops.append((v.co.copy(), v.normal.copy()))
+    for f in bm.faces:
+        mesh.face([base + v.index for v in f.verts], mat)
     bm.free()
-    for m in MATERIALS:
-        me.materials.append(bpy.data.materials.get(m) or bpy.data.materials.new(m))
-    me.polygons.foreach_set("material_index", [MATERIALS.index("Rock")] * len(me.polygons))
-    me.polygons.foreach_set("use_smooth", [flat_top == 0] * len(me.polygons))
-    me.update()
-    ob = bpy.data.objects.new("rock", me)
-    bpy.context.scene.collection.objects.link(ob)
-    return ob
+    for _ in range(moss):
+        if not tops:
+            break
+        p, n = rng.choice(tops)
+        blob(mesh, p, size * rng.uniform(0.12, 0.28), seed + len(mesh.verts), flat=0.3, up=n)
+
+
+def rock(seed, size, stretch=(1.0, 1.0, 0.65), flat_top=0.0, subdiv=3, rough=0.35, warp=0.3, moss=0):
+    rng = random.Random(seed)
+    mesh = Mesh()
+    mesh.smooth = flat_top == 0
+    rock_geom(mesh, rng, Vector((0, 0, 0)), size, seed, stretch, flat_top, subdiv, rough, warp, moss=moss)
+    return mesh
 
 
 def log(seed, length, r, stubs=3):
@@ -746,6 +794,7 @@ def log(seed, length, r, stubs=3):
     mesh = Mesh()
     pts = bent_path(Vector((-length / 2, 0, r * 0.8)), Vector((1, 0, 0)), length, 0.03, Z, 0.02, seed, max(8, int(length * 2)))
     frames = sweep(mesh, pts, lambda u: r * (1.15 - u * 0.3), 12, "Bark", seed, lumps=0.1, grooves=0.05, knots=0.15)
+    mesh.limbs.append(frames)
     for i in range(stubs):
         p, t, nrm, bn, rr, u = frames[rng.randint(2, len(frames) - 3)]
         ang = rng.uniform(-2.2, 2.2)
@@ -779,6 +828,546 @@ def ground(seed, size, step=0.75):
         grid.append(row)
     for a, b in zip(grid, grid[1:]):
         mesh.quad_strip(a, b, "Ground", closed=False)
+    return mesh
+
+
+# ---------------------------------------------------------------------------
+# Moss, fungus and the things that grow on other things
+# ---------------------------------------------------------------------------
+
+def blob(mesh, center, radius, seed, flat=0.5, up=Z, mat="Moss", rings=5, segs=10, rough=0.3):
+    """A noisy dome sitting on a surface whose normal is `up`: a moss cushion,
+    a clod of earth."""
+    a = perp(up)
+    b = up.cross(a)
+    rows = []
+    for i in range(rings + 1):
+        phi = i / rings * (math.pi / 2)
+        row = []
+        for k in range(segs):
+            th = k / segs * TAU
+            r = radius * (1 + rough * fbm(Vector((math.cos(th) * 2 + seed * 0.1, math.sin(th) * 2, phi * 3))))
+            p = center + (a * math.cos(th) + b * math.sin(th)) * (r * math.sin(phi)) + up * (r * flat * math.cos(phi)) - up * radius * 0.08
+            row.append(mesh.vert(p))
+        rows.append(row)
+    for r0, r1 in zip(rows, rows[1:]):
+        mesh.quad_strip(r0, r1, mat)
+
+
+def moss_on(mesh, rng, frames, count, seed, size=None):
+    """Moss cushions on the upper side of a swept tube."""
+    placed = 0
+    for _ in range(count * 8):
+        if placed >= count or len(frames) < 4:
+            break
+        p, t, nrm, bn, r, u = frames[rng.randint(1, len(frames) - 2)]
+        ang = rng.uniform(0, TAU)
+        n = (nrm * math.cos(ang) + bn * math.sin(ang)).normalized()
+        if n.z < -0.2 or (n.z < 0.2 and rng.random() < 0.4):
+            continue
+        blob(mesh, p + n * r * 0.92, min(size or r * 1.4, r * 1.8) * rng.uniform(0.6, 1.2), seed + placed, flat=0.2, up=n,
+             rings=4, segs=9)
+        placed += 1
+
+
+def climbers(mesh, rng, frames, count, seed):
+    """A climbing plant up the trunk: a vine wound round it with big lobed
+    leaves standing out from it every so often."""
+    for i in range(count):
+        a0 = rng.uniform(0, TAU)
+        turns = rng.uniform(0.6, 1.5)
+        u0, u1 = rng.uniform(0.0, 0.1), rng.uniform(0.5, 0.9)
+        pts, normals = [], []
+        for p, t, nrm, bn, r, u in frames:
+            if u < u0 or u > u1:
+                continue
+            ang = a0 + (u - u0) / (u1 - u0) * turns * TAU
+            n = nrm * math.cos(ang) + bn * math.sin(ang)
+            pts.append(p + n * (r + 0.04))
+            normals.append(n)
+        if len(pts) < 3:
+            continue
+        sweep(mesh, pts, lambda u: 0.03, 5, "Vine", seed + i, lumps=0.1)
+        for k in range(1, len(pts) - 1, 2):
+            d = (normals[k] + Z * 0.3 + around(normals[k], rng, 0.6) * 0.5).normalized()
+            L = rng.uniform(0.35, 0.55)
+            strip(mesh, rng, pts[k], Vector((d.x, d.y, 0)).normalized(), 0.5, L, L * 0.45, HEART, 0.9, segs=6, cross=5, crease=0.1, cup=0.15)
+
+
+def moss_cushion(seed, size, count=1):
+    rng = random.Random(seed)
+    mesh = Mesh()
+    for i in range(count):
+        c = Vector((rng.gauss(0, size * 0.5), rng.gauss(0, size * 0.5), 0)) if count > 1 else Vector((0, 0, 0))
+        blob(mesh, c, size * rng.uniform(0.6, 1.2), seed + i, flat=rng.uniform(0.35, 0.6), rings=6, segs=14)
+    return mesh
+
+
+def moss_carpet(seed, size):
+    """A flat, ragged patch to lie on a rock or a log."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    blob(mesh, Vector((0, 0, 0)), size, seed, flat=0.12, rings=6, segs=18)
+    for i in range(3):
+        blob(mesh, Vector((rng.gauss(0, size * 0.5), rng.gauss(0, size * 0.5), 0)), size * 0.5, seed + i, flat=0.15, rings=4, segs=10)
+    return mesh
+
+
+def moss_drape(seed, count, length, spread):
+    """Beard moss hanging from a limb: origin at the top."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    strands(mesh, rng, Vector((0, 0, 0)), count, length, spread, seed, mat="Moss", r=0.008)
+    return mesh
+
+
+def fungus_at(mesh, rng, base, out, count, radius, seed):
+    """Shelf fungi stacked on a surface at `base` whose normal is `out`: a
+    half-disc each, drooping at the rim, with an underside so it has an
+    edge."""
+    side = out.cross(Z).normalized() if abs(out.z) < 0.95 else Vector((1, 0, 0))
+    for i in range(count):
+        R = radius * rng.uniform(0.5, 1.2)
+        b = base + Z * (i * radius * 0.5) + side * rng.gauss(0, radius * 0.3)
+        rows = []
+        for ring in range(4):
+            rr = R * ring / 3
+            row = []
+            for k in range(9):
+                a = -math.pi / 2 + math.pi * k / 8
+                q = b + (Matrix.Rotation(a, 3, Z) @ out) * rr * (1 + 0.1 * fbm(Vector((k, ring, seed + i))))
+                q.z += -rr * 0.25 * (ring / 3) ** 2
+                row.append(mesh.vert(q))
+            rows.append(row)
+        under = [[mesh.vert(mesh.verts[v] - Z * 0.02) for v in row] for row in rows]
+        for r0, r1 in zip(rows, rows[1:]):
+            mesh.quad_strip(r0, r1, "Fungus", closed=False)
+        for r0, r1 in zip(under, under[1:]):
+            mesh.quad_strip(list(reversed(r0)), list(reversed(r1)), "Fungus", closed=False)
+        mesh.quad_strip(rows[-1], under[-1], "Fungus", closed=False)
+
+
+def brackets(seed, count, radius):
+    """A stack of shelf fungi at the origin, growing out along +X from a
+    vertical surface at x=0."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    fungus_at(mesh, rng, Vector((0, 0, 0)), Vector((1, 0, 0)), count, radius, seed)
+    return mesh
+
+
+# ---------------------------------------------------------------------------
+# Dead wood
+# ---------------------------------------------------------------------------
+
+def splinters(mesh, rng, frame, count, height, seed):
+    """Jagged spikes up from the rim of a broken trunk."""
+    p, t, nrm, bn, r, u = frame
+    for i in range(count):
+        ang = i / count * TAU + rng.uniform(-0.3, 0.3)
+        n = nrm * math.cos(ang) + bn * math.sin(ang)
+        base = p + n * r * rng.uniform(0.5, 0.9) - t * r * 0.3
+        d = (t + n * rng.uniform(-0.1, 0.3)).normalized()
+        L = height * rng.uniform(0.25, 1.0)
+        pts = bent_path(base, d, L, rng.uniform(0.05, 0.3), n, 0.08, seed + i, 4)
+        sweep(mesh, pts, lambda u, r=r: r * lerp(rng.uniform(0.25, 0.45), 0.02, u), 5, "Bark", seed + i, lumps=0.15)
+
+
+def snag(seed, height, r0, r1, limbs=3, moss=3, fungi=2):
+    """A dead tree: bare, broken off at the top, a few limb stubs, moss and
+    shelf fungi on it."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    path = winding_path(rng, Vector((0, 0, 0)), height, 0.08, rng.uniform(0.0, 0.15), max(10, int(height * 2)), knots_n=4)
+    frames = sweep(mesh, path, lambda u: lerp(r0, r1, u), 14, "Bark", seed, lumps=0.15, grooves=0.12, knots=0.3, flutes=4, flare=0.6)
+    splinters(mesh, rng, frames[-1], rng.randint(5, 9), r0 * 4.5, seed)
+    for i in range(limbs):
+        p, t, nrm, bn, r, u = frames[rng.randint(len(frames) // 2, len(frames) - 3)]
+        ang = rng.uniform(0, TAU)
+        d = (nrm * math.cos(ang) + bn * math.sin(ang) + Z * rng.uniform(-0.2, 0.6)).normalized()
+        pts = bent_path(p + d * r * 0.5, d, r * rng.uniform(3, 9), 0.15, Z * rng.choice((-1, 1)), 0.1, seed + i, 5)
+        sweep(mesh, pts, lambda u, r=r: r * lerp(0.4, 0.06, u), 6, "Bark", seed + i, lumps=0.1)
+    moss_on(mesh, rng, frames, moss, seed)
+    for i in range(fungi):
+        p, t, nrm, bn, r, u = frames[rng.randint(2, len(frames) // 2)]
+        ang = rng.uniform(0, TAU)
+        n = nrm * math.cos(ang) + bn * math.sin(ang)
+        fungus_at(mesh, rng, p + n * r * 0.95, n, rng.randint(2, 4), r * 0.4, seed + i)
+    return mesh
+
+
+def stump(seed, height, r, moss=4, fungi=1):
+    rng = random.Random(seed)
+    mesh = Mesh()
+    path = [Vector((0, 0, z)) for z in (0, height * 0.3, height * 0.7, height)]
+    frames = sweep(mesh, path, lambda u: lerp(r, r * 0.85, u), 16, "Bark", seed, lumps=0.1, grooves=0.1, flutes=5, flare=0.9, flute_height=0.6)
+    splinters(mesh, rng, frames[-1], rng.randint(3, 6), height * 0.8, seed)
+    surface_roots(mesh, rng, r, rng.randint(3, 5), r * 4, seed)
+    moss_on(mesh, rng, frames, moss, seed, size=r * 0.6)
+    for i in range(fungi):
+        ang = rng.uniform(0, TAU)
+        n = Vector((math.cos(ang), math.sin(ang), 0))
+        fungus_at(mesh, rng, n * r * 0.95 + Z * height * 0.4, n, 3, r * 0.5, seed + i)
+    return mesh
+
+
+def broken_tree(seed, height, r0, break_at=0.4, moss=4):
+    """A trunk snapped part way up, the top hanging down from the break with
+    its end on the ground - what a storm leaves."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    hb = height * break_at
+    path = winding_path(rng, Vector((0, 0, 0)), hb, 0.05, 0.05, 10, knots_n=3)
+    frames = sweep(mesh, path, lambda u: lerp(r0, r0 * (1 - 0.6 * break_at), u), 12, "Bark", seed, lumps=0.08, grooves=0.05, flutes=4, flare=0.5, flute_height=0.4)
+    splinters(mesh, rng, frames[-1], 6, r0 * 2.5, seed)
+    top, t, nrm, bn, r, _ = frames[-1]
+    ang = rng.uniform(0, TAU)
+    out = Vector((math.cos(ang), math.sin(ang), 0))
+    L = height * (1 - break_at)
+    # The fallen part: hinged at the break, its far end resting on the ground.
+    ground = top + out * L * 0.85 - Z * (hb - r * 0.8)
+    pts = catmull([top + out * r * 0.5 - Z * r * 0.3, (top + ground) / 2 + Z * 0.5 + out.cross(Z) * fbm(Vector((seed, 1, 2))) * 1.5, ground], max(8, int(L * 2)))
+    fr = sweep(mesh, pts, lambda u, r=r: lerp(r * 0.9, r * 0.25, u), 10, "Bark", seed + 1, lumps=0.08, grooves=0.05)
+    mesh.limbs.append(fr)
+    for i in range(4):
+        p, t2, n2, b2, rr, u = fr[rng.randint(len(fr) // 3, len(fr) - 2)]
+        a = rng.uniform(0, TAU)
+        d = (n2 * math.cos(a) + b2 * math.sin(a) + t2 * 0.3).normalized()
+        branch(mesh, rng, p + d * rr * 0.5, d, L * rng.uniform(0.2, 0.35), rr * 0.5, rr * 0.1, 2,
+               dict(DEFAULT_SPEC, kids=(2, 1), leaves=14, leaf=0.3), seed + i)
+    moss_on(mesh, rng, frames, moss, seed)
+    return mesh
+
+
+def uprooted(seed, length, r, plate=2.0, moss=5):
+    """A tree on its side, torn out with the disc of roots and earth standing
+    on end at the base. Lies along +X from the plate."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    hub = Vector((plate * 0.3, 0, plate * 0.8))
+    pts = catmull([hub, hub + Vector((length * 0.4, 0, -(plate * 0.8 - r * 0.9))), hub + Vector((length, fbm(Vector((seed, 2, 3))) * 1.5, -(plate * 0.8 - r * 0.8)))],
+                  max(10, int(length * 2)))
+    frames = sweep(mesh, pts, lambda u: lerp(r, r * 0.3, u ** 0.9), 12, "Bark", seed, lumps=0.1, grooves=0.05, knots=0.15)
+    # The root plate: a ragged clod standing on end, roots all through it and
+    # poking out of it every way, the longest of them still in the air.
+    blob(mesh, hub - Vector((plate * 0.05, 0, 0)), plate * 0.9, seed, flat=0.3, up=Vector((-1, 0, 0)), mat="Ground", rings=6, segs=18, rough=0.6)
+    blob(mesh, hub + Vector((plate * 0.05, 0, 0)), plate * 0.8, seed + 3, flat=0.2, up=Vector((1, 0, 0)), mat="Ground", rings=5, segs=16, rough=0.6)
+    for i in range(rng.randint(14, 22)):
+        a = rng.uniform(0, TAU)
+        out = Vector((rng.uniform(-0.5, 0.2), math.cos(a), math.sin(a))).normalized()
+        base = hub + out * plate * rng.uniform(0.3, 0.8)
+        rp = bent_path(base, out, plate * rng.uniform(0.3, 1.0), rng.uniform(0.05, 0.25), around(out, rng, 1.5), 0.15, seed + i, 5)
+        sweep(mesh, rp, lambda u, w=rng.uniform(0.2, 0.4): lerp(r * w, 0.02, u), 5, "Bark", seed + i, lumps=0.15)
+    for i in range(5):
+        p, t, nrm, bn, rr, u = frames[rng.randint(len(frames) // 3, len(frames) - 2)]
+        a = rng.uniform(0, TAU)
+        d = (nrm * math.cos(a) + bn * math.sin(a) + t * 0.3).normalized()
+        if d.z < -0.3:
+            d.z = 0.3
+        branch(mesh, rng, p + d * rr * 0.5, d, length * rng.uniform(0.15, 0.3), rr * 0.5, rr * 0.1, 2,
+               dict(DEFAULT_SPEC, kids=(2, 1), leaves=12, leaf=0.28), seed + i)
+    moss_on(mesh, rng, frames, moss, seed)
+    return mesh
+
+
+def log_mossy(seed, length, r, stubs=3, moss=6, fungi=2):
+    mesh = log(seed, length, r, stubs)
+    rng = random.Random(seed + 99)
+    frames = mesh.limbs[0] if mesh.limbs else []
+    moss_on(mesh, rng, frames, moss, seed, size=r * 0.9)
+    for i in range(fungi):
+        p, t, nrm, bn, rr, u = frames[rng.randint(2, len(frames) - 3)]
+        a = rng.uniform(0.6, 2.5) * rng.choice((-1, 1))
+        n = nrm * math.cos(a) + bn * math.sin(a)
+        if n.z > 0.6:
+            n = (n - Z * 0.5).normalized()
+        fungus_at(mesh, rng, p + n * rr * 0.95, n, rng.randint(2, 4), rr * 0.5, seed + i)
+    return mesh
+
+
+def branch_debris(seed, length, r):
+    """A fallen limb lying on the ground with its twigs."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    pts = bent_path(Vector((-length / 2, 0, r)), Vector((1, 0, 0)), length, 0.05, Z * rng.choice((-1, 1)), 0.1, seed, 8)
+    for q in pts:
+        q.z = max(q.z, r * 0.6)
+    frames = sweep(mesh, pts, lambda u: lerp(r, r * 0.3, u), 7, "Bark", seed, lumps=0.1)
+    for i in range(rng.randint(3, 6)):
+        p, t, nrm, bn, rr, u = frames[rng.randint(1, len(frames) - 2)]
+        a = rng.uniform(0, TAU)
+        d = (nrm * math.cos(a) + bn * math.sin(a) + t * 0.5).normalized()
+        if d.z < 0:
+            d.z *= -0.3
+        tp = bent_path(p, d, length * rng.uniform(0.15, 0.35), 0.1, Z, 0.15, seed + i, 4)
+        sweep(mesh, tp, lambda u, rr=rr: lerp(rr * 0.4, 0.01, u), 4, "Bark", seed + i, lumps=0)
+    return mesh
+
+
+# ---------------------------------------------------------------------------
+# Unusual trees
+# ---------------------------------------------------------------------------
+
+def strangler(seed, height, r, roots=10, moss=4):
+    """A strangler fig: a tall host trunk wrapped in a lattice of descending
+    roots that merge and fuse, with the fig's own crown on top."""
+    rng = random.Random(seed)
+    mesh = tree(seed, height, r, r * 0.4, TALL, wind=0.04, lean=0.04, first_limb=0.75, moss=moss)
+    frames = mesh.trunk
+    n = len(frames)
+    starts = []
+    for j in range(roots):
+        a0 = j / roots * TAU + rng.uniform(-0.3, 0.3)
+        u0 = rng.uniform(0.55, 0.85)
+        rate = rng.choice((-1, 1)) * rng.uniform(0.5, 1.4)
+        pts = []
+        for p, t, nrm, bn, rr, u in reversed(frames):
+            if u > u0:
+                continue
+            ang = a0 + (u0 - u) * rate * TAU + fbm(Vector((u * 4, j, seed))) * 0.7
+            flare = 1.0 + max(0.0, 0.2 - u) * 12
+            off = rr * 1.05 + 0.12 * flare + abs(fbm(Vector((u * 3, j * 2, seed)))) * 0.25
+            pts.append(p + (nrm * math.cos(ang) + bn * math.sin(ang)) * off)
+        if len(pts) > 2:
+            sweep(mesh, pts, lambda u: lerp(0.09, 0.3, u ** 1.5), 7, "Bark", seed + j, lumps=0.2, knots=0.2)
+            starts.append((a0, u0, rate))
+    # Cross-links between neighbouring roots, the lattice.
+    for j in range(len(starts)):
+        a0, u0, rate = starts[j]
+        a1, u1, rate1 = starts[(j + 1) % len(starts)]
+        for _ in range(rng.randint(3, 6)):
+            u = rng.uniform(0.05, min(u0, u1) * 0.9)
+            k = min(int(u * (n - 1)), n - 1)
+            p, t, nrm, bn, rr, uu = frames[k]
+            aa = a0 + (u0 - u) * rate * TAU
+            ab = a1 + (u1 - u) * rate1 * TAU
+            while ab < aa:
+                ab += TAU
+            if ab - aa > math.pi:
+                continue
+            arc = []
+            for i in range(5):
+                a = lerp(aa, ab, i / 4)
+                arc.append(p + (nrm * math.cos(a) + bn * math.sin(a)) * (rr * 1.05 + 0.14) + t * fbm(Vector((i, j, u * 5))) * 0.3)
+            sweep(mesh, arc, lambda v: 0.08 + 0.04 * math.sin(math.pi * v), 6, "Bark", seed + j + 50, lumps=0.2)
+    return mesh
+
+
+def banyan(seed, height, r0, r1, pillars=6, moss=4):
+    """A spreading tree whose limbs drop prop roots to the ground - pillars
+    that hold the crown up as it walks outward."""
+    rng = random.Random(seed)
+    mesh = tree(seed, height, r0, r1, dict(SPREADING, kids=(6, 3, 2), up=(0.0, 0.25), ratio=(0.5, 0.75), kid_r=(0.55, 0.7)),
+                wind=0.08, lean=0.05, flutes=5, flare=0.8, roots=6, root_len=4, epiphytes=4, moss=moss, sides=24, first_limb=0.35)
+    limbs = [f for f in mesh.limbs if len(f) > 4]
+    for i in range(pillars):
+        if not limbs:
+            break
+        fr = rng.choice(limbs)
+        p, t, nrm, bn, rr, u = fr[rng.randint(len(fr) // 4, len(fr) - 2)]
+        if p.z < 2.5:
+            continue
+        foot = Vector((p.x + rng.gauss(0, 0.4), p.y + rng.gauss(0, 0.4), 0))
+        pts = catmull([p - Z * rr * 0.3, (p + foot) / 2 + Vector((rng.gauss(0, 0.3), rng.gauss(0, 0.3), 0)), foot], max(6, int(p.z * 2)))
+        fused = rng.random() < 0.4
+        pr = rr * rng.uniform(0.55, 0.85)
+        sweep(mesh, pts, lambda v, pr=pr: lerp(pr, pr * 1.7, v ** 3), 8, "Bark", seed + i, lumps=0.12, knots=0.1)
+        if fused:
+            sweep(mesh, [q + Vector((0.12, 0.08, 0)) for q in pts], lambda v, pr=pr: pr * 0.5, 6, "Bark", seed + i + 7, lumps=0.12)
+    return mesh
+
+
+def stilt_tree(seed, height, r, stilts=10, stilt_h=2.0, pandan=True):
+    """A trunk that starts a couple of metres up, standing on a cone of stilt
+    roots - a walking palm or a pandanus, whose tips carry strap rosettes."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    spec = dict(THIN, kids=(3, 2), up=(0.3, 0.7), ratio=(0.3, 0.45), leaves=0 if pandan else 20)
+    tree(seed, height, r, r * 0.6, spec, wind=0.1, lean=0.1, start_z=stilt_h, mesh=mesh, first_limb=0.4, taper=0.6)
+    for i in range(stilts):
+        a = i / stilts * TAU + rng.uniform(-0.25, 0.25)
+        out = Vector((math.cos(a), math.sin(a), 0))
+        top = Vector((0, 0, stilt_h + rng.uniform(-0.3, 0.3))) + out * r * 0.5
+        foot = out * stilt_h * rng.uniform(0.5, 0.9)
+        pts = catmull([top, (top + foot) / 2 + out * 0.2, foot], 8)
+        sweep(mesh, pts, lambda u: lerp(r * 0.45, r * 0.25, u), 6, "Bark", seed + i, lumps=0.08)
+    if pandan:
+        for p, d in mesh.tips:
+            rosette(mesh, rng, p, (d + Z * 0.5).normalized(), rng.randint(12, 18), rng.uniform(1.0, 1.6), width=0.06)
+    return mesh
+
+
+def cycad(seed, height, fronds):
+    """A short scaly trunk with a crown of stiff pinnate fronds."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    path = [Vector((0, 0, z)) for z in (0, height * 0.5, height)]
+    frames = sweep(mesh, path, lambda u: lerp(0.3, 0.25, u), 12, "Bark", seed, lumps=0.15, scars=0.35)
+    top = frames[-1][0]
+    for i in range(fronds):
+        a = i / fronds * TAU + rng.uniform(-0.2, 0.2)
+        d = Vector((math.cos(a), math.sin(a), 0))
+        L = rng.uniform(1.4, 2.2)
+        strip(mesh, rng, top, d, rng.uniform(0.7, 1.3), L, L * 0.12, pinnate(26, 0.7), rng.uniform(0.5, 0.8), segs=36, cross=3, crease=0.4)
+    return mesh
+
+
+def banana(seed, stalks, height):
+    """A banana or heliconia clump: leaning stalks, each with a few huge
+    paddle leaves torn along the edges."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+
+    def torn(s):
+        return OVAL(s) * (1 - 0.3 * (fbm(Vector((s * 9, seed, 0)), 2) > 0.2))
+
+    for i in range(stalks):
+        a = i / stalks * TAU + rng.uniform(-0.5, 0.5)
+        out = Vector((math.cos(a), math.sin(a), 0))
+        H = height * rng.uniform(0.6, 1.1)
+        pts = bent_path(out * rng.uniform(0, 0.3), (Z + out * 0.25).normalized(), H, 0.1, out, 0.03, seed + i, 6)
+        frames = sweep(mesh, pts, lambda u: lerp(0.09, 0.04, u), 8, "Bamboo", seed + i, lumps=0.02)
+        for j in range(rng.randint(3, 5)):
+            b = rng.uniform(0, TAU)
+            d = Vector((math.cos(b), math.sin(b), 0))
+            L = H * rng.uniform(0.6, 0.9)
+            base = frames[max(len(frames) - 1 - j * 2, 1)][0]
+            strip(mesh, rng, base, d, rng.uniform(0.8, 1.5), L, L * 0.22, torn, rng.uniform(0.9, 1.4), segs=14, cross=5, crease=0.25, cup=0.05,
+                  twist=rng.uniform(-0.3, 0.3))
+    return mesh
+
+
+def reeds(seed, stalks, height):
+    """Tall stems by the water, a few narrow leaves each."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    for i in range(stalks):
+        base = Vector((rng.gauss(0, 0.35), rng.gauss(0, 0.35), 0))
+        d = (Z + Vector((rng.gauss(0, 0.15), rng.gauss(0, 0.15), 0))).normalized()
+        H = height * rng.uniform(0.6, 1.2)
+        pts = bent_path(base, d, H, 0.15, around(Z, rng, 1.5), 0.05, seed + i, 5)
+        frames = sweep(mesh, pts, lambda u: lerp(0.012, 0.004, u), 4, "Bamboo", seed + i, lumps=0, cap=False)
+        for k in range(1, len(frames) - 1):
+            p, t, nrm, bn, r, u = frames[k]
+            a = rng.uniform(0, TAU)
+            ld = (nrm * math.cos(a) + bn * math.sin(a) + t * 0.6).normalized()
+            L = rng.uniform(0.3, 0.6)
+            strip(mesh, rng, p, Vector((ld.x, ld.y, 0)).normalized(), max(ld.z, 0.1) * 1.4, L, L * 0.05, BLADE, rng.uniform(0.6, 1.4), segs=4, cross=2, crease=0)
+    return mesh
+
+
+# ---------------------------------------------------------------------------
+# The floor
+# ---------------------------------------------------------------------------
+
+def litter(seed, radius, count, twigs=6):
+    """Fallen leaves lying about, a few twigs among them."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    for i in range(count):
+        base = Vector((rng.gauss(0, radius * 0.5), rng.gauss(0, radius * 0.5), rng.uniform(0.0, 0.04)))
+        a = rng.uniform(0, TAU)
+        d = Vector((math.cos(a), math.sin(a), 0))
+        L = rng.uniform(0.15, 0.4)
+        strip(mesh, rng, base, d, rng.uniform(0.05, 0.35), L, L * rng.uniform(0.35, 0.55), OVAL, rng.uniform(0.1, 0.5),
+              segs=4, cross=3, crease=-0.15, cup=0.35, twist=rng.uniform(-0.5, 0.5), mat="Litter")
+    for i in range(twigs):
+        base = Vector((rng.gauss(0, radius * 0.5), rng.gauss(0, radius * 0.5), 0.015))
+        a = rng.uniform(0, TAU)
+        pts = bent_path(base, Vector((math.cos(a), math.sin(a), 0)), rng.uniform(0.3, 0.9), 0.05, Z, 0.15, seed + i, 4)
+        for q in pts:
+            q.z = max(q.z, 0.012)
+        sweep(mesh, pts, lambda u: lerp(0.015, 0.006, u), 4, "Bark", seed + i, lumps=0)
+    return mesh
+
+
+def root_mat(seed, size, roots):
+    """Surface roots criss-crossing a patch of ground - what the foot of a
+    giant looks like a few metres out."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    for i in range(roots):
+        a = rng.uniform(0, TAU)
+        A = Vector((math.cos(a), math.sin(a), 0)) * size * 0.5
+        b = a + math.pi + rng.uniform(-1.2, 1.2)
+        B = Vector((math.cos(b), math.sin(b), 0)) * size * 0.5
+        mid1 = lerp(A, B, 0.33) + Vector((rng.gauss(0, size * 0.12), rng.gauss(0, size * 0.12), 0))
+        mid2 = lerp(A, B, 0.66) + Vector((rng.gauss(0, size * 0.12), rng.gauss(0, size * 0.12), 0))
+        pts = catmull([A, mid1, mid2, B], int(size * 3))
+        R = rng.uniform(0.05, 0.16)
+        for k, q in enumerate(pts):
+            s = k / (len(pts) - 1)
+            q.z = R * 0.6 + abs(fbm(Vector((s * 5, i, seed)))) * R * 2.5 * math.sin(math.pi * s) - R * 1.4 * (1 - math.sin(math.pi * s)) ** 4
+        sweep(mesh, pts, lambda u, R=R: R * (0.6 + 0.4 * math.sin(math.pi * u)), 6, "Bark", seed + i, lumps=0.15, knots=0.1)
+        for j in range(rng.randint(1, 3)):
+            k = rng.randint(2, len(pts) - 3)
+            sd = (pts[k + 1] - pts[k - 1]).cross(Z).normalized() * rng.choice((-1, 1))
+            sp = bent_path(pts[k], sd, size * rng.uniform(0.1, 0.25), 0.05, Z * -0.3, 0.2, seed + j, 4)
+            for q in sp:
+                q.z = max(q.z, 0.03)
+            sweep(mesh, sp, lambda u, R=R: lerp(R * 0.4, 0.02, u), 4, "Bark", seed + j)
+    return mesh
+
+
+def fallen_frond(seed, length):
+    rng = random.Random(seed)
+    mesh = Mesh()
+    strip(mesh, rng, Vector((-length / 2, 0, 0.03)), Vector((1, 0, 0)), 0.12, length, length * 0.14, pinnate(20, 0.6), 0.12,
+          segs=30, cross=3, crease=0.3, twist=rng.uniform(-0.4, 0.4), mat="Litter")
+    return mesh
+
+
+def pebbles(seed, radius, count):
+    rng = random.Random(seed)
+    mesh = Mesh()
+    for i in range(count):
+        c = Vector((rng.gauss(0, radius * 0.45), rng.gauss(0, radius * 0.45), 0))
+        rock_geom(mesh, rng, c, rng.uniform(0.08, 0.3), seed + i, stretch=(1.0, rng.uniform(0.7, 1.0), rng.uniform(0.4, 0.7)),
+                  subdiv=1, rough=0.3, warp=0.3, yaw=rng.uniform(0, TAU))
+    return mesh
+
+
+def rock_stack(seed, sizes):
+    rng = random.Random(seed)
+    mesh = Mesh()
+    mesh.smooth = False
+    z = 0.0
+    for i, s in enumerate(sizes):
+        rock_geom(mesh, rng, Vector((rng.gauss(0, 0.1), rng.gauss(0, 0.1), z)), s, seed + i, stretch=(1.2, 1.0, 0.45),
+                  flat_top=0.3, subdiv=2, rough=0.35, warp=0.4, yaw=rng.uniform(0, TAU), moss=1 if i else 2)
+        z += s * 0.45 * 0.9
+    return mesh
+
+
+def vine_tangle(seed, radius, count):
+    """A knot of vine on the ground or round a stump."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    for i in range(count):
+        pts = [Vector((rng.gauss(0, radius * 0.5), rng.gauss(0, radius * 0.5), rng.uniform(0.05, radius))) for _ in range(6)]
+        path = catmull(pts, 24)
+        for q in path:
+            q.z = max(q.z, 0.04)
+        rr = rng.uniform(0.02, 0.045)
+        sweep(mesh, path, lambda u, rr=rr: rr, 5, "Vine", seed + i, lumps=0.15, cap=False)
+        for k in range(3, 24, 6):
+            leaves(mesh, rng, path[k], around(Z, rng, 1.3), 2, 0.14, 0.5, spread=1.2)
+    return mesh
+
+
+def vine_rope(seed, length, r):
+    """Two thick vines twisted about each other, hanging from the origin."""
+    rng = random.Random(seed)
+    mesh = Mesh()
+    axis = [Vector((fbm(Vector((t * 2, seed, 0))) * 0.4, fbm(Vector((seed, t * 2, 1))) * 0.4, -t * length)) for t in [i / 20 for i in range(21)]]
+    for j in range(2):
+        pts = []
+        for i, q in enumerate(axis):
+            a = i / 20 * TAU * 2.5 + j * math.pi
+            pts.append(q + Vector((math.cos(a), math.sin(a), 0)) * r * 1.2)
+        sweep(mesh, pts, lambda u, r=r: r * (1.0 - 0.3 * u), 6, "Vine", seed + j, lumps=0.15, knots=0.15, cap=False)
+    for k in range(2, 20, 4):
+        leaves(mesh, rng, axis[k], around(-Z, rng, 1.4), 3, 0.16, 0.5, spread=1.3)
     return mesh
 
 
@@ -906,16 +1495,90 @@ CATALOGUE = {
     # -- rocks and logs ------------------------------------------------------
     "rock_a": lambda: rock(171, 0.6),
     "rock_b": lambda: rock(172, 1.1),
-    "rock_c": lambda: rock(173, 1.9, stretch=(1.0, 0.9, 0.7)),
+    "rock_c": lambda: rock(173, 1.9, stretch=(1.0, 0.9, 0.7), moss=3),
     "rockflat_a": lambda: rock(174, 1.4, stretch=(1.4, 1.0, 0.45), flat_top=0.25, subdiv=2, rough=0.35, warp=0.45),
     "rockflat_b": lambda: rock(175, 2.4, stretch=(1.5, 1.1, 0.4), flat_top=0.3, subdiv=2, rough=0.4, warp=0.5),
     "rockflat_c": lambda: rock(176, 3.2, stretch=(1.7, 1.0, 0.38), flat_top=0.25, subdiv=2, rough=0.35, warp=0.5),
     "rockflat_d": lambda: rock(179, 2.0, stretch=(1.2, 1.3, 0.5), flat_top=0.2, subdiv=2, rough=0.45, warp=0.4),
     "rockslab_a": lambda: rock(177, 1.8, stretch=(1.0, 1.6, 0.25), flat_top=0.35, subdiv=2, rough=0.3, warp=0.4),
-    "boulder_a": lambda: rock(178, 3.0, stretch=(1.2, 1.0, 0.8), rough=0.4, warp=0.5),
+    "boulder_a": lambda: rock(178, 3.0, stretch=(1.2, 1.0, 0.8), rough=0.4, warp=0.5, moss=4),
     "boulder_b": lambda: rock(180, 2.2, stretch=(1.0, 1.1, 0.9), rough=0.45, warp=0.6, subdiv=2),
     "log_a": lambda: log(181, 7, 0.35),
     "log_b": lambda: log(182, 10, 0.5, stubs=5),
+    # -- unusual trees -------------------------------------------------------
+    "strangler_a": lambda: strangler(201, 16, 0.8, roots=10),
+    "strangler_b": lambda: strangler(202, 13, 0.7, roots=14, moss=6),
+    "banyan_a": lambda: banyan(211, 13, 1.4, 0.4, pillars=7),
+    "banyan_b": lambda: banyan(212, 11, 1.1, 0.35, pillars=5, moss=6),
+    "stilt_a": lambda: stilt_tree(221, 6, 0.22, stilts=10, stilt_h=2.0),
+    "stilt_b": lambda: stilt_tree(222, 5, 0.2, stilts=14, stilt_h=1.6),
+    "stilt_c": lambda: stilt_tree(223, 8, 0.25, stilts=8, stilt_h=2.5, pandan=False),
+    "climbed_a": lambda: tree(231, 12, 0.5, 0.15, TALL, wind=0.05, lean=0.05, flutes=4, flare=0.5, climber=2, moss=5),
+    "climbed_b": lambda: tree(232, 10, 0.7, 0.25, SPREADING, wind=0.15, lean=0.2, knots=0.2, climber=3, moss=8, roots=4, epiphytes=3),
+    "mossy_giant": lambda: tree(233, 15, 1.4, 0.5, GIANT, wind=0.08, lean=0.1, flutes=6, flare=1.3, flute_height=0.3,
+                                grooves=0.05, knots=0.2, roots=8, root_len=5, vines=1, hang=3, epiphytes=6, sides=36, moss=14),
+    "cycad_a": lambda: cycad(241, 0.8, 16),
+    "cycad_b": lambda: cycad(242, 1.5, 20),
+    "banana_a": lambda: banana(251, 4, 2.8),
+    "banana_b": lambda: banana(252, 6, 3.5),
+    "reeds_a": lambda: reeds(261, 30, 1.8),
+    "reeds_b": lambda: reeds(262, 45, 2.4),
+    "bambooclump_a": lambda: bamboo_clump(271, 7, 7.0, 0.06),
+    "bambooclump_b": lambda: bamboo_clump(272, 11, 8.5, 0.07),
+    # -- dead wood -----------------------------------------------------------
+    "snag_a": lambda: snag(301, 9, 0.5, 0.3),
+    "snag_b": lambda: snag(302, 14, 0.7, 0.35, limbs=4, moss=5, fungi=3),
+    "snag_c": lambda: snag(303, 6, 0.4, 0.3, limbs=2, moss=2, fungi=1),
+    "stump_a": lambda: stump(311, 0.8, 0.6),
+    "stump_b": lambda: stump(312, 1.4, 0.8, moss=6, fungi=2),
+    "stump_c": lambda: stump(313, 0.5, 0.45, moss=3, fungi=0),
+    "broken_a": lambda: broken_tree(321, 14, 0.6),
+    "broken_b": lambda: broken_tree(322, 11, 0.45, break_at=0.55, moss=6),
+    "uprooted_a": lambda: uprooted(331, 12, 0.55),
+    "uprooted_b": lambda: uprooted(332, 9, 0.4, plate=1.5, moss=7),
+    "logmossy_a": lambda: log_mossy(341, 8, 0.4),
+    "logmossy_b": lambda: log_mossy(342, 12, 0.6, stubs=5, moss=10, fungi=4),
+    "logmossy_c": lambda: log_mossy(343, 5, 0.3, stubs=2, moss=4, fungi=1),
+    "debris_a": lambda: branch_debris(351, 2.5, 0.06),
+    "debris_b": lambda: branch_debris(352, 4.0, 0.1),
+    "debris_c": lambda: branch_debris(353, 1.5, 0.04),
+    # -- moss and fungus -----------------------------------------------------
+    "mosscushion_a": lambda: moss_cushion(401, 0.4),
+    "mosscushion_b": lambda: moss_cushion(402, 0.7),
+    "mosscushion_c": lambda: moss_cushion(403, 0.5, count=5),
+    "mosscarpet_a": lambda: moss_carpet(411, 0.8),
+    "mosscarpet_b": lambda: moss_carpet(412, 1.5),
+    "mossdrape_a": lambda: moss_drape(421, 30, 0.6, 0.3),
+    "mossdrape_b": lambda: moss_drape(422, 60, 1.2, 0.6),
+    "brackets_a": lambda: brackets(431, 4, 0.2),
+    "brackets_b": lambda: brackets(432, 7, 0.35),
+    # -- the floor -----------------------------------------------------------
+    "litter_a": lambda: litter(501, 1.2, 50),
+    "litter_b": lambda: litter(502, 2.0, 110, twigs=10),
+    "rootmat_a": lambda: root_mat(511, 5, 10),
+    "rootmat_b": lambda: root_mat(512, 8, 16),
+    "fallenfrond_a": lambda: fallen_frond(521, 2.2),
+    "fallenfrond_b": lambda: fallen_frond(522, 3.0),
+    "vinetangle_a": lambda: vine_tangle(531, 1.2, 7),
+    "vinetangle_b": lambda: vine_tangle(532, 2.0, 10),
+    "vinerope_a": lambda: vine_rope(541, 7, 0.06),
+    "vinerope_b": lambda: vine_rope(542, 11, 0.09),
+    # -- more rocks: pebbles to a cliff, mossy ones, stacks ------------------
+    "pebbles_a": lambda: pebbles(601, 1.0, 25),
+    "pebbles_b": lambda: pebbles(602, 1.8, 45),
+    "rockmid_a": lambda: rock(611, 0.9, warp=0.5, moss=2),
+    "rockmid_b": lambda: rock(612, 1.3, stretch=(1.3, 0.9, 0.6), warp=0.5, moss=3),
+    "rockmid_c": lambda: rock(613, 1.6, stretch=(0.9, 1.2, 0.75), warp=0.6, moss=2),
+    "rockbig_a": lambda: rock(621, 3.5, stretch=(1.1, 1.0, 0.85), warp=0.6, rough=0.4, moss=5),
+    "rockbig_b": lambda: rock(622, 4.5, stretch=(1.4, 1.0, 0.7), warp=0.6, rough=0.4, moss=7),
+    "rockbig_c": lambda: rock(623, 5.5, stretch=(1.0, 1.3, 0.9), warp=0.7, rough=0.45, moss=8),
+    "cliff_a": lambda: rock(631, 8.0, stretch=(1.4, 0.9, 0.6), flat_top=0.12, warp=0.6, rough=0.35, moss=10),
+    "cliff_b": lambda: rock(632, 11.0, stretch=(1.6, 0.8, 0.55), flat_top=0.15, warp=0.7, rough=0.35, moss=14),
+    "streamstone_a": lambda: rock(641, 0.7, stretch=(1.2, 0.9, 0.5), warp=0.3, rough=0.15),
+    "streamstone_b": lambda: rock(642, 1.2, stretch=(1.3, 1.0, 0.45), warp=0.35, rough=0.15, moss=2),
+    "streamstone_c": lambda: rock(643, 2.0, stretch=(1.4, 1.1, 0.5), warp=0.35, rough=0.18, moss=3),
+    "rockstack_a": lambda: rock_stack(651, [1.6, 1.1, 0.7]),
+    "rockstack_b": lambda: rock_stack(652, [2.4, 1.5]),
     # -- the ground, 60 m square ---------------------------------------------
     "ground": lambda: ground(191, 60),
 }
