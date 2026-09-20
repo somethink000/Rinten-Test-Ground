@@ -363,20 +363,30 @@ def bark_sheet(green=0.0, rings=9.0, seed=2):
 
 
 def moss_sheet():
+    """Moss up close: a mat of tiny clumps, each a bright tip over a dark
+    hollow, brown where it has dried, and holes in the mat where the thing
+    under it shows - which is what the alpha is, so a sheet of this laid over
+    a rock or a log ends in a ragged edge and not a cut one."""
     u, v = grid()
-    clumps = ridged(u * 14, v * 14, 5, seed=21)
-    fine = fbm(u * 55, v * 55, 3, seed=24)
-    tips = np.clip(clumps * 1.45 - 0.4, 0, 1)
-    dead = np.clip(fbm(u * 7, v * 7, 3, seed=29) - 0.68, 0, 1) * 2.6
-    h = clumps * 0.75 + fine * 0.3
-    green = np.array([0.03, 0.09, 0.018])
-    bright = np.array([0.09, 0.20, 0.035])
-    brown = np.array([0.09, 0.06, 0.025])
-    col = mix3(green, bright, tips ** 0.7)
+    clumps = ridged(u * 30, v * 30, 5, seed=21)
+    cushions = fbm(u * 6, v * 6, 4, seed=22)
+    fine = ridged(u * 110, v * 110, 3, seed=24)
+    tips = np.clip(clumps * 1.6 - 0.45, 0, 1) ** 1.3
+    dead = np.clip(fbm(u * 7, v * 7, 3, seed=29) - 0.62, 0, 1) * 2.6
+    h = cushions * 0.45 + clumps * 0.4 + fine * 0.25
+    deep = np.array([0.008, 0.02, 0.005])
+    green = np.array([0.03, 0.085, 0.016])
+    bright = np.array([0.065, 0.15, 0.03])
+    brown = np.array([0.06, 0.045, 0.02])
+    col = mix3(deep, green, np.clip(clumps * 1.2, 0, 1))
+    col = mix3(col, bright, tips * (0.55 + 0.45 * cushions))
     col = mix3(col, brown, np.clip(dead, 0, 1))
-    col = col * (0.7 + 0.45 * fine[..., None])
-    rough = 0.8 - 0.18 * tips + 0.1 * fine
-    return col, h, np.clip(rough, 0.5, 0.95)
+    col = col * (0.55 + 0.5 * fine[..., None])
+    rough = 0.82 - 0.2 * tips + 0.1 * fine
+    # Where the mat is: most of it, thinning to holes along a slow noise.
+    cover = fbm(u * 4, v * 4, 4, seed=26) * 0.6 + clumps * 0.4
+    alpha = np.clip((cover - 0.42) * 8.0, 0, 1)
+    return col, h, np.clip(rough, 0.5, 0.95), alpha
 
 
 def rock_sheet():
@@ -392,27 +402,98 @@ def rock_sheet():
     col = mix3(col, np.array([0.04, 0.07, 0.025]), np.clip(stain * (1.15 - pit), 0, 1))
     speckle = (grit - 0.5) * 0.04
     col = np.clip(col + speckle[..., None], 0, 1)
-    rough = 0.48 + 0.3 * grit - 0.1 * pit
-    return col, h, np.clip(rough, 0.25, 0.92)
+    rough = 0.62 + 0.25 * grit - 0.08 * pit
+    return col, h, np.clip(rough, 0.5, 0.95)
 
 
 def ground_sheet():
+    """The forest floor: wet dark humus with dead leaves pressed into it -
+    stamped from the leaf function, in every state from fresh-fallen tan to
+    black skeleton - broken twigs, a few small stones, and moss creeping over
+    the damp hollows. Most of what a jungle floor is, tiled at four metres."""
     u, v = grid()
     humus = fbm(u * 5, v * 5, 5, seed=44)
-    litter = np.clip(fbm(u * 22, v * 22, 4, seed=47) - 0.52, 0, 1) ** 1.2 * 1.8
-    # Short broken fibres, not long drips.
-    twigs = np.clip(ridged(u * 28 + fbm(u * 4, v * 4, 2, seed=49) * 3, v * 18, 3, seed=50) - 0.72, 0, 1) * 3.5
-    grit = fbm(u * 48, v * 48, 2, seed=53)
-    h = humus * 0.35 + litter * 0.4 + twigs * 0.15 + grit * 0.12
-    soil = np.array([0.045, 0.03, 0.016])
-    damp = np.array([0.025, 0.018, 0.01])
-    leaf = np.array([0.10, 0.07, 0.025])
-    twig_c = np.array([0.07, 0.045, 0.02])
-    col = mix3(damp, soil, humus)
-    col = mix3(col, leaf, np.clip(litter, 0, 1))
-    col = mix3(col, twig_c, np.clip(twigs, 0, 1))
-    rough = 0.76 + 0.14 * grit - 0.06 * humus
-    return col, h, np.clip(rough, 0.55, 0.95)
+    grit = fbm(u * 64, v * 64, 2, seed=53)
+    fibres = ridged(u * 40 + fbm(u * 4, v * 4, 2, seed=49) * 2, v * 36, 3, seed=50)
+    soil = np.array([0.04, 0.027, 0.014])
+    damp = np.array([0.018, 0.013, 0.007])
+    col = mix3(damp, soil, humus * 0.7 + grit * 0.3)
+    col = col * (0.75 + 0.5 * fibres[..., None])
+    h = humus * 0.35 + grit * 0.15 + fibres * 0.12
+    rough = 0.72 + 0.16 * grit - 0.1 * humus
+
+    # Twigs: short dark lines at random, over the soil, under the leaves.
+    rng = random.Random(61)
+    for _ in range(90):
+        cx, cy, ang = rng.random(), rng.random(), rng.uniform(0, math.pi)
+        L, w = rng.uniform(0.03, 0.12), rng.uniform(0.002, 0.004)
+        for ox, oy in ((0, 0), (-1, 0), (1, 0), (0, -1), (0, 1)):
+            dx, dy = u - cx - ox, v - cy - oy
+            along = dx * math.cos(ang) + dy * math.sin(ang)
+            across = -dx * math.sin(ang) + dy * math.cos(ang)
+            twig = (np.abs(along) < L / 2) & (np.abs(across) < w)
+            shade = np.array([0.05, 0.035, 0.016]) * rng.uniform(0.6, 1.4)
+            col = np.where(twig[..., None], shade, col)
+            h = np.where(twig, 0.6, h)
+
+    # Stones: a few small pale ones, half sunk.
+    for _ in range(26):
+        cx, cy, r = rng.random(), rng.random(), rng.uniform(0.006, 0.016)
+        for ox, oy in ((0, 0), (-1, 0), (1, 0), (0, -1), (0, 1)):
+            d = np.hypot((u - cx - ox) * rng.uniform(0.8, 1.2), (v - cy - oy)) / r
+            stone = np.clip(1.0 - d, 0, 1)
+            col = mix3(col, np.array([0.11, 0.105, 0.095]) * rng.uniform(0.6, 1.2), (stone > 0).astype(np.float64))
+            h = np.maximum(h, np.sqrt(np.clip(1.0 - d * d, 0, 1)) * 0.5)
+            rough = np.where(stone > 0, 0.55, rough)
+
+    # The leaves, from the same function the trees wear, dead and pressed
+    # flat: tan when just down, browner and darker the longer they have lain,
+    # black and torn at the end of it. The earlier ones underneath. Each is
+    # worked out only over the window of the sheet it can reach, or four
+    # hundred of them at full size is ten minutes of arithmetic.
+    palettes = [
+        (np.array([0.16, 0.10, 0.035]), np.array([0.28, 0.19, 0.06]), 0.9),
+        (np.array([0.10, 0.06, 0.022]), np.array([0.18, 0.11, 0.04]), 0.8),
+        (np.array([0.05, 0.032, 0.014]), np.array([0.09, 0.06, 0.025]), 0.7),
+        (np.array([0.09, 0.04, 0.02]), np.array([0.16, 0.07, 0.03]), 0.85),
+        (np.array([0.028, 0.02, 0.01]), np.array([0.05, 0.04, 0.02]), 0.55),
+    ]
+    n = SIZE
+    for k in range(420):
+        cx, cy, ang = rng.random(), rng.random(), rng.uniform(0, 2 * math.pi)
+        L = rng.uniform(0.03, 0.085)
+        spec = LEAF_SPECS[rng.randrange(4)]
+        dark, light, opacity = palettes[min(4, int(rng.random() ** 0.7 * 5))]
+        w = L * spec["w"] * 1.05
+        reach = L + 0.005
+        for ox, oy in ((0, 0), (-1, 0), (1, 0), (0, -1), (0, 1)):
+            x0 = int((cx + ox - reach) * (n - 1)); x1 = int((cx + ox + reach) * (n - 1)) + 2
+            y0 = int((cy + oy - reach) * (n - 1)); y1 = int((cy + oy + reach) * (n - 1)) + 2
+            x0, y0 = max(x0, 0), max(y0, 0)
+            x1, y1 = min(x1, n), min(y1, n)
+            if x1 <= x0 or y1 <= y0:
+                continue
+            win = (slice(y0, y1), slice(x0, x1))
+            dx, dy = u[win] - cx - ox, v[win] - cy - oy
+            along = dx * math.sin(ang) + dy * math.cos(ang)
+            across = dx * math.cos(ang) - dy * math.sin(ang)
+            lv = along / L
+            lu = across / (2 * w) + 0.5
+            lc, lh, lr, la = leaf_shape(lu, lv, spec, True, edge_px=SIZE / (2 * w * 2))
+            tone = np.clip(lh * 1.4 + 0.3, 0, 1)
+            lcol = mix3(dark, light, tone)
+            la = la * opacity
+            col[win] = col[win] * (1 - la[..., None]) + lcol * la[..., None]
+            h[win] = h[win] * (1 - la) + (0.45 + lh * 0.4) * la
+            rough[win] = rough[win] * (1 - la) + (0.62 + 0.15 * (1 - tone)) * la
+
+    # Moss creeping over the damp low ground, thin and broken.
+    mcol, mh, mr, ma = moss_sheet()
+    creep = np.clip((fbm(u * 3, v * 3, 4, seed=71) - 0.55) * 6.0, 0, 1) * ma * (1.0 - humus * 0.5)
+    col = mix3(col, mcol, creep)
+    h = h * (1 - creep) + (0.6 + mh * 0.3) * creep
+    rough = rough * (1 - creep) + mr * creep
+    return col, h, np.clip(rough, 0.5, 0.95)
 
 
 def bamboo_sheet():
@@ -459,12 +540,12 @@ def make_all():
     save("bark", rgb, h, r, nstr=7.0)
     rgb, h, r = bark_sheet(green=0.7, rings=7, seed=9)
     save("vine", rgb, h, r, nstr=6.0)
-    rgb, h, r = moss_sheet()
-    save("moss", rgb, h, r, nstr=9.0)
+    rgb, h, r, a = moss_sheet()
+    save("moss", rgb, h, r, a, nstr=11.0)
     rgb, h, r = rock_sheet()
     save("rock", rgb, h, r, nstr=8.0)
     rgb, h, r = ground_sheet()
-    save("ground", rgb, h, r, nstr=5.0)
+    save("ground", rgb, h, r, nstr=7.0)
     rgb, h, r = bamboo_sheet()
     save("bamboo", rgb, h, r, nstr=5.0)
     rgb, h, r = fungus_sheet()
@@ -478,13 +559,13 @@ def make_all():
 # ---------------------------------------------------------------------------
 
 def mat(name, shader, color, normal, rough_tex, roughness, two_sided=False, blend="Opaque",
-        cutoff=0.5, features=None, numbers=None, textures=None):
+        cutoff=0.5, features=None, numbers=None, textures=None, tint="1,1,1,1"):
     d = {
         "Shader": shader,
         "Features": features or {},
         "Numbers": numbers or {},
         "Textures": textures or {},
-        "Tint": "1,1,1,1",
+        "Tint": tint,
         "ColorMap": color,
         "Normal": normal,
         "RoughMetalAmbient": "materials/default/roughmetal.png",
@@ -555,15 +636,15 @@ def write_materials():
     litter_wind = dict(wind)
     litter_wind["g_flWindStrength"] = "0.04,0,0,0"
     litter_wind["g_flWindHeight"] = "0.4,0,0,0"
+    litter_wind["g_flVariation"] = "0.8,0,0,0"
     mat("litter", "shaders/foliage.shader", c, n, r, 0.75, True, "Masked", 0.4,
         features={"F_WIND": 1, "F_NORMAL_MAP": 1, "F_ROUGHNESS": 1, "F_ALPHA": 1, "F_BACKFACES": 1},
-        numbers=litter_wind, textures={"g_tRoughness": r})
+        numbers=litter_wind, textures={"g_tRoughness": r}, tint="0.55,0.5,0.42,1")
 
     for name, rough, nfeat in (
         ("bark", 0.68, 1),
         ("vine", 0.62, 1),
-        ("moss", 0.84, 1),
-        ("rock", 0.5, 1),
+        ("rock", 0.68, 1),
         ("ground", 0.8, 1),
         ("bamboo", 0.4, 1),
         ("fungus", 0.7, 1),
@@ -573,6 +654,15 @@ def write_materials():
             features={"F_NORMAL_MAP": 1, "F_ROUGHNESS": 1},
             numbers={"g_flRoughness": f"{rough},0,0,0"},
             textures={"g_tRoughness": r})
+
+    # Moss is a mat with holes in it - cut by its alpha, so a sheet of it
+    # over a rock ends ragged. Two-sided: a sleeve's underside shows at the
+    # edge of a log.
+    c, n, r = maps("moss")
+    mat("moss", "shaders/complex.shader", c, n, r, 0.84, True, "Masked", 0.5,
+        features={"F_NORMAL_MAP": 1, "F_ROUGHNESS": 1, "F_ALPHA": 1},
+        numbers={"g_flRoughness": "0.84,0,0,0", "g_flAlphaCutoff": "0.5,0,0,0"},
+        textures={"g_tRoughness": r})
 
 
 def patch_remaps():

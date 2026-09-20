@@ -162,7 +162,9 @@ class Mesh:
         for m in MATERIALS:
             me.materials.append(bpy.data.materials.get(m) or bpy.data.materials.new(m))
         me.polygons.foreach_set("material_index", [m for _, m in self.faces])
-        me.polygons.foreach_set("use_smooth", [self.smooth] * len(me.polygons))
+        # Moss is smooth whatever it lies on: a faceted rock under a faceted
+        # mat reads as a rock painted green.
+        me.polygons.foreach_set("use_smooth", [self.smooth or MATERIALS[m] == "Moss" for _, m in self.faces])
         me.update()
         ob = bpy.data.objects.new(name, me)
         bpy.context.scene.collection.objects.link(ob)
@@ -863,7 +865,7 @@ def rock_geom(mesh, rng, center, size, seed, stretch=(1.0, 1.0, 0.65), flat_top=
     bm = bmesh.new()
     # A mossy rock is cut finer, so the edge of the moss can follow the
     # noise rather than the triangles.
-    bmesh.ops.create_icosphere(bm, subdivisions=min(subdiv + 1, 4) if moss else subdiv, radius=1.0)
+    bmesh.ops.create_icosphere(bm, subdivisions=4 if moss else subdiv, radius=1.0)
     for v in bm.verts:
         p = v.co * 1.4 + Vector((seed * 3.1, seed * 1.7, 0))
         v.co += v.normal * (fbm(p * 0.5, octaves=2) * warp + fbm(p, octaves=4) * rough + fbm(p * 3.5, octaves=2) * 0.06)
@@ -897,7 +899,9 @@ def rock_geom(mesh, rng, center, size, seed, stretch=(1.0, 1.0, 0.65), flat_top=
             weight[v.index] = w
         shell = {}
         for f in bm.faces:
-            if max(weight[v.index] for v in f.verts) < 0.04:
+            # Only where the mat has some thickness at every corner: a face
+            # with one corner on the rock is a green triangle on bare stone.
+            if min(weight[v.index] for v in f.verts) < 0.08:
                 continue
             for v in f.verts:
                 if v.index not in shell:

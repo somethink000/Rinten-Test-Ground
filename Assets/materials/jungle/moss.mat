@@ -2,10 +2,12 @@
   "Shader": "shaders/complex.shader",
   "Features": {
     "F_NORMAL_MAP": 1,
-    "F_ROUGHNESS": 1
+    "F_ROUGHNESS": 1,
+    "F_ALPHA": 1
   },
   "Numbers": {
-    "g_flRoughness": "0.84,0,0,0"
+    "g_flRoughness": "0.84,0,0,0",
+    "g_flAlphaCutoff": "0.5,0,0,0"
   },
   "Textures": {
     "g_tRoughness": "textures/jungle/moss_r.png"
@@ -19,9 +21,9 @@
   "Metalness": 0.0,
   "EmissionStrength": 0.0,
   "PhysicsSurface": "",
-  "TwoSided": false,
+  "TwoSided": true,
   "Filtering": "Smooth",
-  "Blend": "Opaque",
+  "Blend": "Masked",
   "AlphaCutoff": 0.5,
   "__references": [],
   "__version": 0

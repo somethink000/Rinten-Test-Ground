@@ -564,7 +564,7 @@ objects += scatter(rng, ["grass_a", "grass_b"], 260, 0.45, sink=0.04, align=0.9,
                    path_margin=0.2, prefer=lambda x, y: 0.9 if on_path(x, y, 2.5) or in_stream(x, y, 3.5) else 0.3)
 objects += scatter(rng, ["mosscushion_a", "mosscushion_b", "mosscushion_c", "mosscarpet_a"], 120, 0.5, sink=0.12, align=1.0,
                    prefer=lambda x, y: min(1.0, 0.5 * shade(x, y) + 0.5 * damp(x, y)), path_margin=0.3)
-objects += scatter(rng, ["litter_a", "litter_b"], 260, 0.4, sink=0.02, align=1.0, allow_path=True, prefer=shade, clear=0.0)
+objects += scatter(rng, ["litter_a", "litter_b"], 200, 0.4, sink=0.02, align=1.0, allow_path=True, prefer=shade, clear=0.0, scale=(0.5, 0.85))
 
 # -- light, fog, the player, the HUD ----------------------------------------
 # The sun low, from behind and to the left of the walk, so trunks are lit on
