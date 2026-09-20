@@ -1,0 +1,18 @@
+{
+  "Meshes": [
+    {
+      "Name": "",
+      "File": "models/jungle/lily_a.fbx",
+      "Scale": 1.0,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1.0,
+  "Material": "",
+  "Materials": [],
+  "MaterialRemaps": []
+}
