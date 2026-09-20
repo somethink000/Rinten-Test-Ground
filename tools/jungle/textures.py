@@ -441,18 +441,26 @@ def write_materials():
         "g_flOpacityMipBoost": "0.35,0,0,0",
         "g_flAlphaCutoff": "0.4,0,0,0",
     }
+    # Light through the leaf - see F_TRANSMISSION in foliage.shader. A broad
+    # thin leaf lets most of it through, a frond less, litter none.
+    leaf_features = {"F_WIND": 1, "F_NORMAL_MAP": 1, "F_ROUGHNESS": 1, "F_ALPHA": 1, "F_BACKFACES": 1, "F_TRANSMISSION": 1}
     c, n, r = maps("leaf")
+    leaf_wind = dict(wind)
+    leaf_wind["g_flTransmission"] = "0.7,0,0,0"
+    leaf_wind["g_vTransmissionColour"] = "0.85,1,0.45,0"
+    leaf_wind["g_flTransmissionSpread"] = "4,0,0,0"
     mat("leaf", "shaders/foliage.shader", c, n, r, 0.42, True, "Masked", 0.4,
-        features={"F_WIND": 1, "F_NORMAL_MAP": 1, "F_ROUGHNESS": 1, "F_ALPHA": 1, "F_BACKFACES": 1},
-        numbers=wind, textures={"g_tRoughness": r})
+        features=leaf_features, numbers=leaf_wind, textures={"g_tRoughness": r})
     c, n, r = maps("frond")
     frond_wind = dict(wind)
     frond_wind["g_flWindStrength"] = "0.18,0,0,0"
     frond_wind["g_flWindHeight"] = "2.5,0,0,0"
     frond_wind["g_flOpacityMipBoost"] = "0.0,0,0,0"
+    frond_wind["g_flTransmission"] = "0.45,0,0,0"
+    frond_wind["g_vTransmissionColour"] = "0.8,1,0.5,0"
+    frond_wind["g_flTransmissionSpread"] = "6,0,0,0"
     mat("frond", "shaders/foliage.shader", c, n, r, 0.45, True, "Masked", 0.15,
-        features={"F_WIND": 1, "F_NORMAL_MAP": 1, "F_ROUGHNESS": 1, "F_ALPHA": 1, "F_BACKFACES": 1},
-        numbers=frond_wind, textures={"g_tRoughness": r})
+        features=leaf_features, numbers=frond_wind, textures={"g_tRoughness": r})
     c, n, r = maps("litter")
     litter_wind = dict(wind)
     litter_wind["g_flWindStrength"] = "0.04,0,0,0"
