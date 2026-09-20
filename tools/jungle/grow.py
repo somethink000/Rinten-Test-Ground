@@ -332,7 +332,7 @@ DEFAULT_SPEC = dict(kids=(4, 2), where=(0.5, 0.92), up=(0.3, 0.7), ratio=(0.3, 0
                     bend=(0.1, 0.3), wiggle=0.08, taper=1.1, sides=12, lumps=0.05, knots=0.0, leaves=28, leaf=0.32)
 
 
-def surface_roots(mesh, rng, base_r, count, length, seed):
+def surface_roots(mesh, rng, base_r, count, length, seed, lift=0.55):
     """Roots that leave the base above ground and snake away along it - the
     tangle at the foot of a giant."""
     for i in range(count):
@@ -345,7 +345,7 @@ def surface_roots(mesh, rng, base_r, count, length, seed):
         for k in range(steps + 1):
             t = k / steps
             p = out * (base_r * 0.7 + t * L) + side * fbm(Vector((t * 2.2 + seed, i, 0.5))) * L * 0.25
-            p.z = max(0.0, 0.55 * (1 - t) ** 1.5 * base_r) + abs(fbm(Vector((t * 4, i * 3.1, seed)))) * 0.25 * (1 - t) + 0.05
+            p.z = max(0.0, lift * (1 - t) ** 1.5 * base_r) + abs(fbm(Vector((t * 4, i * 3.1, seed)))) * 0.25 * (1 - t) + 0.05
             pts.append(p)
         sweep(mesh, pts, lambda u: lerp(base_r * 0.36, 0.04, u ** 0.7), 8, "Bark", seed + i, lumps=0.14)
         for j in range(rng.randint(0, 2)):
@@ -749,7 +749,9 @@ def rock_geom(mesh, rng, center, size, seed, stretch=(1.0, 1.0, 0.65), flat_top=
     is a slow noise that pulls the whole shape out of round; `rough` the fast
     one that breaks the surface. `moss` cushions sit on its upper faces."""
     bm = bmesh.new()
-    bmesh.ops.create_icosphere(bm, subdivisions=subdiv, radius=1.0)
+    # A mossy rock is cut finer, so the edge of the moss can follow the
+    # noise rather than the triangles.
+    bmesh.ops.create_icosphere(bm, subdivisions=min(subdiv + 1, 4) if moss else subdiv, radius=1.0)
     for v in bm.verts:
         p = v.co * 1.4 + Vector((seed * 3.1, seed * 1.7, 0))
         v.co += v.normal * (fbm(p * 0.5, octaves=2) * warp + fbm(p, octaves=4) * rough + fbm(p * 3.5, octaves=2) * 0.06)
@@ -768,16 +770,30 @@ def rock_geom(mesh, rng, center, size, seed, stretch=(1.0, 1.0, 0.65), flat_top=
     base = len(mesh.verts)
     for v in bm.verts:
         mesh.vert(v.co)
-        if v.normal.z > 0.55 and v.co.z > center.z + hz * 0.5:
-            tops.append((v.co.copy(), v.normal.copy()))
     for f in bm.faces:
         mesh.face([base + v.index for v in f.verts], mat)
+    if moss:
+        # Where moss grows: faces that look up, thinned by noise so it lies
+        # in patches. Each vertex gets a weight, the shell is those faces
+        # pushed out by it, and where the weight reaches zero the shell
+        # touches the rock - no edge floating free.
+        cover = min(1.0, moss / 20.0)
+        lo, hi = 1.0 - 0.55 * cover, 1.3 - 0.55 * cover
+        weight = {}
+        for v in bm.verts:
+            w = smoothstep(lo, hi, v.normal.z + 0.7 * fbm((v.co - center) * (4.5 / size) + Vector((seed, 0, 0)), 3))
+            weight[v.index] = w
+        shell = {}
+        for f in bm.faces:
+            if max(weight[v.index] for v in f.verts) < 0.04:
+                continue
+            for v in f.verts:
+                if v.index not in shell:
+                    w = weight[v.index]
+                    lump = 1.0 + 0.5 * fbm((v.co - center) * (6.0 / size) + Vector((0, seed, 0)), 2)
+                    shell[v.index] = mesh.vert(v.co + v.normal * (size * 0.035 * w * lump))
+            mesh.face([shell[v.index] for v in f.verts], "Moss")
     bm.free()
-    for _ in range(moss):
-        if not tops:
-            break
-        p, n = rng.choice(tops)
-        blob(mesh, p, size * rng.uniform(0.12, 0.28), seed + len(mesh.verts), flat=0.3, up=n)
 
 
 def rock(seed, size, stretch=(1.0, 1.0, 0.65), flat_top=0.0, subdiv=3, rough=0.35, warp=0.3, moss=0):
@@ -854,20 +870,67 @@ def blob(mesh, center, radius, seed, flat=0.5, up=Z, mat="Moss", rings=5, segs=1
         mesh.quad_strip(r0, r1, mat)
 
 
-def moss_on(mesh, rng, frames, count, seed, size=None):
-    """Moss cushions on the upper side of a swept tube."""
-    placed = 0
-    for _ in range(count * 8):
-        if placed >= count or len(frames) < 4:
-            break
-        p, t, nrm, bn, r, u = frames[rng.randint(1, len(frames) - 2)]
-        ang = rng.uniform(0, TAU)
-        n = (nrm * math.cos(ang) + bn * math.sin(ang)).normalized()
-        if n.z < -0.2 or (n.z < 0.2 and rng.random() < 0.4):
+def densify(frames, step):
+    """The same frames with extra ones interpolated between, so a skin laid
+    over them can have a finer edge than the tube underneath."""
+    out = []
+    for a, b in zip(frames, frames[1:]):
+        n = max(1, int((b[0] - a[0]).length / step))
+        for i in range(n):
+            f = i / n
+            p = a[0].lerp(b[0], f)
+            nrm = a[2].lerp(b[2], f).normalized()
+            t = a[1].lerp(b[1], f).normalized()
+            nrm = (nrm - t * nrm.dot(t)).normalized()
+            out.append((p, t, nrm, t.cross(nrm).normalized(), lerp(a[4], b[4], f), lerp(a[5], b[5], f)))
+    out.append(frames[-1])
+    return out
+
+
+def moss_sleeve(mesh, frames, u0, u1, angle, width, thick, seed, segs=11, mat="Moss"):
+    """Moss lying on a swept tube: a sector of a second skin over the same
+    frames, so it follows every bend. Its thickness falls to nothing at the
+    sides and at both ends, so the edge meets the bark, and noise tears that
+    edge and lumps the surface. `angle` is which side, measured from the
+    frame's normal; when the tube is not vertical the sector is centred on
+    whichever side faces up."""
+    rows = []
+    span = max(u1 - u0, 1e-3)
+    for p, t, nrm, bn, r, u in densify(frames, 0.15):
+        if u < u0 or u > u1:
             continue
-        blob(mesh, p + n * r * 0.92, min(size or r * 1.4, r * 1.8) * rng.uniform(0.6, 1.2), seed + placed, flat=0.2, up=n,
-             rings=4, segs=9)
-        placed += 1
+        up = Z - t * Z.dot(t)
+        a0 = math.atan2(up.dot(bn), up.dot(nrm)) if up.length > 0.35 else angle
+        row = []
+        for k in range(segs):
+            f = k / (segs - 1)
+            # The end of the patch comes at a different place on every
+            # strand across it, and its sides wander: a torn edge, not a cut.
+            tear = fbm(Vector((f * 4 + seed, u * 3, 0.5)), 2) * 0.25
+            along = smoothstep(0, 0.35, (u - u0) / span + tear) * smoothstep(0, 0.35, (u1 - u) / span - tear)
+            wander = fbm(Vector((u * 6 + seed, k * 0.7, 1.5)), 2) * 0.35
+            ang = a0 - width / 2 + width * f + wander * width * (0.5 + 0.5 * abs(2 * f - 1))
+            across = max(0.0, math.sin(math.pi * f)) ** 0.5
+            n = nrm * math.cos(ang) + bn * math.sin(ang)
+            lump = 0.5 + 0.5 * abs(fbm(Vector((u * 14 + seed, f * 6, 2.0)), 3))
+            h = thick * max(0.0, along) * across * lump
+            row.append(mesh.vert(p + n * (r * 1.003 + h)))
+        rows.append(row)
+    for a, b in zip(rows, rows[1:]):
+        mesh.quad_strip(a, b, mat, closed=False)
+
+
+def moss_on(mesh, rng, frames, count, seed, size=None):
+    """`count` patches of moss along a tube: mostly on the side that faces
+    up, a few round the shady side of a vertical trunk."""
+    if len(frames) < 4:
+        return
+    for i in range(count):
+        length = rng.uniform(0.1, 0.35)
+        u0 = rng.uniform(0.0, 1.0 - length)
+        r = frames[min(int((u0 + length / 2) * (len(frames) - 1)), len(frames) - 1)][4]
+        moss_sleeve(mesh, frames, u0, u0 + length, rng.uniform(0, TAU), rng.uniform(1.4, 3.2),
+                    (size or r) * rng.uniform(0.12, 0.28) + 0.02, seed + i * 3)
 
 
 def climbers(mesh, rng, frames, count, seed):
@@ -895,11 +958,12 @@ def climbers(mesh, rng, frames, count, seed):
 
 
 def moss_cushion(seed, size, count=1):
+    """Low, ragged mounds on the ground, their rims tucked under."""
     rng = random.Random(seed)
     mesh = Mesh()
     for i in range(count):
         c = Vector((rng.gauss(0, size * 0.5), rng.gauss(0, size * 0.5), 0)) if count > 1 else Vector((0, 0, 0))
-        blob(mesh, c, size * rng.uniform(0.6, 1.2), seed + i, flat=rng.uniform(0.35, 0.6), rings=6, segs=14)
+        blob(mesh, c, size * rng.uniform(0.6, 1.2), seed + i, flat=rng.uniform(0.2, 0.35), rings=6, segs=16, rough=0.5)
     return mesh
 
 
@@ -999,11 +1063,11 @@ def snag(seed, height, r0, r1, limbs=3, moss=3, fungi=2):
 def stump(seed, height, r, moss=4, fungi=1):
     rng = random.Random(seed)
     mesh = Mesh()
-    path = [Vector((0, 0, z)) for z in (0, height * 0.3, height * 0.7, height)]
-    frames = sweep(mesh, path, lambda u: lerp(r, r * 0.85, u), 16, "Bark", seed, lumps=0.1, grooves=0.1, flutes=5, flare=0.9, flute_height=0.6)
+    path = [Vector((0, 0, height * i / 8)) for i in range(9)]
+    frames = sweep(mesh, path, lambda u: lerp(r, r * 0.85, u), 16, "Bark", seed, lumps=0.12, grooves=0.1, knots=0.15, flutes=5, flare=0.9, flute_height=0.6)
     splinters(mesh, rng, frames[-1], rng.randint(3, 6), height * 0.8, seed)
-    surface_roots(mesh, rng, r, rng.randint(3, 5), r * 4, seed)
-    moss_on(mesh, rng, frames, moss, seed, size=r * 0.6)
+    surface_roots(mesh, rng, r, rng.randint(3, 5), r * 4, seed, lift=0.2)
+    moss_on(mesh, rng, frames, moss, seed)
     for i in range(fungi):
         ang = rng.uniform(0, TAU)
         n = Vector((math.cos(ang), math.sin(ang), 0))
@@ -1074,7 +1138,7 @@ def log_mossy(seed, length, r, stubs=3, moss=6, fungi=2):
     mesh = log(seed, length, r, stubs)
     rng = random.Random(seed + 99)
     frames = mesh.limbs[0] if mesh.limbs else []
-    moss_on(mesh, rng, frames, moss, seed, size=r * 0.9)
+    moss_on(mesh, rng, frames, moss, seed)
     for i in range(fungi):
         p, t, nrm, bn, rr, u = frames[rng.randint(2, len(frames) - 3)]
         a = rng.uniform(0.6, 2.5) * rng.choice((-1, 1))
