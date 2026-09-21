@@ -617,7 +617,7 @@ def write_materials():
         "g_flWindHeight": "8,0,0,0",
         "g_vWindDirection": "1,0,0.25,0",
         "g_flRoughness": "0.62,0,0,0",
-        "g_flOpacityMipBoost": "0.35,0,0,0",
+        "g_flOpacityMipBoost": "0.12,0,0,0",
         "g_flAlphaCutoff": "0.4,0,0,0",
     }
     # Light through the leaf - see F_TRANSMISSION in foliage.shader. A broad
@@ -634,7 +634,9 @@ def write_materials():
     # The sprig cards: the same leaf, a bunch of it on a card - see sprig_atlas.
     c, n, r = maps("canopy")
     canopy_wind = dict(leaf_wind)
-    canopy_wind["g_flOpacityMipBoost"] = "0.45,0,0,0"
+    # No mip boost on a sprig card: the boost lifts the mips' averaged alpha
+    # back over the cutoff, and on a broad card that is the whole rectangle.
+    canopy_wind["g_flOpacityMipBoost"] = "0,0,0,0"
     # The crowns: high up, where the wind is, and heavy - a slow wide sway.
     canopy_wind["g_flWindStrength"] = "0.2,0,0,0"
     canopy_wind["g_flWindSpeed"] = "1.3,0,0,0"
