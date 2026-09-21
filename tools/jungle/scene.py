@@ -576,7 +576,7 @@ objects += scatter(rng, ["litter_a", "litter_b"], 200, 0.4, sink=0.02, align=1.0
 objects += [
     S.environment(sun_brightness=0.7, sun_rot=pitch_yaw(-34, 155), sun_color="1,0.96,0.9,1", ambient="0.16,0.22,0.18,1",
                   sky_tint="0.9,0.93,0.92,1", shadow_detail=96, sky_material="materials/skybox/overcast.mat"),
-    S.go("Distance Fog", components=[S.comp("Rinten.CubemapFog", "fog/distance", Tint="0.82,0.86,0.84,0.85", StartDistance=6, EndDistance=60,
+    S.go("Distance Fog", components=[S.comp("Rinten.CubemapFog", "fog/distance", Tint="0.86,0.88,0.84,0.85", StartDistance=6, EndDistance=60,
                                             FalloffExponent=1.25, HeightStart=-6, HeightWidth=26, HeightExponent=1.1)]),
     S.go("Volume Fog", (0, 4, 0), components=[S.comp("Rinten.VolumetricFogVolume", "fog/volume", Bounds={"Mins": "-32,-6,-32", "Maxs": "32,10,32"},
                                                      Strength=0.08, FalloffExponent=0.8, Color="0.68,0.78,0.74,1")]),
@@ -584,9 +584,13 @@ objects += [
 
 # The camera keeps a picture of the depth for the water to read the bed
 # through - see DepthPicture - and darkens the corners with occlusion.
+# The grade: a little less saturated and a touch more contrast than the raw
+# render - the look of the references, which are overcast and damp. The cool
+# of them is the sky's own, not a grade.
 pl = S.player((px(-23), height(px(-23), -23) + 1.15, 23), speed=4.5, camera_extra=[
     S.comp("Rinten.DepthPicture", "depthpicture", __version=1),
     S.comp("Rinten.AmbientOcclusion", "ssao", __version=1, Intensity=0.8),
+    S.comp("Rinten.ColorAdjustments", "adjust", __version=1, Blend=1.0, Saturation=0.9, HueRotate=0.0, Brightness=1.0, Contrast=1.03),
 ])
 pl["Rotation"] = yaw(22)
 objects += [pl, S.hud("The jungle. Walk the path north along the stream. Q returns.")]

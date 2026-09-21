@@ -635,11 +635,17 @@ def write_materials():
     c, n, r = maps("canopy")
     canopy_wind = dict(leaf_wind)
     canopy_wind["g_flOpacityMipBoost"] = "0.45,0,0,0"
+    # The crowns: high up, where the wind is, and heavy - a slow wide sway.
+    canopy_wind["g_flWindStrength"] = "0.2,0,0,0"
+    canopy_wind["g_flWindSpeed"] = "1.3,0,0,0"
+    canopy_wind["g_flWindHeight"] = "14,0,0,0"
     mat("canopy", "shaders/foliage.shader", c, n, r, 0.42, True, "Masked", 0.4,
         features=leaf_features, numbers=canopy_wind, textures={"g_tRoughness": r})
     c, n, r = maps("frond")
     frond_wind = dict(wind)
-    frond_wind["g_flWindStrength"] = "0.18,0,0,0"
+    # Palms and ferns: broad blades that swing slowly and far.
+    frond_wind["g_flWindStrength"] = "0.22,0,0,0"
+    frond_wind["g_flWindSpeed"] = "1.1,0,0,0"
     frond_wind["g_flWindHeight"] = "2.5,0,0,0"
     frond_wind["g_flOpacityMipBoost"] = "0.0,0,0,0"
     frond_wind["g_flTransmission"] = "0.45,0,0,0"
@@ -650,7 +656,7 @@ def write_materials():
         features=leaf_features, numbers=frond_wind, textures={"g_tRoughness": r})
     c, n, r = maps("litter")
     litter_wind = dict(wind)
-    litter_wind["g_flWindStrength"] = "0.04,0,0,0"
+    litter_wind["g_flWindStrength"] = "0.015,0,0,0"
     litter_wind["g_flWindHeight"] = "0.4,0,0,0"
     litter_wind["g_flVariation"] = "0.8,0,0,0"
     mat("litter", "shaders/foliage.shader", c, n, r, 0.75, True, "Masked", 0.4,

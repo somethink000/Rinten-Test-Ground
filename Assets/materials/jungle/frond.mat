@@ -9,8 +9,8 @@
     "F_TRANSMISSION": 1
   },
   "Numbers": {
-    "g_flWindStrength": "0.18,0,0,0",
-    "g_flWindSpeed": "1.8,0,0,0",
+    "g_flWindStrength": "0.22,0,0,0",
+    "g_flWindSpeed": "1.1,0,0,0",
     "g_flWindHeight": "2.5,0,0,0",
     "g_vWindDirection": "1,0,0.25,0",
     "g_flRoughness": "0.62,0,0,0",
