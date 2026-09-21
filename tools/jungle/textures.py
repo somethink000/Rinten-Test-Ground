@@ -39,6 +39,7 @@ SLOT_MATERIALS = {
     "Fungus": "materials/jungle/fungus.mat",
     "Litter": "materials/jungle/litter.mat",
     "Canopy": "materials/jungle/canopy.mat",
+    "Water": "materials/jungle/water.mat",
 }
 
 
@@ -496,6 +497,19 @@ def ground_sheet():
     return col, h, np.clip(rough, 0.5, 0.95)
 
 
+def water_height():
+    """Ripples on a slow stream: a few crossing wave trains, small and
+    round-topped, over a finer chop. Read twice at different sizes by the
+    water shader, so all it needs is to tile and to not be a grid."""
+    u, v = grid()
+    h = np.zeros((SIZE, SIZE))
+    for k, (fx, fy, amp) in enumerate(((6, 2, 0.5), (-3, 5, 0.4), (8, -7, 0.25), (2, 9, 0.3))):
+        phase = fbm(u * 3, v * 3, 2, seed=80 + k) * 1.5
+        h += np.sin((u * fx + v * fy) * 2 * math.pi + phase) * amp
+    h += (fbm(u * 24, v * 24, 3, seed=90) - 0.5) * 0.6
+    return h
+
+
 def bamboo_sheet():
     u, v = grid()
     # Vertical grain, a darker node band that tiles with the scars on the culm.
@@ -546,6 +560,8 @@ def make_all():
     save("rock", rgb, h, r, nstr=8.0)
     rgb, h, r = ground_sheet()
     save("ground", rgb, h, r, nstr=7.0)
+    write_png(os.path.join(TEX, "water_n.png"), encode_normal(water_height(), 2.5))
+    print("  water")
     rgb, h, r = bamboo_sheet()
     save("bamboo", rgb, h, r, nstr=5.0)
     rgb, h, r = fungus_sheet()
@@ -654,6 +670,14 @@ def write_materials():
             features={"F_NORMAL_MAP": 1, "F_ROUGHNESS": 1},
             numbers={"g_flRoughness": f"{rough},0,0,0"},
             textures={"g_tRoughness": r})
+
+    # The stream: the engine's water shader, tannin-brown and clear, flowing
+    # north along the bed - see water.shader.
+    mat("water", "shaders/water.shader", "", "textures/jungle/water_n.png", "", 0.08, False, "Translucent", 0.5,
+        features={"F_NORMAL_MAP": 1, "F_TRANSLUCENT": 1},
+        numbers={"g_vShallowColour": "0.09,0.12,0.07,0", "g_vDeepColour": "0.03,0.045,0.03,0", "g_flDepthFade": "0.7,0,0,0",
+                 "g_flRoughness": "0.08,0,0,0", "g_flSkyReflection": "0.45,0,0,0", "g_flRippleScale": "1.4,0,0,0",
+                 "g_vFlow": "0,0.3,0,0", "g_flRippleStrength": "0.55,0,0,0"})
 
     # Moss is a mat with holes in it - cut by its alpha, so a sheet of it
     # over a rock ends ragged. Two-sided: a sleeve's underside shows at the

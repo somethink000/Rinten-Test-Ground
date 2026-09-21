@@ -30,7 +30,7 @@ OUT = "models/jungle"
 # remap, without touching the geometry again.
 # Frond is the tiling vein sheet on ferns and palms; Leaf is the cutout atlas
 # on each oval or heart blade.
-MATERIALS = ["Bark", "Leaf", "Frond", "Bamboo", "Rock", "Ground", "Vine", "Moss", "Fungus", "Litter", "Canopy"]
+MATERIALS = ["Bark", "Leaf", "Frond", "Bamboo", "Rock", "Ground", "Vine", "Moss", "Fungus", "Litter", "Canopy", "Water"]
 
 SLOT_MATERIALS = {
     "Bark": "materials/jungle/bark.mat",
@@ -44,6 +44,7 @@ SLOT_MATERIALS = {
     "Fungus": "materials/jungle/fungus.mat",
     "Litter": "materials/jungle/litter.mat",
     "Canopy": "materials/jungle/canopy.mat",
+    "Water": "materials/jungle/water.mat",
 }
 
 TAU = math.tau
@@ -989,6 +990,33 @@ def ground(seed, size, step=0.75, hole=0.0):
     return mesh
 
 
+def water(seed, size=GROUND_SIZE, step=0.5, half_width=2.6, depth=0.3):
+    """The stream's surface: a ribbon of quads down the bed, `depth` above
+    the bed's floor at the centre line, wide enough to reach up the banks
+    where the water shader fades it out against them. Its height follows the
+    bed along the stream, smoothed, so it runs downhill with it and never
+    steps."""
+    mesh = Mesh()
+    n = int(round(size / step))
+    rows = []
+    levels = []
+    for iy in range(n + 1):
+        y = -size / 2 + iy * step
+        cx, _ = ground_lines(y, seed)
+        levels.append(ground_height(cx, y, seed) + depth)
+    # Smoothed along the stream - water finds its level over a reach.
+    smooth = [sum(levels[max(0, i - 6):i + 7]) / len(levels[max(0, i - 6):i + 7]) for i in range(len(levels))]
+    for iy in range(n + 1):
+        y = -size / 2 + iy * step
+        cx, _ = ground_lines(y, seed)
+        row = [mesh.vert((cx + f * half_width, y, smooth[iy]), uv=((cx + f * half_width) * 0.5, y * 0.5)) for f in (-1, -0.5, 0, 0.5, 1)]
+        rows.append(row)
+    for a, b in zip(rows, rows[1:]):
+        for ix in range(4):
+            mesh.face((a[ix], a[ix + 1], b[ix + 1], b[ix]), "Water")
+    return mesh
+
+
 def write_ground_json(seed=191, step=0.5, size=APRON_SIZE):
     """tools/jungle/ground.json: the height grid the scene generator stands
     things on, and the stream's and the path's x on every row."""
@@ -1816,6 +1844,7 @@ CATALOGUE = {
     # -- the ground, 60 m square ---------------------------------------------
     "ground": lambda: ground(191, GROUND_SIZE),
     "ground_apron": lambda: ground(191, APRON_SIZE, step=1.0, hole=GROUND_SIZE),
+    "water": lambda: water(191),
 }
 
 # Which row of the review layout each model stands in: the word before the

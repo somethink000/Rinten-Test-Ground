@@ -305,7 +305,8 @@ def set_hulls(name, hulls):
 
 rng = random.Random(7)
 objects = [put("ground", 0, 0, on_ground=False, collide=True, name="Ground"),
-           put("ground_apron", 0, 0, on_ground=False, collide=True, name="Ground apron")]
+           put("ground_apron", 0, 0, on_ground=False, collide=True, name="Ground apron"),
+           put("water", 0, 0, on_ground=False, name="Stream")]
 
 tree_place = {}   # name -> (x, y, turn, scale)
 tree_model = {}   # name -> model
@@ -581,7 +582,12 @@ objects += [
                                                      Strength=0.08, FalloffExponent=0.8, Color="0.68,0.78,0.74,1")]),
 ]
 
-pl = S.player((px(-23), height(px(-23), -23) + 1.15, 23), speed=4.5)
+# The camera keeps a picture of the depth for the water to read the bed
+# through - see DepthPicture - and darkens the corners with occlusion.
+pl = S.player((px(-23), height(px(-23), -23) + 1.15, 23), speed=4.5, camera_extra=[
+    S.comp("Rinten.DepthPicture", "depthpicture", __version=1),
+    S.comp("Rinten.AmbientOcclusion", "ssao", __version=1, Intensity=0.8),
+])
 pl["Rotation"] = yaw(22)
 objects += [pl, S.hud("The jungle. Walk the path north along the stream. Q returns.")]
 

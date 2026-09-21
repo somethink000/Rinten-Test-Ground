@@ -96,13 +96,14 @@ class Scene:
                     SkyMaterial=sky_material, Tint=sky_tint)]),
         ])
 
-    def player(self, pos, pitch_rot="-0.0697565,0,0,0.9975641", fov=75, speed=7, bloom=True):
+    def player(self, pos, pitch_rot="-0.0697565,0,0,0.9975641", fov=75, speed=7, bloom=True, camera_extra=()):
         cam = [self.comp("Rinten.CameraComponent", "camera", BackgroundColor="0.05,0.06,0.08,1", ClearFlags="All", EnablePostProcessing=True,
                          FieldOfView=fov, FovAxis="Horizontal", IsMainCamera=True, Orthographic=False, OrthographicHeight=10,
                          PostProcessAnchor=None, Priority=1, RenderExcludeTags="", RenderTags="", RenderTexture=None, TargetEye="None",
                          Viewport="0,0,1,1", ZFar=400, ZNear=0.05)]
         if bloom:
             cam.append(self.comp("Rinten.Bloom", "bloom", __version=1, Mode="Additive", Spread=0.6, Strength=0.6, Threshold=1, Tint="1,1,1,1"))
+        cam += list(camera_extra)
         return self.go("Player", pos, components=[self.comp("Template.Player", "player",
             Camera=self.ref_comp("camera", "Camera", "CameraComponent"), PitchClamp=89, RunScale=3, Speed=speed)],
             children=[self.go("Camera", rot=pitch_rot, tags="maincamera", components=cam)])
