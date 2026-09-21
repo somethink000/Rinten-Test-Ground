@@ -9,7 +9,7 @@
     "g_vDeepColour": "0.03,0.045,0.03,0",
     "g_flDepthFade": "0.7,0,0,0",
     "g_flRoughness": "0.08,0,0,0",
-    "g_flSkyReflection": "0.45,0,0,0",
+    "g_flSkyReflection": "0.18,0,0,0",
     "g_flRippleScale": "1.4,0,0,0",
     "g_vFlow": "0,0.3,0,0",
     "g_flRippleStrength": "0.55,0,0,0"

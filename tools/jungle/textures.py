@@ -682,7 +682,7 @@ def write_materials():
     mat("water", "shaders/water.shader", "", "textures/jungle/water_n.png", "", 0.08, False, "Translucent", 0.5,
         features={"F_NORMAL_MAP": 1, "F_TRANSLUCENT": 1},
         numbers={"g_vShallowColour": "0.09,0.12,0.07,0", "g_vDeepColour": "0.03,0.045,0.03,0", "g_flDepthFade": "0.7,0,0,0",
-                 "g_flRoughness": "0.08,0,0,0", "g_flSkyReflection": "0.45,0,0,0", "g_flRippleScale": "1.4,0,0,0",
+                 "g_flRoughness": "0.08,0,0,0", "g_flSkyReflection": "0.18,0,0,0", "g_flRippleScale": "1.4,0,0,0",
                  "g_vFlow": "0,0.3,0,0", "g_flRippleStrength": "0.55,0,0,0"})
 
     # Moss is a mat with holes in it - cut by its alpha, so a sheet of it

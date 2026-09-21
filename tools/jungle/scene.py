@@ -406,6 +406,30 @@ objects += [
     put("reeds_b", sx(2) - 2.6, 2, turn=50, clear=0.5, sink=0.03, align=0.6),
     put("reeds_a", sx(20) + 2.6, 20, turn=120, clear=0.5, sink=0.03, align=0.6),
 ]
+# -- the bamboo grove: the path's southern reach runs through a stand of
+# culms, thick on both sides, thinning out to the north ----------------------
+for i in range(70):
+    for _ in range(40):
+        y = rng.uniform(-28.5, -13.0)
+        side = rng.choice((-1, 1))
+        x = px(y) + side * rng.uniform(1.9, 7.5)
+        # thick at the south end, thinning north
+        if rng.random() > 1.0 - (y + 13.0) / -15.5 * 0.6:
+            continue
+        if not free(x, y, 0.35, path_margin=0.2, stream_margin=0.5):
+            continue
+        m = rng.choice(["bamboo_a", "bamboo_b", "bamboo_c", "bamboo_a", "bamboo_b"])
+        objects.append(put(m, x, y, rng.uniform(0, 360), rng.uniform(0.8, 1.25), sink=0.01, clear=0.3, name=f"grove {m} #{i}"))
+        break
+for i in range(4):
+    for _ in range(30):
+        y = rng.uniform(-27.0, -16.0)
+        x = px(y) + rng.choice((-1, 1)) * rng.uniform(3.0, 6.5)
+        if free(x, y, 1.4, path_margin=0.5, stream_margin=0.5):
+            objects.append(put(rng.choice(["bambooclump_a", "bambooclump_b"]), x, y, rng.uniform(0, 360), rng.uniform(0.85, 1.1), sink=0.01, clear=1.4,
+                               name=f"grove clump #{i}"))
+            break
+
 # more palms and tree ferns, scattered where the walk can see them
 objects += scatter(rng, ["palm_a", "palm_b", "palm_fan_a", "palm_fan_b", "treefern_a", "treefern_b", "cycad_b", "banana_a"], 14, 1.5,
                    collide=True, sink=0.02, path_margin=1.0, stream_margin=0.5, max_slope=30)
@@ -590,7 +614,7 @@ objects += [
 pl = S.player((px(-23), height(px(-23), -23) + 1.15, 23), speed=4.5, camera_extra=[
     S.comp("Rinten.DepthPicture", "depthpicture", __version=1),
     S.comp("Rinten.AmbientOcclusion", "ssao", __version=1, Intensity=0.8),
-    S.comp("Rinten.ColorAdjustments", "adjust", __version=1, Blend=1.0, Saturation=0.9, HueRotate=0.0, Brightness=1.0, Contrast=1.03),
+    S.comp("Rinten.ColorAdjustments", "adjust", __version=1, Blend=1.0, Saturation=0.95, HueRotate=0.0, Brightness=1.0, Contrast=1.03),
 ])
 pl["Rotation"] = yaw(22)
 objects += [pl, S.hud("The jungle. Walk the path north along the stream. Q returns.")]
