@@ -84,15 +84,15 @@
   "Hulls": [
     {
       "__type": "CapsuleHull",
-      "PointA": "0,0,0",
-      "PointB": "0,2.29999995,0",
-      "Radius": 0.16,
       "Name": "",
       "Enabled": true,
       "Bone": "",
       "Surface": "",
       "Tags": "",
-      "Folder": ""
+      "Folder": "",
+      "PointA": "0,0,0",
+      "PointB": "0,2.3,0",
+      "Radius": 0.16
     }
   ],
   "Surface": "",
