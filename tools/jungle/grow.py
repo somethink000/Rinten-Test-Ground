@@ -49,6 +49,8 @@ SLOT_MATERIALS = {
 
 TAU = math.tau
 Z = Vector((0, 0, 1))
+BARK_TILE = 1.2       # metres the bark sheet covers, round and up the trunk
+GROUND_TILE = 7.0     # metres the floor sheet covers
 
 
 def lerp(a, b, t):
@@ -213,8 +215,14 @@ def sweep(mesh, path, radius_at, sides, mat, seed=0, lumps=0.05, grooves=0.0, kn
         u = arc / total
         r = radius_at(u)
         ring = []
-        # One extra vertex at the seam so U wraps 0..1 without a squeezed face.
-        v_tile = 1.0 / 0.45
+        # Texture coordinates in metres: the bark sheet is BARK_TILE metres
+        # square, so a giant's trunk wears many repeats round and a twig a
+        # fraction of one - the bark is the same size on both, as it is on
+        # a tree. One extra vertex at the seam so u wraps without a
+        # squeezed face; round the ring it counts whole repeats, so the
+        # seam meets itself.
+        circ = max(TAU * r, 0.05)
+        u_reps = max(1, round(circ / BARK_TILE))
         for k in range(sides + 1):
             ang = (k % sides) / sides * TAU
             c, s = math.cos(ang), math.sin(ang)
@@ -229,7 +237,7 @@ def sweep(mesh, path, radius_at, sides, mat, seed=0, lumps=0.05, grooves=0.0, kn
                 ridge = max(0.0, math.cos(flutes * ang + seed)) ** 6
                 rad += flare * radius_at(0) * ridge * (1.0 - u / flute_height) ** 1.3
             ring.append(mesh.vert(path[i] + nrm * (c * rad) + bn * (s * rad),
-                                  uv=(k / sides, arc * v_tile)))
+                                  uv=(k / sides * u_reps, arc / BARK_TILE)))
         rings.append(ring)
         frames.append((path[i], t, nrm, bn, r, u))
     mesh.tube(rings, mat, cap)
@@ -672,8 +680,19 @@ def culm(mesh, rng, base, height, radius, lean_dir, lean, seed):
         t = z / height
         return base + Vector((0, 0, z)) + lean_dir * (lean * z + 0.25 * t * t * height * lean * 6)
 
+    # The texture repeats once an internode, whatever its length: v counts
+    # internodes, so the texture's node band - the dark ring under the node,
+    # the waxy pale one above it - lands on the collar the geometry has.
+    edges = nodes + [height]
+
+    def along(z):
+        for i in range(len(edges) - 1):
+            if z < edges[i + 1] or i == len(edges) - 2:
+                return i + (z - edges[i]) / max(edges[i + 1] - edges[i], 1e-3)
+        return len(edges) - 1
+
     rings = []
-    sides = 10
+    sides = 14
     for z in zs:
         r = radius * lerp(1.0, 0.7, z / height)
         for nz in nodes:
@@ -682,7 +701,7 @@ def culm(mesh, rng, base, height, radius, lean_dir, lean, seed):
         for k in range(sides + 1):
             ang = (k % sides) / sides * TAU
             ring.append(mesh.vert(at(z) + Vector((math.cos(ang) * r, math.sin(ang) * r, 0)),
-                                  uv=(k / sides, z / 0.4)))
+                                  uv=(k / sides * 2, along(z))))
         rings.append(ring)
     mesh.tube(rings, "Bamboo")
     for nz in [n for n in nodes if n > height * 0.45]:
@@ -866,7 +885,7 @@ def rock_geom(mesh, rng, center, size, seed, stretch=(1.0, 1.0, 0.65), flat_top=
     bm = bmesh.new()
     # A mossy rock is cut finer, so the edge of the moss can follow the
     # noise rather than the triangles.
-    bmesh.ops.create_icosphere(bm, subdivisions=4 if moss else subdiv, radius=1.0)
+    bmesh.ops.create_icosphere(bm, subdivisions=max(subdiv + 2, 4), radius=1.0)
     for v in bm.verts:
         p = v.co * 1.4 + Vector((seed * 3.1, seed * 1.7, 0))
         v.co += v.normal * (fbm(p * 0.5, octaves=2) * warp + fbm(p, octaves=4) * rough + fbm(p * 3.5, octaves=2) * 0.06)
@@ -884,7 +903,7 @@ def rock_geom(mesh, rng, center, size, seed, stretch=(1.0, 1.0, 0.65), flat_top=
     bm.normal_update()
     base = len(mesh.verts)
     for v in bm.verts:
-        mesh.vert(v.co, uv=box_uv(v.co, center, size * 0.55))
+        mesh.vert(v.co, uv=box_uv(v.co, center, 1.6))
     for f in bm.faces:
         mesh.face([base + v.index for v in f.verts], mat)
     if moss:
@@ -909,7 +928,7 @@ def rock_geom(mesh, rng, center, size, seed, stretch=(1.0, 1.0, 0.65), flat_top=
                     w = weight[v.index]
                     lump = 1.0 + 0.5 * fbm((v.co - center) * (6.0 / size) + Vector((0, seed, 0)), 2)
                     p = v.co + v.normal * (size * 0.035 * w * lump)
-                    shell[v.index] = mesh.vert(p, uv=box_uv(p, center, size * 0.35))
+                    shell[v.index] = mesh.vert(p, uv=box_uv(p, center, 0.9))
             mesh.face([shell[v.index] for v in f.verts], "Moss")
     bm.free()
 
@@ -979,7 +998,12 @@ def ground(seed, size, step=0.75, hole=0.0):
         for ix in range(n + 1):
             x = -size / 2 + ix * step
             y = -size / 2 + iy * step
-            row.append(mesh.vert((x, y, ground_height(x, y, seed)), uv=(x / 4.0, y / 4.0)))
+            # The sheet's coordinates pushed about by a slow noise, up to a
+            # third of a tile: the same picture, but never twice in the same
+            # place, so the eye finds no grid in it.
+            wx = x + fbm(Vector((x * 0.05, y * 0.05, seed + 31)), 3) * GROUND_TILE * 0.6
+            wy = y + fbm(Vector((x * 0.05, y * 0.05, seed + 37)), 3) * GROUND_TILE * 0.6
+            row.append(mesh.vert((x, y, ground_height(x, y, seed)), uv=(wx / GROUND_TILE, wy / GROUND_TILE)))
         grid.append(row)
     for iy, (a, b) in enumerate(zip(grid, grid[1:])):
         for ix in range(n):
@@ -1179,21 +1203,25 @@ def fungus_at(mesh, rng, base, out, count, radius, seed):
         R = radius * rng.uniform(0.5, 1.2)
         b = base + Z * (i * radius * 0.5) + side * rng.gauss(0, radius * 0.3)
         rows = []
-        for ring in range(4):
-            rr = R * ring / 3
+        for ring in range(7):
+            rr = R * ring / 6
             row = []
-            for k in range(9):
-                a = -math.pi / 2 + math.pi * k / 8
+            for k in range(15):
+                a = -math.pi / 2 + math.pi * k / 14
                 q = b + (Matrix.Rotation(a, 3, Z) @ out) * rr * (1 + 0.1 * fbm(Vector((k, ring, seed + i))))
-                q.z += -rr * 0.25 * (ring / 3) ** 2
-                row.append(mesh.vert(q, uv=(k / 8.0, ring / 3.0)))
+                q.z += -rr * 0.25 * (ring / 6) ** 2 + R * 0.06 * math.sin(math.pi * ring / 6)
+                # The cap is the top half of the sheet, attachment at v=0 and
+                # rim at v=0.5; the underside the bottom half, its rim just
+                # past the cap's so the edge is a thin band, and its
+                # attachment at v=1 - see fungus_sheet.
+                row.append(mesh.vert(q, uv=(k / 14.0, 0.01 + ring / 6.0 * 0.48)))
             rows.append(row)
         under = []
-        for row in rows:
+        for ring, row in enumerate(rows):
             urow = []
             for v in row:
                 u = mesh.uvs[v]
-                urow.append(mesh.vert(mesh.verts[v] - Z * 0.02, uv=(u.x, u.y + 0.05)))
+                urow.append(mesh.vert(mesh.verts[v] - Z * 0.02, uv=(u.x, 0.98 - ring / 6.0 * 0.46)))
             under.append(urow)
         for r0, r1 in zip(rows, rows[1:]):
             mesh.quad_strip(r0, r1, "Fungus", closed=False)

@@ -146,6 +146,25 @@ def fbm(x, y, octaves=5, lac=2.0, gain=0.5, seed=1):
     return total / norm
 
 
+def worley(x, y, seed=0, period=None):
+    """The two nearest of one random point per cell: (f1, f2), nought on a
+    point, f2 - f1 nought on the boundary between two cells - which is what
+    draws the edge between two facets. Tiles when the grid has `period`
+    cells across."""
+    x0 = np.floor(x); y0 = np.floor(y)
+    f1 = np.full(x.shape, 9.0); f2 = np.full(x.shape, 9.0)
+    for dy in (-1, 0, 1):
+        for dx in (-1, 0, 1):
+            cx = (x0 + dx).astype(np.int64); cy = (y0 + dy).astype(np.int64)
+            hx, hy = (cx % period, cy % period) if period else (cx, cy)
+            px = cx + _hash(hx, hy, seed)
+            py = cy + _hash(hx, hy, seed + 7)
+            d = np.hypot(x - px, y - py)
+            f2 = np.where(d < f1, f1, np.minimum(f2, d))
+            f1 = np.minimum(f1, d)
+    return f1, f2
+
+
 def ridged(x, y, octaves=4, seed=3):
     n = fbm(x, y, octaves=octaves, seed=seed)
     return 1.0 - np.abs(n * 2.0 - 1.0)
@@ -343,24 +362,66 @@ def frond_sheet():
 
 
 def bark_sheet(green=0.0, rings=9.0, seed=2):
+    """Tropical bark, 1.2 m square in the world (see BARK_TILE in grow.py)
+    and tiling both ways. Three scales: plates - the bark broken into
+    irregular slabs by deep fissures that run mostly up the trunk; the
+    fissures' own dark cracked floor; and fine grain and lenticel dots over
+    every plate. Plates lean out at their lower edge so the height reads as
+    a shingled surface, and lichen and algae sit in the fissures and on the
+    shaded side of the plates."""
     u, v = grid()
-    wobble = fbm(u * 5, v * 2.4, 4, seed=seed) * 0.35
-    groove = np.abs(np.sin((u * rings + wobble) * math.pi)) ** 1.6
-    grain = ridged(u * 22, v * 7, 5, seed=seed + 4)
-    cracks = np.clip(ridged(u * 8, v * 2.6, 3, seed=seed + 8) - 0.62, 0, 1) * 2.4
-    knots = np.clip(fbm(u * 6, v * 6, 2, seed=seed + 11) - 0.82, 0, 1) * 6.0
-    h = (1.0 - groove) * 0.55 + grain * 0.28 - cracks * 0.35 + knots * 0.2
-    dark = np.array([0.028, 0.018, 0.010])
-    wood = np.array([0.11, 0.065, 0.032])
-    crease = np.array([0.02, 0.012, 0.007])
-    col = mix3(wood, dark, groove * 0.85)
-    col = mix3(col, crease, np.clip(cracks, 0, 1))
+    uu, vv = u * 2 * math.pi, v * 2 * math.pi
+    # A periodic domain, so every noise tiles: sample on a torus.
+    def per(fx, fy, octaves, sd, rid=False):
+        # On a torus: x from the u circle, y from the v circle, so every
+        # edge of the sheet meets its opposite.
+        f = ridged if rid else fbm
+        return f(np.cos(uu) * fx + sd, np.sin(uu) * fx + np.cos(vv) * fy, octaves, seed=sd) if not rid else \
+            f(np.cos(uu) * fx + np.sin(vv) * fy * 0.5 + sd, np.sin(uu) * fx + np.cos(vv) * fy, octaves, seed=sd)
+    # The fissures: ridged noise stretched along v with the ridges snaking a
+    # little; the plates are what lies between.
+    # The fissures wander sideways as they climb, but only a little: a
+    # groove that leans is a stripe once it is wrapped round a trunk.
+    wander = per(1.5, 1.5, 3, seed + 1) * 0.25
+    fiss = per(4.5, 1.2, 4, seed + 2, rid=True)
+    fiss = np.maximum(fiss, per(6.5, 1.0, 4, seed + 12, rid=True) * 0.9)
+    fiss = np.clip((fiss - 0.8) * 6.0, 0, 1) ** 1.2
+    # The cross-fissures that break the vertical slabs into plates, rarer.
+    cross = per(1.2, 5.0, 3, seed + 3, rid=True)
+    cross = np.clip((cross - 0.95) * 20.0, 0, 1) ** 1.5
+    crack = np.maximum(fiss, cross * 0.6)
+    plate = 1.0 - crack
+    # Each plate a little different in tone and height.
+    f1, f2 = worley((u * 7 + wander) % 7, v * 3, seed=seed + 5, period=7)
+    cell = np.clip(per(3.0, 1.2, 2, seed + 5) * 1.6 - 0.3, 0, 1)
+    # A shallow groove where two plates meet even without a fissure, and
+    # the plates' own tilt: higher at the top edge, sunk at the bottom.
+    seam = np.clip(1.0 - (f2 - f1) * 10.0, 0, 1)
+    crack = np.maximum(crack, seam * 0.35)
+    # Fine grain: long streaks along the trunk, and the pits of lenticels.
+    grain = per(14.0, 3.0, 4, seed + 4, rid=True)
+    pits = np.clip(per(24.0, 24.0, 2, seed + 6) - 0.68, 0, 1) * 4.0
+    floor = per(9.0, 9.0, 3, seed + 7)   # the cracked floor of a fissure
+
+    plate = 1.0 - crack
+    h = plate * (0.45 + 0.4 * cell) + grain * 0.12 * plate - crack * 0.5 + floor * 0.08 * crack - pits * 0.12 * plate
+
+    wood = np.array([0.075, 0.048, 0.026])
+    pale = np.array([0.115, 0.082, 0.05])
+    dark = np.array([0.03, 0.02, 0.011])
+    crease = np.array([0.018, 0.012, 0.007])
+    col = mix3(wood, pale, np.clip(cell * 1.1 + grain * 0.2 - 0.2, 0, 1))
+    col = col * (0.85 + 0.3 * grain[..., None])
+    col = mix3(col, dark, np.clip(pits, 0, 1) * 0.6)
+    col = mix3(col, crease, crack * (0.8 + 0.2 * floor))
     if green:
-        lichen = np.clip(fbm(u * 8, v * 8, 4, seed=seed + 17) - (0.58 - green * 0.1), 0, 1) ** 1.4 * 1.8
-        col = mix3(col, np.array([0.08, 0.13, 0.035]), np.clip(lichen, 0, 1))
+        lichen = np.clip(per(5.0, 5.0, 4, seed + 17) - (0.66 - green * 0.08), 0, 1) ** 1.4 * 2.0
+        algae = np.clip(per(1.5, 2.0, 3, seed + 19) - 0.55, 0, 1) * 1.5 * (0.2 + 0.8 * crack)
+        col = mix3(col, np.array([0.07, 0.11, 0.035]), np.clip(lichen, 0, 1) * 0.8)
+        col = mix3(col, np.array([0.04, 0.075, 0.025]), np.clip(algae, 0, 1) * 0.7)
         h = h + lichen * 0.1
-    rough = 0.55 + 0.28 * groove + 0.12 * grain
-    return col, h, np.clip(rough, 0.32, 0.95)
+    rough = 0.78 + 0.2 * crack + 0.08 * grain - 0.08 * np.clip(cell, 0, 1)
+    return col, h, np.clip(rough, 0.6, 0.98)
 
 
 def moss_sheet():
@@ -391,20 +452,39 @@ def moss_sheet():
 
 
 def rock_sheet():
+    """Weathered stone, 1.6 m square in the world. Facets: cells of a
+    cellular noise, each its own plane in the height, so the surface is
+    broken faces meeting at edges rather than one lumpy blur; the edges
+    chipped and the faces pitted; grit; the odd vein; and the green of
+    algae in the hollows and the dark of damp lower down."""
     u, v = grid()
-    big = fbm(u * 4.5, v * 4.5, 6, seed=31)
-    pit = ridged(u * 11, v * 11, 4, seed=34)
-    grit = fbm(u * 64, v * 64, 2, seed=37)
-    h = big * 0.5 + pit * 0.32 + grit * 0.18
-    stone = np.array([0.12, 0.11, 0.10])
-    dark = np.array([0.035, 0.033, 0.030])
-    col = mix3(dark, stone, np.clip(pit * 0.7 + big * 0.3, 0, 1))
-    stain = np.clip(fbm(u * 6, v * 6, 4, seed=40) - 0.55, 0, 1) ** 1.3 * 1.6
-    col = mix3(col, np.array([0.04, 0.07, 0.025]), np.clip(stain * (1.15 - pit), 0, 1))
-    speckle = (grit - 0.5) * 0.04
-    col = np.clip(col + speckle[..., None], 0, 1)
-    rough = 0.62 + 0.25 * grit - 0.08 * pit
-    return col, h, np.clip(rough, 0.5, 0.95)
+    # The facets' grid pushed about by noise, so the cracks between them
+    # wander rather than run straight; and only some of the cracks are
+    # deep - the rest are seams a weathered face barely shows.
+    jx = fbm(u * 9, v * 9, 3, seed=29) - 0.5
+    jy = fbm(u * 9, v * 9, 3, seed=30) - 0.5
+    f1, f2 = worley(u * 5 + jx * 0.7, v * 5 + jy * 0.7, seed=31, period=5)
+    seam = np.clip(1.0 - (f2 - f1) * 7.0, 0, 1) ** 2
+    deep = np.clip(fbm(u * 4, v * 4, 3, seed=35) * 1.6 - 0.5, 0, 1)
+    edge = seam * (0.25 + 0.75 * deep)
+    plane = 1.0 - np.clip(f1 * 1.6, 0, 1)
+    big = fbm(u * 3, v * 3, 5, seed=33)
+    pit = ridged(u * 14, v * 14, 4, seed=34)
+    grit = fbm(u * 90, v * 90, 2, seed=37)
+    vein = np.clip(ridged(u * 2.5 + big, v * 4, 2, seed=38) - 0.86, 0, 1) * 6
+    h = big * 0.35 + plane * 0.4 - edge * 0.3 + pit * 0.18 + grit * 0.1 + vein * 0.1
+    stone = np.array([0.13, 0.12, 0.105])
+    warm = np.array([0.15, 0.125, 0.09])
+    dark = np.array([0.04, 0.038, 0.034])
+    col = mix3(dark, stone, np.clip(pit * 0.6 + big * 0.4 + 0.2, 0, 1))
+    col = mix3(col, warm, np.clip(plane, 0, 1) * 0.4)
+    col = col * (1.0 - 0.6 * edge)[..., None]
+    col = mix3(col, np.array([0.2, 0.19, 0.17]), np.clip(vein, 0, 1) * 0.7)
+    stain = np.clip(fbm(u * 5, v * 5, 4, seed=40) - 0.5, 0, 1) ** 1.2 * 1.6
+    col = mix3(col, np.array([0.04, 0.07, 0.025]), np.clip(stain * (1.2 - pit) + edge * 0.3, 0, 1) * 0.8)
+    col = np.clip(col * (0.9 + 0.2 * grit[..., None]), 0, 1)
+    rough = 0.66 + 0.25 * grit - 0.1 * pit + 0.15 * edge
+    return col, h, np.clip(rough, 0.5, 0.97)
 
 
 def ground_sheet():
@@ -425,9 +505,9 @@ def ground_sheet():
 
     # Twigs: short dark lines at random, over the soil, under the leaves.
     rng = random.Random(61)
-    for _ in range(90):
+    for _ in range(160):
         cx, cy, ang = rng.random(), rng.random(), rng.uniform(0, math.pi)
-        L, w = rng.uniform(0.03, 0.12), rng.uniform(0.002, 0.004)
+        L, w = rng.uniform(0.02, 0.09), rng.uniform(0.0015, 0.003)
         for ox, oy in ((0, 0), (-1, 0), (1, 0), (0, -1), (0, 1)):
             dx, dy = u - cx - ox, v - cy - oy
             along = dx * math.cos(ang) + dy * math.sin(ang)
@@ -438,8 +518,8 @@ def ground_sheet():
             h = np.where(twig, 0.6, h)
 
     # Stones: a few small pale ones, half sunk.
-    for _ in range(26):
-        cx, cy, r = rng.random(), rng.random(), rng.uniform(0.006, 0.016)
+    for _ in range(50):
+        cx, cy, r = rng.random(), rng.random(), rng.uniform(0.004, 0.011)
         for ox, oy in ((0, 0), (-1, 0), (1, 0), (0, -1), (0, 1)):
             d = np.hypot((u - cx - ox) * rng.uniform(0.8, 1.2), (v - cy - oy)) / r
             stone = np.clip(1.0 - d, 0, 1)
@@ -460,9 +540,9 @@ def ground_sheet():
         (np.array([0.028, 0.02, 0.01]), np.array([0.05, 0.04, 0.02]), 0.55),
     ]
     n = SIZE
-    for k in range(420):
+    for k in range(700):
         cx, cy, ang = rng.random(), rng.random(), rng.uniform(0, 2 * math.pi)
-        L = rng.uniform(0.03, 0.085)
+        L = rng.uniform(0.02, 0.06)
         spec = LEAF_SPECS[rng.randrange(4)]
         dark, light, opacity = palettes[min(4, int(rng.random() ** 0.7 * 5))]
         w = L * spec["w"] * 1.05
@@ -511,34 +591,108 @@ def water_height():
 
 
 def bamboo_sheet():
+    """One internode of a culm, u round it (the mesh wraps it twice) and v
+    from one node up to the next. The node itself sits at v=0 and again at
+    v=1: a dark ring where the sheath was, a pale waxy band just above it,
+    and the collar's own ridge in the height. Between: fine vertical fibres,
+    the green-to-straw mottling of a culm that has stood a few seasons,
+    lenticel speckles, and the odd brown scar and blotch. Waxy - the
+    roughness is low on the clean surface and high in the scars."""
     u, v = grid()
-    # Vertical grain, a darker node band that tiles with the scars on the culm.
-    grain = fbm(u * 14, v * 3, 4, seed=58)
-    node = np.exp(-(((v * 4.0) % 1.0 - 0.5) / 0.06) ** 2)
-    h = grain * 0.35 + node * 0.4
-    green = np.array([0.18, 0.22, 0.07])
-    yellow = np.array([0.28, 0.26, 0.08])
-    ring = np.array([0.10, 0.09, 0.04])
-    col = mix3(green, yellow, grain * 0.6 + u * 0.15)
-    col = mix3(col, ring, node)
-    rough = 0.38 + 0.2 * grain + 0.15 * node
-    return col, h, np.clip(rough, 0.25, 0.75)
+    # The node band, wrapped so it is the same at v=0 and v=1.
+    dn = np.minimum(v, 1.0 - v)
+    ring = np.exp(-(dn / 0.018) ** 2)                       # the sheath scar, dark and sharp
+    collar = np.exp(-(dn / 0.05) ** 2)                      # the swelling, in the height
+    wax = np.exp(-((v - 0.07) / 0.035) ** 2)                # the powder band above the node
+    # Fibres: long along v, fine across u; the seam at u=0 wraps because the noise is periodic in u.
+    uu = u * 2 * math.pi
+    fibre = fbm(np.cos(uu) * 9 + 3, np.sin(uu) * 9 + v * 2.5, 4, seed=58)
+    fine = ridged(u * 140, v * 6, 3, seed=59)
+    mottle = fbm(u * 5 + np.sin(uu) * 0.3, v * 3, 4, seed=60)
+    speck = np.clip(fbm(u * 90, v * 60, 2, seed=63) - 0.66, 0, 1) * 4.0  # lenticels
+    scar = np.clip(fbm(u * 3 + 7, v * 2.2, 3, seed=65) - 0.62, 0, 1) * 3.0   # brown blotches
+    scratch = np.clip(ridged(u * 40, v * 180, 2, seed=66) - 0.78, 0, 1) * 4.0
+
+    green = np.array([0.13, 0.19, 0.05])
+    straw = np.array([0.34, 0.30, 0.10])
+    olive = np.array([0.22, 0.24, 0.07])
+    dark = np.array([0.045, 0.04, 0.02])
+    pale = np.array([0.42, 0.40, 0.24])
+    brown = np.array([0.16, 0.09, 0.03])
+
+    col = mix3(green, straw, np.clip(mottle * 1.1, 0, 1))
+    col = mix3(col, olive, np.clip(fibre * 0.7, 0, 1))
+    col = col * (0.82 + 0.3 * fine[..., None])
+    col = mix3(col, brown, np.clip(scar, 0, 1) * 0.8)
+    col = mix3(col, dark, np.clip(speck + scratch * 0.6, 0, 1) * 0.7)
+    col = mix3(col, pale, wax * 0.8)
+    col = mix3(col, dark, ring)
+    # The internode darkens a touch towards the node above - the culm shades itself there.
+    col = col * (1.0 - 0.15 * np.clip((v - 0.8) / 0.2, 0, 1))[..., None]
+
+    h = collar * 0.5 - ring * 0.35 + fine * 0.16 + fibre * 0.1 + scar * 0.08 - scratch * 0.05
+    rough = 0.32 + 0.12 * (1 - fine) + 0.35 * np.clip(scar, 0, 1) + 0.3 * ring + 0.25 * wax - 0.05 * mottle
+    return col, h, np.clip(rough, 0.22, 0.9)
 
 
 def fungus_sheet():
+    """A shelf fungus in two halves. The cap on the top half: v runs from
+    the attachment at 0 out to the rim at 0.5, in concentric zones of
+    uneven width with wavy edges - the seasons it grew in - going from a
+    dark bruised brown at the base through rust and tan to a pale growing
+    edge, each zone a small step in the height and every zone crossed by
+    fine radial wrinkles. The underside on the bottom half: the pore
+    surface, cream with fine pores, its rim at 0.5 and its attachment at 1,
+    so the cap's edge and the pores' edge meet on the mesh."""
     u, v = grid()
-    # Concentric growth rings from the centre of the shelf (v is radial-ish).
-    rings = 0.5 + 0.5 * np.sin((v * 9.0 + fbm(u * 4, v * 4, 3, seed=61) * 0.8) * math.pi * 2)
-    pores = fbm(u * 50, v * 50, 2, seed=64)
-    h = rings * 0.55 + pores * 0.2
-    cream = np.array([0.42, 0.32, 0.16])
-    orange = np.array([0.35, 0.18, 0.06])
-    edge = np.array([0.22, 0.12, 0.05])
-    col = mix3(orange, cream, rings)
-    col = mix3(col, edge, np.clip(v * 0.4, 0, 1))
-    col = col * (0.85 + 0.2 * pores[..., None])
-    rough = 0.68 + 0.15 * pores - 0.08 * rings
-    return col, h, np.clip(rough, 0.45, 0.9)
+    uu = u * 2 * math.pi
+
+    # -- the cap -------------------------------------------------------------
+    r = np.clip(v / 0.5, 0, 1)                                           # 0 at the attachment, 1 at the rim
+    wobble = fbm(np.cos(uu) * 3 + 5, np.sin(uu) * 3 + r * 2, 3, seed=61) * 0.06
+    # Zone edges at uneven radii; each zone its own colour and gloss.
+    edges = np.array([0.0, 0.09, 0.17, 0.26, 0.33, 0.42, 0.5, 0.58, 0.66, 0.73, 0.8, 0.87, 0.93, 1.0])
+    zone_cols = np.array([
+        [0.06, 0.035, 0.02], [0.10, 0.05, 0.02], [0.16, 0.07, 0.025], [0.24, 0.12, 0.04], [0.14, 0.07, 0.03],
+        [0.30, 0.17, 0.06], [0.38, 0.25, 0.10], [0.20, 0.10, 0.04], [0.42, 0.30, 0.14], [0.30, 0.17, 0.07],
+        [0.46, 0.36, 0.20], [0.36, 0.24, 0.11], [0.60, 0.52, 0.36],
+    ])
+    zone_gloss = np.array([0.45, 0.5, 0.4, 0.55, 0.45, 0.6, 0.65, 0.5, 0.7, 0.6, 0.72, 0.65, 0.8])
+    rw = np.clip(r + wobble, 0, 0.999)
+    # Every pixel belongs to one zone: its colour and gloss, a little
+    # different round the cap, and a shallow groove where two zones meet.
+    idx = np.clip(np.digitize(rw, edges) - 1, 0, len(edges) - 2)
+    cap = zone_cols[idx]
+    cap_rough = zone_gloss[idx]
+    lo = edges[idx]
+    hi = edges[idx + 1]
+    within = (rw - lo) / np.maximum(hi - lo, 1e-3)
+    groove = np.exp(-(np.minimum(rw - lo, hi - rw) / 0.007) ** 2)
+    step = within ** 2
+    tint = fbm(np.cos(uu) * 2 + 9, np.sin(uu) * 2 + idx * 0.7, 2, seed=69)
+    radial = ridged(u * 120, r * 3, 3, seed=62) * (0.3 + 0.7 * r)
+    velvet = fbm(u * 60, v * 60, 3, seed=64)
+    cap = cap * (0.8 + 0.4 * velvet[..., None]) * (0.85 + 0.3 * radial[..., None]) * (0.8 + 0.4 * tint[..., None])
+    cap = cap * (1.0 - 0.45 * groove)[..., None]
+    cap_h = step * 0.45 - groove * 0.3 + radial * 0.25 + velvet * 0.08 + (1 - r) * 0.2
+    cap_rough = cap_rough + 0.15 * velvet - 0.1 * radial + 0.2 * groove
+
+    # -- the pores underneath ------------------------------------------------
+    q = np.clip((0.98 - v) / 0.45, 0, 1)                                 # 0 at the attachment side, 1 at the rim
+    pores = ridged(u * 220, v * 220, 2, seed=67)
+    bruise = np.clip(fbm(u * 6, v * 6, 3, seed=68) - 0.55, 0, 1) * 2.0
+    cream = np.array([0.62, 0.55, 0.38])
+    tan = np.array([0.40, 0.30, 0.16])
+    under = mix3(cream, tan, np.clip(bruise + (1 - q) * 0.4, 0, 1))
+    under = under * (0.75 + 0.35 * pores[..., None])
+    under_h = pores * 0.2 + q * 0.05
+    under_rough = 0.82 - 0.1 * pores
+
+    top = v < 0.5
+    col = np.where(top[..., None], cap, under)
+    h = np.where(top, cap_h, under_h)
+    rough = np.where(top, cap_rough, under_rough)
+    return col, h, np.clip(rough, 0.3, 0.95)
 
 
 def make_all():
@@ -563,9 +717,9 @@ def make_all():
     write_png(os.path.join(TEX, "water_n.png"), encode_normal(water_height(), 2.5))
     print("  water")
     rgb, h, r = bamboo_sheet()
-    save("bamboo", rgb, h, r, nstr=5.0)
+    save("bamboo", rgb, h, r, nstr=9.0)
     rgb, h, r = fungus_sheet()
-    save("fungus", rgb, h, r, nstr=6.0)
+    save("fungus", rgb, h, r, nstr=9.0)
     rgb, h, r, a = leaf_atlas(dry=True)
     save("litter", rgb, h, r, a, nstr=8.0)
 
@@ -666,12 +820,12 @@ def write_materials():
         numbers=litter_wind, textures={"g_tRoughness": r}, tint="0.55,0.5,0.42,1")
 
     for name, rough, nfeat in (
-        ("bark", 0.68, 1),
-        ("vine", 0.62, 1),
+        ("bark", 0.85, 1),
+        ("vine", 0.8, 1),
         ("rock", 0.68, 1),
         ("ground", 0.8, 1),
-        ("bamboo", 0.4, 1),
-        ("fungus", 0.7, 1),
+        ("bamboo", 0.55, 1),
+        ("fungus", 0.75, 1),
     ):
         c, n, r = maps(name)
         mat(name, "shaders/complex.shader", c, n, r, rough, False, "Opaque", 0.5,

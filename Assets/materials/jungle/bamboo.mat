@@ -5,7 +5,7 @@
     "F_ROUGHNESS": 1
   },
   "Numbers": {
-    "g_flRoughness": "0.4,0,0,0"
+    "g_flRoughness": "0.55,0,0,0"
   },
   "Textures": {
     "g_tRoughness": "textures/jungle/bamboo_r.png"
@@ -15,7 +15,7 @@
   "Normal": "textures/jungle/bamboo_n.png",
   "RoughMetalAmbient": "materials/default/roughmetal.png",
   "Emission": "materials/default/black.png",
-  "Roughness": 0.4,
+  "Roughness": 0.55,
   "Metalness": 0.0,
   "EmissionStrength": 0.0,
   "PhysicsSurface": "",
