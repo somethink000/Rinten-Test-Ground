@@ -55,6 +55,14 @@
     {
       "Surface": "Litter",
       "Material": "materials/jungle/litter.mat"
+    },
+    {
+      "Surface": "Canopy",
+      "Material": "materials/jungle/canopy.mat"
+    },
+    {
+      "Surface": "Water",
+      "Material": "materials/jungle/water.mat"
     }
   ],
   "ArtSurfaces": "Unchosen",
@@ -84,15 +92,15 @@
   "Hulls": [
     {
       "__type": "CapsuleHull",
+      "PointA": "0,0,0",
+      "PointB": "0,0.800000012,0",
+      "Radius": 0.3,
       "Name": "",
       "Enabled": true,
       "Bone": "",
       "Surface": "",
       "Tags": "",
-      "Folder": "",
-      "PointA": "0,0,0",
-      "PointB": "0,0.8,0",
-      "Radius": 0.3
+      "Folder": ""
     }
   ],
   "Surface": "",

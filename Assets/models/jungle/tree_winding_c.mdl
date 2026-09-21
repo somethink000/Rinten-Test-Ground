@@ -59,6 +59,14 @@
     {
       "Surface": "Litter",
       "Material": "materials/jungle/litter.mat"
+    },
+    {
+      "Surface": "Canopy",
+      "Material": "materials/jungle/canopy.mat"
+    },
+    {
+      "Surface": "Water",
+      "Material": "materials/jungle/water.mat"
     }
   ],
   "ArtSurfaces": "Unchosen",
