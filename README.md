@@ -51,10 +51,14 @@ Code/
 
 tools/               Python that writes Assets/ - regenerate rather than hand-edit what they own
   fx/                fxgen.py (sprites + effects), scenegen.py (the particles scene), solar.py (the solar system)
-  gallery/           one gallery scene each, registered in the menu. shadows.cs is built inside the editor:
-                     `python3 build.py shadows` sends common.cs + shadows.cs to execute_code and the engine
-                     writes the .scene (the standard for new scenes); materials.py, renderers.py, clutter.py
-                     still write the file themselves and are to be ported the same way
+  gallery/           one gallery scene each, registered in the menu. shadows.cs and jungle.cs are built
+                     inside the editor: `python3 build.py shadows` sends common.cs + shadows.cs to
+                     execute_code and the engine writes the .scene (the standard for new scenes);
+                     materials.py, renderers.py, clutter.py still write the file themselves and are to
+                     be ported the same way
+  jungle/            the jungle's models and textures: grow.py (bpy, run in Blender) grows the catalogue
+                     and writes sockets.json + ground.json, textures.py bakes the sheets and materials;
+                     the scene itself is gallery/jungle.cs
   scenes/            gen_scenes.py - the hand-laid scenes: prefabs, trace, overlay, lights, fog, world ui
   editor/            talks to the running editor over MCP: screenshots and camera moves
   shots/             screenshots taken while the effects were being tuned
