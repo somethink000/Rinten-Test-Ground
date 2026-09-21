@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""What the gallery scenes share: objects, components, the environment, a
+"""The old way - writes the .scene itself and so has to know its format. New
+scenes go through common.cs and build.py instead, where the engine writes it.
+
+What the gallery scenes share: objects, components, the environment, a
 player, a HUD, and areas laid out in rows away from the spawn - the same
 shape tools/fx/scenegen.py gives the particle scene."""
 import json, uuid, os
