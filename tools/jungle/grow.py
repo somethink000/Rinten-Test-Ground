@@ -51,6 +51,7 @@ TAU = math.tau
 Z = Vector((0, 0, 1))
 BARK_TILE = 1.2       # metres the bark sheet covers, round and up the trunk
 GROUND_TILE = 7.0     # metres the floor sheet covers
+MOSS_TILE = 0.7       # metres the moss sheet covers
 
 
 def lerp(a, b, t):
@@ -928,7 +929,7 @@ def rock_geom(mesh, rng, center, size, seed, stretch=(1.0, 1.0, 0.65), flat_top=
                     w = weight[v.index]
                     lump = 1.0 + 0.5 * fbm((v.co - center) * (6.0 / size) + Vector((0, seed, 0)), 2)
                     p = v.co + v.normal * (size * 0.035 * w * lump)
-                    shell[v.index] = mesh.vert(p, uv=box_uv(p, center, 0.9))
+                    shell[v.index] = mesh.vert(p, uv=box_uv(p, center, MOSS_TILE))
             mesh.face([shell[v.index] for v in f.verts], "Moss")
     bm.free()
 
@@ -1073,7 +1074,7 @@ def blob(mesh, center, radius, seed, flat=0.5, up=Z, mat="Moss", rings=5, segs=1
             th = (k % segs) / segs * TAU
             r = radius * (1 + rough * fbm(Vector((math.cos(th) * 2 + seed * 0.1, math.sin(th) * 2, phi * 3))))
             p = center + (a * math.cos(th) + b * math.sin(th)) * (r * math.sin(phi)) + up * (r * flat * math.cos(phi)) - up * radius * 0.08
-            row.append(mesh.vert(p, uv=(k / segs, i / rings)))
+            row.append(mesh.vert(p, uv=box_uv(p, center, MOSS_TILE)))
         rows.append(row)
     for r0, r1 in zip(rows, rows[1:]):
         mesh.quad_strip(r0, r1, mat, closed=False)
@@ -1105,9 +1106,17 @@ def moss_sleeve(mesh, frames, u0, u1, angle, width, thick, seed, segs=11, mat="M
     whichever side faces up."""
     rows = []
     span = max(u1 - u0, 1e-3)
+    arc = 0.0
+    last = None
     for p, t, nrm, bn, r, u in densify(frames, 0.15):
         if u < u0 or u > u1:
             continue
+        # Texture coordinates in metres: along the tube by arc length, across
+        # it by the sector's own arc, so the moss sheet (MOSS_TILE metres) is
+        # the same size on a twig and a trunk.
+        if last is not None:
+            arc += (p - last).length
+        last = p
         up = Z - t * Z.dot(t)
         a0 = math.atan2(up.dot(bn), up.dot(nrm)) if up.length > 0.35 else angle
         row = []
@@ -1123,7 +1132,7 @@ def moss_sleeve(mesh, frames, u0, u1, angle, width, thick, seed, segs=11, mat="M
             n = nrm * math.cos(ang) + bn * math.sin(ang)
             lump = 0.5 + 0.5 * abs(fbm(Vector((u * 14 + seed, f * 6, 2.0)), 3))
             h = thick * max(0.0, along) * across * lump
-            row.append(mesh.vert(p + n * (r * 1.003 + h), uv=(f, u * 4.0)))
+            row.append(mesh.vert(p + n * (r * 1.003 + h), uv=(f * width * r / MOSS_TILE, arc / MOSS_TILE)))
         rows.append(row)
     for a, b in zip(rows, rows[1:]):
         mesh.quad_strip(a, b, mat, closed=False)
@@ -1214,14 +1223,14 @@ def fungus_at(mesh, rng, base, out, count, radius, seed):
                 # rim at v=0.5; the underside the bottom half, its rim just
                 # past the cap's so the edge is a thin band, and its
                 # attachment at v=1 - see fungus_sheet.
-                row.append(mesh.vert(q, uv=(k / 14.0, 0.01 + ring / 6.0 * 0.48)))
+                row.append(mesh.vert(q, uv=(k / 14.0, 0.98 - ring / 6.0 * 0.46)))
             rows.append(row)
         under = []
         for ring, row in enumerate(rows):
             urow = []
             for v in row:
                 u = mesh.uvs[v]
-                urow.append(mesh.vert(mesh.verts[v] - Z * 0.02, uv=(u.x, 0.98 - ring / 6.0 * 0.46)))
+                urow.append(mesh.vert(mesh.verts[v] - Z * 0.02, uv=(u.x, 0.01 + ring / 6.0 * 0.48)))
             under.append(urow)
         for r0, r1 in zip(rows, rows[1:]):
             mesh.quad_strip(r0, r1, "Fungus", closed=False)
