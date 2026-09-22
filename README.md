@@ -11,7 +11,7 @@ Assets/
   scenes/            main.scene is the menu; every other scene sits under its menu category
     general/         basics, prefabs, overlay
     physics/         collider, rigidbody, trace, platforms
-    rendering/       lights, fog, postprocess, decals, renderers, materials, shadows, clutter
+    rendering/       lights, fog, postprocess, decals, renderers, materials, shadows, clutter, jungle, terrain
     fx/              particles (the effect showcase), solar (the solar system)
     ui/              showcase, world
   fx/                particle effects, by what they are
@@ -25,7 +25,7 @@ Assets/
     common/          glass, trigger - shared by several scenes
     fx/              the stylized shader looks the effects use
     gallery/         the material gallery, one folder per property it shows:
-                     grid/ tint/ emission/ blend/ sides/ maps/ shaders/ surface/
+                     grid/ tint/ emission/ blend/ sides/ maps/ shaders/ surface/ terrain/
     solar/           planets, moons and their atmospheres
   models/            fx/ (flame, shield), props/ (urn), space/ (spacecraft)
   shaders/effects/   planet, atmosphere, sun, stylized
@@ -51,11 +51,11 @@ Code/
 
 tools/               Python that writes Assets/ - regenerate rather than hand-edit what they own
   fx/                fxgen.py (sprites + effects), scenegen.py (the particles scene), solar.py (the solar system)
-  gallery/           one gallery scene each, registered in the menu. shadows.cs and jungle.cs are built
-                     inside the editor: `python3 build.py shadows` sends common.cs + shadows.cs to
-                     execute_code and the engine writes the .scene (the standard for new scenes);
-                     materials.py, renderers.py, clutter.py still write the file themselves and are to
-                     be ported the same way
+  gallery/           one gallery scene each, registered in the menu. shadows.cs, jungle.cs and
+                     terrain.cs are built inside the editor: `python3 build.py terrain` sends
+                     common.cs + terrain.cs to execute_code and the engine writes the .scene
+                     (the standard for new scenes); materials.py, renderers.py, clutter.py still
+                     write the file themselves and are to be ported the same way
   jungle/            the jungle's models and textures: grow.py (bpy, run in Blender) grows the catalogue
                      and writes sockets.json + ground.json, textures.py bakes the sheets and materials;
                      the scene itself is gallery/jungle.cs

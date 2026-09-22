@@ -1,0 +1,33 @@
+{
+  "Shader": "shaders/terrain_layer.shader",
+  "Features": {
+    "F_NORMAL_MAP": 1,
+    "F_ROUGHNESS": 1
+  },
+  "Numbers": {
+    "g_flRoughness": "0.84,0,0,0",
+    "g_flUvScale": "4,0,0,0",
+    "g_flNormalStrength": "1,0,0,0",
+    "g_flHeightBlend": "1.2,0,0,0",
+    "g_flDisplacement": "0,0,0,0"
+  },
+  "Textures": {
+    "g_tRoughness": "textures/jungle/moss_r.png",
+    "g_tHeight": "textures/jungle/moss_r.png"
+  },
+  "Tint": "1,1,1,1",
+  "ColorMap": "textures/jungle/moss.png",
+  "Normal": "textures/jungle/moss_n.png",
+  "RoughMetalAmbient": "materials/default/roughmetal.png",
+  "Emission": "materials/default/black.png",
+  "Roughness": 0.84,
+  "Metalness": 0.0,
+  "EmissionStrength": 0.0,
+  "PhysicsSurface": "",
+  "TwoSided": false,
+  "Filtering": "Smooth",
+  "Blend": "Opaque",
+  "AlphaCutoff": 0.5,
+  "__references": [],
+  "__version": 0
+}

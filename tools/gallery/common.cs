@@ -165,7 +165,7 @@ class Gallery
 
 	// -- the furniture every scene has --------------------------------------
 
-	public GameObject Environment( float sunBrightness = 1.2f, Rotation? sunRot = null, string sunColor = "1,0.95,0.88,1", string ambient = "0.2,0.22,0.3,1", string skyTint = "0.75,0.8,0.9,1", bool shadows = true, float shadowDetail = 64, float sourceRadius = 0.05f, bool skyIndirect = true, string skyMaterial = "materials/skybox/procedural.mat" )
+	public GameObject Environment( float sunBrightness = 1.2f, Rotation? sunRot = null, string sunColor = "1,0.95,0.88,1", string ambient = "0.2,0.22,0.3,1", string skyTint = "0.75,0.8,0.9,1", bool shadows = true, float shadowDetail = 64, float sourceRadius = 0.05f, string skyMaterial = "materials/skybox/procedural.mat" )
 	{
 		var env = Go( Scene, "Environment" );
 
@@ -182,7 +182,6 @@ class Gallery
 		Comp<AmbientLight>( Go( env, "Ambient" ), "ambient" ).Color = C( ambient );
 
 		var sky = Comp<SkyBox2D>( Go( env, "2D Skybox", tags: "skybox" ), "sky" );
-		sky.SkyIndirectLighting = skyIndirect;
 		sky.SkyMaterial = Material.Load( skyMaterial );
 		sky.Tint = C( skyTint );
 

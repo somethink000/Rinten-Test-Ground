@@ -236,6 +236,13 @@
               "Category": "Rendering",
               "Description": "A rainforest: stream, path, giants, stranglers, banyans, palms, bamboo, ferns, dead wood, moss and fog",
               "DisplayName": "Jungle"
+            },
+            {
+              "Scene": "scenes/rendering/terrain.scene",
+              "Title": "Terrain",
+              "Category": "Rendering",
+              "Description": "A sculpted mesh: painted layers, an overhang, a cave, a hole, a rock set in, clutter on the grass, balls on the collider",
+              "DisplayName": "Terrain"
             }
           ],
           "Subheading": "Feature scenes, kept in a working state"
