@@ -1,0 +1,31 @@
+{
+  "RootObject": {
+    "__guid": "621cbcf7-e09f-42aa-b8b0-40810d7e555c", "__version": 2, "Flags": 0,
+    "Name": "Quest right controller", "Position": "0,0,0", "Rotation": "0,0,0,1", "Scale": "0.09,0.12,0.20", "Tags": "", "Enabled": true,
+    "NetworkMode": 2, "NetworkFlags": 0, "NetworkOrphaned": 0, "NetworkTransmit": true, "OwnerTransfer": 1,
+    "Components": [
+      { "__type": "Rinten.ModelRenderer", "__guid": "7325a24e-27d4-4208-a774-fd34dc970dd7", "__enabled": true, "Flags": 0, "BodyGroups": 18446744073709551615, "CreateAttachments": false, "MaterialGroup": null, "MaterialOverride": null, "Materials": null, "Model": "models/dev/box.mdl", "RenderOptions": { "GameLayer": true, "OverlayLayer": false, "BloomLayer": false, "AfterUILayer": false }, "RenderType": "On", "Tint": "0.92,0.24,0.10,1" }
+    ],
+    "Children": [
+      {
+        "__guid": "8e8bf08b-1b3e-43ea-a642-d57806c002fc", "__version": 2, "Flags": 0,
+        "Name": "tracking ring", "Position": "0,0.065,0.020", "Rotation": "0,0,0,1", "Scale": "1.75,0.20,0.62", "Tags": "", "Enabled": true,
+        "NetworkMode": 2, "NetworkFlags": 0, "NetworkOrphaned": 0, "NetworkTransmit": true, "OwnerTransfer": 1,
+        "Components": [ { "__type": "Rinten.ModelRenderer", "__guid": "d003b523-4f50-48bb-9858-d85c18dab55b", "__enabled": true, "Flags": 0, "BodyGroups": 18446744073709551615, "CreateAttachments": false, "MaterialGroup": null, "MaterialOverride": null, "Materials": null, "Model": "models/dev/box.mdl", "RenderOptions": { "GameLayer": true, "OverlayLayer": false, "BloomLayer": false, "AfterUILayer": false }, "RenderType": "On", "Tint": "1,0.52,0.25,1" } ], "Children": []
+      },
+      {
+        "__guid": "f4717ef0-cb8a-47d9-96ec-2d774fec3b7b", "__version": 2, "Flags": 0,
+        "Name": "trigger", "Position": "0,-0.030,-0.62", "Rotation": "0,0,0,1", "Scale": "0.40,0.48,0.30", "Tags": "", "Enabled": true,
+        "NetworkMode": 2, "NetworkFlags": 0, "NetworkOrphaned": 0, "NetworkTransmit": true, "OwnerTransfer": 1,
+        "Components": [ { "__type": "Rinten.ModelRenderer", "__guid": "871a91b4-bcdf-48d2-879d-459a1f7a572a", "__enabled": true, "Flags": 0, "BodyGroups": 18446744073709551615, "CreateAttachments": false, "MaterialGroup": null, "MaterialOverride": null, "Materials": null, "Model": "models/dev/box.mdl", "RenderOptions": { "GameLayer": true, "OverlayLayer": false, "BloomLayer": false, "AfterUILayer": false }, "RenderType": "On", "Tint": "0.13,0.025,0.01,1" } ], "Children": []
+      },
+      {
+        "__guid": "f1ae01e5-947a-4939-a5ce-f36c8fc6e861", "__version": 2, "Flags": 0,
+        "Name": "thumbstick", "Position": "0,0.24,-0.18", "Rotation": "0,0,0,1", "Scale": "0.34,0.16,0.34", "Tags": "", "Enabled": true,
+        "NetworkMode": 2, "NetworkFlags": 0, "NetworkOrphaned": 0, "NetworkTransmit": true, "OwnerTransfer": 1,
+        "Components": [ { "__type": "Rinten.ModelRenderer", "__guid": "35f774e4-14ff-4e10-a809-e6f41324688e", "__enabled": true, "Flags": 0, "BodyGroups": 18446744073709551615, "CreateAttachments": false, "MaterialGroup": null, "MaterialOverride": null, "Materials": null, "Model": "models/dev/box.mdl", "RenderOptions": { "GameLayer": true, "OverlayLayer": false, "BloomLayer": false, "AfterUILayer": false }, "RenderType": "On", "Tint": "0.07,0.015,0.01,1" } ], "Children": []
+      }
+    ]
+  },
+  "ShowInMenu": false, "MenuPath": null, "MenuIcon": null, "DontBreakAsTemplate": false, "ResourceVersion": 2, "__references": [], "__version": 2
+}

@@ -243,6 +243,13 @@
               "Category": "Rendering",
               "Description": "A sculpted mesh: painted layers, an overhang, a cave, a hole, a rock set in, clutter on the grass, balls on the collider",
               "DisplayName": "Terrain"
+            },
+            {
+              "Scene": "scenes/vr/lab.scene",
+              "Title": "VR Lab",
+              "Category": "General",
+              "Description": "Quest room-scale movement, snap turning, tracked hands and physics grabs on a table",
+              "DisplayName": "VR Lab"
             }
           ],
           "Subheading": "Feature scenes, kept in a working state"
