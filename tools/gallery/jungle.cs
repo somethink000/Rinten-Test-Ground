@@ -248,8 +248,40 @@ using ( S.Scene.Push() )
 
 	var placed = new List<(float x, float y, float r)>();   // what takes room, so the scatter keeps clear
 	var names = new HashSet<string>();
+	var byName = new Dictionary<string, GameObject>();
 	var treePlace = new Dictionary<string, (float x, float y, float turn, float scale)>();
 	var treeModel = new Dictionary<string, string>();
+
+	// Folders, so the outliner is a list of kinds rather than a thousand
+	// objects in the order they were dropped. Each folder stands at the
+	// origin; a child's local pose is its pose in the world.
+	GameObject into = world;
+	GameObject Folder( string name, GameObject parent = null ) => S.Go( parent ?? world, name );
+	void In( GameObject folder ) => into = folder;
+
+	var terrain = Folder( "Terrain" );
+	var trees = Folder( "Trees" );
+	var giants = Folder( "Giants", trees );
+	var picket = Folder( "Picket", trees );
+	var palms = Folder( "Palms", trees );
+	var thin = Folder( "Thin", trees );
+	var wall = Folder( "Wall" );
+	var wallTrees = Folder( "Wall trees", wall );
+	var wallPlants = Folder( "Wall plants", wall );
+	var bamboo = Folder( "Bamboo" );
+	var dead = Folder( "Dead wood" );
+	var rocks = Folder( "Rocks" );
+	var vines = Folder( "Vines" );
+	var plants = Folder( "Plants" );
+	var ferns = Folder( "Ferns", plants );
+	var broadleaf = Folder( "Broadleaf", plants );
+	var lilies = Folder( "Lilies", plants );
+	var bushes = Folder( "Bushes", plants );
+	var saplings = Folder( "Saplings", plants );
+	var grass = Folder( "Grass", plants );
+	var moss = Folder( "Moss", plants );
+	var litter = Folder( "Litter", plants );
+	var reeds = Folder( "Reeds", plants );
 
 	/// A model at Blender (x, y). It stands at the ground's height there, less
 	/// `sink` (a fraction of its own height buried) plus `lift` metres; `align`
@@ -265,7 +297,7 @@ using ( S.Scene.Push() )
 		name ??= $"{model} @ {x:0.0},{y:0.0}";
 		while ( !names.Add( name ) ) name += "'";
 		var path = $"models/jungle/{model}.mdl";
-		var go = S.Go( world, name, Gallery.V( x, z, -y ), RotationAt( turn, x, y, align ), new Vector3( scale ), "world" );
+		var go = S.Go( into, name, Gallery.V( x, z, -y ), RotationAt( turn, x, y, align ), new Vector3( scale ), "world" );
 		S.Model( go, name, Color.White, null, path );
 		if ( collide )
 		{
@@ -274,7 +306,19 @@ using ( S.Scene.Push() )
 			c.Static = true;
 		}
 		if ( clear > 0 ) placed.Add( (x, y, clear) );
+		byName[name] = go;
 		return go;
+	}
+
+	/// An object the editor moved after this file first laid it down. Positions
+	/// are the engine's (x, up, -y), as the .scene stores them, so a rebuild
+	/// writes the same transform the editor saved.
+	void Tweak( string name, Vector3? pos = null, Rotation? rot = null, Vector3? scale = null )
+	{
+		var go = byName[name];
+		if ( pos is not null ) go.LocalPosition = pos.Value;
+		if ( rot is not null ) go.LocalRotation = rot.Value;
+		if ( scale is not null ) go.LocalScale = scale.Value;
 	}
 
 	bool Clear( float x, float y, float radius ) => placed.All( p => MathF.Sqrt( (x - p.x) * (x - p.x) + (y - p.y) * (y - p.y) ) > p.r + radius );
@@ -374,11 +418,13 @@ using ( S.Scene.Push() )
 		return o;
 	}
 
+	In( terrain );
 	Put( "ground", 0, 0, onGround: false, collide: true, name: "Ground" );
 	Put( "ground_apron", 0, 0, onGround: false, collide: true, name: "Ground apron" );
-	Put( "water", 0, 0, onGround: false, name: "Stream" );
+	Put( "water", 0, 0, onGround: false, lift: 0.179f, name: "Stream" );
 
 	// -- the big trees, by hand: the composition the references have ----------
+	In( giants );
 	Tree( "tree_lean_a", Px( -8 ) - 3.5f, -8, 15, 2.5f );           // the trunk over the path
 	Tree( "tree_giant_b", Px( -2 ) + 9, -2, 40, 4 );
 	Tree( "mossy_giant", Px( 8 ) - 12, 8, 200, 4 );
@@ -398,6 +444,7 @@ using ( S.Scene.Push() )
 	Tree( "climbed_b", Sx( 12 ) - 4, 12, 45, 2 );
 
 	// -- the picket behind: tall trunks that go into the fog ------------------
+	In( picket );
 	string[] tallKinds = { "tree_tall_a", "tree_tall_b", "tree_tall_c", "tree_tall_d" };
 	for ( var i = 0; i < 34; i++ )
 	{
@@ -415,7 +462,8 @@ using ( S.Scene.Push() )
 
 	// -- the wall of forest on the valley's sides, beyond the walk: what the
 	// fog shows as silhouettes and what fills the horizon ---------------------
-	var wall = new List<(float x, float y, float r)>();
+	In( wallTrees );
+	var wallClear = new List<(float x, float y, float r)>();
 	string[] big = { "tree_giant_a", "tree_giant_b", "tree_giant_c", "banyan_a", "strangler_a", "mossy_giant" };
 	string[] wallKinds = { "tree_tall_a", "tree_tall_b", "tree_tall_c", "tree_tall_d", "tree_tall_b", "palm_c", "tree_arch_a" };
 	for ( var i = 0; i < 150; i++ )
@@ -426,13 +474,14 @@ using ( S.Scene.Push() )
 			var d = MathF.Max( MathF.Abs( x ), MathF.Abs( y ) );
 			if ( d < SCENE / 2 + 1.5f || (x < 0 && y > 0 && Rand() < 0.5f) ) continue;
 			var r = d < 42 ? 3f : 5f;
-			if ( !wall.All( w => MathF.Sqrt( (x - w.x) * (x - w.x) + (y - w.y) * (y - w.y) ) > r ) ) continue;
+			if ( !wallClear.All( w => MathF.Sqrt( (x - w.x) * (x - w.x) + (y - w.y) * (y - w.y) ) > r ) ) continue;
 			var m = d < 45 && Rand() < 0.3f ? Choice( big ) : Choice( wallKinds );
-			wall.Add( (x, y, r) );
+			wallClear.Add( (x, y, r) );
 			Put( m, x, y, Uniform( 0, 360 ), Uniform( 0.9f, 1.3f ), name: $"wall {m} #{i}" );
 			break;
 		}
 	}
+	In( wallPlants );
 	string[] wallUnder = { "bush_a", "bush_b", "fern_a", "fern_c", "broadleaf_a", "palm_fan_a", "treefern_a", "banana_b", "elephant_a" };
 	for ( var i = 0; i < 90; i++ )
 	{
@@ -447,6 +496,7 @@ using ( S.Scene.Push() )
 	}
 
 	// -- palms, tree ferns, bamboo, the odd ones, by hand near the walk -------
+	In( palms );
 	Tree( "palm_a", Px( -12 ) + 4, -12, 30, 1.5f );
 	Tree( "palm_c", Sx( -5 ) - 5, -5, 200, 1.5f );
 	Tree( "palm_b", Px( 12 ) + 4, 12, 110, 1.5f );
@@ -454,11 +504,6 @@ using ( S.Scene.Push() )
 	Tree( "palm_fan_b", Sx( -14 ) + 4, -14, 80, 1.2f );
 	Tree( "treefern_a", Sx( -8 ) + 3.5f, -8, 0, 1.2f );
 	Tree( "treefern_b", Sx( 6 ) + 3.5f, 6, 140, 1.2f );
-	Put( "bambooclump_a", Px( -18 ) + 4, -18, 0, clear: 1.5f, sink: 0.01f );
-	Put( "bambooclump_b", Px( -26 ) - 4, -26, 60, clear: 1.8f, sink: 0.01f );
-	Put( "bambooclump_a", Px( -20 ) - 4.5f, -20, 200, 0.9f, clear: 1.5f, sink: 0.01f );
-	Put( "bamboo_b", Px( -15 ) - 3.5f, -15, 0, clear: 0.5f, sink: 0.01f );
-	Put( "bamboo_c", Px( -22 ) + 3.5f, -22, 90, clear: 0.5f, sink: 0.01f );
 	Put( "stilt_a", Sx( 10 ) + 4, 10, 0, clear: 1.5f, sink: 0.02f );
 	Put( "stilt_b", Sx( -20 ) - 4, -20, 120, clear: 1.5f, sink: 0.02f );
 	Put( "stilt_c", Px( 28 ) + 6, 28, 0, clear: 1.5f, sink: 0.02f );
@@ -466,12 +511,22 @@ using ( S.Scene.Push() )
 	Put( "cycad_b", Px( 24 ) + 5, 24, 0, clear: 1.2f, sink: 0.03f, align: 0.5f );
 	Put( "banana_a", Px( 14 ) - 5, 14, 0, clear: 1.5f, sink: 0.02f );
 	Put( "banana_b", Sx( 22 ) + 5, 22, 180, clear: 1.8f, sink: 0.02f );
+
+	In( bamboo );
+	Put( "bambooclump_a", Px( -18 ) + 4, -18, 0, clear: 1.5f, sink: 0.01f );
+	Put( "bambooclump_b", Px( -26 ) - 4, -26, 60, clear: 1.8f, sink: 0.01f );
+	Put( "bambooclump_a", Px( -20 ) - 4.5f, -20, 200, 0.9f, clear: 1.5f, sink: 0.01f );
+	Put( "bamboo_b", Px( -15 ) - 3.5f, -15, 0, clear: 0.5f, sink: 0.01f );
+	Put( "bamboo_c", Px( -22 ) + 3.5f, -22, 90, clear: 0.5f, sink: 0.01f );
+
+	In( reeds );
 	Put( "reeds_a", Sx( -16 ) + 2.6f, -16, clear: 0.5f, sink: 0.03f, align: 0.6f );
 	Put( "reeds_b", Sx( 2 ) - 2.6f, 2, 50, clear: 0.5f, sink: 0.03f, align: 0.6f );
 	Put( "reeds_a", Sx( 20 ) + 2.6f, 20, 120, clear: 0.5f, sink: 0.03f, align: 0.6f );
 
 	// -- the bamboo grove: the path's southern reach runs through a stand of
 	// culms, thick on both sides, thinning out to the north -------------------
+	In( bamboo );
 	string[] culms = { "bamboo_a", "bamboo_b", "bamboo_c", "bamboo_a", "bamboo_b" };
 	for ( var i = 0; i < 70; i++ )
 	{
@@ -504,11 +559,14 @@ using ( S.Scene.Push() )
 	}
 
 	// more palms and tree ferns, scattered where the walk can see them
+	In( palms );
 	Scatter( new[] { "palm_a", "palm_b", "palm_fan_a", "palm_fan_b", "treefern_a", "treefern_b", "cycad_b", "banana_a" }, 14, 1.5f,
 		collide: true, sink: 0.02f, pathMargin: 1, streamMargin: 0.5f, maxSlope: 30 );
+	In( thin );
 	Scatter( new[] { "tree_thin_a", "tree_thin_b", "tree_arch_a", "tree_arch_b" }, 26, 1, sink: 0.02f, pathMargin: 1, streamMargin: 0.5f, maxSlope: 35 );
 
 	// -- dead wood: logs lie along the slope, sunk a little; stumps and snags stand
+	In( dead );
 	Put( "logmossy_a", Px( 6 ) + 2, 6, 70, collide: true, clear: 1.5f, sink: 0.12f, align: 1 );
 	Put( "logmossy_b", Sx( -2 ) + 6, -2, 20, collide: true, clear: 2, sink: 0.12f, align: 1 );
 	Put( "log_a", Px( -28 ) + 6, -28, 150, collide: true, clear: 1.5f, sink: 0.12f, align: 1 );
@@ -526,11 +584,14 @@ using ( S.Scene.Push() )
 	Put( "broken_b", Sx( -28 ) - 6, -28, 30, collide: true, clear: 2, sink: 0.03f );
 	Put( "rootmat_a", treePlace["mossy_giant"].x, treePlace["mossy_giant"].y, 20, collide: true, sink: 0.15f, align: 1 );
 	Put( "rootmat_b", treePlace["tree_giant_a"].x, treePlace["tree_giant_a"].y, 70, collide: true, sink: 0.15f, align: 1 );
+	In( vines );
 	Put( "vinetangle_b", Px( 10 ) - 4.5f, 10.8f, sink: 0.05f, align: 1 );
+	In( dead );
 	Scatter( new[] { "debris_a", "debris_b", "debris_c" }, 30, 0.8f, sink: 0.25f, align: 1, pathMargin: 0.5f );
 	Scatter( new[] { "fallenfrond_a", "fallenfrond_b" }, 14, 0.6f, sink: 0, align: 1, allowPath: true );
 
 	// -- the stream: stones in the bed, sunk and tilted with it; boulders on the banks
+	In( rocks );
 	string[] bed = { "streamstone_a", "streamstone_b", "streamstone_c", "rockflat_a", "rockflat_b", "rockflat_d", "rock_b", "streamstone_b" };
 	string[] bank = { "boulder_a", "boulder_b", "rockbig_a", "rockmid_a", "rockmid_b", "rockmid_c", "rockstack_a", "rockflat_c", "rockslab_a" };
 	{
@@ -566,6 +627,7 @@ using ( S.Scene.Push() )
 		prefer: ( x, y ) => InStream( x, y, 3 ) ? 1 : 0.25f );
 
 	// -- vines: hung from limbs the trees have, strung from bark to bark -------
+	In( vines );
 
 	/// A model whose origin is its top, at a limb's underside.
 	GameObject Hang( string model, string tree, Func<List<((float x, float y, float z) p, float r)>, ((float x, float y, float z) p, float r)> choose,
@@ -630,6 +692,7 @@ using ( S.Scene.Push() )
 	Scatter( new[] { "vinetangle_a", "vinetangle_b" }, 8, 1.2f, sink: 0.05f, align: 1, maxSlope: 15, pathMargin: 0.5f );
 
 	// -- shelf fungi on the dead wood, facing out of the bark -----------------
+	In( dead );
 	string[] brackets = { "brackets_a", "brackets_b" };
 	foreach ( var (snag, z) in new[] { ("snag_a", 1.6f), ("snag_b", 1.2f), ("snag_c", 0.9f), ("snag_b", 3.0f) } )
 	{
@@ -643,25 +706,62 @@ using ( S.Scene.Push() )
 	float Shade( float x, float y ) { var d = NearestTree( x, y ); return d < 5 ? 1 : d < 9 ? 0.75f : 0.45f; }
 	float Damp( float x, float y ) { var d = MathF.Abs( x - Sx( y ) ); return d < 6 ? 1 : d < 10 ? 0.5f : 0.2f; }
 
+	In( ferns );
 	Scatter( new[] { "fern_a", "fern_b", "fern_c", "fern_d" }, 520, 0.55f, sink: 0.04f, align: 0.8f, prefer: Shade, weights: new[] { 3f, 2, 3, 1 }, pathMargin: 0.4f, maxSlope: 40 );
+	In( broadleaf );
 	Scatter( new[] { "broadleaf_a", "broadleaf_b", "elephant_a", "elephant_b" }, 90, 0.7f, sink: 0.03f, align: 0.5f, prefer: Damp, weights: new[] { 3f, 3, 1, 1 }, pathMargin: 0.6f );
+	In( lilies );
 	Scatter( new[] { "lily_a", "lily_b", "fanplant_a", "fanplant_b" }, 70, 0.6f, sink: 0.03f, align: 0.6f, pathMargin: 0.4f );
+	In( bushes );
 	Scatter( new[] { "bush_a", "bush_b" }, 40, 1, sink: 0.03f, align: 0.4f, prefer: Shade, pathMargin: 0.8f );
+	In( saplings );
 	Scatter( new[] { "sapling_a", "sapling_b" }, 60, 0.4f, sink: 0.03f, align: 0.3f, pathMargin: 0.5f );
+	In( grass );
 	Scatter( new[] { "grass_a", "grass_b" }, 260, 0.45f, sink: 0.04f, align: 0.9f, scaleLo: 0.6f, scaleHi: 0.95f, pathMargin: 0.2f,
 		prefer: ( x, y ) => OnPath( x, y, 2.5f ) || InStream( x, y, 3.5f ) ? 0.9f : 0.3f );
+	In( moss );
 	Scatter( new[] { "mosscushion_a", "mosscushion_b", "mosscushion_c", "mosscarpet_a" }, 120, 0.5f, sink: 0.12f, align: 1,
 		prefer: ( x, y ) => MathF.Min( 1, 0.5f * Shade( x, y ) + 0.5f * Damp( x, y ) ), pathMargin: 0.3f );
+	In( litter );
 	Scatter( new[] { "litter_a", "litter_b" }, 200, 0.4f, sink: 0.02f, align: 1, allowPath: true, prefer: Shade, clear: 0, scaleLo: 0.5f, scaleHi: 0.85f );
 
+	// -- what the editor moved after the layout above first ran ---------------
+	Tweak( "strangler_a", pos: Gallery.V( -4.57184839f, -0.723411977f, 16 ) );
+	Tweak( "tree_tall_c #11", pos: Gallery.V( 20.5178909f, -0.187017858f, 12.6990566f ) );
+	Tweak( "wall banyan_a #4", rot: new Rotation( -0.0350467786f, 0.945812583f, 0.0939143151f, -0.30885303f ) );
+	Tweak( "wall tree_giant_c #22", pos: Gallery.V( 42.0754242f, 1.17008662f, 10.5590725f ),
+		rot: new Rotation( -0.0969027579f, 0.653331935f, 0.0848617181f, 0.746033311f ) );
+	Tweak( "wall banyan_a #43", rot: new Rotation( 0.0464843586f, 0.845068634f, 0.0566899255f, 0.529607832f ) );
+	Tweak( "wall strangler_a #96", pos: Gallery.V( -23.9745102f, -0.014982203f, 32.3492317f ) );
+	Tweak( "wall tree_giant_a #122", pos: Gallery.V( -8.94344807f, 0.257239819f, 36.524807f ),
+		rot: new Rotation( 0.0119645111f, 0.907080829f, -0.0731850639f, 0.414373368f ) );
+	Tweak( "wall banyan_a #136", rot: new Rotation( -0.0209799986f, 0.510936439f, -0.0928497538f, -0.854331791f ) );
+	Tweak( "logmossy_c @ 8.2,18.0", pos: Gallery.V( 9.0452404f, -0.279713362f, -17.7863541f ) );
+	Tweak( "vinetangle_b @ 6.5,10.8", pos: Gallery.V( 7.10207462f, 0.0789458677f, -11.3595963f ) );
+	Tweak( "rockstack_a @ 4.4,2.7", pos: Gallery.V( 4.37889481f, -0.622322619f, -2.75011563f ),
+		scale: Gallery.V( 1, 0.61109376f, 1 ) );
+	Tweak( "rockstack_b @ 17.0,-6.0", pos: Gallery.V( 17.6301136f, -0.416398346f, 6.41276121f ) );
+	Tweak( "vinehang_b @ 27.7,10.0", pos: Gallery.V( 25.7901917f, 5.49999809f, -15.6161747f ),
+		rot: new Rotation( 0, 0.097230196f, 0, 0.995261729f ), scale: Gallery.V( 0.122070342f, 0.400546908f, 0.800000012f ) );
+	Tweak( "brackets on snag_a 1.6", pos: Gallery.V( 4.65461159f, 1.16285098f, -17.9400215f ) );
+	Tweak( "brackets on snag_b 3.0", pos: Gallery.V( -10.1844463f, 3.19542003f, 10.2595387f ),
+		rot: new Rotation( -0.167874932f, -0.611240268f, -0.141358495f, -0.760408521f ) );
+	Tweak( "boulder_a @ 0.2,-29.7", pos: Gallery.V( -1.55145466f, -1.23060787f, 30.1252422f ) );
+	Tweak( "rockflat_a @ -9.6,25.8", pos: Gallery.V( 1.18661046f, -0.720807254f, -29.8507462f ),
+		rot: new Rotation( -0.00290604681f, -0.396669775f, -0.00728674745f, -0.91792798f ),
+		scale: Gallery.V( 1.3f, 1.3f, 1.3f ) );
+
 	// -- light, fog, the player, the HUD --------------------------------------
-	// The sun low, from behind and to the left of the walk, so trunks are lit
-	// on their edges and the fog glows between them. An overcast sky -
-	// materials/skybox/overcast.mat, the engine's sky shader with its cloud
-	// cover nearly full - and the distance fog takes its colour from that sky,
-	// so what is far away sinks into the same white the sky is.
-	S.Environment( sunBrightness: 0.7f, sunRot: Gallery.PitchYaw( -34, 155 ), sunColor: "1,0.96,0.9,1", ambient: "0.16,0.22,0.18,1",
-		skyTint: "0.9,0.93,0.92,1", shadowDetail: 96, skyMaterial: "materials/skybox/overcast.mat" );
+	// The sun low, from behind and to the left of the walk, bright and amber,
+	// so trunks are lit on their edges and the volume fog takes the sun's
+	// warmth. An overcast sky - materials/skybox/overcast.mat - and the
+	// distance fog keeps the far trees in that same pale air.
+	var env = S.Environment( sunBrightness: 4.274f, sunRot: Gallery.PitchYaw( -34, 155 ), sunColor: "0.36769,0.29156,0.24257,1",
+		ambient: "0.15674,0.18998,0.16782,1", skyTint: "0.9,0.93,0.92,1", shadowDetail: 256, sourceRadius: 0.16f,
+		skyMaterial: "materials/skybox/overcast.mat" );
+	var sun = env.Children.First( c => c.Name == "Sun" ).Components.Get<DirectionalLight>();
+	sun.Attenuation = 0.984f;
+	sun.FogStrength = 300;
 
 	var fog = S.Comp<CubemapFog>( S.Go( world, "Distance Fog" ), "fog/distance" );
 	fog.Tint = Gallery.C( "0.86,0.88,0.84,0.85" );
@@ -673,24 +773,26 @@ using ( S.Scene.Push() )
 	fog.HeightExponent = 1.1f;
 
 	var volume = S.Comp<VolumetricFogVolume>( S.Go( world, "Volume Fog", Gallery.V( 0, 4, 0 ) ), "fog/volume" );
-	volume.Bounds = new BBox( Gallery.V( -32, -6, -32 ), Gallery.V( 32, 10, 32 ) );
-	volume.Strength = 0.08f;
-	volume.FalloffExponent = 0.8f;
-	volume.Color = Gallery.C( "0.68,0.78,0.74,1" );
+	volume.Bounds = new BBox( Gallery.V( -57.5f, -6, -42.5f ), Gallery.V( 51.5f, 26.5f, 44 ) );
+	volume.Strength = 0.147f;
+	volume.FalloffExponent = 0.612f;
+	volume.Color = Gallery.C( "0.68,0.78,0.6915,1" );
 
 	// The camera keeps a picture of the depth for the water to read the bed
-	// through - see DepthPicture - and darkens the corners with occlusion. The
-	// grade: a little less saturated and a touch more contrast than the raw
-	// render - the look of the references, which are overcast and damp. The
-	// cool of them is the sky's own, not a grade.
-	var player = S.Player( Gallery.V( Px( -23 ), Height( Px( -23 ), -23 ) + 1.15f, 23 ), speed: 4.5f );
-	player.LocalRotation = Gallery.Yaw( 22 );
+	// through - see DepthPicture - and darkens the hollows with occlusion. The
+	// grade: more saturation than the raw render, a touch less brightness, so
+	// the damp green reads rather than the overcast grey.
+	var player = S.Player( Gallery.V( 5.48779106f, 1.10354018f, 29.5995617f ), speed: 4.5f );
+	player.LocalRotation = new Rotation( 0.0426853821f, 0.0609923042f, -0.0026107328f, 0.997221768f );
 	var camera = player.Children.First( c => c.Name == "Camera" );
+	camera.Components.Get<CameraComponent>().BackgroundColor = Gallery.C( "0.0805,0.09975,0.13824,1" );
 	S.Comp<DepthPicture>( camera, "depthpicture" );
-	S.Comp<AmbientOcclusion>( camera, "ssao" ).Intensity = 0.8f;
+	S.Comp<AmbientOcclusion>( camera, "ssao" ).Intensity = 6;
 	var adjust = S.Comp<ColorAdjustments>( camera, "adjust" );
-	adjust.Saturation = 0.95f;
-	adjust.Contrast = 1.03f;
+	adjust.Blend = 0.727f;
+	adjust.Brightness = 0.942f;
+	adjust.Saturation = 1.564f;
+	adjust.Contrast = 1.026f;
 
 	S.Hud( "The jungle. Walk the path north along the stream. Q returns." );
 

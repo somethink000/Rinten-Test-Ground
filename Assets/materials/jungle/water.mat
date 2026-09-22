@@ -5,29 +5,25 @@
     "F_TRANSLUCENT": 1
   },
   "Numbers": {
-    "g_vShallowColour": "0.09,0.12,0.07,0",
-    "g_vDeepColour": "0.03,0.045,0.03,0",
-    "g_flDepthFade": "0.7,0,0,0",
-    "g_flRoughness": "0.08,0,0,0",
-    "g_flSkyReflection": "0.18,0,0,0",
-    "g_flRippleScale": "1.4,0,0,0",
-    "g_vFlow": "0,0.3,0,0",
-    "g_flRippleStrength": "0.55,0,0,0"
+    "g_vShallowColour": "0.0900000036,0.119999997,0.0700000003,0",
+    "g_vDeepColour": "0.0299999993,0.0450000018,0.0299999993,0",
+    "g_flDepthFade": "1.20300007,0,0,0",
+    "g_flRoughness": "0.0799999982,0,0,0",
+    "g_flSkyReflection": "0.234000012,0,0,0",
+    "g_flRippleScale": "4.05500031,0,0,0",
+    "g_vFlow": "0,0.300000012,0,0",
+    "g_flRippleStrength": "1.2750001,0,0,0"
   },
   "Textures": {},
-  "Tint": "1,1,1,1",
-  "ColorMap": "",
+  "Tint": "0.70453,0.71074,0.81925,1",
+  "ColorMap": "materials/default/white.png",
   "Normal": "textures/jungle/water_n.png",
-  "RoughMetalAmbient": "materials/default/roughmetal.png",
   "Emission": "materials/default/black.png",
-  "Roughness": 0.08,
-  "Metalness": 0.0,
-  "EmissionStrength": 0.0,
+  "Roughness": 0.048,
+  "Metalness": 0,
+  "EmissionStrength": 0,
   "PhysicsSurface": "",
-  "TwoSided": false,
-  "Filtering": "Smooth",
-  "Blend": "Translucent",
   "AlphaCutoff": 0.5,
   "__references": [],
-  "__version": 0
+  "__version": 2
 }
