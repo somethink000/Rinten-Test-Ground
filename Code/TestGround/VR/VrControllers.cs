@@ -5,8 +5,9 @@ namespace TestGround;
 /// <summary>
 /// Visible controllers and keyframed palm colliders. A controller is shown while
 /// it is held; tracked bare hands keep their joint overlay instead. The model is
-/// the one the headset says is in the hand - see VRController.GetModel - unless
-/// <see cref="UseHeadsetModel"/> is off, which puts the prefabs back.
+/// the one the headset says is in the hand, its buttons pressed as the hand
+/// presses them - see VRModelRenderer - unless <see cref="UseHeadsetModel"/> is
+/// off, which puts the prefabs back.
 /// </summary>
 [Title( "VR Controllers" )]
 [Category( "Test Ground" )]
@@ -68,8 +69,10 @@ public sealed class VrControllers : Component
 		{
 			var go = Scene.CreateObject();
 			go.Name = $"{side} controller";
-			var model = go.Components.Create<ModelRenderer>();
-			return new Avatar { Contact = contact, Thumb = thumb, Index = index, Visual = go, Model = model };
+			var vr = go.Components.Create<VRModelRenderer>();
+			vr.ModelSource = side == "Left" ? VRModelRenderer.ModelSources.LeftHand : VRModelRenderer.ModelSources.RightHand;
+			vr.ModelRenderer = go.Components.Create<SkinnedModelRenderer>();
+			return new Avatar { Contact = contact, Thumb = thumb, Index = index, Visual = go, HeadsetModel = true };
 		}
 
 		var visual = prefab is not null
@@ -122,14 +125,8 @@ public sealed class VrControllers : Component
 		avatar.Visual.Enabled = showController;
 		if ( !showController ) return;
 
-		if ( avatar.Model is not null )
+		if ( avatar.HeadsetModel )
 		{
-			// Built once per controller and handed back after that; asked every
-			// frame because the headset names the controller a moment after the
-			// session starts, and again if it is swapped.
-			var model = hand.GetModel();
-			if ( avatar.Model.Model != model ) avatar.Model.Model = model;
-
 			// The model is authored in metres around the grip, which is this pose.
 			avatar.Visual.WorldTransform = hand.Transform.WithScale( Input.VR.Scale );
 			return;
@@ -166,7 +163,7 @@ public sealed class VrControllers : Component
 		public SphereCollider Thumb;
 		public SphereCollider Index;
 		public GameObject Visual;
-		public ModelRenderer Model;
+		public bool HeadsetModel;
 		public bool Holding;
 	}
 }
