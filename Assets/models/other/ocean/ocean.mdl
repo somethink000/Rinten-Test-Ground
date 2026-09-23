@@ -1,0 +1,10 @@
+{
+  "Steps": [],
+  "Meshes": [{
+    "Name": "", "File": "models/other/ocean/ocean.fbx", "Scale": 1, "Include": [], "Enabled": true, "Position": "0,0,0", "Rotation": "0,0,0", "Parent": ""
+  }],
+  "Scale": 1, "Material": "", "Materials": [], "MaterialRemaps": [],
+  "Clips": [], "Transform": { "Enabled": true, "Position": "0,0,0", "Rotation": "0,0,0", "Scale": "1,1,1", "IsIdentity": true },
+  "Mirror": { "Enabled": false, "Axis": "X", "FlipWinding": true, "RemapLeftRight": true },
+  "Joints": [], "LookAtChains": [], "IkChains": [], "WeightLists": [], "Morphs": [], "BodyGroups": [], "Folders": [], "CoarseMeshes": [], "MaterialGroups": [], "Hulls": [], "Surface": "", "Mass": 0, "OverrideBounds": false, "Bounds": { "Mins": "-64,-64,-64", "Maxs": "64,64,64" }, "JiggleBones": [], "JiggleColliders": [], "Attachments": [], "Bones": [], "Constraints": [], "__references": [], "__version": 2
+}

@@ -106,10 +106,10 @@
             },
             {
               "Scene": "scenes/physics/collider.scene",
-              "Title": "Colliders & Triggers",
+              "Title": "Colliders \u0026 Triggers",
               "Category": "Physics",
               "Description": "Static and keyframed shapes, trigger volumes, enter/exit events",
-              "DisplayName": "Colliders & Triggers"
+              "DisplayName": "Colliders \u0026 Triggers"
             },
             {
               "Scene": "scenes/physics/rigidbody.scene",
@@ -250,6 +250,13 @@
               "Category": "General",
               "Description": "Quest room-scale movement, snap turning, tracked hands and physics grabs on a table",
               "DisplayName": "VR Lab"
+            },
+            {
+              "Scene": "scenes/other/ship.scene",
+              "Title": "Brig at Sea",
+              "Category": "Other",
+              "Description": "A detailed brig, ocean model and warm directional lighting.",
+              "DisplayName": "Brig at Sea"
             }
           ],
           "Subheading": "Feature scenes, kept in a working state"

@@ -14,6 +14,7 @@ public enum SceneCategory
 	[Icon( "volume_up" )] Audio,
 	[Icon( "hub" )] Networking,
 	[Icon( "construction" )] Scratch,
+	[Icon( "directions_boat" )] Other,
 }
 
 /// <summary>

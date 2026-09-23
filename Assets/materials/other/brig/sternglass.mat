@@ -1,0 +1,29 @@
+{
+  "Shader": "shaders/complex.shader",
+  "Features": {
+    "F_NORMAL_MAP": 1,
+    "F_ROUGHNESS": 1,
+    "F_TRANSLUCENT": 1
+  },
+  "Numbers": {
+    "g_flRoughness": "0.68,0,0,0"
+  },
+  "Textures": {
+    "g_tRoughness": "models/other/brig/brig.fbm/SternGlass_Roughness.png"
+  },
+  "Tint": "0.82,0.92,1,0.45",
+  "ColorMap": "models/other/brig/brig.fbm/SternGlass_BaseColor.png",
+  "Normal": "models/other/brig/brig.fbm/SternGlass_Normal.png",
+  "RoughMetalAmbient": "materials/default/roughmetal.png",
+  "Emission": "materials/default/black.png",
+  "Roughness": 0.68,
+  "Metalness": 0,
+  "EmissionStrength": 0,
+  "PhysicsSurface": "",
+  "TwoSided": false,
+  "Filtering": "Smooth",
+  "Blend": "Translucent",
+  "AlphaCutoff": 0.5,
+  "__references": [],
+  "__version": 0
+}

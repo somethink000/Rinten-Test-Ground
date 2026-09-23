@@ -1,0 +1,149 @@
+{
+  "Steps": [],
+  "Meshes": [
+    {
+      "Name": "",
+      "File": "models/other/brig/brig.fbx",
+      "Scale": 1,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1,
+  "Material": "",
+  "Materials": [
+    "materials/other/brig/blackpaint.mat",
+    "materials/other/brig/blockwood.mat",
+    "materials/other/brig/boathull.mat",
+    "materials/other/brig/bulwarkinner.mat",
+    "materials/other/brig/darkwood.mat",
+    "materials/other/brig/deck.mat",
+    "materials/other/brig/gilt.mat",
+    "materials/other/brig/guncarriagered.mat",
+    "materials/other/brig/hull.mat",
+    "materials/other/brig/iron.mat",
+    "materials/other/brig/lanternglass.mat",
+    "materials/other/brig/mastwood.mat",
+    "materials/other/brig/railwood.mat",
+    "materials/other/brig/ropehemp.mat",
+    "materials/other/brig/ropetarred.mat",
+    "materials/other/brig/sail.mat",
+    "materials/other/brig/sternglass.mat",
+    "materials/other/brig/whitepaint.mat"
+  ],
+  "MaterialRemaps": [
+    {
+      "Surface": "BlackPaint",
+      "Material": "materials/other/brig/blackpaint.mat"
+    },
+    {
+      "Surface": "BlockWood",
+      "Material": "materials/other/brig/blockwood.mat"
+    },
+    {
+      "Surface": "BoatHull",
+      "Material": "materials/other/brig/boathull.mat"
+    },
+    {
+      "Surface": "BulwarkInner",
+      "Material": "materials/other/brig/bulwarkinner.mat"
+    },
+    {
+      "Surface": "DarkWood",
+      "Material": "materials/other/brig/darkwood.mat"
+    },
+    {
+      "Surface": "Deck",
+      "Material": "materials/other/brig/deck.mat"
+    },
+    {
+      "Surface": "Gilt",
+      "Material": "materials/other/brig/gilt.mat"
+    },
+    {
+      "Surface": "GunCarriageRed",
+      "Material": "materials/other/brig/guncarriagered.mat"
+    },
+    {
+      "Surface": "Hull",
+      "Material": "materials/other/brig/hull.mat"
+    },
+    {
+      "Surface": "Iron",
+      "Material": "materials/other/brig/iron.mat"
+    },
+    {
+      "Surface": "LanternGlass",
+      "Material": "materials/other/brig/lanternglass.mat"
+    },
+    {
+      "Surface": "MastWood",
+      "Material": "materials/other/brig/mastwood.mat"
+    },
+    {
+      "Surface": "RailWood",
+      "Material": "materials/other/brig/railwood.mat"
+    },
+    {
+      "Surface": "RopeHemp",
+      "Material": "materials/other/brig/ropehemp.mat"
+    },
+    {
+      "Surface": "RopeTarred",
+      "Material": "materials/other/brig/ropetarred.mat"
+    },
+    {
+      "Surface": "Sail",
+      "Material": "materials/other/brig/sail.mat"
+    },
+    {
+      "Surface": "SternGlass",
+      "Material": "materials/other/brig/sternglass.mat"
+    },
+    {
+      "Surface": "WhitePaint",
+      "Material": "materials/other/brig/whitepaint.mat"
+    }
+  ],
+  "Clips": [],
+  "Transform": {
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0",
+    "Scale": "1,1,1",
+    "IsIdentity": true
+  },
+  "Mirror": {
+    "Enabled": false,
+    "Axis": "X",
+    "FlipWinding": true,
+    "RemapLeftRight": true
+  },
+  "Joints": [],
+  "LookAtChains": [],
+  "IkChains": [],
+  "WeightLists": [],
+  "Morphs": [],
+  "BodyGroups": [],
+  "Folders": [],
+  "CoarseMeshes": [],
+  "MaterialGroups": [],
+  "Hulls": [],
+  "Surface": "",
+  "Mass": 0,
+  "OverrideBounds": false,
+  "Bounds": {
+    "Mins": "-64,-64,-64",
+    "Maxs": "64,64,64"
+  },
+  "JiggleBones": [],
+  "JiggleColliders": [],
+  "Attachments": [],
+  "Bones": [],
+  "Constraints": [],
+  "__references": [],
+  "__version": 2
+}

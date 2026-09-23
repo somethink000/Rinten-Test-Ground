@@ -1,0 +1,11 @@
+var g = new Gallery("other/ship", "Brig at Sea", "A detailed early-19th-century brig with its own ocean model and PBR materials.");
+var environment = g.Environment( sunBrightness: 2.4f, sunColor: "1,0.88,0.68,1", ambient: "0.16,0.22,0.32,1", skyTint: "0.62,0.76,0.94,1", shadows: true, shadowDetail: 128, sourceRadius: 0.12f );
+var ocean = g.Go( g.Scene, "Ocean", Gallery.V( 0, 0, 0 ), tags: "world,ocean" );
+g.Model( ocean, "ocean", Color.White, model: "models/other/ocean/ocean.mdl" );
+var ship = g.Go( g.Scene, "Russian Brig", Gallery.V( 0, 0.02f, 0 ), Gallery.Yaw( 18 ), tags: "world,ship" );
+g.Model( ship, "brig", Color.White, model: "models/other/brig/brig.mdl" );
+var player = g.Player( Gallery.V( 38, 13, -48 ), Gallery.PitchYaw( -11, 36 ), fov: 70, speed: 10, bloom: true );
+g.Hud( "Detailed brig model • PBR materials • separate ocean asset" );
+var scene = g.Write( "other/ship.scene" );
+Gallery.RegisterInMenu( "other/ship.scene", "Brig at Sea", "Other", "A detailed brig, ocean model and warm directional lighting." );
+return new { Scene = scene, Ship = "models/other/brig/brig.mdl", Ocean = "models/other/ocean/ocean.mdl" };
