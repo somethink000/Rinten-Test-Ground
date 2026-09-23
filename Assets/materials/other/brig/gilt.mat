@@ -2,27 +2,26 @@
   "Shader": "shaders/complex.shader",
   "Features": {
     "F_NORMAL_MAP": 1,
-    "F_ROUGHNESS": 1
+    "F_ROUGHNESS": 1,
+    "F_METALNESS": 1,
+    "F_COLOR_MAP": 1
   },
   "Numbers": {
-    "g_flRoughness": "0.38,0,0,0"
+    "g_flRoughness": "0.379999995,0,0,0"
   },
   "Textures": {
-    "g_tRoughness": "models/other/brig/brig.fbm/Gilt_Roughness.png"
+    "g_tRoughness": "models/other/brig/brig.fbm/Gilt_Roughness.png",
+    "g_tMetalness": "materials/default/value/898989ff.png"
   },
   "Tint": "1,1,1,1",
   "ColorMap": "models/other/brig/brig.fbm/Gilt_BaseColor.png",
   "Normal": "models/other/brig/brig.fbm/Gilt_Normal.png",
-  "RoughMetalAmbient": "materials/default/roughmetal.png",
   "Emission": "materials/default/black.png",
-  "Roughness": 0.38,
-  "Metalness": 0.9,
+  "Roughness": 0.53000003,
+  "Metalness": 0.41300002,
   "EmissionStrength": 0,
   "PhysicsSurface": "",
-  "TwoSided": false,
-  "Filtering": "Smooth",
-  "Blend": "Opaque",
   "AlphaCutoff": 0.5,
   "__references": [],
-  "__version": 0
+  "__version": 2
 }
