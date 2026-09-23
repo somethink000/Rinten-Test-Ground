@@ -3,14 +3,19 @@ using Rinten.VR;
 namespace TestGround;
 
 /// <summary>
-/// Visible controller stand-ins and keyframed palm colliders. A controller is
-/// shown while it is held; tracked bare hands keep their joint overlay instead.
+/// Visible controllers and keyframed palm colliders. A controller is shown while
+/// it is held; tracked bare hands keep their joint overlay instead. The model is
+/// the one the headset says is in the hand - see VRController.GetModel - unless
+/// <see cref="UseHeadsetModel"/> is off, which puts the prefabs back.
 /// </summary>
 [Title( "VR Controllers" )]
 [Category( "Test Ground" )]
 [Icon( "sports_esports" )]
 public sealed class VrControllers : Component
 {
+	/// <summary>Draw the controller the headset reports rather than the prefabs below.</summary>
+	[Property] public bool UseHeadsetModel { get; set; } = true;
+
 	[Property, Category( "Prefabs" )] public PrefabFile LeftControllerPrefab { get; set; }
 	[Property, Category( "Prefabs" )] public PrefabFile RightControllerPrefab { get; set; }
 
@@ -58,6 +63,14 @@ public sealed class VrControllers : Component
 		var contact = Contact( $"{side} palm physics", 0.052f );
 		var thumb = Contact( $"{side} thumb physics", 0.016f );
 		var index = Contact( $"{side} index physics", 0.016f );
+
+		if ( UseHeadsetModel )
+		{
+			var go = Scene.CreateObject();
+			go.Name = $"{side} controller";
+			var model = go.Components.Create<ModelRenderer>();
+			return new Avatar { Contact = contact, Thumb = thumb, Index = index, Visual = go, Model = model };
+		}
 
 		var visual = prefab is not null
 			? GameObject.Clone( prefab, new global::Transform( Vector3.Zero, Rotation.Identity ) )
@@ -109,6 +122,19 @@ public sealed class VrControllers : Component
 		avatar.Visual.Enabled = showController;
 		if ( !showController ) return;
 
+		if ( avatar.Model is not null )
+		{
+			// Built once per controller and handed back after that; asked every
+			// frame because the headset names the controller a moment after the
+			// session starts, and again if it is swapped.
+			var model = hand.GetModel();
+			if ( avatar.Model.Model != model ) avatar.Model.Model = model;
+
+			// The model is authored in metres around the grip, which is this pose.
+			avatar.Visual.WorldTransform = hand.Transform.WithScale( Input.VR.Scale );
+			return;
+		}
+
 		// pose comes from VR with unit scale; keep the authored physical size of
 		// the prefab instead of replacing it with a one-metre cube.
 		avatar.Visual.WorldTransform = pose.WithScale( avatar.Visual.WorldScale );
@@ -140,6 +166,7 @@ public sealed class VrControllers : Component
 		public SphereCollider Thumb;
 		public SphereCollider Index;
 		public GameObject Visual;
+		public ModelRenderer Model;
 		public bool Holding;
 	}
 }
