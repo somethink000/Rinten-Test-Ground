@@ -157,22 +157,6 @@
           "OnComponentUpdate": null
         },
         {
-          "__type": "TestGround.VrLab",
-          "__guid": "3d581596-f174-4b49-a79a-3e78b44833f9",
-          "__enabled": true,
-          "Flags": 0,
-          "GrabReach": 0.16,
-          "MoveSpeed": 2.2,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "SnapDegrees": 30,
-          "SnapThreshold": 0.72
-        },
-        {
           "__type": "TestGround.VrHands",
           "__guid": "1f47cf5f-292a-4ce2-91dc-e217e294c97d",
           "__enabled": true,
@@ -197,7 +181,58 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "RightControllerPrefab": "prefabs/vr/quest_right.prefab"
+          "RightControllerPrefab": "prefabs/vr/quest_right.prefab",
+          "UseHeadsetModel": true
+        },
+        {
+          "__type": "TestGround.VrLocomotion",
+          "__guid": "c9451c77-41da-4059-b952-7903450ba91d",
+          "__enabled": true,
+          "Flags": 0,
+          "MoveSpeed": 2.2,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SnapDegrees": 30,
+          "SnapThreshold": 0.72
+        },
+        {
+          "__type": "TestGround.VrGrabber",
+          "__guid": "f3339fdd-4be4-44d7-a652-c765909d32e7",
+          "__enabled": true,
+          "Flags": 0,
+          "BreakDistance": 0.3,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PalmRadius": 0.06,
+          "Press": 0.6,
+          "SphereMaterial": null,
+          "SphereOffset": "0.0156999994,-0.0280000009,-0.0780000016",
+          "SphereRadius": 0.02,
+          "Unpress": 0.35
+        },
+        {
+          "__type": "TestGround.VrQuiver",
+          "__guid": "8847d644-6e6b-4c80-aca1-eb6fe014be81",
+          "__enabled": true,
+          "Flags": 0,
+          "Arrow": null,
+          "Behind": 0.05,
+          "Below": 0.35,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Reach": 0.45
         }
       ],
       "Children": []
@@ -267,9 +302,9 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Floor",
-      "Position": "0,-0.0799999982,0",
+      "Position": "0,-0.0799999982,-8",
       "Rotation": "0,0,0,1",
-      "Scale": "8,0.159999996,8",
+      "Scale": "8,0.159999996,24",
       "Tags": "",
       "Enabled": true,
       "NetworkMode": 2,
@@ -1111,6 +1146,131 @@
         }
       ],
       "Children": []
+    },
+    {
+      "__guid": "6805bb70-38eb-4e3f-bb50-cdd68c1de65d",
+      "__version": 2,
+      "__Prefab": "prefabs/vr/archery/bow.prefab",
+      "__PrefabInstancePatch": {
+        "AddedObjects": [],
+        "RemovedObjects": [],
+        "PropertyOverrides": [
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "9574c0d7-d8d6-41e1-8e1d-63a21493e4c0"
+            },
+            "Property": "Name",
+            "Value": "Bow"
+          },
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "9574c0d7-d8d6-41e1-8e1d-63a21493e4c0"
+            },
+            "Property": "Position",
+            "Value": "0,0.975000024,-1.47000003"
+          },
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "9574c0d7-d8d6-41e1-8e1d-63a21493e4c0"
+            },
+            "Property": "Rotation",
+            "Value": "0,0,-0.707106769,0.707106769"
+          }
+        ],
+        "MovedObjects": []
+      },
+      "__PrefabIdToInstanceId": {
+        "9574c0d7-d8d6-41e1-8e1d-63a21493e4c0": "6805bb70-38eb-4e3f-bb50-cdd68c1de65d",
+        "f11898dc-375b-4f81-bc99-9535f06a39c2": "7e07075d-7031-4461-8cd6-7976941c556b",
+        "b97d833d-e7a6-4007-93bd-40cbb0bf6e63": "c069075e-e6f7-4299-b244-b22456a809b8",
+        "40489263-311a-4c41-98a4-4ccf026e4866": "8271d994-e761-4255-8b4e-9febb3ab490b",
+        "be12657d-67c6-4073-bab6-3e0cdffb7777": "5eea29cb-2e08-4906-a68b-3f5d2b9080f7"
+      }
+    },
+    {
+      "__guid": "19617164-777e-4c2d-9064-097989970ada",
+      "__version": 2,
+      "__Prefab": "prefabs/vr/archery/target.prefab",
+      "__PrefabInstancePatch": {
+        "AddedObjects": [],
+        "RemovedObjects": [],
+        "PropertyOverrides": [
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "30776e45-8ae2-4e66-8011-cb5f31a9cd62"
+            },
+            "Property": "Name",
+            "Value": "Target 6m"
+          },
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "30776e45-8ae2-4e66-8011-cb5f31a9cd62"
+            },
+            "Property": "Position",
+            "Value": "0,1.39999998,-6.5"
+          }
+        ],
+        "MovedObjects": []
+      },
+      "__PrefabIdToInstanceId": {
+        "30776e45-8ae2-4e66-8011-cb5f31a9cd62": "19617164-777e-4c2d-9064-097989970ada",
+        "f0378dac-9a6c-4c53-833f-fef5f60c9dad": "96f462fe-37e8-442f-9e2a-fe37ecede321",
+        "4881eeb2-998d-4dee-90d9-f2eabf453928": "5d4a1665-24f6-4d63-a3e7-d01aa5320c41",
+        "976a0d20-b0dd-4445-a3ee-e4019d9c3fb3": "c67546aa-3261-45c1-997f-4e88816cd684",
+        "76f81828-b9d8-4230-84af-3f8fc5d09239": "cf625b8f-ffa5-4451-84e9-423d9eafd7f1",
+        "c453aaa5-ad04-4033-a5ec-6b2f01f82279": "d08b6541-10a8-4eba-82cf-a21f751dd789",
+        "9d4d4d1e-1a09-479b-ad73-91f6815f9f6b": "ece404c9-3432-4e93-b0fe-6b97b5888345",
+        "990e3e32-ae57-4445-8729-c5323aa2be18": "0d4f795f-5b18-4f0b-824e-f7ed4f690544",
+        "9446558b-b798-4332-bc14-099293af24cb": "bc99becf-b5d6-4812-b079-76f7512dd918",
+        "f8b19f07-e265-48e6-a3fd-1ec613b6671f": "2e485e56-6bd5-489a-b3fe-e899b058eb9a",
+        "c92e615c-2456-4c1d-a385-7389a5fc8910": "d20211a8-7a8c-4e6d-82fb-3de9db927534"
+      }
+    },
+    {
+      "__guid": "6b607f86-2e43-4c94-92ca-7412f769bf4b",
+      "__version": 2,
+      "__Prefab": "prefabs/vr/archery/target.prefab",
+      "__PrefabInstancePatch": {
+        "AddedObjects": [],
+        "RemovedObjects": [],
+        "PropertyOverrides": [
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "30776e45-8ae2-4e66-8011-cb5f31a9cd62"
+            },
+            "Property": "Name",
+            "Value": "Target 12m"
+          },
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "30776e45-8ae2-4e66-8011-cb5f31a9cd62"
+            },
+            "Property": "Position",
+            "Value": "1.5,1.39999998,-12.5"
+          }
+        ],
+        "MovedObjects": []
+      },
+      "__PrefabIdToInstanceId": {
+        "30776e45-8ae2-4e66-8011-cb5f31a9cd62": "6b607f86-2e43-4c94-92ca-7412f769bf4b",
+        "f0378dac-9a6c-4c53-833f-fef5f60c9dad": "6765f91e-a769-4457-86b0-5ee6c16590d0",
+        "4881eeb2-998d-4dee-90d9-f2eabf453928": "c57dabc5-17d9-4dc2-b48f-81ce040c67c4",
+        "976a0d20-b0dd-4445-a3ee-e4019d9c3fb3": "335912cb-4caa-4d5a-8291-23f2510fde9b",
+        "76f81828-b9d8-4230-84af-3f8fc5d09239": "29148e60-c5a7-4324-b27e-3e4ddee07a43",
+        "c453aaa5-ad04-4033-a5ec-6b2f01f82279": "e7028882-e541-432c-82d2-9a013afc6d23",
+        "9d4d4d1e-1a09-479b-ad73-91f6815f9f6b": "40d41b42-f43a-4dc7-aa0d-288a3b500f42",
+        "990e3e32-ae57-4445-8729-c5323aa2be18": "5726dc8d-2c74-4a1c-9b4a-2716aa9e4a3c",
+        "9446558b-b798-4332-bc14-099293af24cb": "35f10c3a-2454-4d70-80aa-8da508980d74",
+        "f8b19f07-e265-48e6-a3fd-1ec613b6671f": "5b74727b-ce6d-4f81-a35a-547a84d28e3a",
+        "c92e615c-2456-4c1d-a385-7389a5fc8910": "46e9dcf2-21b6-4086-bb82-5688a497685b"
+      }
     }
   ],
   "SceneProperties": {

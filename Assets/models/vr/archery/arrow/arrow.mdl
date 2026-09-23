@@ -1,0 +1,94 @@
+{
+  "Steps": [],
+  "Meshes": [
+    {
+      "Name": "",
+      "File": "models/vr/archery/arrow/arrow.fbx",
+      "Scale": 1,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1,
+  "Material": "",
+  "Materials": [
+    "models/vr/archery/arrow/arrow_shaft.mat",
+    "models/vr/archery/arrow/arrow_point.mat",
+    "models/vr/archery/arrow/arrow_red.mat",
+    "models/vr/archery/arrow/arrow_yellow.mat"
+  ],
+  "MaterialRemaps": [
+    {
+      "Surface": "arrow_shaft",
+      "Material": "models/vr/archery/arrow/arrow_shaft.mat"
+    },
+    {
+      "Surface": "arrow_point",
+      "Material": "models/vr/archery/arrow/arrow_point.mat"
+    },
+    {
+      "Surface": "arrow_red",
+      "Material": "models/vr/archery/arrow/arrow_red.mat"
+    },
+    {
+      "Surface": "arrow_yellow",
+      "Material": "models/vr/archery/arrow/arrow_yellow.mat"
+    }
+  ],
+  "Clips": [],
+  "Transform": {
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0",
+    "Scale": "1,1,1",
+    "IsIdentity": true
+  },
+  "Mirror": {
+    "Enabled": false,
+    "Axis": "X",
+    "FlipWinding": true,
+    "RemapLeftRight": true
+  },
+  "Joints": [],
+  "LookAtChains": [],
+  "IkChains": [],
+  "WeightLists": [],
+  "Morphs": [],
+  "BodyGroups": [],
+  "Folders": [],
+  "CoarseMeshes": [],
+  "MaterialGroups": [],
+  "Hulls": [],
+  "Surface": "",
+  "Mass": 0,
+  "OverrideBounds": false,
+  "Bounds": {
+    "Mins": "-64,-64,-64",
+    "Maxs": "64,64,64"
+  },
+  "JiggleBones": [],
+  "JiggleColliders": [],
+  "Attachments": [
+    {
+      "Name": "nock",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "0,0,-0.002",
+      "Rotation": "0,0,0"
+    },
+    {
+      "Name": "tip",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "0,0,-0.78",
+      "Rotation": "0,0,0"
+    }
+  ],
+  "Bones": [],
+  "Constraints": [],
+  "__references": [],
+  "__version": 2
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "Score": 5,
+    "Radius": 0.4
+  },
+  {
+    "Score": 6,
+    "Radius": 0.3333
+  },
+  {
+    "Score": 7,
+    "Radius": 0.2667
+  },
+  {
+    "Score": 8,
+    "Radius": 0.2
+  },
+  {
+    "Score": 9,
+    "Radius": 0.1333
+  },
+  {
+    "Score": 10,
+    "Radius": 0.0667
+  },
+  {
+    "Score": "X",
+    "Radius": 0.0333
+  }
+]

@@ -1,0 +1,77 @@
+{
+  "Steps": [],
+  "Meshes": [
+    {
+      "Name": "",
+      "File": "models/vr/archery/target/target.fbx",
+      "Scale": 1,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1,
+  "Material": "",
+  "Materials": [
+    "models/vr/archery/target/target_face.mat",
+    "models/vr/archery/target/target_straw.mat"
+  ],
+  "MaterialRemaps": [
+    {
+      "Surface": "target_face",
+      "Material": "models/vr/archery/target/target_face.mat"
+    },
+    {
+      "Surface": "target_straw",
+      "Material": "models/vr/archery/target/target_straw.mat"
+    }
+  ],
+  "Clips": [],
+  "Transform": {
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0",
+    "Scale": "1,1,1",
+    "IsIdentity": true
+  },
+  "Mirror": {
+    "Enabled": false,
+    "Axis": "X",
+    "FlipWinding": true,
+    "RemapLeftRight": true
+  },
+  "Joints": [],
+  "LookAtChains": [],
+  "IkChains": [],
+  "WeightLists": [],
+  "Morphs": [],
+  "BodyGroups": [],
+  "Folders": [],
+  "CoarseMeshes": [],
+  "MaterialGroups": [],
+  "Hulls": [],
+  "Surface": "",
+  "Mass": 0,
+  "OverrideBounds": false,
+  "Bounds": {
+    "Mins": "-64,-64,-64",
+    "Maxs": "64,64,64"
+  },
+  "JiggleBones": [],
+  "JiggleColliders": [],
+  "Attachments": [
+    {
+      "Name": "centre",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0"
+    }
+  ],
+  "Bones": [],
+  "Constraints": [],
+  "__references": [],
+  "__version": 2
+}

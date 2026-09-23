@@ -1,0 +1,122 @@
+{
+  "Steps": [],
+  "Meshes": [
+    {
+      "Name": "",
+      "File": "models/vr/archery/bow/bow.fbx",
+      "Scale": 1,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1,
+  "Material": "",
+  "Materials": [
+    "models/vr/archery/bow/bow_wood.mat",
+    "models/vr/archery/bow/bow_grip.mat",
+    "models/vr/archery/bow/bow_string.mat"
+  ],
+  "MaterialRemaps": [
+    {
+      "Surface": "bow_wood",
+      "Material": "models/vr/archery/bow/bow_wood.mat"
+    },
+    {
+      "Surface": "bow_grip",
+      "Material": "models/vr/archery/bow/bow_grip.mat"
+    },
+    {
+      "Surface": "bow_string",
+      "Material": "models/vr/archery/bow/bow_string.mat"
+    }
+  ],
+  "ArtSurfaces": "Unchosen",
+  "Clips": [],
+  "Transform": {
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0",
+    "Scale": "1,1,1",
+    "IsIdentity": true
+  },
+  "Mirror": {
+    "Enabled": false,
+    "Axis": "X",
+    "FlipWinding": true,
+    "RemapLeftRight": true
+  },
+  "Joints": [],
+  "LookAtChains": [],
+  "IkChains": [],
+  "WeightLists": [],
+  "Morphs": [
+    {
+      "Name": "draw",
+      "Enabled": true,
+      "Preview": 0
+    }
+  ],
+  "BodyGroups": [],
+  "Folders": [],
+  "CoarseMeshes": [],
+  "MaterialGroups": [],
+  "Hulls": [],
+  "Surface": "",
+  "Mass": 0,
+  "OverrideBounds": false,
+  "Bounds": {
+    "Mins": "-64,-64,-64",
+    "Maxs": "64,64,64"
+  },
+  "JiggleBones": [],
+  "JiggleColliders": [],
+  "Attachments": [
+    {
+      "Name": "grip",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    },
+    {
+      "Name": "arrow_rest",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "-0.0209999997,0.0579999983,0",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    },
+    {
+      "Name": "nock_rest",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "0,0.0599999987,0.184499994",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    },
+    {
+      "Name": "nock_drawn",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "0,0.0599999987,0.699999988",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    }
+  ],
+  "Bones": [],
+  "Constraints": [],
+  "__references": [],
+  "__version": 2
+}
