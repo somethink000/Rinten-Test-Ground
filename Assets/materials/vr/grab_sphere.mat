@@ -1,0 +1,21 @@
+{
+  "Shader": "shaders/unlit.shader",
+  "Features": {},
+  "Numbers": {},
+  "Textures": {},
+  "Tint": "0.25,0.6,1,0.3",
+  "ColorMap": "materials/default/white.png",
+  "Normal": "",
+  "RoughMetalAmbient": "",
+  "Emission": "",
+  "Roughness": 1,
+  "Metalness": 0,
+  "EmissionStrength": 0,
+  "PhysicsSurface": "",
+  "TwoSided": false,
+  "Filtering": "Smooth",
+  "Blend": "Translucent",
+  "AlphaCutoff": 0.5,
+  "__references": [],
+  "__version": 0
+}

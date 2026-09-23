@@ -38,26 +38,28 @@ public sealed class VrControllers : Component
 		UpdateAvatar( right, Input.VR.RightHand );
 	}
 
-	/// <summary>The physics body that a held object is attached to.</summary>
-	public PhysicsBody GrabAnchor( bool isLeft, bool isHandTracked )
-	{
-		var avatar = isLeft ? left : right;
-		if ( avatar is null ) return null;
-
-#pragma warning disable CS0618 // KeyframeBody is the public body of a keyframed hand collider.
-		return (isHandTracked ? avatar.Index : avatar.Contact).KeyframeBody;
-#pragma warning restore CS0618
-	}
-
 	/// <summary>
-	/// While holding, leave only the collider used by the joint active. The other
-	/// hand contacts would otherwise keep pushing the same body into the joint.
+	/// While holding, the hand's colliders stand down: the held body is steered to
+	/// the hand, and they would push it straight back out - see VrGrabber.
 	/// </summary>
 	public void SetHolding( bool isLeft, bool holding )
 	{
 		var avatar = isLeft ? left : right;
 		if ( avatar is not null ) avatar.Holding = holding;
 	}
+
+	/// <summary>
+	/// Hide a hand's controller while something takes its place - a bow held in
+	/// it is the hand's model while it is there.
+	/// </summary>
+	public void SetHidden( bool isLeft, bool hidden )
+	{
+		var avatar = isLeft ? left : right;
+		if ( avatar is not null ) avatar.Hidden = hidden;
+	}
+
+	/// <summary>What the hands' colliders are tagged, for a trace that should pass through them.</summary>
+	public const string HandTag = "vr_hand";
 
 	private Avatar CreateAvatar( string side, PrefabFile prefab, Color fallbackColour )
 	{
@@ -87,6 +89,7 @@ public sealed class VrControllers : Component
 	{
 		var go = Scene.CreateObject();
 		go.Name = name;
+		go.Tags.Add( HandTag );
 		var collider = go.Components.Create<SphereCollider>();
 		collider.Radius = radius;
 		collider.Static = false;
@@ -112,18 +115,18 @@ public sealed class VrControllers : Component
 
 		var pose = PalmPose( hand );
 		var showController = !hand.IsHandTracked;
-		avatar.Contact.Enabled = showController || !avatar.Holding;
+		avatar.Contact.Enabled = !avatar.Holding;
 		avatar.Contact.WorldTransform = pose;
 		avatar.Thumb.Enabled = !showController && !avatar.Holding;
-		avatar.Index.Enabled = !showController;
+		avatar.Index.Enabled = !showController && !avatar.Holding;
 		if ( !showController )
 		{
 			avatar.Thumb.WorldTransform = JointPose( hand, VRHandJoint.ThumbTip );
 			avatar.Index.WorldTransform = JointPose( hand, VRHandJoint.IndexTip );
 		}
 
-		avatar.Visual.Enabled = showController;
-		if ( !showController ) return;
+		avatar.Visual.Enabled = showController && !avatar.Hidden;
+		if ( !avatar.Visual.Enabled ) return;
 
 		if ( avatar.HeadsetModel )
 		{
@@ -165,5 +168,6 @@ public sealed class VrControllers : Component
 		public GameObject Visual;
 		public bool HeadsetModel;
 		public bool Holding;
+		public bool Hidden;
 	}
 }
