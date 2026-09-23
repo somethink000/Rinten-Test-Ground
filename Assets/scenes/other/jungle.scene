@@ -66011,7 +66011,6 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
-              "SkyIndirectLighting": true,
               "SkyMaterial": "materials/skybox/overcast.mat",
               "Tint": "0.9,0.93,0.92,1"
             }
@@ -66301,7 +66300,7 @@
           "__enabled": true,
           "Flags": 0,
           "Key": "Q",
-          "MenuScene": null,
+          "MenuScene": "scenes/main.scene",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,

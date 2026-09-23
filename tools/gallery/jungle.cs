@@ -1,4 +1,4 @@
-// Writes scenes/rendering/jungle.scene: the jungle, laid out on the ground
+// Writes scenes/other/jungle.scene: the jungle, laid out on the ground
 // grow.py cut - a stream down the middle, a path beside it, and everything
 // from the catalogue placed as an object of its own. Every thing stands on
 // the ground at the ground's height, tilted to its slope where it should be,
@@ -18,7 +18,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
-var S = new Gallery( "jungle", "Jungle",
+var S = new Gallery( "other/jungle", "Jungle",
 	"A rainforest: a stream, a path, giants with buttresses and roots, stranglers, banyans, palms, bamboo, ferns and litter everywhere, dead wood, moss, and the fog that hides the rest." );
 
 var tools = Path.GetFullPath( Path.Combine( Project.Current.GetAssetsPath(), "..", "tools", "jungle" ) );
@@ -799,8 +799,8 @@ using ( S.Scene.Push() )
 	objects = S.Scene.Directory.AllGameObjects.Count();
 }
 
-var wrote = S.Write( "rendering/jungle.scene" );
-Gallery.RegisterInMenu( "rendering/jungle.scene", "Jungle", "Rendering",
+var wrote = S.Write( "other/jungle.scene" );
+Gallery.RegisterInMenu( "other/jungle.scene", "Jungle", "Other",
 	"A rainforest: stream, path, giants, stranglers, banyans, palms, bamboo, ferns, dead wood, moss and fog" );
 
 return new { Wrote = wrote, Objects = objects, HullsWritten = hullsWritten };

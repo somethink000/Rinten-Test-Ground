@@ -231,9 +231,9 @@
               "DisplayName": "Clutter"
             },
             {
-              "Scene": "scenes/rendering/jungle.scene",
+              "Scene": "scenes/other/jungle.scene",
               "Title": "Jungle",
-              "Category": "Rendering",
+              "Category": "Other",
               "Description": "A rainforest: stream, path, giants, stranglers, banyans, palms, bamboo, ferns, dead wood, moss and fog",
               "DisplayName": "Jungle"
             },
