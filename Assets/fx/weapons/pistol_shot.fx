@@ -2,7 +2,7 @@
   "Emitters": [
     {
       "Name": "Flash",
-      "Identifier": "5f7df139-2080-5318-ba06-db00f8c4eb2f",
+      "Identifier": "16aed972-4498-43c5-9973-4bde184056b2",
       "Enabled": true,
       "MaxParticles": 4,
       "Places": 0,
@@ -27,7 +27,7 @@
             "Multiplier": 1.0,
             "IsBound": false
           },
-          "Identifier": "2411bb8c-a543-5c86-a481-87c5a22de9f9",
+          "Identifier": "01a76b2c-e995-459f-854a-58c7805d0758",
           "Name": "Spawn Burst",
           "Enabled": true
         }
@@ -45,7 +45,7 @@
           "OnShell": false,
           "LineStart": "0,0,0",
           "LineEnd": "0,1,0",
-          "Identifier": "014242f0-0574-5997-ba9d-37ce12895c50",
+          "Identifier": "de575b9a-9388-4fa6-8143-4ead2b248e5f",
           "Name": "Position",
           "Enabled": true
         },
@@ -54,13 +54,13 @@
           "Stage": "Initialize",
           "Lifetime": {
             "UseParameter": true,
-            "Value": 0.07,
+            "Value": 0.045,
             "ParameterName": "Lifetime",
             "Mode": "Multiply",
             "Multiplier": 1.0,
             "IsBound": false
           },
-          "Identifier": "c5be951c-afa2-53e6-8acc-833b432f0c7e",
+          "Identifier": "f63a4461-15eb-439b-a9d1-a835fdcb4b21",
           "Name": "Lifetime",
           "Enabled": true
         },
@@ -72,7 +72,7 @@
             "Value": {
               "Type": "Range",
               "Evaluation": "Seed",
-              "Constants": "0.55,0.85,0,0"
+              "Constants": "0.09,0.14,0,0"
             },
             "ParameterName": "Flash Size",
             "Mode": "Multiply",
@@ -80,7 +80,7 @@
             "IsBound": false
           },
           "InheritEmitterScale": true,
-          "Identifier": "71b2c7bd-5eca-546a-8b4e-dfd68a49030e",
+          "Identifier": "c7a92b6e-e6d7-4ba7-8bc6-4c389b60c39a",
           "Name": "Size",
           "Enabled": true
         },
@@ -145,7 +145,7 @@
             "IsBound": false
           },
           "Tint": "1,1,1,1",
-          "Identifier": "a1406c59-014f-57d0-b9f0-0eb028ae1a48",
+          "Identifier": "a9cffda2-ca78-44d5-a2cc-e549ae409d97",
           "Name": "Color",
           "Enabled": true
         },
@@ -161,7 +161,7 @@
               "Constants": "0,360,0,0"
             }
           },
-          "Identifier": "4b95f2e4-81b4-59dd-92e1-bedd581094a6",
+          "Identifier": "2b8abd02-2222-4822-a6e7-a541df594086",
           "Name": "Rotation",
           "Enabled": true
         }
@@ -188,7 +188,7 @@
           "BlurAmount": 0.5,
           "BlurSpacing": 0.5,
           "BlurOpacity": 0.5,
-          "Identifier": "1dde33ce-bcac-52f1-aa4f-5e8d7ac6acc5",
+          "Identifier": "f97e6394-4d91-4d33-864a-cbef4ecbd825",
           "Name": "Sprite",
           "Enabled": true
         },
@@ -203,7 +203,7 @@
           },
           "Brightness": {
             "UseParameter": true,
-            "Value": 12,
+            "Value": 5,
             "ParameterName": "Glow",
             "Mode": "Multiply",
             "Multiplier": 1.0,
@@ -211,7 +211,7 @@
           },
           "Radius": {
             "UseParameter": false,
-            "Value": 4,
+            "Value": 1.6,
             "ParameterName": null,
             "Mode": "Multiply",
             "Multiplier": 1.0,
@@ -243,7 +243,7 @@
           },
           "UseParticleColor": false,
           "CastShadows": false,
-          "Identifier": "0c10fb25-65b3-5cfc-a5e9-248485a99940",
+          "Identifier": "d5f7ab4c-8248-455a-8a95-db9fcbb72f2a",
           "Name": "Light",
           "Enabled": true
         }
@@ -251,7 +251,7 @@
     },
     {
       "Name": "Core",
-      "Identifier": "4c488098-696a-5b9a-b729-a1ad9414e3a1",
+      "Identifier": "1e7e5733-5962-42ac-b566-e8fd66d7478b",
       "Enabled": true,
       "MaxParticles": 4,
       "Places": 0,
@@ -276,7 +276,7 @@
             "Multiplier": 1.0,
             "IsBound": false
           },
-          "Identifier": "f0851e48-1f2b-586e-bcdc-4c23dbe2185d",
+          "Identifier": "2ca9b0d7-4a63-4b71-9584-3105722dd38c",
           "Name": "Spawn Burst",
           "Enabled": true
         }
@@ -294,7 +294,7 @@
           "OnShell": false,
           "LineStart": "0,0,0",
           "LineEnd": "0,1,0",
-          "Identifier": "0dd707d3-e6ac-513f-ade0-e2b0a38c82c5",
+          "Identifier": "b7934655-c8b2-4c18-92b1-bbeb4b44feaf",
           "Name": "Position",
           "Enabled": true
         },
@@ -303,13 +303,13 @@
           "Stage": "Initialize",
           "Lifetime": {
             "UseParameter": true,
-            "Value": 0.09,
+            "Value": 0.035,
             "ParameterName": "Lifetime",
             "Mode": "Multiply",
             "Multiplier": 1.0,
             "IsBound": false
           },
-          "Identifier": "79e4cf4b-7407-524f-bfff-60b994665e01",
+          "Identifier": "f8b508dd-bf0b-4cb7-ba85-d78ff4b79417",
           "Name": "Lifetime",
           "Enabled": true
         },
@@ -322,7 +322,7 @@
               "Type": "Curve",
               "Evaluation": "Life",
               "CurveA": {
-                "rangey": "0,0.7",
+                "rangey": "0,0.07",
                 "frames": [
                   {
                     "x": 0,
@@ -341,7 +341,7 @@
                 ]
               },
               "CurveB": {
-                "rangey": "0,0.7",
+                "rangey": "0,0.07",
                 "frames": [
                   {
                     "x": 0,
@@ -366,7 +366,7 @@
             "IsBound": false
           },
           "InheritEmitterScale": true,
-          "Identifier": "5fcbcd34-85ee-53d0-bc6d-dfde2b0939ae",
+          "Identifier": "56b1ec18-2148-4714-9b69-1dc166b1de8e",
           "Name": "Size",
           "Enabled": true
         },
@@ -431,7 +431,7 @@
             "IsBound": false
           },
           "Tint": "1,1,1,1",
-          "Identifier": "884ffe4b-f94c-5c53-8de9-5aece4b71bc2",
+          "Identifier": "c54df2da-60e7-4b34-a000-11a52de05c48",
           "Name": "Color",
           "Enabled": true
         }
@@ -458,7 +458,7 @@
           "BlurAmount": 0.5,
           "BlurSpacing": 0.5,
           "BlurOpacity": 0.5,
-          "Identifier": "cb16e786-8fb6-5ad2-aacd-2ac6e8266394",
+          "Identifier": "3e1163ca-ddb5-41c8-8682-20d797b0884c",
           "Name": "Sprite",
           "Enabled": true
         }
@@ -466,7 +466,7 @@
     },
     {
       "Name": "Sparks",
-      "Identifier": "31e1ac64-a3b4-5837-856e-32818e6029f4",
+      "Identifier": "b9ae94a1-033c-45f0-a51e-52be49a4a304",
       "Enabled": true,
       "MaxParticles": 60,
       "Places": 0,
@@ -485,13 +485,13 @@
           "Stage": "Spawn",
           "Count": {
             "UseParameter": true,
-            "Value": 14,
+            "Value": 5,
             "ParameterName": "Sparks",
             "Mode": "Multiply",
             "Multiplier": 1.0,
             "IsBound": false
           },
-          "Identifier": "0c14d9b5-d461-5b0a-b514-056fde5448f7",
+          "Identifier": "a9d14b18-9954-4680-8795-45e9c21b682d",
           "Name": "Spawn Burst",
           "Enabled": true
         }
@@ -509,7 +509,7 @@
           "OnShell": false,
           "LineStart": "0,0,0",
           "LineEnd": "0,1,0",
-          "Identifier": "7d8a749f-97ef-5978-ad37-031e848ee3ea",
+          "Identifier": "cd8df380-faa9-41df-bfe9-9ef07f7b02c0",
           "Name": "Position",
           "Enabled": true
         },
@@ -524,7 +524,7 @@
               "Z": {
                 "Type": "Range",
                 "Evaluation": "Seed",
-                "Constants": "-13,-22,0,0"
+                "Constants": "-6,-10,0,0"
               }
             },
             "ParameterName": null,
@@ -534,7 +534,7 @@
           },
           "Scatter": {
             "UseParameter": true,
-            "Value": 2.5,
+            "Value": 1.2,
             "ParameterName": "Spread",
             "Mode": "Multiply",
             "Multiplier": 1.0,
@@ -548,7 +548,7 @@
             "Y": 0,
             "Z": 0
           },
-          "Identifier": "1f856d8d-757d-506f-8587-3875bbf785cc",
+          "Identifier": "60008442-d1f2-48cc-a9bc-a946b59ec9b5",
           "Name": "Velocity",
           "Enabled": true
         },
@@ -560,14 +560,14 @@
             "Value": {
               "Type": "Range",
               "Evaluation": "Seed",
-              "Constants": "0.15,0.32,0,0"
+              "Constants": "0.05,0.1,0,0"
             },
             "ParameterName": "Lifetime",
             "Mode": "Multiply",
             "Multiplier": 1.0,
             "IsBound": false
           },
-          "Identifier": "4cf380c2-bc81-5b74-a805-ac3ae58e1455",
+          "Identifier": "451f52b6-dd65-4f5b-9dec-eba19d125daa",
           "Name": "Lifetime",
           "Enabled": true
         },
@@ -579,7 +579,7 @@
             "Value": {
               "Type": "Range",
               "Evaluation": "Seed",
-              "Constants": "0.02,0.035,0,0"
+              "Constants": "0.006,0.011,0,0"
             },
             "ParameterName": "Size",
             "Mode": "Multiply",
@@ -587,7 +587,7 @@
             "IsBound": false
           },
           "InheritEmitterScale": true,
-          "Identifier": "5c292b4c-b501-5e6a-aaf1-9cc9252b4a29",
+          "Identifier": "d3c68b0b-ab63-4bea-ab1c-c0253bb34bf2",
           "Name": "Size",
           "Enabled": true
         },
@@ -666,7 +666,7 @@
             "IsBound": false
           },
           "Tint": "1,1,1,1",
-          "Identifier": "d2ba936c-067a-545a-9516-9782fa8276d5",
+          "Identifier": "39a3b9bb-96f8-4198-8120-2279012c5387",
           "Name": "Color",
           "Enabled": true
         },
@@ -681,7 +681,7 @@
             "Multiplier": 1.0,
             "IsBound": false
           },
-          "Identifier": "20171a33-9e61-50b6-bf5e-95617c349392",
+          "Identifier": "4447feee-7753-4be9-abfb-7a607596a466",
           "Name": "Stretch",
           "Enabled": true
         },
@@ -755,7 +755,7 @@
             "Multiplier": 1.0,
             "IsBound": false
           },
-          "Identifier": "f75ca919-4179-461b-98f4-4364354b0162",
+          "Identifier": "60bafac4-a290-413f-a7e3-016edadb8153",
           "Name": "Collision",
           "Enabled": true
         }
@@ -776,7 +776,7 @@
             "ScaleParameterName": null,
             "IsBound": false
           },
-          "Identifier": "5ca74b17-cb22-5b2a-92e0-43dec23513ee",
+          "Identifier": "c9b0f3af-8724-47bc-bed4-d4e0ec9752e4",
           "Name": "Gravity",
           "Enabled": true
         },
@@ -791,7 +791,7 @@
             "Multiplier": 1.0,
             "IsBound": false
           },
-          "Identifier": "8bda17e5-1c8d-5fbb-8c02-e62c89636921",
+          "Identifier": "d3e477a9-c025-49b1-9e0c-f6547f77a94a",
           "Name": "Drag",
           "Enabled": true
         }
@@ -817,7 +817,7 @@
           "BlurAmount": 0.6,
           "BlurSpacing": 0.3,
           "BlurOpacity": 0.5,
-          "Identifier": "13c9b38d-1a7e-516c-aff9-b3593e280ae9",
+          "Identifier": "d02d7300-14d7-483d-a785-d3dcca83b873",
           "Name": "Sprite",
           "Enabled": true
         }
@@ -825,7 +825,7 @@
     },
     {
       "Name": "Smoke",
-      "Identifier": "b5f34c47-58a4-589f-ab09-6ad9e6ca369f",
+      "Identifier": "ad9d0397-50ce-4cc0-be1b-6774f8045759",
       "Enabled": true,
       "MaxParticles": 40,
       "Places": 0,
@@ -844,13 +844,13 @@
           "Stage": "Spawn",
           "Count": {
             "UseParameter": true,
-            "Value": 9,
+            "Value": 3,
             "ParameterName": "Smoke",
             "Mode": "Multiply",
             "Multiplier": 1.0,
             "IsBound": false
           },
-          "Identifier": "845c8b3e-d6cd-5829-94d5-907837ae2e11",
+          "Identifier": "3ffb2cad-c905-43c1-826c-52422d8ff4b4",
           "Name": "Spawn Burst",
           "Enabled": true
         }
@@ -868,7 +868,7 @@
           "OnShell": false,
           "LineStart": "0,0,0",
           "LineEnd": "0,1,0",
-          "Identifier": "6dc28228-dad2-547a-9ddd-6ee35d7cfc94",
+          "Identifier": "2be49def-0916-48c8-bc9f-907df30e3034",
           "Name": "Position",
           "Enabled": true
         },
@@ -881,17 +881,17 @@
               "X": {
                 "Type": "Range",
                 "Evaluation": "Seed",
-                "Constants": "-0.5,0.5,0,0"
+                "Constants": "-0.08,0.08,0,0"
               },
               "Y": {
                 "Type": "Range",
                 "Evaluation": "Seed",
-                "Constants": "0.4,1.0,0,0"
+                "Constants": "0.05,0.2,0,0"
               },
               "Z": {
                 "Type": "Range",
                 "Evaluation": "Seed",
-                "Constants": "-2.5,-4.5,0,0"
+                "Constants": "-0.4,-0.9,0,0"
               }
             },
             "ParameterName": null,
@@ -915,7 +915,7 @@
             "Y": 0,
             "Z": 0
           },
-          "Identifier": "8578ac67-5510-576b-a081-a1c41630aebf",
+          "Identifier": "8d025d79-02ab-418f-a100-8028edf7535f",
           "Name": "Velocity",
           "Enabled": true
         },
@@ -934,7 +934,7 @@
             "Multiplier": 1.0,
             "IsBound": false
           },
-          "Identifier": "82b38261-d3ae-5a5b-8bb3-e4e2ac70bab0",
+          "Identifier": "54fd0500-04fd-4444-804d-f5f558185feb",
           "Name": "Lifetime",
           "Enabled": true
         },
@@ -947,7 +947,7 @@
               "Type": "Curve",
               "Evaluation": "Life",
               "CurveA": {
-                "rangey": "0,0.7",
+                "rangey": "0,0.16",
                 "frames": [
                   {
                     "x": 0,
@@ -966,7 +966,7 @@
                 ]
               },
               "CurveB": {
-                "rangey": "0,0.7",
+                "rangey": "0,0.16",
                 "frames": [
                   {
                     "x": 0,
@@ -991,7 +991,7 @@
             "IsBound": false
           },
           "InheritEmitterScale": true,
-          "Identifier": "fdf3aaba-44cc-5fcd-96ee-9922c2e6e86c",
+          "Identifier": "d793b4e8-6f53-4723-80df-84e0c40113a5",
           "Name": "Size",
           "Enabled": true
         },
@@ -1056,7 +1056,7 @@
             "IsBound": false
           },
           "Tint": "1,1,1,1",
-          "Identifier": "66a963e4-0518-5fcf-971d-c480a722d96d",
+          "Identifier": "668d5b68-6e88-455c-8ade-f56088a13937",
           "Name": "Color",
           "Enabled": true
         },
@@ -1072,7 +1072,7 @@
               "Constants": "0,360,0,0"
             }
           },
-          "Identifier": "b3eb1bbe-8f36-5455-b587-872c92c1153b",
+          "Identifier": "afc104a9-40c9-453d-81bb-59ea79e7bf95",
           "Name": "Rotation",
           "Enabled": true
         }
@@ -1097,7 +1097,7 @@
             "ScaleParameterName": null,
             "IsBound": false
           },
-          "Identifier": "ca6d0e13-e9ad-5a9a-b3f2-0f01b8041a5d",
+          "Identifier": "60ca931d-d0ab-4f85-9cab-e2bbe6597c33",
           "Name": "Spin",
           "Enabled": true
         },
@@ -1112,7 +1112,7 @@
             "Multiplier": 1.0,
             "IsBound": false
           },
-          "Identifier": "3cc776e7-76cb-576f-9b41-a029dfe0a0a1",
+          "Identifier": "ac5793b1-d6f1-42f5-871c-08ed26e24a8d",
           "Name": "Drag",
           "Enabled": true
         },
@@ -1131,7 +1131,7 @@
             "ScaleParameterName": null,
             "IsBound": false
           },
-          "Identifier": "57fabb73-035e-5fa2-9ad7-c7398b1edb47",
+          "Identifier": "c3ce46db-bfef-4501-a217-3871fc03f23e",
           "Name": "Gravity",
           "Enabled": true
         }
@@ -1157,915 +1157,14 @@
           "BlurAmount": 0.5,
           "BlurSpacing": 0.5,
           "BlurOpacity": 0.5,
-          "Identifier": "f24aacd9-c546-5e4b-8adc-2c0b8f6057cf",
+          "Identifier": "e59db3a4-6b52-448a-b66d-71a44dd4c9e2",
           "Name": "Sprite",
-          "Enabled": true
-        }
-      ]
-    },
-    {
-      "Name": "Tracer",
-      "Identifier": "920e8792-531c-54c5-b05e-96c0a3bbfc86",
-      "Enabled": true,
-      "MaxParticles": 8,
-      "Places": 0,
-      "Offset": "0,0,0",
-      "Rotation": "0,0,0",
-      "Scale": "1,1,1",
-      "Anchor": null,
-      "Delay": 0.0,
-      "Duration": 0.0,
-      "PreWarm": 0.0,
-      "TimeScale": 1,
-      "Timing": "GameTime",
-      "SpawnModules": [
-        {
-          "__type": "Rinten.SpawnBurstModule",
-          "Stage": "Spawn",
-          "Count": {
-            "UseParameter": false,
-            "Value": 1,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Identifier": "06c864ad-85b3-5e56-affe-e8e7ac297a26",
-          "Name": "Spawn Burst",
-          "Enabled": true
-        }
-      ],
-      "InitializeModules": [
-        {
-          "__type": "Rinten.InitializePositionModule",
-          "Stage": "Initialize",
-          "Shape": "Point",
-          "Offset": "0,0,0",
-          "Follows": "Rotation, Scale",
-          "Radius": 0.5,
-          "BoxSize": "1,1,1",
-          "ConeAngle": 45,
-          "OnShell": false,
-          "LineStart": "0,0,0",
-          "LineEnd": "0,1,0",
-          "Identifier": "d978c1d3-468f-5e5f-a918-3de43a0f9ba0",
-          "Name": "Position",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.InitializeVelocityModule",
-          "Stage": "Initialize",
-          "Velocity": {
-            "UseParameter": true,
-            "Value": {
-              "X": 0,
-              "Y": 0,
-              "Z": -40
-            },
-            "ParameterName": "Tracer",
-            "Multiplier": 1.0,
-            "ScaleParameterName": "Speed",
-            "IsBound": false
-          },
-          "Scatter": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "LocalSpace": true,
-          "InheritEmitterVelocity": false,
-          "InheritScale": 1,
-          "Drift": {
-            "X": 0,
-            "Y": 0,
-            "Z": 0
-          },
-          "Identifier": "1e4e240e-9f33-51b7-92cf-356e861b2037",
-          "Name": "Velocity",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.InitializeLifetimeModule",
-          "Stage": "Initialize",
-          "Lifetime": {
-            "UseParameter": false,
-            "Value": 0.7,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Identifier": "530689a4-cb34-57ac-856c-fe05e053dac0",
-          "Name": "Lifetime",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.InitializeSizeModule",
-          "Stage": "Initialize",
-          "Size": {
-            "UseParameter": true,
-            "Value": 0.045,
-            "ParameterName": "Size",
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "InheritEmitterScale": true,
-          "Identifier": "33ada700-652d-5d92-baab-04de9eec910f",
-          "Name": "Size",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.InitializeColorModule",
-          "Stage": "Initialize",
-          "Color": {
-            "UseParameter": true,
-            "Value": "1,1,1,1",
-            "ParameterName": "Tracer Color",
-            "IsBound": false
-          },
-          "Alpha": {
-            "UseParameter": false,
-            "Value": 1.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Brightness": {
-            "UseParameter": true,
-            "Value": 2,
-            "ParameterName": "Brightness",
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Tint": "1,1,1,1",
-          "Identifier": "f35ac6e2-5c1e-5b28-861b-8544ed5074eb",
-          "Name": "Color",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.InitializeStretchModule",
-          "Stage": "Initialize",
-          "Stretch": {
-            "UseParameter": false,
-            "Value": 14,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Identifier": "ba146415-539c-5a8e-a8a2-bc7d8b46009c",
-          "Name": "Stretch",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.ParticleCollisionModule",
-          "Stage": "Initialize",
-          "Ignore": "vr_pistol,vr_hand,vr_magazine",
-          "Radius": {
-            "UseParameter": false,
-            "Value": 0.004,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "DieOnHitChance": {
-            "UseParameter": false,
-            "Value": 1.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Prefabs": [],
-          "PrefabChance": {
-            "UseParameter": false,
-            "Value": 1,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "PrefabRotation": {
-            "UseParameter": false,
-            "Value": 0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "PrefabAlign": false,
-          "Bounce": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Friction": {
-            "UseParameter": false,
-            "Value": 0.7,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Bumpiness": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "PushStrength": {
-            "UseParameter": false,
-            "Value": 0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Identifier": "0cfbd015-5883-4c5b-9f57-93ba6057fbe7",
-          "Name": "Collision",
-          "Enabled": true
-        }
-      ],
-      "UpdateModules": [],
-      "RenderModules": [
-        {
-          "__type": "Rinten.SpriteRenderModule",
-          "Stage": "Render",
-          "Sprite": "sprites/spark.sprite",
-          "Scale": 1.0,
-          "Alignment": "LookAtCamera",
-          "FaceVelocity": true,
-          "Additive": true,
-          "Shadows": false,
-          "Lighting": false,
-          "DepthFeather": 0,
-          "SortMode": "Unsorted",
-          "Opaque": false,
-          "FogStrength": 1.0,
-          "TextureFilter": "Bilinear",
-          "MotionBlur": true,
-          "LeadingTrail": true,
-          "BlurAmount": 1.0,
-          "BlurSpacing": 0.5,
-          "BlurOpacity": 0.6,
-          "Identifier": "14e310dd-d109-5caa-ba1d-bb68cb0f0143",
-          "Name": "Sprite",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.LightRenderModule",
-          "Stage": "Render",
-          "Color": {
-            "UseParameter": false,
-            "Value": "1.0000,0.8157,0.5020,1.0",
-            "ParameterName": null,
-            "IsBound": false
-          },
-          "Brightness": {
-            "UseParameter": false,
-            "Value": 3,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Radius": {
-            "UseParameter": false,
-            "Value": 2,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Attenuation": {
-            "UseParameter": false,
-            "Value": 1,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "MaxLights": {
-            "UseParameter": false,
-            "Value": 1,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Ratio": {
-            "UseParameter": false,
-            "Value": 1,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "UseParticleColor": false,
-          "CastShadows": false,
-          "Identifier": "710e1de0-e7bd-5a84-891a-79513c0ea4a6",
-          "Name": "Light",
-          "Enabled": true
-        }
-      ]
-    },
-    {
-      "Name": "Casing",
-      "Identifier": "e0b0db64-1b0a-57d2-a9fd-ae5d33377a0a",
-      "Enabled": true,
-      "MaxParticles": 4,
-      "Places": 0,
-      "Offset": "0,0,0",
-      "Rotation": "0,0,0",
-      "Scale": "1,1,1",
-      "Anchor": null,
-      "Delay": 0.0,
-      "Duration": 0.0,
-      "PreWarm": 0.0,
-      "TimeScale": 1,
-      "Timing": "GameTime",
-      "SpawnModules": [
-        {
-          "__type": "Rinten.SpawnBurstModule",
-          "Stage": "Spawn",
-          "Count": {
-            "UseParameter": false,
-            "Value": 1,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Identifier": "231945db-59e1-57c9-a157-a670556fa536",
-          "Name": "Spawn Burst",
-          "Enabled": true
-        }
-      ],
-      "InitializeModules": [
-        {
-          "__type": "Rinten.InitializePositionModule",
-          "Stage": "Initialize",
-          "Shape": "Point",
-          "Offset": "0.012,0.01,0.106",
-          "Follows": "Rotation, Scale",
-          "Radius": 0.5,
-          "BoxSize": "1,1,1",
-          "ConeAngle": 45,
-          "OnShell": false,
-          "LineStart": "0,0,0",
-          "LineEnd": "0,1,0",
-          "Identifier": "c84e591f-6505-59ff-9940-416e3df56a01",
-          "Name": "Position",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.InitializeVelocityModule",
-          "Stage": "Initialize",
-          "Velocity": {
-            "UseParameter": false,
-            "Value": {
-              "X": 1.9,
-              "Y": 1.5,
-              "Z": 0.5
-            },
-            "ParameterName": null,
-            "Multiplier": 1.0,
-            "ScaleParameterName": null,
-            "IsBound": false
-          },
-          "Scatter": {
-            "UseParameter": false,
-            "Value": 0.4,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "LocalSpace": true,
-          "InheritEmitterVelocity": false,
-          "InheritScale": 1,
-          "Drift": {
-            "X": 0,
-            "Y": 0,
-            "Z": 0
-          },
-          "Identifier": "2873660a-0495-594c-84a0-16003d93d998",
-          "Name": "Velocity",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.InitializeLifetimeModule",
-          "Stage": "Initialize",
-          "Lifetime": {
-            "UseParameter": false,
-            "Value": 2.5,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Identifier": "a9256fff-0780-5c11-b753-3392c3016618",
-          "Name": "Lifetime",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.InitializeSizeModule",
-          "Stage": "Initialize",
-          "Size": {
-            "UseParameter": false,
-            "Value": 0.018,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "InheritEmitterScale": true,
-          "Identifier": "5dd3ca59-f3e4-5f5c-9f91-9a224cf95f2f",
-          "Name": "Size",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.InitializeColorModule",
-          "Stage": "Initialize",
-          "Color": {
-            "UseParameter": false,
-            "Value": "0.8471,0.6902,0.3765,1.0",
-            "ParameterName": null,
-            "IsBound": false
-          },
-          "Alpha": {
-            "UseParameter": false,
-            "Value": 1.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Brightness": {
-            "UseParameter": false,
-            "Value": 1.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Tint": "1,1,1,1",
-          "Identifier": "dba64dac-5e41-587d-b43e-3fb93d04af6d",
-          "Name": "Color",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.InitializeRotationModule",
-          "Stage": "Initialize",
-          "Rotation": {
-            "X": {
-              "Type": "Range",
-              "Evaluation": "Seed",
-              "Constants": "0,360,0,0"
-            },
-            "Y": {
-              "Type": "Range",
-              "Evaluation": "Seed",
-              "Constants": "0,360,0,0"
-            },
-            "Z": {
-              "Type": "Range",
-              "Evaluation": "Seed",
-              "Constants": "0,360,0,0"
-            }
-          },
-          "Identifier": "97d120c6-1d8c-5f63-84e1-b35a95cef427",
-          "Name": "Rotation",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.ParticleCollisionModule",
-          "Stage": "Initialize",
-          "Ignore": "vr_pistol,vr_hand,vr_magazine",
-          "Radius": {
-            "UseParameter": false,
-            "Value": 0.01,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "DieOnHitChance": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Prefabs": [],
-          "PrefabChance": {
-            "UseParameter": false,
-            "Value": 1,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "PrefabRotation": {
-            "UseParameter": false,
-            "Value": 0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "PrefabAlign": false,
-          "Bounce": {
-            "UseParameter": false,
-            "Value": 0.45,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Friction": {
-            "UseParameter": false,
-            "Value": 0.7,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Bumpiness": {
-            "UseParameter": false,
-            "Value": 0.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "PushStrength": {
-            "UseParameter": false,
-            "Value": 0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Identifier": "48a877f9-a482-5e49-9de5-0f5939bc5b4b",
-          "Name": "Collision",
-          "Enabled": true
-        }
-      ],
-      "UpdateModules": [
-        {
-          "__type": "Rinten.EventModule",
-          "Stage": "Update",
-          "Trigger": "OnBirth",
-          "At": {
-            "UseParameter": false,
-            "Value": 1.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Every": 0.0,
-          "Distance": 0.05,
-          "Once": false,
-          "Chance": 1.0,
-          "Set": [
-            {
-              "Enabled": true,
-              "Set": "Slot",
-              "Slot": "Spin",
-              "Value": {
-                "UseParameter": false,
-                "Value": {
-                  "X": 1,
-                  "Y": 1,
-                  "Z": 1
-                },
-                "ParameterName": null,
-                "Multiplier": 1.0,
-                "ScaleParameterName": null,
-                "IsBound": false
-              },
-              "W": {
-                "UseParameter": false,
-                "Value": 1.0,
-                "ParameterName": null,
-                "Mode": "Multiply",
-                "Multiplier": 1.0,
-                "IsBound": false
-              },
-              "Multiply": false
-            }
-          ],
-          "Effect": null,
-          "Scale": {
-            "UseParameter": false,
-            "Value": 1.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "AlignToVelocity": false,
-          "Follow": false,
-          "MaxAlive": 16,
-          "Context": [],
-          "Identifier": "3383d712-ceaf-553e-ba02-c65a21eba4e7",
-          "Name": "Spin On",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.EventModule",
-          "Stage": "Update",
-          "Trigger": "OnCollision",
-          "At": {
-            "UseParameter": false,
-            "Value": 1.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "Every": 0.0,
-          "Distance": 0.05,
-          "Once": false,
-          "Chance": 1.0,
-          "Set": [
-            {
-              "Enabled": true,
-              "Set": "Slot",
-              "Slot": "Spin",
-              "Value": {
-                "UseParameter": false,
-                "Value": {
-                  "X": 0.2,
-                  "Y": 0.2,
-                  "Z": 0.2
-                },
-                "ParameterName": null,
-                "Multiplier": 1.0,
-                "ScaleParameterName": null,
-                "IsBound": false
-              },
-              "W": {
-                "UseParameter": false,
-                "Value": 1.0,
-                "ParameterName": null,
-                "Mode": "Multiply",
-                "Multiplier": 1.0,
-                "IsBound": false
-              },
-              "Multiply": true
-            }
-          ],
-          "Effect": null,
-          "Scale": {
-            "UseParameter": false,
-            "Value": 1.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "AlignToVelocity": false,
-          "Follow": false,
-          "MaxAlive": 16,
-          "Context": [],
-          "Identifier": "cf6dd8c2-e82a-5aaf-b5d9-a4085ee72767",
-          "Name": "Land",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.SpinModule",
-          "Stage": "Update",
-          "Speed": {
-            "UseParameter": false,
-            "Value": {
-              "X": {
-                "Type": "Range",
-                "Evaluation": "Seed",
-                "Constants": "-900,900,0,0"
-              },
-              "Y": {
-                "Type": "Range",
-                "Evaluation": "Seed",
-                "Constants": "-900,900,0,0"
-              },
-              "Z": {
-                "Type": "Range",
-                "Evaluation": "Seed",
-                "Constants": "-900,900,0,0"
-              }
-            },
-            "ParameterName": null,
-            "Multiplier": 1.0,
-            "ScaleParameterName": null,
-            "IsBound": false,
-            "SlotName": "Spin",
-            "SlotMode": "Multiply"
-          },
-          "Identifier": "df4afce1-271a-5d26-9d9d-9b759e27a409",
-          "Name": "Spin",
-          "Enabled": true
-        },
-        {
-          "__type": "Rinten.GravityModule",
-          "Stage": "Update",
-          "Force": {
-            "UseParameter": false,
-            "Value": {
-              "X": 0,
-              "Y": -9.8,
-              "Z": 0
-            },
-            "ParameterName": null,
-            "Multiplier": 1.0,
-            "ScaleParameterName": null,
-            "IsBound": false
-          },
-          "Identifier": "1433fc60-fb14-5052-97f3-67ac22e3c548",
-          "Name": "Gravity",
-          "Enabled": true
-        }
-      ],
-      "RenderModules": [
-        {
-          "__type": "Rinten.MeshRenderModule",
-          "Stage": "Render",
-          "Model": "models/dev/box.mdl",
-          "Material": "materials/fx/stylized_white.mat",
-          "Scale": {
-            "UseParameter": false,
-            "Value": 1.0,
-            "ParameterName": null,
-            "Mode": "Multiply",
-            "Multiplier": 1.0,
-            "IsBound": false
-          },
-          "RotateWithObject": false,
-          "CastShadows": true,
-          "PartFromParticle": false,
-          "Morphs": [],
-          "Shader": [
-            {
-              "Enabled": true,
-              "Name": "Dissolve",
-              "Width": 1,
-              "Value": {
-                "UseParameter": false,
-                "Value": 0.0,
-                "ParameterName": null,
-                "Mode": "Multiply",
-                "Multiplier": 1.0,
-                "IsBound": false
-              },
-              "Color": {
-                "UseParameter": false,
-                "Value": "1,1,1,1",
-                "ParameterName": null,
-                "IsBound": false
-              },
-              "AsVector": false,
-              "Vector": {
-                "UseParameter": false,
-                "Value": {
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Z": 0.0
-                },
-                "ParameterName": null,
-                "Multiplier": 1.0,
-                "ScaleParameterName": null,
-                "IsBound": false
-              },
-              "Min": 0,
-              "Max": 1
-            },
-            {
-              "Enabled": true,
-              "Name": "Edge",
-              "Width": 1,
-              "Value": {
-                "UseParameter": false,
-                "Value": 0.05,
-                "ParameterName": null,
-                "Mode": "Multiply",
-                "Multiplier": 1.0,
-                "IsBound": false
-              },
-              "Color": {
-                "UseParameter": false,
-                "Value": "1,1,1,1",
-                "ParameterName": null,
-                "IsBound": false
-              },
-              "AsVector": false,
-              "Vector": {
-                "UseParameter": false,
-                "Value": {
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Z": 0.0
-                },
-                "ParameterName": null,
-                "Multiplier": 1.0,
-                "ScaleParameterName": null,
-                "IsBound": false
-              },
-              "Min": 0,
-              "Max": 1
-            },
-            {
-              "Enabled": true,
-              "Name": "Emission",
-              "Width": 1,
-              "Value": {
-                "UseParameter": false,
-                "Value": 0.8,
-                "ParameterName": null,
-                "Mode": "Multiply",
-                "Multiplier": 1.0,
-                "IsBound": false
-              },
-              "Color": {
-                "UseParameter": false,
-                "Value": "1,1,1,1",
-                "ParameterName": null,
-                "IsBound": false
-              },
-              "AsVector": false,
-              "Vector": {
-                "UseParameter": false,
-                "Value": {
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Z": 0.0
-                },
-                "ParameterName": null,
-                "Multiplier": 1.0,
-                "ScaleParameterName": null,
-                "IsBound": false
-              },
-              "Min": 0,
-              "Max": 1
-            },
-            {
-              "Enabled": true,
-              "Name": "Scroll",
-              "Width": 1,
-              "Value": {
-                "UseParameter": false,
-                "Value": 0.0,
-                "ParameterName": null,
-                "Mode": "Multiply",
-                "Multiplier": 1.0,
-                "IsBound": false
-              },
-              "Color": {
-                "UseParameter": false,
-                "Value": "1,1,1,1",
-                "ParameterName": null,
-                "IsBound": false
-              },
-              "AsVector": false,
-              "Vector": {
-                "UseParameter": false,
-                "Value": {
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Z": 0.0
-                },
-                "ParameterName": null,
-                "Multiplier": 1.0,
-                "ScaleParameterName": null,
-                "IsBound": false
-              },
-              "Min": 0,
-              "Max": 1
-            }
-          ],
-          "ParticleAttributes": true,
-          "Identifier": "208188e6-832c-5b27-ba37-8dd19b55aea1",
-          "Name": "Mesh",
           "Enabled": true
         }
       ]
     }
   ],
-  "Duration": 0.42,
+  "Duration": 1.2,
   "Looping": false,
   "Shapes": [],
   "Slots": [
@@ -2144,23 +1243,12 @@
       "Identifier": "6e941755-ba13-5f6b-b668-a3913c5a96a2"
     }
   ],
-  "VectorParameters": [
-    {
-      "Name": "Tracer",
-      "DefaultValue": "0,0,-40",
-      "Identifier": "10f55e41-8b6b-5a93-9ae7-c71379e91ab6"
-    }
-  ],
+  "VectorParameters": [],
   "ColorParameters": [
     {
       "Name": "Flash",
       "DefaultValue": "1.0000,0.8510,0.6275,1.0",
       "Identifier": "6c63ca97-0a40-54e7-9a74-9b1790172589"
-    },
-    {
-      "Name": "Tracer Color",
-      "DefaultValue": "1.0000,0.9098,0.7216,1.0",
-      "Identifier": "9a637e88-0c8f-5dad-a1e3-3c0a4224da1b"
     }
   ],
   "__references": [],

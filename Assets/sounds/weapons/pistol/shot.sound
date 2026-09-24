@@ -1,0 +1,19 @@
+{
+  "UI": false,
+  "Volume": "1",
+  "Pitch": "0.94 1.06",
+  "Decibels": 70,
+  "SelectionMode": "Random",
+  "Sounds": [
+    "sounds/weapons/pistol/shot_1.wav",
+    "sounds/weapons/pistol/shot_2.wav",
+    "sounds/weapons/pistol/shot_3.wav"
+  ],
+  "Occlusion": true,
+  "AirAbsorption": true,
+  "Transmission": true,
+  "DistanceAttenuation": true,
+  "Distance": 200,
+  "__references": [],
+  "__version": 1
+}

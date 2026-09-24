@@ -1,0 +1,19 @@
+{
+  "UI": false,
+  "Volume": "1",
+  "Pitch": "0.9 1.1",
+  "Decibels": 70,
+  "SelectionMode": "Random",
+  "Sounds": [
+    "sounds/weapons/bow/arrow_hit_1.wav",
+    "sounds/weapons/bow/arrow_hit_2.wav",
+    "sounds/weapons/bow/arrow_hit_3.wav"
+  ],
+  "Occlusion": true,
+  "AirAbsorption": true,
+  "Transmission": true,
+  "DistanceAttenuation": true,
+  "Distance": 60,
+  "__references": [],
+  "__version": 1
+}

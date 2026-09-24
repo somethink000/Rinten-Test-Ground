@@ -1,0 +1,20 @@
+{
+  "UI": false,
+  "Volume": "0.5",
+  "Pitch": "0.9 1.12",
+  "Decibels": 70,
+  "SelectionMode": "Random",
+  "Sounds": [
+    "sounds/weapons/pistol/shell_1.wav",
+    "sounds/weapons/pistol/shell_2.wav",
+    "sounds/weapons/pistol/shell_3.wav",
+    "sounds/weapons/pistol/shell_4.wav"
+  ],
+  "Occlusion": true,
+  "AirAbsorption": true,
+  "Transmission": true,
+  "DistanceAttenuation": true,
+  "Distance": 12,
+  "__references": [],
+  "__version": 1
+}

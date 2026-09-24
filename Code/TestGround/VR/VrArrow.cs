@@ -16,7 +16,9 @@ namespace TestGround;
 /// </para>
 /// <para>
 /// A stuck arrow can be pulled out with the grip, and one lying about picked
-/// up the same way - either is then in the hand, ready to nock.
+/// up the same way - either is then in the hand, ready to nock. However it was
+/// taken, it stays in the hand while the grip or the trigger is down: the grip
+/// carries it, the trigger draws it - see VrBow.
 /// </para>
 /// </remarks>
 [Title( "VR Arrow" )]
@@ -36,6 +38,8 @@ public sealed class VrArrow : Component, IVrHoldable
 
 	/// <summary>Where the nock sits in the grip's space while the arrow is carried.</summary>
 	[Property] public Vector3 HoldOffset { get; set; }
+
+	[Property] public SoundEvent HitSound { get; set; }
 
 	/// <summary>How long a shot arrow flies before it is given up on, in seconds.</summary>
 	[Property] public float FlightLife { get; set; } = 8.0f;
@@ -61,6 +65,7 @@ public sealed class VrArrow : Component, IVrHoldable
 	protected override void OnStart()
 	{
 		Body ??= Components.Get<Rigidbody>();
+		HitSound ??= ResourceLibrary.Get<SoundEvent>( "sounds/weapons/bow/arrow_hit.sound" );
 		Tags.Add( Tag );
 	}
 
@@ -80,6 +85,8 @@ public sealed class VrArrow : Component, IVrHoldable
 		Follow();
 		return true;
 	}
+
+	public VrButton HeldWith( VrButton taken ) => VrButton.Either;
 
 	public void Release( VrGrabber by, bool isLeft )
 	{
@@ -203,6 +210,7 @@ public sealed class VrArrow : Component, IVrHoldable
 		WorldRotation = Rotation.LookAt( forward, WorldRotation.Up );
 		WorldPosition = tip - forward * Length;
 		State = States.Stuck;
+		if ( HitSound is not null ) Sound.Play( HitSound, hit.HitPosition );
 
 		// Something that moves carries the arrow with it, and is pushed by it.
 		if ( hit.Body.IsValid() && hit.Body.BodyType == PhysicsBodyType.Dynamic )

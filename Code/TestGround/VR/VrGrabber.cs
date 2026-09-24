@@ -76,7 +76,7 @@ public sealed class VrGrabber : Component
 		if ( !holdable.Grab( this, isLeft ) ) return false;
 
 		grip.Holdable = holdable;
-		grip.Button = button;
+		grip.Button = holdable.HeldWith( button );
 		return true;
 	}
 
@@ -146,7 +146,7 @@ public sealed class VrGrabber : Component
 		}
 
 		var reach = GrabVolume( hand, frame );
-		var (body, holdable) = Closest( reach );
+		var (body, holdable) = Closest( reach, grip.IsLeft );
 		var any = body.IsValid() || holdable is not null;
 
 		if ( showSphere )
@@ -174,7 +174,7 @@ public sealed class VrGrabber : Component
 			if ( !holdable.Grab( this, grip.IsLeft ) ) return;
 
 			grip.Holdable = holdable;
-			grip.Button = VrButton.Grip;
+			grip.Button = holdable.HeldWith( VrButton.Grip );
 		}
 		else
 		{
@@ -273,6 +273,9 @@ public sealed class VrGrabber : Component
 	/// </summary>
 	public bool IsPressed( bool isLeft, VrButton button, bool holding )
 	{
+		if ( button == VrButton.Either )
+			return IsPressed( isLeft, VrButton.Grip, holding ) || IsPressed( isLeft, VrButton.Trigger, holding );
+
 		var hand = Hand( isLeft );
 
 		if ( !hand.IsHandTracked )
@@ -337,7 +340,7 @@ public sealed class VrGrabber : Component
 	/// The nearest thing inside the volume, by the point of it nearest the centre:
 	/// a holdable whatever its body is doing, or a dynamic body to steer.
 	/// </summary>
-	private (PhysicsBody Body, IVrHoldable Holdable) Closest( Sphere volume )
+	private (PhysicsBody Body, IVrHoldable Holdable) Closest( Sphere volume, bool isLeft )
 	{
 		PhysicsBody best = null;
 		IVrHoldable bestHoldable = null;
@@ -349,7 +352,9 @@ public sealed class VrGrabber : Component
 			if ( !body.IsValid() ) continue;
 			if ( body == left.Held || body == right.Held ) continue;
 
-			var holdable = go.GetComponentInParent<IVrHoldable>();
+			// The physics hands back the body's object, not the collider's - so
+			// what is reached for is asked what it gives this hand.
+			var holdable = go.GetComponentInParent<IVrHoldable>()?.ReachedFor( isLeft );
 			if ( holdable is not null && ( holdable == left.Holdable || holdable == right.Holdable ) ) continue;
 			if ( holdable is null && body.BodyType != PhysicsBodyType.Dynamic ) continue;
 

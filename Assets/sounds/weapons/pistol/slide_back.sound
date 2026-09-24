@@ -1,0 +1,18 @@
+{
+  "UI": false,
+  "Volume": "0.7",
+  "Pitch": "0.95 1.05",
+  "Decibels": 70,
+  "SelectionMode": "Random",
+  "Sounds": [
+    "sounds/weapons/pistol/slide_back_1.wav",
+    "sounds/weapons/pistol/slide_back_2.wav"
+  ],
+  "Occlusion": true,
+  "AirAbsorption": true,
+  "Transmission": true,
+  "DistanceAttenuation": true,
+  "Distance": 15,
+  "__references": [],
+  "__version": 1
+}

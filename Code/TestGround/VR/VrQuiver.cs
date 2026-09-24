@@ -4,8 +4,8 @@ namespace TestGround;
 
 /// <summary>
 /// Arrows from over the shoulder. While one hand holds a bow, the other reaches
-/// behind the head and squeezes the trigger, and has an arrow - held until the
-/// trigger comes up, nocked if it is brought to the string first.
+/// behind the head and squeezes the grip or the trigger, and has an arrow - held
+/// until both are let go, nocked if it is brought to the string first.
 /// </summary>
 [Title( "VR Quiver" )]
 [Category( "Test Ground" )]
@@ -59,7 +59,7 @@ public sealed class VrQuiver : Component
 	private void TakeArrow( VrGrabber grabber, bool isLeft )
 	{
 		var i = isLeft ? 0 : 1;
-		var pressed = grabber.IsPressed( isLeft, VrButton.Trigger, false );
+		var pressed = grabber.IsPressed( isLeft, VrButton.Either, false );
 		var fresh = pressed && !wasPressed[i];
 		wasPressed[i] = pressed;
 
@@ -78,6 +78,6 @@ public sealed class VrQuiver : Component
 		var go = GameObject.Clone( Arrow, VrGrabber.HoldFrame( isLeft ) );
 		var arrow = go.Components.Get<VrArrow>();
 
-		if ( arrow is null || !grabber.Give( isLeft, arrow, VrButton.Trigger ) ) go.Destroy();
+		if ( arrow is null || !grabber.Give( isLeft, arrow, VrButton.Either ) ) go.Destroy();
 	}
 }

@@ -5,12 +5,13 @@ namespace TestGround;
 /// <summary>
 /// A bow. Taken with the grip it becomes the hand - the controller hides and the
 /// bow rides the grip - and an arrow brought to its string by the other hand is
-/// nocked, drawn with that hand and loosed when its trigger comes up.
+/// nocked. It sits on the string until that hand's trigger is squeezed, is drawn
+/// as far as the hand pulls back while it is, and is loosed when it comes up.
 /// </summary>
 /// <remarks>
 /// Everything the bow knows about its own shape comes from its model: the
 /// attachments nock_rest, nock_drawn and arrow_rest, and the morph "draw" - see
-/// tools/archery/build_archery.py, which makes them.
+/// ~/Documents/Blender/tools/archery/build_archery.py, which makes them.
 /// </remarks>
 [Title( "VR Bow" )]
 [Category( "Test Ground" )]
@@ -42,6 +43,10 @@ public sealed class VrBow : Component, IVrHoldable
 	/// <summary>Less draw than this and the arrow just drops off the string.</summary>
 	[Property, Category( "Shooting" )] public float MinDraw { get; set; } = 0.15f;
 
+	[Property, Category( "Sounds" )] public SoundEvent NockSound { get; set; }
+	[Property, Category( "Sounds" )] public SoundEvent DrawSound { get; set; }
+	[Property, Category( "Sounds" )] public SoundEvent ReleaseSound { get; set; }
+
 	public const string Tag = "vr_bow";
 
 	/// <summary>Whether a hand has it, and which.</summary>
@@ -57,12 +62,17 @@ public sealed class VrBow : Component, IVrHoldable
 	private VrGrabber grabber;
 	private Vector3 nockRest, nockDrawn, arrowRest;
 	private float lastBuzz;
+	private bool drawing;
 
 	protected override void OnStart()
 	{
 		Renderer ??= Components.Get<SkinnedModelRenderer>();
 		Body ??= Components.Get<Rigidbody>();
 		Tags.Add( Tag );
+
+		NockSound ??= ResourceLibrary.Get<SoundEvent>( "sounds/weapons/bow/nock.sound" );
+		DrawSound ??= ResourceLibrary.Get<SoundEvent>( "sounds/weapons/bow/draw.sound" );
+		ReleaseSound ??= ResourceLibrary.Get<SoundEvent>( "sounds/weapons/bow/release.sound" );
 
 		var attachments = Renderer?.Model?.Attachments;
 		nockRest = Point( attachments, "nock_rest", new Vector3( 0, 0.06f, 0.18f ) );
@@ -99,6 +109,7 @@ public sealed class VrBow : Component, IVrHoldable
 		// An arrow on the string stays in the hand that holds it.
 		Nocked?.Unnock();
 		Nocked = null;
+		drawing = false;
 
 		var controllers = by.Components.Get<VrControllers>();
 		controllers?.SetHidden( isLeft, false );
@@ -118,7 +129,7 @@ public sealed class VrBow : Component, IVrHoldable
 	{
 		if ( IsHeld ) Follow();
 
-		if ( Nocked.IsValid() ) Pull();
+		if ( Nocked.IsValid() ) Nock();
 		else Draw = MathX.Approach( Draw, 0, Time.Delta * 12.0f ); // the string snaps back
 
 		Renderer?.Morphs.Set( "draw", Draw, 0 );
@@ -140,17 +151,53 @@ public sealed class VrBow : Component, IVrHoldable
 
 		Nocked = arrow;
 		lastBuzz = 0;
+		drawing = false;
+		Play( NockSound );
 		VrGrabber.Hand( arrowHandLeft ).TriggerHaptics( HapticEffect.SoftImpact, lengthScale: 0.2f, amplitudeScale: 0.5f );
 		return true;
 	}
 
 	/// <summary>
-	/// The nocked arrow on the line from the string at rest to full draw, as far
-	/// back as its hand has pulled it, pointing through the arrow rest.
+	/// The arrow on the string: drawn while its hand's trigger is down, loosed
+	/// when it comes up, and resting on the string until then - off it again if
+	/// the hand carries it away without drawing.
 	/// </summary>
-	private void Pull()
+	private void Nock()
 	{
-		var hand = VrGrabber.HoldFrame( Nocked.HeldLeft ).Position;
+		var left = Nocked.HeldLeft;
+		var trigger = grabber is not null && grabber.IsPressed( left, VrButton.Trigger, drawing );
+
+		if ( trigger )
+		{
+			if ( !drawing ) Play( DrawSound );
+			drawing = true;
+			Pull( VrGrabber.HoldFrame( left ).Position );
+			return;
+		}
+
+		if ( drawing )
+		{
+			Loose();
+			return;
+		}
+
+		if ( VrGrabber.HoldFrame( left ).Position.Distance( NockRest ) > NockRadius * 2.0f )
+		{
+			var arrow = Nocked;
+			Nocked = null;
+			arrow.Unnock();
+			return;
+		}
+
+		Pull( NockRest );
+	}
+
+	/// <summary>
+	/// The nocked arrow on the line from the string at rest to full draw, as far
+	/// back as <paramref name="hand"/> is, pointing through the arrow rest.
+	/// </summary>
+	private void Pull( Vector3 hand )
+	{
 		var rest = NockRest;
 		var back = NockDrawn - rest;
 		var length = back.Length;
@@ -176,6 +223,7 @@ public sealed class VrBow : Component, IVrHoldable
 	{
 		var arrow = Nocked;
 		Nocked = null;
+		drawing = false;
 		if ( !arrow.IsValid() ) return;
 
 		if ( Draw < MinDraw )
@@ -186,8 +234,14 @@ public sealed class VrBow : Component, IVrHoldable
 
 		var aim = arrow.WorldRotation.Forward;
 		arrow.Launch( aim * MaxSpeed * Draw, this );
+		Play( ReleaseSound );
 
 		VrGrabber.Hand( arrow.HeldLeft ).TriggerHaptics( HapticEffect.HardImpact, lengthScale: 0.4f, amplitudeScale: 0.9f );
 		VrGrabber.Hand( HeldLeft ).TriggerHaptics( HapticEffect.HardImpact, lengthScale: 0.3f, amplitudeScale: 0.6f );
+	}
+
+	private void Play( SoundEvent sound )
+	{
+		if ( sound is not null ) Sound.Play( sound, WorldPosition );
 	}
 }
