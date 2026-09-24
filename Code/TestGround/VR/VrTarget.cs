@@ -6,7 +6,7 @@ namespace TestGround;
 /// </summary>
 /// <remarks>
 /// The face is the model's local XY plane, looking along +Z, its centre the
-/// origin - see tools/archery/build_archery.py and its rings.json, which these
+/// origin - see ~/Documents/Blender/tools/archery/build_archery.py and its rings.json, which these
 /// radii are.
 /// </remarks>
 [Title( "VR Target" )]

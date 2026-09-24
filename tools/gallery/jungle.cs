@@ -9,7 +9,7 @@
 // Positions are worked out in Blender's frame, the one grow.py thinks in (x, y
 // along the ground, z up), and turned into the engine's (x, up, -y) on the
 // way out. tools/jungle/ground.json is the ground's height grid and the lines
-// of the stream and the path; tools/jungle/sockets.json is what grow.py wrote
+// of the stream and the path; tools/jungle/sockets.json is what grow.py (~/Documents/Blender/tools/jungle) wrote
 // about each model - its box, and for a tree the frames of its trunk and
 // limbs. Both are read here.
 //
