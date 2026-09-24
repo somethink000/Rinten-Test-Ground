@@ -1,0 +1,97 @@
+{
+  "Steps": [],
+  "Meshes": [
+    {
+      "Name": "magazine",
+      "File": "models/weapons/pistol/magazine.fbx",
+      "Scale": 1,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1,
+  "Material": "",
+  "Materials": [
+    "models/weapons/pistol/pistol_brass.mat",
+    "models/weapons/pistol/pistol_bullet.mat",
+    "models/weapons/pistol/pistol_frame.mat",
+    "models/weapons/pistol/pistol_grip.mat",
+    "models/weapons/pistol/pistol_slide.mat",
+    "models/weapons/pistol/pistol_steel.mat"
+  ],
+  "MaterialRemaps": [
+    {
+      "Surface": "pistol_brass",
+      "Material": "models/weapons/pistol/pistol_brass.mat"
+    },
+    {
+      "Surface": "pistol_bullet",
+      "Material": "models/weapons/pistol/pistol_bullet.mat"
+    },
+    {
+      "Surface": "pistol_frame",
+      "Material": "models/weapons/pistol/pistol_frame.mat"
+    },
+    {
+      "Surface": "pistol_grip",
+      "Material": "models/weapons/pistol/pistol_grip.mat"
+    },
+    {
+      "Surface": "pistol_slide",
+      "Material": "models/weapons/pistol/pistol_slide.mat"
+    },
+    {
+      "Surface": "pistol_steel",
+      "Material": "models/weapons/pistol/pistol_steel.mat"
+    }
+  ],
+  "Clips": [],
+  "Transform": {
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0",
+    "Scale": "1,1,1",
+    "IsIdentity": true
+  },
+  "Mirror": {
+    "Enabled": false,
+    "Axis": "X",
+    "FlipWinding": true,
+    "RemapLeftRight": true
+  },
+  "Joints": [],
+  "LookAtChains": [],
+  "IkChains": [],
+  "WeightLists": [],
+  "Morphs": [],
+  "BodyGroups": [],
+  "Folders": [],
+  "CoarseMeshes": [],
+  "MaterialGroups": [],
+  "Hulls": [],
+  "Surface": "",
+  "Mass": 0,
+  "OverrideBounds": false,
+  "Bounds": {
+    "Mins": "-64,-64,-64",
+    "Maxs": "64,64,64"
+  },
+  "JiggleBones": [],
+  "JiggleColliders": [],
+  "Attachments": [
+    {
+      "Name": "top",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "0,0.087,0",
+      "Rotation": "0,0,0"
+    }
+  ],
+  "Bones": [],
+  "Constraints": [],
+  "__references": [],
+  "__version": 2
+}
