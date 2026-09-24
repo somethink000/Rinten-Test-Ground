@@ -3,10 +3,16 @@ using Rinten.VR;
 namespace TestGround;
 
 /// <summary>
-/// A pistol magazine: lying about, carried, or pushed into a held pistol's grip
-/// by the other hand. It knows how many rounds it has, and shows it - rounds on
-/// top, or the follower.
+/// A magazine: lying about, carried, or pushed into the well of a firearm held in
+/// the other hand - one of its own cartridge only. It knows how many rounds it
+/// has, and shows it - rounds on top, or the follower.
 /// </summary>
+/// <remarks>
+/// Its model's origin is where it sits once seated: the firearm's magazine
+/// attachment - see <see cref="VrFirearm.MagazineWell"/>. It goes in when that
+/// origin comes up into a short column under the well, pointing roughly the
+/// well's way.
+/// </remarks>
 [Title( "VR Magazine" )]
 [Category( "Test Ground" )]
 [Icon( "view_agenda" )]
@@ -18,23 +24,26 @@ public sealed class VrMagazine : Component, IVrHoldable
 	[Property] public Model Loaded { get; set; }
 	[Property] public Model Empty { get; set; }
 
+	/// <summary>What it holds - it only goes into a firearm of the same <see cref="VrFirearm.Cartridge"/>.</summary>
+	[Property] public string Cartridge { get; set; } = "9x19";
+
 	[Property] public int Capacity { get; set; } = 17;
 
 	/// <summary>Where the magazine sits in the grip's space while it is carried.</summary>
 	[Property, Category( "Hold" )] public Vector3 HoldOffset { get; set; } = new( 0, 0, 0.035f );
 	[Property, Category( "Hold" )] public Angles HoldAngles { get; set; }
 
-	/// <summary>How near the well its top has to come to go in.</summary>
-	[Property] public float InsertRadius { get; set; } = 0.06f;
+	/// <summary>How far off the well's line it can be and still go in.</summary>
+	[Property, Category( "Insert" )] public float InsertRadius { get; set; } = 0.045f;
+
+	/// <summary>How far short of seated it goes in: about as far as its top is up from its origin.</summary>
+	[Property, Category( "Insert" )] public float InsertDepth { get; set; } = 0.1f;
 
 	public const string Tag = "vr_magazine";
 
 	public int Rounds { get; private set; } = -1;
 
-	/// <summary>Its top, where the rounds come out, in its own space.</summary>
-	private static readonly Vector3 Top = new( 0, 0.087f, 0 );
-
-	/// <summary>Carried as the pistol's grip is: up the grip's tube, its front out past the fingers.</summary>
+	/// <summary>Carried as a pistol's grip is: up the grip's tube, its front out past the fingers.</summary>
 	private static readonly Rotation InHand = Rotation.LookAt( new Vector3( 0, -1, 0 ), new Vector3( 0, 0, -1 ) );
 
 	private VrGrabber grabber;
@@ -44,8 +53,6 @@ public sealed class VrMagazine : Component, IVrHoldable
 	{
 		Renderer ??= Components.Get<ModelRenderer>();
 		Body ??= Components.Get<Rigidbody>();
-		Loaded ??= Model.Load( "models/weapons/pistol/magazine.mdl" );
-		Empty ??= Model.Load( "models/weapons/pistol/magazine_empty.mdl" );
 		Tags.Add( Tag );
 
 		if ( Rounds < 0 ) Fill( Capacity );
@@ -56,12 +63,10 @@ public sealed class VrMagazine : Component, IVrHoldable
 	{
 		Rounds = rounds.Clamp( 0, Capacity );
 
-		// Asked before OnStart when a pistol drops one it has just made.
+		// Asked before OnStart when a firearm drops one it has just made.
 		Renderer ??= Components.Get<ModelRenderer>();
-		Loaded ??= Model.Load( "models/weapons/pistol/magazine.mdl" );
-		Empty ??= Model.Load( "models/weapons/pistol/magazine_empty.mdl" );
-
-		if ( Renderer.IsValid() ) Renderer.Model = Rounds > 0 ? Loaded : Empty;
+		var model = Rounds > 0 ? Loaded : Empty;
+		if ( Renderer.IsValid() && model is not null ) Renderer.Model = model;
 	}
 
 	public bool Grab( VrGrabber by, bool isLeft )
@@ -86,23 +91,26 @@ public sealed class VrMagazine : Component, IVrHoldable
 
 		Follow();
 
-		// Top first into the grip of a pistol held in the other hand, roughly along it.
-		var top = WorldTransform.PointToWorld( Top );
-
-		foreach ( var pistol in Scene.GetAllComponents<VrPistol>() )
+		foreach ( var firearm in Scene.GetAllComponents<VrFirearm>() )
 		{
-			if ( !pistol.TakesMagazine || pistol.HeldLeft == heldLeft ) continue;
-
-			var well = pistol.MagazineWell;
-			if ( top.Distance( well.Position ) > InsertRadius ) continue;
-			if ( Vector3.Dot( WorldRotation.Up, well.Rotation.Up ) < 0.6f ) continue;
+			if ( firearm.HeldLeft == heldLeft || !firearm.Takes( this ) || !InWell( firearm.MagazineWell ) ) continue;
 
 			grabber.Forget( this );
 			grabber = null;
-			pistol.Insert( Rounds );
+			firearm.Insert( Rounds );
 			GameObject.Destroy();
 			return;
 		}
+	}
+
+	/// <summary>Whether it is under the well and far enough up into it, pointing the well's way.</summary>
+	private bool InWell( Transform well )
+	{
+		if ( Vector3.Dot( WorldRotation.Up, well.Rotation.Up ) < 0.6f ) return false;
+
+		var local = well.WithScale( 1 ).PointToLocal( WorldPosition );
+		var below = -local.y;
+		return below > -0.01f && below < InsertDepth && local.WithY( 0 ).Length < InsertRadius;
 	}
 
 	private void Follow()

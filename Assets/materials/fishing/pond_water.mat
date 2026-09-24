@@ -1,0 +1,29 @@
+{
+  "Shader": "shaders/water.shader",
+  "Features": {
+    "F_NORMAL_MAP": 1,
+    "F_TRANSLUCENT": 1
+  },
+  "Numbers": {
+    "g_vShallowColour": "0.119999997,0.200000003,0.170000002,0",
+    "g_vDeepColour": "0.0250000004,0.0599999987,0.0549999997,0",
+    "g_flDepthFade": "0.699999988,0,0,0",
+    "g_flRoughness": "0.0799999982,0,0,0",
+    "g_flSkyReflection": "0.234000012,0,0,0",
+    "g_flRippleScale": "6,0,0,0",
+    "g_vFlow": "0,0.0500000007,0,0",
+    "g_flRippleStrength": "0.600000024,0,0,0"
+  },
+  "Textures": {},
+  "Tint": "0.70453,0.71074,0.81925,1",
+  "ColorMap": "materials/default/white.png",
+  "Normal": "textures/jungle/water_n.png",
+  "Emission": "materials/default/black.png",
+  "Roughness": 0.048,
+  "Metalness": 0,
+  "EmissionStrength": 0,
+  "PhysicsSurface": "",
+  "AlphaCutoff": 0.5,
+  "__references": [],
+  "__version": 2
+}

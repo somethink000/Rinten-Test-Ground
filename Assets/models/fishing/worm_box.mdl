@@ -1,0 +1,207 @@
+{
+  "Steps": [],
+  "Meshes": [
+    {
+      "Name": "worm_box",
+      "File": "models/fishing/worm_box.fbx",
+      "Scale": 1,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1,
+  "Material": "",
+  "Materials": [
+    "models/fishing/box_tin.mat",
+    "models/fishing/box_paint.mat",
+    "models/fishing/box_soil.mat",
+    "models/fishing/worm.mat",
+    "models/fishing/worm_saddle.mat"
+  ],
+  "MaterialRemaps": [
+    {
+      "Surface": "box_tin",
+      "Material": "models/fishing/box_tin.mat"
+    },
+    {
+      "Surface": "box_paint",
+      "Material": "models/fishing/box_paint.mat"
+    },
+    {
+      "Surface": "box_soil",
+      "Material": "models/fishing/box_soil.mat"
+    },
+    {
+      "Surface": "worm",
+      "Material": "models/fishing/worm.mat"
+    },
+    {
+      "Surface": "worm_saddle",
+      "Material": "models/fishing/worm_saddle.mat"
+    }
+  ],
+  "ArtSurfaces": "Unchosen",
+  "Clips": [
+    {
+      "File": "models/fishing/worm_box_lid.fbx",
+      "Name": "lid",
+      "TakeName": "",
+      "Take": 0,
+      "SubtractFrom": "",
+      "SubtractFrame": -1,
+      "SubtractModelSpace": false,
+      "FirstFrame": -1,
+      "LastFrame": -1,
+      "MotionBone": "",
+      "MotionAcross": false,
+      "MotionUp": false,
+      "AlignTo": "",
+      "AlignFrame": 0,
+      "AlignToFrame": 0,
+      "AlignBone": "",
+      "AlignAcross": false,
+      "AlignUp": false,
+      "SmoothFromStart": 0,
+      "SmoothFromEnd": 0,
+      "LayerFrom": "",
+      "TurnDegrees": 0,
+      "FrameRate": -1,
+      "LoopStart": 0,
+      "Scale": 1,
+      "Looping": false,
+      "Additive": false,
+      "Enabled": true,
+      "Folder": "",
+      "Events": [],
+      "SequenceName": "lid"
+    }
+  ],
+  "Transform": {
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0",
+    "Scale": "1,1,1",
+    "IsIdentity": true
+  },
+  "Mirror": {
+    "Enabled": false,
+    "Axis": "X",
+    "FlipWinding": true,
+    "RemapLeftRight": true
+  },
+  "Joints": [],
+  "LookAtChains": [],
+  "IkChains": [],
+  "WeightLists": [],
+  "Morphs": [],
+  "BodyGroups": [],
+  "Folders": [],
+  "CoarseMeshes": [],
+  "MaterialGroups": [],
+  "Hulls": [],
+  "Surface": "",
+  "Mass": 0,
+  "OverrideBounds": false,
+  "Bounds": {
+    "Mins": "-64,-64,-64",
+    "Maxs": "64,64,64"
+  },
+  "Graph": {
+  "Version": 1,
+  "nodes": [
+    {
+      "_class": "PoseResultNode",
+      "Pose": {
+        "Identifier": "d860f483-7c16-4b47-a608-dcec3ea8f367",
+        "Output": "Result"
+      },
+      "Identifier": "2099bc7c-616e-4487-9b55-a5dc091f2bc2",
+      "Position": "400,0",
+      "Attached": false,
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "AnimationPoseNode",
+      "Time": {
+        "Identifier": "45ea56ed-2113-4275-af2c-225701fd762f",
+        "Output": "Value"
+      },
+      "RemapRangeStart": 0,
+      "RemapRangeEnd": 1,
+      "FixedTime": 0,
+      "UseFramesAsInput": false,
+      "DefaultVariationData": {
+        "AnimationName": "lid"
+      },
+      "Overrides": [],
+      "Identifier": "d860f483-7c16-4b47-a608-dcec3ea8f367",
+      "Position": "0,0",
+      "Attached": false,
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "FloatParameterNode",
+      "ParameterIdentifier": "19818168-e31f-4f64-adfe-f7f753d338ea",
+      "ParameterName": "lid",
+      "Identifier": "45ea56ed-2113-4275-af2c-225701fd762f",
+      "Position": "0,0",
+      "Attached": false,
+      "HandleOffsets": {}
+    }
+  ],
+  "Model": "models/fishing/worm_box.mdl",
+  "Skeleton": "models/fishing/worm_box.mdl",
+  "parameters": [
+    {
+      "Identifier": "19818168-e31f-4f64-adfe-f7f753d338ea",
+      "Type": "Float",
+      "Name": "lid",
+      "Group": "",
+      "AutoReset": false,
+      "DefaultFloat": 0,
+      "Min": 0,
+      "Max": 1,
+      "DefaultBool": false,
+      "DefaultID": "",
+      "EnumTypeName": "",
+      "ExpectedValues": [],
+      "DefaultVector": "0,0,0",
+      "PreviewStartTargetIsSet": false,
+      "PreviewStartTargetIsBone": false,
+      "PreviewStartBone": ""
+    }
+  ],
+  "virtualParameters": []
+},
+  "JiggleBones": [],
+  "JiggleColliders": [],
+  "Attachments": [
+    {
+      "Name": "lid",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "0,0.0445999987,-0.056499999",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    },
+    {
+      "Name": "worms",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "-0.00288999989,0.0376700014,-0.00258000009",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    }
+  ],
+  "Bones": [],
+  "Constraints": [],
+  "__references": [],
+  "__version": 2
+}

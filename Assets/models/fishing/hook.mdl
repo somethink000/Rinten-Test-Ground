@@ -1,0 +1,116 @@
+{
+  "Steps": [],
+  "Meshes": [
+    {
+      "Name": "hook",
+      "File": "models/fishing/hook.fbx",
+      "Scale": 1,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    },
+    {
+      "Name": "hook_worm",
+      "File": "models/fishing/hook_worm.fbx",
+      "Scale": 1,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1,
+  "Material": "",
+  "Materials": [
+    "models/fishing/hook_steel.mat",
+    "models/fishing/worm.mat",
+    "models/fishing/worm_saddle.mat"
+  ],
+  "MaterialRemaps": [
+    {
+      "Surface": "hook_steel",
+      "Material": "models/fishing/hook_steel.mat"
+    },
+    {
+      "Surface": "worm",
+      "Material": "models/fishing/worm.mat"
+    },
+    {
+      "Surface": "worm_saddle",
+      "Material": "models/fishing/worm_saddle.mat"
+    }
+  ],
+  "Clips": [],
+  "Transform": {
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0",
+    "Scale": "1,1,1",
+    "IsIdentity": true
+  },
+  "Mirror": {
+    "Enabled": false,
+    "Axis": "X",
+    "FlipWinding": true,
+    "RemapLeftRight": true
+  },
+  "Joints": [],
+  "LookAtChains": [],
+  "IkChains": [],
+  "WeightLists": [],
+  "Morphs": [],
+  "BodyGroups": [
+    {
+      "Name": "bait",
+      "Enabled": true,
+      "Choices": [
+        {
+          "Name": "none",
+          "Meshes": []
+        },
+        {
+          "Name": "worm",
+          "Meshes": [
+            "hook_worm"
+          ]
+        }
+      ]
+    }
+  ],
+  "Folders": [],
+  "CoarseMeshes": [],
+  "MaterialGroups": [],
+  "Hulls": [],
+  "Surface": "",
+  "Mass": 0,
+  "OverrideBounds": false,
+  "Bounds": {
+    "Mins": "-64,-64,-64",
+    "Maxs": "64,64,64"
+  },
+  "JiggleBones": [],
+  "JiggleColliders": [],
+  "Attachments": [
+    {
+      "Name": "eye",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "0,0,-0",
+      "Rotation": "0,0,0"
+    },
+    {
+      "Name": "point",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "0,-0.0125,-0.0122",
+      "Rotation": "0,0,0"
+    }
+  ],
+  "Bones": [],
+  "Constraints": [],
+  "__references": [],
+  "__version": 2
+}

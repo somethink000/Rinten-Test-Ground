@@ -1,0 +1,113 @@
+{
+  "RootObject": {
+    "__guid": "0417064d-7665-52fa-9da4-0a405cbd114a",
+    "__version": 2,
+    "Flags": 0,
+    "Name": "worm",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "vr_fishing",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkFlags": 0,
+    "NetworkOrphaned": 0,
+    "NetworkTransmit": true,
+    "OwnerTransfer": 1,
+    "Components": [
+      {
+        "__type": "Rinten.ModelRenderer",
+        "__guid": "4ea44e98-5ea8-5445-9c50-015546ef4056",
+        "__enabled": true,
+        "Flags": 0,
+        "BodyGroups": 18446744073709551615,
+        "CreateAttachments": false,
+        "LodBias": 1,
+        "MaterialGroup": null,
+        "MaterialOverride": null,
+        "Materials": null,
+        "Model": "models/fishing/worm.mdl",
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "AfterUILayer": false
+        },
+        "RenderType": "On",
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "Rinten.Rigidbody",
+        "__guid": "6d35e6e9-4411-5e28-8c73-dd26637c0a48",
+        "__enabled": true,
+        "Flags": 0,
+        "AngularDamping": 0,
+        "EnableImpactDamage": false,
+        "EnhancedCcd": false,
+        "Gravity": true,
+        "GravityScale": 1,
+        "LinearDamping": 0,
+        "Locking": {
+          "X": false,
+          "Y": false,
+          "Z": false,
+          "Pitch": false,
+          "Yaw": false,
+          "Roll": false
+        },
+        "MassCenterOverride": "0,0,0",
+        "MassOverride": 0.01,
+        "MotionEnabled": true,
+        "OverrideMassCenter": false,
+        "RigidbodyFlags": 0,
+        "SleepThreshold": 0.05,
+        "StartAsleep": false
+      },
+      {
+        "__type": "Rinten.BoxCollider",
+        "__guid": "5feafec0-b942-52dc-9a15-a09db5ea8f76",
+        "__enabled": true,
+        "Flags": 0,
+        "Center": "0,0,0",
+        "ColliderFlags": 0,
+        "Elasticity": null,
+        "Friction": null,
+        "IsTrigger": false,
+        "RollingResistance": null,
+        "Scale": "0.01,0.01,0.072",
+        "Static": false,
+        "Surface": null,
+        "SurfaceVelocity": "0,0,0"
+      },
+      {
+        "__type": "TestGround.VrWorm",
+        "__guid": "f91c0a8e-098d-595f-98b9-3eed8a90ccab",
+        "__enabled": true,
+        "Flags": 0,
+        "Renderer": {
+          "_type": "component",
+          "component_id": "4ea44e98-5ea8-5445-9c50-015546ef4056",
+          "go": "0417064d-7665-52fa-9da4-0a405cbd114a",
+          "component_type": "ModelRenderer"
+        },
+        "Body": {
+          "_type": "component",
+          "component_id": "6d35e6e9-4411-5e28-8c73-dd26637c0a48",
+          "go": "0417064d-7665-52fa-9da4-0a405cbd114a",
+          "component_type": "Rigidbody"
+        },
+        "HoldOffset": "0,0,-0.02",
+        "HoldAngles": "0,0,0",
+        "BaitReach": 0.05,
+        "Lifetime": 90
+      }
+    ],
+    "Children": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 2,
+  "__references": [],
+  "__version": 2
+}

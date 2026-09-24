@@ -1,0 +1,192 @@
+{
+  "Steps": [],
+  "Meshes": [
+    {
+      "Name": "perch",
+      "File": "models/fishing/perch.fbx",
+      "Scale": 1,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1,
+  "Material": "",
+  "Materials": [
+    "models/fishing/perch_body.mat",
+    "models/fishing/perch_fins.mat"
+  ],
+  "MaterialRemaps": [
+    {
+      "Surface": "perch_body",
+      "Material": "models/fishing/perch_body.mat"
+    },
+    {
+      "Surface": "perch_fins",
+      "Material": "models/fishing/perch_fins.mat"
+    }
+  ],
+  "ArtSurfaces": "Unchosen",
+  "Clips": [
+    {
+      "File": "models/fishing/perch.fbx",
+      "Name": "perch_mouth",
+      "TakeName": "",
+      "Take": 0,
+      "SubtractFrom": "",
+      "SubtractFrame": -1,
+      "SubtractModelSpace": false,
+      "FirstFrame": -1,
+      "LastFrame": -1,
+      "MotionBone": "",
+      "MotionAcross": false,
+      "MotionUp": false,
+      "AlignTo": "",
+      "AlignFrame": 0,
+      "AlignToFrame": 0,
+      "AlignBone": "",
+      "AlignAcross": false,
+      "AlignUp": false,
+      "SmoothFromStart": 0,
+      "SmoothFromEnd": 0,
+      "LayerFrom": "",
+      "TurnDegrees": 0,
+      "FrameRate": -1,
+      "LoopStart": 0,
+      "Scale": 1,
+      "Looping": false,
+      "Additive": false,
+      "Enabled": true,
+      "Folder": "",
+      "Events": [],
+      "SequenceName": "perch_mouth"
+    }
+  ],
+  "Transform": {
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0",
+    "Scale": "1,1,1",
+    "IsIdentity": true
+  },
+  "Mirror": {
+    "Enabled": false,
+    "Axis": "X",
+    "FlipWinding": true,
+    "RemapLeftRight": true
+  },
+  "Joints": [],
+  "LookAtChains": [],
+  "IkChains": [],
+  "WeightLists": [],
+  "Morphs": [],
+  "BodyGroups": [],
+  "Folders": [],
+  "CoarseMeshes": [],
+  "MaterialGroups": [],
+  "Hulls": [],
+  "Surface": "",
+  "Mass": 0,
+  "OverrideBounds": false,
+  "Bounds": {
+    "Mins": "-64,-64,-64",
+    "Maxs": "64,64,64"
+  },
+  "Graph": {
+  "Version": 1,
+  "nodes": [
+    {
+      "_class": "PoseResultNode",
+      "Pose": {
+        "Identifier": "8ddda59b-94ca-4301-ad42-1e9973651622",
+        "Output": "Result"
+      },
+      "Identifier": "f77f66a5-8bfc-4317-ae4d-1a364cd0a967",
+      "Position": "400,0",
+      "Attached": false,
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "AnimationPoseNode",
+      "Time": {
+        "Identifier": "e0d7303e-d23f-4dc6-a71f-20f4d651c2dc",
+        "Output": "Value"
+      },
+      "RemapRangeStart": 0,
+      "RemapRangeEnd": 1,
+      "FixedTime": 0,
+      "UseFramesAsInput": false,
+      "DefaultVariationData": {
+        "AnimationName": "perch_mouth"
+      },
+      "Overrides": [],
+      "Identifier": "8ddda59b-94ca-4301-ad42-1e9973651622",
+      "Position": "0,0",
+      "Attached": false,
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "FloatParameterNode",
+      "ParameterIdentifier": "190ae36a-0615-4037-b449-880633e8119a",
+      "ParameterName": "mouth",
+      "Identifier": "e0d7303e-d23f-4dc6-a71f-20f4d651c2dc",
+      "Position": "0,0",
+      "Attached": false,
+      "HandleOffsets": {}
+    }
+  ],
+  "Model": "models/fishing/perch.mdl",
+  "Skeleton": "models/fishing/perch.mdl",
+  "parameters": [
+    {
+      "Identifier": "190ae36a-0615-4037-b449-880633e8119a",
+      "Type": "Float",
+      "Name": "mouth",
+      "Group": "",
+      "AutoReset": false,
+      "DefaultFloat": 0,
+      "Min": 0,
+      "Max": 1,
+      "DefaultBool": false,
+      "DefaultID": "",
+      "EnumTypeName": "",
+      "ExpectedValues": [],
+      "DefaultVector": "0,0,0",
+      "PreviewStartTargetIsSet": false,
+      "PreviewStartTargetIsBone": false,
+      "PreviewStartBone": ""
+    }
+  ],
+  "virtualParameters": []
+},
+  "JiggleBones": [],
+  "JiggleColliders": [],
+  "Attachments": [
+    {
+      "Name": "mouth",
+      "Enabled": true,
+      "Parent": "spine_0",
+      "Position": "0.000899999985,-0.0469000004,0",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    },
+    {
+      "Name": "hold",
+      "Enabled": true,
+      "Parent": "spine_1",
+      "Position": "0.0339399986,-0.00510000018,0",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    }
+  ],
+  "Bones": [],
+  "Constraints": [],
+  "__references": [],
+  "__version": 2
+}

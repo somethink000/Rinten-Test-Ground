@@ -1,0 +1,192 @@
+{
+  "Steps": [],
+  "Meshes": [
+    {
+      "Name": "carp",
+      "File": "models/fishing/carp.fbx",
+      "Scale": 1,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1,
+  "Material": "",
+  "Materials": [
+    "models/fishing/carp_body.mat",
+    "models/fishing/carp_fins.mat"
+  ],
+  "MaterialRemaps": [
+    {
+      "Surface": "carp_body",
+      "Material": "models/fishing/carp_body.mat"
+    },
+    {
+      "Surface": "carp_fins",
+      "Material": "models/fishing/carp_fins.mat"
+    }
+  ],
+  "ArtSurfaces": "Unchosen",
+  "Clips": [
+    {
+      "File": "models/fishing/carp.fbx",
+      "Name": "carp_mouth",
+      "TakeName": "",
+      "Take": 0,
+      "SubtractFrom": "",
+      "SubtractFrame": -1,
+      "SubtractModelSpace": false,
+      "FirstFrame": -1,
+      "LastFrame": -1,
+      "MotionBone": "",
+      "MotionAcross": false,
+      "MotionUp": false,
+      "AlignTo": "",
+      "AlignFrame": 0,
+      "AlignToFrame": 0,
+      "AlignBone": "",
+      "AlignAcross": false,
+      "AlignUp": false,
+      "SmoothFromStart": 0,
+      "SmoothFromEnd": 0,
+      "LayerFrom": "",
+      "TurnDegrees": 0,
+      "FrameRate": -1,
+      "LoopStart": 0,
+      "Scale": 1,
+      "Looping": false,
+      "Additive": false,
+      "Enabled": true,
+      "Folder": "",
+      "Events": [],
+      "SequenceName": "carp_mouth"
+    }
+  ],
+  "Transform": {
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0",
+    "Scale": "1,1,1",
+    "IsIdentity": true
+  },
+  "Mirror": {
+    "Enabled": false,
+    "Axis": "X",
+    "FlipWinding": true,
+    "RemapLeftRight": true
+  },
+  "Joints": [],
+  "LookAtChains": [],
+  "IkChains": [],
+  "WeightLists": [],
+  "Morphs": [],
+  "BodyGroups": [],
+  "Folders": [],
+  "CoarseMeshes": [],
+  "MaterialGroups": [],
+  "Hulls": [],
+  "Surface": "",
+  "Mass": 0,
+  "OverrideBounds": false,
+  "Bounds": {
+    "Mins": "-64,-64,-64",
+    "Maxs": "64,64,64"
+  },
+  "Graph": {
+  "Version": 1,
+  "nodes": [
+    {
+      "_class": "PoseResultNode",
+      "Pose": {
+        "Identifier": "12894222-74ea-4ea1-a2a4-f09dbc68f6e7",
+        "Output": "Result"
+      },
+      "Identifier": "679121b8-e48d-4763-90a0-cd094e7abf58",
+      "Position": "400,0",
+      "Attached": false,
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "AnimationPoseNode",
+      "Time": {
+        "Identifier": "366608e3-60f1-45d5-ad23-6d7a68d9aabb",
+        "Output": "Value"
+      },
+      "RemapRangeStart": 0,
+      "RemapRangeEnd": 1,
+      "FixedTime": 0,
+      "UseFramesAsInput": false,
+      "DefaultVariationData": {
+        "AnimationName": "carp_mouth"
+      },
+      "Overrides": [],
+      "Identifier": "12894222-74ea-4ea1-a2a4-f09dbc68f6e7",
+      "Position": "0,0",
+      "Attached": false,
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "FloatParameterNode",
+      "ParameterIdentifier": "58e2752f-1707-4905-8d6b-932980649eac",
+      "ParameterName": "mouth",
+      "Identifier": "366608e3-60f1-45d5-ad23-6d7a68d9aabb",
+      "Position": "0,0",
+      "Attached": false,
+      "HandleOffsets": {}
+    }
+  ],
+  "Model": "models/fishing/carp.mdl",
+  "Skeleton": "models/fishing/carp.mdl",
+  "parameters": [
+    {
+      "Identifier": "58e2752f-1707-4905-8d6b-932980649eac",
+      "Type": "Float",
+      "Name": "mouth",
+      "Group": "",
+      "AutoReset": false,
+      "DefaultFloat": 0,
+      "Min": 0,
+      "Max": 1,
+      "DefaultBool": false,
+      "DefaultID": "",
+      "EnumTypeName": "",
+      "ExpectedValues": [],
+      "DefaultVector": "0,0,0",
+      "PreviewStartTargetIsSet": false,
+      "PreviewStartTargetIsBone": false,
+      "PreviewStartBone": ""
+    }
+  ],
+  "virtualParameters": []
+},
+  "JiggleBones": [],
+  "JiggleColliders": [],
+  "Attachments": [
+    {
+      "Name": "mouth",
+      "Enabled": true,
+      "Parent": "spine_0",
+      "Position": "0.00124999997,-0.0631000027,0",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    },
+    {
+      "Name": "hold",
+      "Enabled": true,
+      "Parent": "spine_1",
+      "Position": "0.0422499999,-0.00689999992,0",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    }
+  ],
+  "Bones": [],
+  "Constraints": [],
+  "__references": [],
+  "__version": 2
+}

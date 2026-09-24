@@ -1,0 +1,287 @@
+{
+  "Steps": [],
+  "Meshes": [
+    {
+      "Name": "rod",
+      "File": "models/fishing/rod.fbx",
+      "Scale": 1,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1,
+  "Material": "",
+  "Materials": [
+    "models/fishing/reel_black.mat",
+    "models/fishing/rod_cork.mat",
+    "models/fishing/reel_red.mat",
+    "models/fishing/rod_blank.mat",
+    "models/fishing/rod_wraps.mat",
+    "models/fishing/metal.mat",
+    "models/fishing/rod_line.mat"
+  ],
+  "MaterialRemaps": [
+    {
+      "Surface": "reel_black",
+      "Material": "models/fishing/reel_black.mat"
+    },
+    {
+      "Surface": "rod_cork",
+      "Material": "models/fishing/rod_cork.mat"
+    },
+    {
+      "Surface": "reel_red",
+      "Material": "models/fishing/reel_red.mat"
+    },
+    {
+      "Surface": "rod_blank",
+      "Material": "models/fishing/rod_blank.mat"
+    },
+    {
+      "Surface": "rod_wraps",
+      "Material": "models/fishing/rod_wraps.mat"
+    },
+    {
+      "Surface": "metal",
+      "Material": "models/fishing/metal.mat"
+    },
+    {
+      "Surface": "rod_line",
+      "Material": "models/fishing/rod_line.mat"
+    }
+  ],
+  "ArtSurfaces": "Unchosen",
+  "Clips": [
+    {
+      "File": "models/fishing/rod_bail.fbx",
+      "Name": "bail",
+      "TakeName": "",
+      "Take": 0,
+      "SubtractFrom": "",
+      "SubtractFrame": -1,
+      "SubtractModelSpace": false,
+      "FirstFrame": -1,
+      "LastFrame": -1,
+      "MotionBone": "",
+      "MotionAcross": false,
+      "MotionUp": false,
+      "AlignTo": "",
+      "AlignFrame": 0,
+      "AlignToFrame": 0,
+      "AlignBone": "",
+      "AlignAcross": false,
+      "AlignUp": false,
+      "SmoothFromStart": 0,
+      "SmoothFromEnd": 0,
+      "LayerFrom": "",
+      "TurnDegrees": 0,
+      "FrameRate": -1,
+      "LoopStart": 0,
+      "Scale": 1,
+      "Looping": false,
+      "Additive": false,
+      "Enabled": true,
+      "Folder": "",
+      "Events": [],
+      "SequenceName": "bail"
+    }
+  ],
+  "Transform": {
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0",
+    "Scale": "1,1,1",
+    "IsIdentity": true
+  },
+  "Mirror": {
+    "Enabled": false,
+    "Axis": "X",
+    "FlipWinding": true,
+    "RemapLeftRight": true
+  },
+  "Joints": [],
+  "LookAtChains": [],
+  "IkChains": [],
+  "WeightLists": [],
+  "Morphs": [],
+  "BodyGroups": [],
+  "Folders": [],
+  "CoarseMeshes": [],
+  "MaterialGroups": [],
+  "Hulls": [],
+  "Surface": "",
+  "Mass": 0,
+  "OverrideBounds": false,
+  "Bounds": {
+    "Mins": "-64,-64,-64",
+    "Maxs": "64,64,64"
+  },
+  "Graph": {
+  "Version": 1,
+  "nodes": [
+    {
+      "_class": "PoseResultNode",
+      "Pose": {
+        "Identifier": "eb84c6ba-9c4d-48ad-a658-e7844a8a2b74",
+        "Output": "Result"
+      },
+      "Identifier": "271920a9-06b7-4e71-9c50-6050861e5e6b",
+      "Position": "384,0",
+      "Attached": false,
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "AnimationPoseNode",
+      "Time": {
+        "Identifier": "c03126c2-1fd4-4bca-8cfe-30ff1c65938e",
+        "Output": "Value"
+      },
+      "RemapRangeStart": 0,
+      "RemapRangeEnd": 1,
+      "FixedTime": 0,
+      "UseFramesAsInput": false,
+      "DefaultVariationData": {
+        "AnimationName": "bail"
+      },
+      "Overrides": [],
+      "Identifier": "eb84c6ba-9c4d-48ad-a658-e7844a8a2b74",
+      "Position": "0,0",
+      "Attached": false,
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "FloatParameterNode",
+      "ParameterIdentifier": "fc672be7-65fa-42d4-a2a6-443202d4a1bd",
+      "ParameterName": "bail",
+      "Identifier": "c03126c2-1fd4-4bca-8cfe-30ff1c65938e",
+      "Position": "0,0",
+      "Attached": false,
+      "HandleOffsets": {}
+    }
+  ],
+  "Model": "models/fishing/rod.mdl",
+  "Skeleton": "models/fishing/rod.mdl",
+  "parameters": [
+    {
+      "Identifier": "fc672be7-65fa-42d4-a2a6-443202d4a1bd",
+      "Type": "Float",
+      "Name": "bail",
+      "Group": "",
+      "AutoReset": false,
+      "DefaultFloat": 0,
+      "Min": 0,
+      "Max": 1,
+      "DefaultBool": false,
+      "DefaultID": "",
+      "EnumTypeName": "",
+      "ExpectedValues": [],
+      "DefaultVector": "0,0,0",
+      "PreviewStartTargetIsSet": false,
+      "PreviewStartTargetIsBone": false,
+      "PreviewStartBone": ""
+    }
+  ],
+  "virtualParameters": []
+},
+  "JiggleBones": [],
+  "JiggleColliders": [],
+  "Attachments": [
+    {
+      "Name": "crank_axle",
+      "Enabled": true,
+      "Parent": "rod_0",
+      "Position": "-0.0186000001,0.254500002,-0.0850000009",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    },
+    {
+      "Name": "grip",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "0,0,-0",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    },
+    {
+      "Name": "guide_0",
+      "Enabled": true,
+      "Parent": "rod_2",
+      "Position": "0,0.0171499997,-0.0500000007",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    },
+    {
+      "Name": "guide_1",
+      "Enabled": true,
+      "Parent": "rod_3",
+      "Position": "0,0.0407200009,-0.0329999998",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    },
+    {
+      "Name": "guide_2",
+      "Enabled": true,
+      "Parent": "rod_4",
+      "Position": "0,0.0552599989,-0.023",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    },
+    {
+      "Name": "guide_3",
+      "Enabled": true,
+      "Parent": "rod_5",
+      "Position": "0,0.0661199987,-0.0170000009",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    },
+    {
+      "Name": "guide_4",
+      "Enabled": true,
+      "Parent": "rod_6",
+      "Position": "0,0.0793500021,-0.0130000003",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    },
+    {
+      "Name": "reel_line",
+      "Enabled": true,
+      "Parent": "rod_0",
+      "Position": "0,0.336899996,-0.0631000027",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    },
+    {
+      "Name": "tip",
+      "Enabled": true,
+      "Parent": "rod_7",
+      "Position": "0,0.0960899964,-0.00359999994",
+      "Rotation": "0,0,0",
+      "FacesOneWay": false,
+      "Influences": [],
+      "Folder": ""
+    }
+  ],
+  "Bones": [],
+  "Constraints": [],
+  "__references": [],
+  "__version": 2
+}

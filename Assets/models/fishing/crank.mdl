@@ -1,0 +1,102 @@
+{
+  "Steps": [],
+  "Meshes": [
+    {
+      "Name": "crank",
+      "File": "models/fishing/crank.fbx",
+      "Scale": 1,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1,
+  "Material": "",
+  "Materials": [
+    "models/fishing/reel_black.mat",
+    "models/fishing/rod_cork.mat",
+    "models/fishing/reel_red.mat",
+    "models/fishing/rod_blank.mat",
+    "models/fishing/rod_wraps.mat",
+    "models/fishing/metal.mat",
+    "models/fishing/rod_line.mat"
+  ],
+  "MaterialRemaps": [
+    {
+      "Surface": "reel_black",
+      "Material": "models/fishing/reel_black.mat"
+    },
+    {
+      "Surface": "rod_cork",
+      "Material": "models/fishing/rod_cork.mat"
+    },
+    {
+      "Surface": "reel_red",
+      "Material": "models/fishing/reel_red.mat"
+    },
+    {
+      "Surface": "rod_blank",
+      "Material": "models/fishing/rod_blank.mat"
+    },
+    {
+      "Surface": "rod_wraps",
+      "Material": "models/fishing/rod_wraps.mat"
+    },
+    {
+      "Surface": "metal",
+      "Material": "models/fishing/metal.mat"
+    },
+    {
+      "Surface": "rod_line",
+      "Material": "models/fishing/rod_line.mat"
+    }
+  ],
+  "Clips": [],
+  "Transform": {
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0",
+    "Scale": "1,1,1",
+    "IsIdentity": true
+  },
+  "Mirror": {
+    "Enabled": false,
+    "Axis": "X",
+    "FlipWinding": true,
+    "RemapLeftRight": true
+  },
+  "Joints": [],
+  "LookAtChains": [],
+  "IkChains": [],
+  "WeightLists": [],
+  "Morphs": [],
+  "BodyGroups": [],
+  "Folders": [],
+  "CoarseMeshes": [],
+  "MaterialGroups": [],
+  "Hulls": [],
+  "Surface": "",
+  "Mass": 0,
+  "OverrideBounds": false,
+  "Bounds": {
+    "Mins": "-64,-64,-64",
+    "Maxs": "64,64,64"
+  },
+  "JiggleBones": [],
+  "JiggleColliders": [],
+  "Attachments": [
+    {
+      "Name": "knob",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "-0.0269,-0.044,-0",
+      "Rotation": "0,0,0"
+    }
+  ],
+  "Bones": [],
+  "Constraints": [],
+  "__references": [],
+  "__version": 2
+}

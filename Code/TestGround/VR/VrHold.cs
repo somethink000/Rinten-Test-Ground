@@ -33,8 +33,9 @@ public interface IVrHoldable
 	VrButton HeldWith( VrButton taken ) => taken;
 
 	/// <summary>
-	/// What a hand reaching for this actually takes. A pistol held in the other
-	/// hand gives up its slide, to be racked, rather than itself.
+	/// What a hand reaching for this at <paramref name="at"/> actually takes. A
+	/// firearm held in the other hand gives up the part nearest it - a slide to
+	/// rack, a foregrip - rather than itself.
 	/// </summary>
-	IVrHoldable ReachedFor( bool isLeft ) => this;
+	IVrHoldable ReachedFor( bool isLeft, Vector3 at ) => this;
 }

@@ -1,0 +1,14 @@
+{
+  "Shader": "shaders/complex.shader",
+  "Tint": "0.10,0.14,0.16,1.0",
+  "ColorMap": "",
+  "Normal": "models/weapons/akm/akm_magazine_normal.png",
+  "RoughMetalAmbient": "",
+  "Emission": "",
+  "Roughness": 0.42,
+  "Metalness": 0.82,
+  "EmissionStrength": 0.0,
+  "TwoSided": false,
+  "Blend": "Opaque",
+  "AlphaCutoff": 0.5
+}

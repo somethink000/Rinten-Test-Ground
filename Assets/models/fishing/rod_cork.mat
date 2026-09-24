@@ -1,0 +1,14 @@
+{
+  "Shader": "shaders/complex.shader",
+  "Tint": "1,1,1,1.0",
+  "ColorMap": "models/fishing/rod_cork.png",
+  "Normal": "models/fishing/rod_cork_normal.png",
+  "RoughMetalAmbient": "",
+  "Emission": "",
+  "Roughness": 0.75,
+  "Metalness": 0.0,
+  "EmissionStrength": 0.0,
+  "TwoSided": false,
+  "Blend": "Opaque",
+  "AlphaCutoff": 0.5
+}

@@ -1,9 +1,9 @@
 {
   "RootObject": {
-    "__guid": "7e6e066c-2e86-4442-bb35-3078f9d52650",
+    "__guid": "9abed5ea-4eb2-42bf-8785-06d20e5a9e52",
     "__version": 2,
     "Flags": 0,
-    "Name": "Magazine",
+    "Name": "AKM Magazine",
     "Position": "0,0,0",
     "Rotation": "0,0,0,1",
     "Scale": "1,1,1",
@@ -17,7 +17,7 @@
     "Components": [
       {
         "__type": "Rinten.ModelRenderer",
-        "__guid": "0fac3540-4e7a-475d-95b2-b06162cb354d",
+        "__guid": "b9c9dd78-6a89-4e4f-b5e3-67dfb0e95df6",
         "__enabled": true,
         "Flags": 0,
         "BodyGroups": 18446744073709551615,
@@ -26,7 +26,7 @@
         "MaterialGroup": null,
         "MaterialOverride": null,
         "Materials": null,
-        "Model": "models/weapons/pistol/magazine.mdl",
+        "Model": "models/weapons/akm/magazine.mdl",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -43,7 +43,7 @@
       },
       {
         "__type": "Rinten.Rigidbody",
-        "__guid": "5067ff8b-1dd7-455d-abea-0a495148bdd0",
+        "__guid": "4cf77076-ff6a-44ab-923e-7d9131cf6427",
         "__enabled": true,
         "Flags": 0,
         "AngularDamping": 0,
@@ -62,7 +62,7 @@
           "Roll": false
         },
         "MassCenterOverride": "0,0,0",
-        "MassOverride": 0.25,
+        "MassOverride": 0.33,
         "MinImpactDamageSpeed": 12.5,
         "MotionEnabled": true,
         "OnComponentDestroy": null,
@@ -78,10 +78,10 @@
       },
       {
         "__type": "Rinten.BoxCollider",
-        "__guid": "3e93d108-c6e0-48f1-bcf0-4c3d4cdfa365",
+        "__guid": "220551f4-d9fd-428b-b95b-d4b9cf3875e9",
         "__enabled": true,
         "Flags": 0,
-        "Center": "0,0.0439999998,0",
+        "Center": "0,-0.081,-0.041",
         "ColliderFlags": 0,
         "Elasticity": null,
         "Friction": null,
@@ -97,28 +97,28 @@
         "OnTriggerEnter": null,
         "OnTriggerExit": null,
         "RollingResistance": null,
-        "Scale": "0.0240000002,0.0900000036,0.0359999985",
+        "Scale": "0.034,0.175,0.142",
         "Static": false,
         "Surface": null,
         "SurfaceVelocity": "0,0,0"
       },
       {
         "__type": "TestGround.VrMagazine",
-        "__guid": "6ec70e25-824b-45bd-b62e-6210fab2dad6",
+        "__guid": "2d1a7567-9b13-41cb-8b1e-6e8a4cbde6cc",
         "__enabled": true,
         "Flags": 0,
         "Body": {
           "_type": "component",
-          "component_id": "5067ff8b-1dd7-455d-abea-0a495148bdd0",
-          "go": "7e6e066c-2e86-4442-bb35-3078f9d52650",
+          "component_id": "4cf77076-ff6a-44ab-923e-7d9131cf6427",
+          "go": "9abed5ea-4eb2-42bf-8785-06d20e5a9e52",
           "component_type": "Rigidbody"
         },
-        "Capacity": 17,
-        "Empty": "models/weapons/pistol/magazine_empty.mdl",
+        "Capacity": 30,
+        "Empty": "models/weapons/akm/magazine_empty.mdl",
         "HoldAngles": "0,0,0",
-        "HoldOffset": "0,0,0.0350000001",
-        "InsertRadius": 0.045,
-        "Loaded": "models/weapons/pistol/magazine.mdl",
+        "HoldOffset": "0,0,-0.09",
+        "InsertRadius": 0.05,
+        "Loaded": "models/weapons/akm/magazine.mdl",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -127,12 +127,12 @@
         "OnComponentUpdate": null,
         "Renderer": {
           "_type": "component",
-          "component_id": "0fac3540-4e7a-475d-95b2-b06162cb354d",
-          "go": "7e6e066c-2e86-4442-bb35-3078f9d52650",
+          "component_id": "b9c9dd78-6a89-4e4f-b5e3-67dfb0e95df6",
+          "go": "9abed5ea-4eb2-42bf-8785-06d20e5a9e52",
           "component_type": "ModelRenderer"
         },
-        "Cartridge": "9x19",
-        "InsertDepth": 0.1
+        "Cartridge": "7.62x39",
+        "InsertDepth": 0.06
       }
     ],
     "Children": []

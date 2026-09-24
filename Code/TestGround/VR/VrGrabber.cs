@@ -354,7 +354,7 @@ public sealed class VrGrabber : Component
 
 			// The physics hands back the body's object, not the collider's - so
 			// what is reached for is asked what it gives this hand.
-			var holdable = go.GetComponentInParent<IVrHoldable>()?.ReachedFor( isLeft );
+			var holdable = go.GetComponentInParent<IVrHoldable>()?.ReachedFor( isLeft, volume.Center );
 			if ( holdable is not null && ( holdable == left.Holdable || holdable == right.Holdable ) ) continue;
 			if ( holdable is null && body.BodyType != PhysicsBodyType.Dynamic ) continue;
 

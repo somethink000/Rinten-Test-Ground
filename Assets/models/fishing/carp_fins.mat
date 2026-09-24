@@ -1,0 +1,14 @@
+{
+  "Shader": "shaders/complex.shader",
+  "Tint": "1,1,1,1.0",
+  "ColorMap": "models/fishing/carp_fins.png",
+  "Normal": "",
+  "RoughMetalAmbient": "",
+  "Emission": "",
+  "Roughness": 0.5,
+  "Metalness": 0.0,
+  "EmissionStrength": 0.0,
+  "TwoSided": true,
+  "Blend": "Opaque",
+  "AlphaCutoff": 0.5
+}

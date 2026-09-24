@@ -257,7 +257,6 @@
               "__enabled": true,
               "Flags": 0,
               "Bottom": 0.95,
-              "Magazine": null,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
@@ -294,7 +293,7 @@
               "BackgroundColor": "0.043,0.047,0.058,1",
               "ClearFlags": "All",
               "EnablePostProcessing": true,
-              "FieldOfView": 70,
+              "FieldOfView": 120,
               "FovAxis": "Horizontal",
               "IsMainCamera": true,
               "OnComponentDestroy": null,
@@ -1174,6 +1173,293 @@
       "Components": [],
       "Children": [
         {
+          "__guid": "c2383e31-5b98-4d91-a7b9-93b87ac92b6a",
+          "__version": 2,
+          "__Prefab": "prefabs/vr/akm/akm.prefab",
+          "__PrefabInstancePatch": {
+            "AddedObjects": [
+              {
+                "Id": {
+                  "Type": "GameObject",
+                  "IdValue": "3621e3a0-bd36-40d8-ba34-b7acf529d75e"
+                },
+                "Parent": {
+                  "Type": "GameObject",
+                  "IdValue": "2e7849dd-73cd-4f3f-9c65-6c8bb3c3857a"
+                },
+                "PreviousElement": {
+                  "Type": "GameObject",
+                  "IdValue": "5baac3e2-83a5-4c78-a87f-3f31a20ed57f"
+                },
+                "ContainerProperty": "Children",
+                "IsContainerArray": true,
+                "Data": {
+                  "__guid": "3621e3a0-bd36-40d8-ba34-b7acf529d75e",
+                  "__version": 2,
+                  "Flags": 0,
+                  "Name": "grip",
+                  "Position": "0,0,0",
+                  "Rotation": "0,0,0,1",
+                  "Scale": "1,1,1",
+                  "Tags": "",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkFlags": 0,
+                  "NetworkOrphaned": 0,
+                  "NetworkTransmit": true,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": []
+                }
+              },
+              {
+                "Id": {
+                  "Type": "GameObject",
+                  "IdValue": "14e6dc74-81b1-427f-ab6f-dd6a49b0ef15"
+                },
+                "Parent": {
+                  "Type": "GameObject",
+                  "IdValue": "2e7849dd-73cd-4f3f-9c65-6c8bb3c3857a"
+                },
+                "PreviousElement": {
+                  "Type": "GameObject",
+                  "IdValue": "3621e3a0-bd36-40d8-ba34-b7acf529d75e"
+                },
+                "ContainerProperty": "Children",
+                "IsContainerArray": true,
+                "Data": {
+                  "__guid": "14e6dc74-81b1-427f-ab6f-dd6a49b0ef15",
+                  "__version": 2,
+                  "Flags": 0,
+                  "Name": "foregrip",
+                  "Position": "0,0,0",
+                  "Rotation": "0,0,0,1",
+                  "Scale": "1,1,1",
+                  "Tags": "",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkFlags": 0,
+                  "NetworkOrphaned": 0,
+                  "NetworkTransmit": true,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": []
+                }
+              },
+              {
+                "Id": {
+                  "Type": "GameObject",
+                  "IdValue": "36173c7c-6ed5-4e99-a7d0-3f9b287b3a56"
+                },
+                "Parent": {
+                  "Type": "GameObject",
+                  "IdValue": "2e7849dd-73cd-4f3f-9c65-6c8bb3c3857a"
+                },
+                "PreviousElement": {
+                  "Type": "GameObject",
+                  "IdValue": "14e6dc74-81b1-427f-ab6f-dd6a49b0ef15"
+                },
+                "ContainerProperty": "Children",
+                "IsContainerArray": true,
+                "Data": {
+                  "__guid": "36173c7c-6ed5-4e99-a7d0-3f9b287b3a56",
+                  "__version": 2,
+                  "Flags": 0,
+                  "Name": "muzzle",
+                  "Position": "0,0,0",
+                  "Rotation": "0,0,0,1",
+                  "Scale": "1,1,1",
+                  "Tags": "",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkFlags": 0,
+                  "NetworkOrphaned": 0,
+                  "NetworkTransmit": true,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": []
+                }
+              },
+              {
+                "Id": {
+                  "Type": "GameObject",
+                  "IdValue": "6db92878-eb65-4ed0-add9-e87b1e6282a1"
+                },
+                "Parent": {
+                  "Type": "GameObject",
+                  "IdValue": "2e7849dd-73cd-4f3f-9c65-6c8bb3c3857a"
+                },
+                "PreviousElement": {
+                  "Type": "GameObject",
+                  "IdValue": "36173c7c-6ed5-4e99-a7d0-3f9b287b3a56"
+                },
+                "ContainerProperty": "Children",
+                "IsContainerArray": true,
+                "Data": {
+                  "__guid": "6db92878-eb65-4ed0-add9-e87b1e6282a1",
+                  "__version": 2,
+                  "Flags": 0,
+                  "Name": "eject",
+                  "Position": "0,0,0",
+                  "Rotation": "0,0,0,1",
+                  "Scale": "1,1,1",
+                  "Tags": "",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkFlags": 0,
+                  "NetworkOrphaned": 0,
+                  "NetworkTransmit": true,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": []
+                }
+              },
+              {
+                "Id": {
+                  "Type": "GameObject",
+                  "IdValue": "7c480d48-a636-47ef-8eda-1867064cc85a"
+                },
+                "Parent": {
+                  "Type": "GameObject",
+                  "IdValue": "2e7849dd-73cd-4f3f-9c65-6c8bb3c3857a"
+                },
+                "PreviousElement": {
+                  "Type": "GameObject",
+                  "IdValue": "6db92878-eb65-4ed0-add9-e87b1e6282a1"
+                },
+                "ContainerProperty": "Children",
+                "IsContainerArray": true,
+                "Data": {
+                  "__guid": "7c480d48-a636-47ef-8eda-1867064cc85a",
+                  "__version": 2,
+                  "Flags": 0,
+                  "Name": "magazine",
+                  "Position": "0,0,0",
+                  "Rotation": "0,0,0,1",
+                  "Scale": "1,1,1",
+                  "Tags": "",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkFlags": 0,
+                  "NetworkOrphaned": 0,
+                  "NetworkTransmit": true,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": []
+                }
+              }
+            ],
+            "RemovedObjects": [],
+            "PropertyOverrides": [
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "2e7849dd-73cd-4f3f-9c65-6c8bb3c3857a"
+                },
+                "Property": "Name",
+                "Value": "AKM"
+              },
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "2e7849dd-73cd-4f3f-9c65-6c8bb3c3857a"
+                },
+                "Property": "Position",
+                "Value": "0.648911119,0.948936105,-1.04561555"
+              },
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "2e7849dd-73cd-4f3f-9c65-6c8bb3c3857a"
+                },
+                "Property": "Rotation",
+                "Value": "0,0,0.72563988,0.688074648"
+              },
+              {
+                "Target": {
+                  "Type": "Component",
+                  "IdValue": "7e4a19c6-c7e6-4e63-a6f6-4cb5aaeea3dd"
+                },
+                "Property": "Center",
+                "Value": "-0.0123547958,0.0097075887,0.00211837143"
+              },
+              {
+                "Target": {
+                  "Type": "Component",
+                  "IdValue": "7e4a19c6-c7e6-4e63-a6f6-4cb5aaeea3dd"
+                },
+                "Property": "Scale",
+                "Value": "0.0310405288,0.10058482,0.0745298564"
+              },
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "5baac3e2-83a5-4c78-a87f-3f31a20ed57f"
+                },
+                "Property": "Name",
+                "Value": "foregrip"
+              },
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "5baac3e2-83a5-4c78-a87f-3f31a20ed57f"
+                },
+                "Property": "Position",
+                "Value": "0,0,0"
+              },
+              {
+                "Target": {
+                  "Type": "Component",
+                  "IdValue": "e1b4f2e2-dc25-4c31-876c-f53dad791a10"
+                },
+                "Property": "Center",
+                "Value": "0,0,0"
+              },
+              {
+                "Target": {
+                  "Type": "Component",
+                  "IdValue": "e1b4f2e2-dc25-4c31-876c-f53dad791a10"
+                },
+                "Property": "Scale",
+                "Value": "0.075000003,0.0900000036,0.0900000036"
+              }
+            ],
+            "MovedObjects": [
+              {
+                "Id": {
+                  "Type": "GameObject",
+                  "IdValue": "e8499480-7a7f-4840-85b7-43a33c59df0d"
+                },
+                "NewParent": {
+                  "Type": "GameObject",
+                  "IdValue": "2e7849dd-73cd-4f3f-9c65-6c8bb3c3857a"
+                },
+                "NewContainerProperty": "Children",
+                "IsNewContainerArray": true,
+                "NewPreviousElement": {
+                  "Type": "GameObject",
+                  "IdValue": "7c480d48-a636-47ef-8eda-1867064cc85a"
+                }
+              }
+            ]
+          },
+          "__PrefabIdToInstanceId": {
+            "2e7849dd-73cd-4f3f-9c65-6c8bb3c3857a": "c2383e31-5b98-4d91-a7b9-93b87ac92b6a",
+            "a3ed40e9-0d17-4e3b-8e60-c0a5cf6e3e55": "7c807c65-cb54-41aa-8f59-2efbc70fc148",
+            "5baac3e2-83a5-4c78-a87f-3f31a20ed57f": "8c65fe8f-54f4-4fc7-8780-6b93fdf6b58d",
+            "e8499480-7a7f-4840-85b7-43a33c59df0d": "a22532b0-7c88-8350-a1a8-4b40a79e5da5",
+            "d16bf8bf-118a-44e0-8a1e-cc5bd3bc5907": "b30d82f9-4d44-49c7-8dd0-98c0d504d23b",
+            "a0b2d5cd-90ee-4ee7-963e-8f082f817e88": "5f220b01-9232-42ed-a113-553910914795",
+            "cf0e96f3-8f48-4ec8-97e0-0da3a232f5c1": "b59d0d65-37b4-4c38-bd37-fbe869d22599",
+            "6ec9c77a-bb23-49dd-a443-e5bc4c019a7b": "a6b0b3ff-4696-81f7-b973-23ce0a7b0297",
+            "7e4a19c6-c7e6-4e63-a6f6-4cb5aaeea3dd": "28a0b36e-76b9-45c2-a7b8-0e7bb3c70b58",
+            "e1b4f2e2-dc25-4c31-876c-f53dad791a10": "65c5e8b7-1524-4f4f-93f8-0e3f87a6b0d1",
+            "0e82b69f-b36a-4b0e-b5f1-bb1af9ff4a8d": "0e922870-04ed-878b-8cf9-1aa9ae71f4d0",
+            "9aecdb8d-0f71-4920-ab34-f2fa8f1a5f9a": "8a1c8a6a-2f01-81d6-8fd6-5f2562b27199",
+            "86bb3ba6-0ff5-461f-97eb-f5c62d63d500": "5dfad31c-b440-88ea-b627-bece1e5605f3"
+          }
+        },
+        {
           "__guid": "aeeecd9d-9310-412c-859c-142ae9427b8d",
           "__version": 2,
           "Flags": 0,
@@ -1195,7 +1481,7 @@
               "__version": 2,
               "Flags": 0,
               "Name": "Table",
-              "Position": "0.25,-0.949999988,-1.14999998",
+              "Position": "0.199999988,-0.974999964,0",
               "Rotation": "-0,0,0,1",
               "Scale": "1,1,1",
               "Tags": "",
@@ -1585,14 +1871,6 @@
                       "Type": "GameObject",
                       "IdValue": "6f53328d-472b-4195-bb0e-0843b4d8a33b"
                     },
-                    "Property": "Position",
-                    "Value": "-0.00679022074,0.0103290081,-1.14999974"
-                  },
-                  {
-                    "Target": {
-                      "Type": "GameObject",
-                      "IdValue": "6f53328d-472b-4195-bb0e-0843b4d8a33b"
-                    },
                     "Property": "Rotation",
                     "Value": "-0.49999997,0.49999997,-0.49999997,0.49999997"
                   }
@@ -1606,58 +1884,10 @@
                 "afb5ef68-9a57-4523-981d-bb86e58a45ab": "a15fb9df-d43a-409c-a575-8b3078f43ef8",
                 "fc052259-a806-4671-a4e0-1051c7ab4668": "eef2d99b-bb22-4ec3-a892-87bfe0717659",
                 "2e74f732-e699-4dca-9768-103454c9c8ba": "b0a71dd6-b728-4696-a819-46f044981245",
-                "b88de800-fb3e-4640-8001-83d1f8332fa5": "85a3541e-bb8a-4bc3-832c-07fa1ee0a819",
+                "b88de800-fb3e-4640-8001-83d1f8332fa5": "538a4646-3273-8b37-8a3f-8b0f9d3be055",
                 "dc381410-bf7f-4d07-aec8-0e0fba9825ba": "d9479b4f-6fd6-48a5-8ce2-f7db3cdef717",
                 "2236b748-d332-4659-b8b5-4fe389c2d0c5": "f3f15ffd-3e39-4fc2-a7d5-a5823864fd13",
-                "8870bdf7-0d74-4a1e-aab9-b4375ec91bc7": "9d52d3cb-4097-4d3a-904b-c88dc2d5c11f"
-              }
-            },
-            {
-              "__guid": "9ab455b8-610d-4667-accc-8346aeeb414f",
-              "__version": 2,
-              "__Prefab": "prefabs/vr/pistol/pistol.prefab",
-              "__PrefabInstancePatch": {
-                "AddedObjects": [],
-                "RemovedObjects": [],
-                "PropertyOverrides": [
-                  {
-                    "Target": {
-                      "Type": "GameObject",
-                      "IdValue": "6f53328d-472b-4195-bb0e-0843b4d8a33b"
-                    },
-                    "Property": "Name",
-                    "Value": "Pistol"
-                  },
-                  {
-                    "Target": {
-                      "Type": "GameObject",
-                      "IdValue": "6f53328d-472b-4195-bb0e-0843b4d8a33b"
-                    },
-                    "Property": "Position",
-                    "Value": "0.25,0.0103290081,-1.14999974"
-                  },
-                  {
-                    "Target": {
-                      "Type": "GameObject",
-                      "IdValue": "6f53328d-472b-4195-bb0e-0843b4d8a33b"
-                    },
-                    "Property": "Rotation",
-                    "Value": "-0.49999997,0.49999997,-0.49999997,0.49999997"
-                  }
-                ],
-                "MovedObjects": []
-              },
-              "__PrefabIdToInstanceId": {
-                "6f53328d-472b-4195-bb0e-0843b4d8a33b": "9ab455b8-610d-4667-accc-8346aeeb414f",
-                "0629bc46-3d3b-488a-b7d9-22a9ced0e4a0": "bda5ded5-fc80-4c36-8c7b-2e97b5208449",
-                "b04ff724-4889-4f9a-a0dd-007b50852cb4": "212f2cad-3541-4a40-9de7-d960f9181806",
-                "afb5ef68-9a57-4523-981d-bb86e58a45ab": "d10b35c3-613e-431d-97f9-d1f9cc427b94",
-                "fc052259-a806-4671-a4e0-1051c7ab4668": "4473a131-ebd6-4461-99ed-2fa1968ede00",
-                "2e74f732-e699-4dca-9768-103454c9c8ba": "ea623583-ad68-41bf-a8db-dd9ce398086c",
-                "b88de800-fb3e-4640-8001-83d1f8332fa5": "970a2c61-0ea5-49be-847d-416b2a0d7f7f",
-                "dc381410-bf7f-4d07-aec8-0e0fba9825ba": "3c2ba982-1da2-41b1-876e-185be67124dc",
-                "2236b748-d332-4659-b8b5-4fe389c2d0c5": "d6048aca-9057-4125-b214-347e4c60299f",
-                "8870bdf7-0d74-4a1e-aab9-b4375ec91bc7": "bb2ac0d8-17a7-4c09-bcfc-231ce3584135"
+                "8870bdf7-0d74-4a1e-aab9-b4375ec91bc7": "a487ca24-6ffe-8d8d-afae-fb4b88dfcf16"
               }
             },
             {
@@ -1682,7 +1912,7 @@
                       "IdValue": "7e6e066c-2e86-4442-bb35-3078f9d52650"
                     },
                     "Property": "Position",
-                    "Value": "0.413209766,-0.0216709375,-1.14999974"
+                    "Value": "0.419999957,-0.0319999456,0"
                   },
                   {
                     "Target": {
@@ -1725,7 +1955,7 @@
                       "IdValue": "7e6e066c-2e86-4442-bb35-3078f9d52650"
                     },
                     "Property": "Position",
-                    "Value": "0.483209789,-0.0216709375,-1.14999974"
+                    "Value": "0.49000001,-0.0319999456,0"
                   },
                   {
                     "Target": {
@@ -1768,7 +1998,7 @@
                       "IdValue": "7e6e066c-2e86-4442-bb35-3078f9d52650"
                     },
                     "Property": "Position",
-                    "Value": "0.553209782,-0.0216709375,-1.14999974"
+                    "Value": "0.560000002,-0.0319999456,0"
                   },
                   {
                     "Target": {
@@ -2213,30 +2443,6 @@
                     },
                     "Property": "Rotation",
                     "Value": "0,0,-0.707106769,0.707106769"
-                  },
-                  {
-                    "Target": {
-                      "Type": "Component",
-                      "IdValue": "be12657d-67c6-4073-bab6-3e0cdffb7777"
-                    },
-                    "Property": "DrawSound",
-                    "Value": null
-                  },
-                  {
-                    "Target": {
-                      "Type": "Component",
-                      "IdValue": "be12657d-67c6-4073-bab6-3e0cdffb7777"
-                    },
-                    "Property": "NockSound",
-                    "Value": null
-                  },
-                  {
-                    "Target": {
-                      "Type": "Component",
-                      "IdValue": "be12657d-67c6-4073-bab6-3e0cdffb7777"
-                    },
-                    "Property": "ReleaseSound",
-                    "Value": null
                   }
                 ],
                 "MovedObjects": []
@@ -4132,6 +4338,442 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "__guid": "a76c0c73-8ac1-584c-b2ae-f11fc3c8375c",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Fishing",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "cd65cec9-3c1e-53ec-8623-fcb433cec0ed",
+          "__version": 2,
+          "__Prefab": "prefabs/vr/fishing/pond.prefab",
+          "__PrefabInstancePatch": {
+            "AddedObjects": [],
+            "RemovedObjects": [],
+            "PropertyOverrides": [
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "868309a3-76de-53d9-8a77-5e5cc8c298b0"
+                },
+                "Property": "Name",
+                "Value": "Pond"
+              },
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "868309a3-76de-53d9-8a77-5e5cc8c298b0"
+                },
+                "Property": "Position",
+                "Value": "0,0.949999988,2.3499999"
+              }
+            ],
+            "MovedObjects": []
+          },
+          "__PrefabIdToInstanceId": {
+            "868309a3-76de-53d9-8a77-5e5cc8c298b0": "cd65cec9-3c1e-53ec-8623-fcb433cec0ed",
+            "e6a07811-2bef-5d62-84f5-7ba1de97ece4": "d42709b1-68a0-5307-94ab-b73c766efc6e",
+            "d940a05a-5b27-594b-8fb1-a681b0ee00b2": "3212c559-042a-5b05-aa35-ea135f19fa21",
+            "2c27b01f-563d-515f-9ff5-7665580eeade": "9d61d91f-e326-55ce-b7e2-e4c1a271ba0a",
+            "7b24de4f-0bdc-50a6-be13-6a29f8272923": "17a90ddf-c3bd-5c1f-a688-c11bf62b07a8",
+            "6dd08258-8214-5916-ad80-be3ce48805f1": "ca6354e3-9bd8-535d-a7f0-80a9bbcfabdf",
+            "95a47be3-1d7a-54ed-88a0-a2db9d21a589": "6513b0df-7e94-5af8-ba9d-f985b2b36ca9",
+            "3c214020-98f8-52d3-a5dc-1e7e4b72281b": "3961fe9a-fb16-5dea-be0c-7f25758d6a12",
+            "bcb5bdd8-7cf9-5a59-b272-fb2ba3baeb2f": "7829d3d1-c443-5b78-a8a1-309bc422a1e2",
+            "cbbaca87-2b5f-5d33-8cfd-a75a2aef1d53": "415e7d13-ca48-515e-9f93-313382f8886b",
+            "0844a525-a4ab-5e67-be21-23531aa59b9f": "59826842-1572-51ef-ae53-a938642fc29e",
+            "d189f6c0-4ace-58f6-b992-8325a6562342": "426b3494-dc10-5071-81c4-7bf30b5a8792",
+            "3132bd04-7d94-534b-beaf-b3c56f2c5fab": "f3046ff5-60aa-5d7e-8132-ed7ebf703a82",
+            "a7503e64-9250-5a80-8a18-fac698a8d2b8": "0f26e4dc-8ba3-503c-ad68-58badd63dc50",
+            "16b1db58-c32e-583e-a097-0477ada3dbba": "0002a2ad-387b-5fd6-b210-f0f6403ecb64",
+            "ea2a6b62-7009-58b3-a259-d4e353e8b4d5": "ecded37f-e160-552b-8cd8-3f560b6b6e5b",
+            "1cc07c40-f81b-5f1c-bfa2-4411e32e1399": "0f2ede88-39fa-56dc-a127-0c7de7a00240",
+            "6ad2e00e-1ce0-5f8a-83fa-f7124a40e121": "d87019f9-c2ba-56e5-8818-e6981d01c1ab",
+            "5e131fc2-e045-5021-b46e-e699dfe14dac": "e2b6dbf1-4b14-5855-8617-a8e9ece22109",
+            "76c54ffb-1ace-5cd6-9b16-1eec3f217d56": "b6aa0c75-aa6c-5ab4-9c09-45d7fd88afba"
+          }
+        },
+        {
+          "__guid": "265b3c1b-15d2-57e1-9b61-4769cae944c6",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Rod stand",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [],
+          "Children": [
+            {
+              "__guid": "d93fe6f4-1deb-5848-bea7-74ce0f31432d",
+              "__version": 2,
+              "Flags": 0,
+              "Name": "Front rest",
+              "Position": "2.35615683,0.545260489,1.27192152",
+              "Rotation": "0,0,0,1",
+              "Scale": "0.0399999991,1.09052098,0.0399999991",
+              "Tags": "",
+              "Enabled": true,
+              "NetworkMode": 2,
+              "NetworkFlags": 0,
+              "NetworkOrphaned": 0,
+              "NetworkTransmit": true,
+              "OwnerTransfer": 1,
+              "Components": [
+                {
+                  "__type": "Rinten.ModelRenderer",
+                  "__guid": "6dc22793-afa7-58d4-bda5-f0f8ebf3e536",
+                  "__enabled": true,
+                  "Flags": 0,
+                  "BodyGroups": 18446744073709551615,
+                  "CreateAttachments": false,
+                  "LodBias": 1,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Materials": null,
+                  "Model": "models/dev/box.mdl",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "RenderOptions": {
+                    "GameLayer": true,
+                    "OverlayLayer": false,
+                    "AfterUILayer": false
+                  },
+                  "RenderType": "On",
+                  "Tint": "0.45,0.33,0.2,1"
+                },
+                {
+                  "__type": "Rinten.BoxCollider",
+                  "__guid": "1d260dcf-66ca-58b2-9947-805caa197e99",
+                  "__enabled": true,
+                  "Flags": 0,
+                  "Center": "0,0,0",
+                  "ColliderFlags": 0,
+                  "Elasticity": null,
+                  "Friction": null,
+                  "IsTrigger": false,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "OnObjectTriggerEnter": null,
+                  "OnObjectTriggerExit": null,
+                  "OnTriggerEnter": null,
+                  "OnTriggerExit": null,
+                  "RollingResistance": null,
+                  "Scale": "1,1,1",
+                  "Static": false,
+                  "Surface": null,
+                  "SurfaceVelocity": "0,0,0"
+                }
+              ],
+              "Children": []
+            },
+            {
+              "__guid": "3638e25e-c587-5562-b314-7204c1617d00",
+              "__version": 2,
+              "Flags": 0,
+              "Name": "Back rest",
+              "Position": "2.87192154,0.46236974,1.01403928",
+              "Rotation": "0,0,0,1",
+              "Scale": "0.0399999991,0.92473948,0.0399999991",
+              "Tags": "",
+              "Enabled": true,
+              "NetworkMode": 2,
+              "NetworkFlags": 0,
+              "NetworkOrphaned": 0,
+              "NetworkTransmit": true,
+              "OwnerTransfer": 1,
+              "Components": [
+                {
+                  "__type": "Rinten.ModelRenderer",
+                  "__guid": "dbc8d808-6c57-5046-93a6-cc24c678d401",
+                  "__enabled": true,
+                  "Flags": 0,
+                  "BodyGroups": 18446744073709551615,
+                  "CreateAttachments": false,
+                  "LodBias": 1,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Materials": null,
+                  "Model": "models/dev/box.mdl",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "RenderOptions": {
+                    "GameLayer": true,
+                    "OverlayLayer": false,
+                    "AfterUILayer": false
+                  },
+                  "RenderType": "On",
+                  "Tint": "0.45,0.33,0.2,1"
+                },
+                {
+                  "__type": "Rinten.BoxCollider",
+                  "__guid": "fb6869ef-cba5-574f-a792-fb80e901522a",
+                  "__enabled": true,
+                  "Flags": 0,
+                  "Center": "0,0,0",
+                  "ColliderFlags": 0,
+                  "Elasticity": null,
+                  "Friction": null,
+                  "IsTrigger": false,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "OnObjectTriggerEnter": null,
+                  "OnObjectTriggerExit": null,
+                  "OnTriggerEnter": null,
+                  "OnTriggerExit": null,
+                  "RollingResistance": null,
+                  "Scale": "1,1,1",
+                  "Static": false,
+                  "Surface": null,
+                  "SurfaceVelocity": "0,0,0"
+                }
+              ],
+              "Children": []
+            }
+          ]
+        },
+        {
+          "__guid": "54a348d2-d294-5201-a53b-67b57f77efe0",
+          "__version": 2,
+          "__Prefab": "prefabs/vr/fishing/fishing_rod.prefab",
+          "__PrefabInstancePatch": {
+            "AddedObjects": [],
+            "RemovedObjects": [],
+            "PropertyOverrides": [
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "a30d76d6-89e7-5964-9525-0d75d3f6d56d"
+                },
+                "Property": "Name",
+                "Value": "Fishing rod"
+              },
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "a30d76d6-89e7-5964-9525-0d75d3f6d56d"
+                },
+                "Property": "Position",
+                "Value": "2.70000005,1,1.10000002"
+              },
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "a30d76d6-89e7-5964-9525-0d75d3f6d56d"
+                },
+                "Property": "Rotation",
+                "Value": "0.0733477622,0.84233129,-0.118679173,0.520589411"
+              },
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "6cabc9d6-d71d-5a3f-b894-8ac7a1f8dd7e"
+                },
+                "Property": "Position",
+                "Value": "-0.0174043626,-0.0846812502,-0.0170405507"
+              },
+              {
+                "Target": {
+                  "Type": "Component",
+                  "IdValue": "a852cf88-45ab-5dc4-87e8-ff1449b1dd2d"
+                },
+                "Property": "Points",
+                "Value": []
+              },
+              {
+                "Target": {
+                  "Type": "Component",
+                  "IdValue": "a852cf88-45ab-5dc4-87e8-ff1449b1dd2d"
+                },
+                "Property": "VectorPoints",
+                "Value": []
+              },
+              {
+                "Target": {
+                  "Type": "Component",
+                  "IdValue": "36391403-4935-5e2c-b644-9cfa4f93fb87"
+                },
+                "Property": "Colour",
+                "Value": "1,1,1,1"
+              },
+              {
+                "Target": {
+                  "Type": "Component",
+                  "IdValue": "36391403-4935-5e2c-b644-9cfa4f93fb87"
+                },
+                "Property": "Iterations",
+                "Value": 64
+              }
+            ],
+            "MovedObjects": []
+          },
+          "__PrefabIdToInstanceId": {
+            "a30d76d6-89e7-5964-9525-0d75d3f6d56d": "54a348d2-d294-5201-a53b-67b57f77efe0",
+            "6cabc9d6-d71d-5a3f-b894-8ac7a1f8dd7e": "ece6c7c6-dc5b-577a-af87-e3e34d66a950",
+            "6b396386-9beb-5b4c-914f-0bc2ee61c074": "e5a1cf4a-fca5-5fd7-873d-2c7c16b21da6",
+            "28101131-cd11-5bda-b046-b39e3a9c9e24": "cc4678fa-6b99-548f-ad29-b398284931b9",
+            "09efa122-344e-53e2-a6ab-87f60d023429": "e8ccce93-4285-5424-9f47-659739ff0d46",
+            "89bedaef-8c33-5ebe-b1ea-7c3fa3039405": "73ee56a8-d39e-5cd8-9c75-9767d445067c",
+            "0481b613-0c6a-5f03-a6c9-1a2eb9900427": "d37502a3-4ccb-51d0-b213-f9c9fab35009",
+            "0b3f0f04-8e18-5184-9a01-35509289dc69": "2248f1ad-4f5b-5e42-aebd-360d409b70f8",
+            "d55d646e-701e-5867-8897-1c56b7fa4339": "9e183e22-f12f-5132-8b02-3edc80ae48f7",
+            "e6b7d79d-fca4-562c-8bbf-06f425f10fdd": "0e613882-ff16-5366-8794-8f9d8373efa5",
+            "c526c2bf-8aec-51eb-837a-6d3063b67a30": "904ead1c-fa4f-5478-bbca-9d02954b1c4c",
+            "a852cf88-45ab-5dc4-87e8-ff1449b1dd2d": "248a9f8a-95ec-5c92-a30f-bb785e79a664",
+            "36391403-4935-5e2c-b644-9cfa4f93fb87": "2b478f54-1015-5cb6-8863-b07f7c48875a",
+            "b9e8169c-f606-5b73-8e90-9cea8a32e993": "3f5b4151-5126-507e-b28f-2ff3e348ebb4",
+            "c84ce109-1b95-5b08-aa75-3d5d049048e8": "0e12e9e2-654b-5f12-a1c2-d45ec83381a3",
+            "e113d2d7-ab77-55f5-8c4f-d6e4271e504e": "9d0d3f0f-7bd5-5023-b1eb-ad2314332ec3",
+            "243fda30-a503-5e96-9ffb-31e2c27966de": "0f3c08cb-1163-5770-96b1-3270caadf0ff",
+            "f009193d-1dcf-53a8-9ed4-f831f8b25e3e": "f95d6927-7f69-505f-b58d-d8c5d76618f4",
+            "d889d800-91eb-50ef-9e14-39e4e25c9f7b": "14299a6e-1b0a-5d65-b3fd-68430b888047",
+            "e9f1a244-e381-5f6d-b453-456a5cd646d4": "938c2bb6-0a3a-5a68-8186-614582f7c65e",
+            "2b5d1447-47c3-5351-b1f3-a3b10f16e1bc": "24ebe283-f514-5683-a218-e9700fde0006",
+            "7c1e0a44-6b2d-5f18-9a70-2d4e8c91ab03": "fbbf31fb-219b-8495-afa9-fdd86bce4566"
+          }
+        },
+        {
+          "__guid": "9498593e-77bf-500e-88aa-a65274186681",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Bait table",
+          "Position": "2.6500001,0.400000006,2.20000005",
+          "Rotation": "0,0,0,1",
+          "Scale": "0.449999988,0.800000012,0.449999988",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Rinten.ModelRenderer",
+              "__guid": "3c155733-40b0-554a-9cb3-9d2602116baa",
+              "__enabled": true,
+              "Flags": 0,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "LodBias": 1,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Materials": null,
+              "Model": "models/dev/box.mdl",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "0.45,0.33,0.2,1"
+            },
+            {
+              "__type": "Rinten.BoxCollider",
+              "__guid": "76ee2ad0-c03d-5b4a-b347-4f589095b15b",
+              "__enabled": true,
+              "Flags": 0,
+              "Center": "0,0,0",
+              "ColliderFlags": 0,
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "RollingResistance": null,
+              "Scale": "1,1,1",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "f77f3338-74ae-5f9b-8db4-f5cd41a31953",
+          "__version": 2,
+          "__Prefab": "prefabs/vr/fishing/worm_box.prefab",
+          "__PrefabInstancePatch": {
+            "AddedObjects": [],
+            "RemovedObjects": [],
+            "PropertyOverrides": [
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "9f1ba4b9-4707-5fde-992e-7b9ab98ad882"
+                },
+                "Property": "Name",
+                "Value": "Worm box"
+              },
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "9f1ba4b9-4707-5fde-992e-7b9ab98ad882"
+                },
+                "Property": "Position",
+                "Value": "2.6500001,0.800000012,2.20000005"
+              }
+            ],
+            "MovedObjects": []
+          },
+          "__PrefabIdToInstanceId": {
+            "9f1ba4b9-4707-5fde-992e-7b9ab98ad882": "f77f3338-74ae-5f9b-8db4-f5cd41a31953",
+            "742840e8-91e9-5b37-ab34-134b9acbd501": "98aaf6f0-7b3e-5a48-8e50-e128ac3e015a",
+            "b04b3255-358f-5d66-8a53-4a8dfeaa0d12": "0da20b96-d3f5-5f4d-a002-789af2fbf46b",
+            "fa3504fa-5fa6-54b4-87bd-d67a192ed009": "5823cec9-ee6c-5a27-9aea-c6ba59169c8e",
+            "074d963a-de61-5bed-9745-a417037fdbfe": "cebb9992-63b5-5876-94a3-405786775709"
+          }
         }
       ]
     }

@@ -1,0 +1,14 @@
+{
+  "Shader": "shaders/complex.shader",
+  "Tint": "0.22,0.045,0.012,1.0",
+  "ColorMap": "",
+  "Normal": "models/weapons/akm/akm_grip_normal.png",
+  "RoughMetalAmbient": "",
+  "Emission": "",
+  "Roughness": 0.45,
+  "Metalness": 0.0,
+  "EmissionStrength": 0.0,
+  "TwoSided": false,
+  "Blend": "Opaque",
+  "AlphaCutoff": 0.5
+}

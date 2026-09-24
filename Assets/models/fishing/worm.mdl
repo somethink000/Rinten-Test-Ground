@@ -1,0 +1,77 @@
+{
+  "Steps": [],
+  "Meshes": [
+    {
+      "Name": "worm",
+      "File": "models/fishing/worm.fbx",
+      "Scale": 1,
+      "Include": [],
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0",
+      "Parent": ""
+    }
+  ],
+  "Scale": 1,
+  "Material": "",
+  "Materials": [
+    "models/fishing/worm.mat",
+    "models/fishing/worm_saddle.mat"
+  ],
+  "MaterialRemaps": [
+    {
+      "Surface": "worm",
+      "Material": "models/fishing/worm.mat"
+    },
+    {
+      "Surface": "worm_saddle",
+      "Material": "models/fishing/worm_saddle.mat"
+    }
+  ],
+  "Clips": [],
+  "Transform": {
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0",
+    "Scale": "1,1,1",
+    "IsIdentity": true
+  },
+  "Mirror": {
+    "Enabled": false,
+    "Axis": "X",
+    "FlipWinding": true,
+    "RemapLeftRight": true
+  },
+  "Joints": [],
+  "LookAtChains": [],
+  "IkChains": [],
+  "WeightLists": [],
+  "Morphs": [],
+  "BodyGroups": [],
+  "Folders": [],
+  "CoarseMeshes": [],
+  "MaterialGroups": [],
+  "Hulls": [],
+  "Surface": "",
+  "Mass": 0,
+  "OverrideBounds": false,
+  "Bounds": {
+    "Mins": "-64,-64,-64",
+    "Maxs": "64,64,64"
+  },
+  "JiggleBones": [],
+  "JiggleColliders": [],
+  "Attachments": [
+    {
+      "Name": "hook",
+      "Enabled": true,
+      "Parent": "",
+      "Position": "0,0,-0.022",
+      "Rotation": "0,0,0"
+    }
+  ],
+  "Bones": [],
+  "Constraints": [],
+  "__references": [],
+  "__version": 2
+}

@@ -1,0 +1,49 @@
+{
+  "Steps": [],
+  "Meshes": [
+    {"Name":"akm","File":"models/weapons/akm/akm.fbx","Scale":1,"Include":[],"Enabled":true,"Position":"0,0,0","Rotation":"0,0,0","Parent":""},
+    {"Name":"magazine","File":"models/weapons/akm/magazine.fbx","Scale":1,"Include":[],"Enabled":true,"Position":"0,0.05813,-0.14084","Rotation":"0,0,0","Parent":""},
+    {"Name":"magazine_empty","File":"models/weapons/akm/magazine_empty.fbx","Scale":1,"Include":[],"Enabled":true,"Position":"0,0.05813,-0.14084","Rotation":"0,0,0","Parent":""}
+  ],
+  "Scale": 1,
+  "Material": "",
+  "Materials": [
+    "models/weapons/akm/akm_steel.mat",
+    "models/weapons/akm/akm_wood.mat",
+    "models/weapons/akm/akm_grip.mat",
+    "models/weapons/akm/akm_magazine.mat",
+    "models/weapons/akm/akm_brass.mat",
+    "models/weapons/akm/akm_bullet.mat"
+  ],
+  "MaterialRemaps": [
+    {"Surface":"AKM_blued_steel","Material":"models/weapons/akm/akm_steel.mat"},
+    {"Surface":"AKM_worn_edges","Material":"models/weapons/akm/akm_steel.mat"},
+    {"Surface":"AKM_recess","Material":"models/weapons/akm/akm_steel.mat"},
+    {"Surface":"AKM_laminated_wood","Material":"models/weapons/akm/akm_wood.mat"},
+    {"Surface":"AKM_brown_bakelite","Material":"models/weapons/akm/akm_grip.mat"},
+    {"Surface":"AKM_magazine_relief","Material":"models/weapons/akm/akm_magazine.mat"},
+    {"Surface":"AKM_cartridge_brass","Material":"models/weapons/akm/akm_brass.mat"},
+    {"Surface":"AKM_cartridge_tip","Material":"models/weapons/akm/akm_bullet.mat"}
+  ],
+  "Clips": [],
+  "Transform":{"Enabled":true,"Position":"0,0,0","Rotation":"0,0,0","Scale":"1,1,1","IsIdentity":true},
+  "Mirror":{"Enabled":false,"Axis":"X","FlipWinding":true,"RemapLeftRight":true},
+  "Joints":[],"LookAtChains":[],"IkChains":[],"WeightLists":[],
+  "Morphs":[
+    {"Name":"slide","Enabled":true,"Preview":0},
+    {"Name":"trigger","Enabled":true,"Preview":0},
+    {"Name":"mag_release","Enabled":true,"Preview":0},
+    {"Name":"safety","Enabled":true,"Preview":0}
+  ],
+  "BodyGroups":[{"Name":"magazine","Enabled":true,"Choices":[{"Name":"loaded","Meshes":["magazine"]},{"Name":"empty","Meshes":["magazine_empty"]},{"Name":"none","Meshes":[]}]}],
+  "Folders":[],"CoarseMeshes":[],"MaterialGroups":[],"Hulls":[],"Surface":"","Mass":0,"OverrideBounds":false,
+  "Bounds":{"Mins":"-64,-64,-64","Maxs":"64,64,64"},"JiggleBones":[],"JiggleColliders":[],
+  "Attachments":[
+    {"Name":"grip","Enabled":true,"Parent":"","Position":"0,0,0","Rotation":"0,0,0"},
+    {"Name":"foregrip","Enabled":true,"Parent":"","Position":"0,0.07609,-0.29066","Rotation":"0,0,0"},
+    {"Name":"muzzle","Enabled":true,"Parent":"","Position":"0,0.08649,-0.61014","Rotation":"0,0,0"},
+    {"Name":"eject","Enabled":true,"Parent":"","Position":"0.023,0.09641,-0.15785","Rotation":"0,0,0"},
+    {"Name":"magazine","Enabled":true,"Parent":"","Position":"0,0.05813,-0.14084","Rotation":"0,0,0"}
+  ],
+  "Bones":[],"Constraints":[],"__references":[],"__version":2
+}
