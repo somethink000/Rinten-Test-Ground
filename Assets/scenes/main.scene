@@ -257,6 +257,20 @@
               "Category": "Other",
               "Description": "A detailed brig, ocean model and warm directional lighting.",
               "DisplayName": "Brig at Sea"
+            },
+            {
+              "Scene": "scenes/animation/character.scene",
+              "Title": "Character",
+              "Category": "Animation",
+              "Description": "Clips, a graph built in code, root motion, bone and attachment markers, and jiggle bones",
+              "DisplayName": "Character"
+            },
+            {
+              "Scene": "scenes/animation/ragdoll.scene",
+              "Title": "Ragdoll",
+              "Category": "Physics",
+              "Description": "Model physics: the switch both ways, the joint limits, a pile, and a ramp",
+              "DisplayName": "Ragdoll"
             }
           ],
           "Subheading": "Feature scenes, kept in a working state"

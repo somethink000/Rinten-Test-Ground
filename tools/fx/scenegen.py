@@ -2,7 +2,7 @@
 """Writes scenes/fx/particles.scene for the test ground: a row of stations, one effect each."""
 import json, uuid, os
 
-ROOT = "/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets"
+ROOT = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")), "Assets")
 
 def guid(name):
     return str(uuid.uuid5(uuid.NAMESPACE_URL, "rinten-fx-scene/" + name))

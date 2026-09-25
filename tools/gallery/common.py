@@ -7,7 +7,10 @@ player, a HUD, and areas laid out in rows away from the spawn - the same
 shape tools/fx/scenegen.py gives the particle scene."""
 import json, uuid, os
 
-ROOT = "/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets"
+# Where the checkout is, read off this file rather than written down: the
+# project has moved twice and every absolute path in tools/ went stale.
+CHECKOUT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+ROOT = os.path.join(CHECKOUT, "Assets")
 
 EVENTS = {"OnComponentDestroy": None, "OnComponentDisabled": None, "OnComponentEnabled": None,
           "OnComponentFixedUpdate": None, "OnComponentStart": None, "OnComponentUpdate": None}

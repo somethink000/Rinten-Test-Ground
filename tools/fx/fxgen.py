@@ -2,7 +2,7 @@
 """Writes the FX showcase for the test ground: sprites, .fx effects and the scene."""
 import json, uuid, os, math
 
-ROOT = "/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets"
+ROOT = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")), "Assets")
 TEX = "textures/fx"
 
 def guid(name):

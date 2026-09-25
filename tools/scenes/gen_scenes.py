@@ -5,7 +5,7 @@ galleries come from tools/gallery, the particle scenes from tools/fx."""
 import json, uuid
 from pathlib import Path
 
-ROOT = Path("/home/sampesss/Documents/Rinten Projects/Rinten-Test-Ground/Assets/scenes")
+ROOT = Path(__file__).resolve().parent.parent.parent / "Assets" / "scenes"
 NS = uuid.UUID("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee")
 
 def uid(*parts):

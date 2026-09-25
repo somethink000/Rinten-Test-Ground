@@ -11,6 +11,7 @@ Assets/
   scenes/            main.scene is the menu; every other scene sits under its menu category
     general/         basics, prefabs, overlay
     physics/         collider, rigidbody, trace, platforms
+    animation/       character (clips, graph, root motion, bones, jiggle), ragdoll
     rendering/       lights, fog, postprocess, decals, renderers, materials, shadows, clutter, jungle, terrain
     fx/              particles (the effect showcase), solar (the solar system)
     ui/              showcase, world
@@ -27,7 +28,9 @@ Assets/
     gallery/         the material gallery, one folder per property it shows:
                      grid/ tint/ emission/ blend/ sides/ maps/ shaders/ surface/ terrain/
     solar/           planets, moons and their atmospheres
-  models/            fx/ (flame, shield), props/ (urn), space/ (spacecraft)
+  models/            fx/ (flame, shield), props/ (urn), space/ (spacecraft),
+                     character/ (the rigged mannequin: 28 bones, 5 clips, a
+                     ragdoll and two jiggle chains)
   shaders/effects/   planet, atmosphere, sun, stylized
   sprites/ decals/   the effect sprites and the decals cut from the same pictures
   textures/          fx/ (sprite frames), gallery/ (the gallery's maps, generated)
@@ -37,6 +40,8 @@ Assets/
 Code/
   Player/            the template player
   TestGround/        components, by what they test
+    Animation/       ClipRack, CharacterGraph, RootMotionMover, BoneMarker,
+                     RagdollRack, JiggleShaker
     Menu/            SceneNavigator, SceneEntry, ReturnToMenu
     Motion/          Orbit, Oscillator, Spinner, Swing
     Physics/         probes and resets: TriggerProbe, ContactFlash, Shooter, Thruster, ...
@@ -50,6 +55,9 @@ Code/
     Showcase/        UiShowcase and its badge
 
 tools/               Python that writes Assets/ - regenerate rather than hand-edit what they own
+  character/         rig.py (the mannequin, its takes and its .mdl, built in
+                     Blender), scenes.py (the two character scenes),
+                     probe.py (what the engine's own ufbx sees in an fbx)
   fx/                fxgen.py (sprites + effects), scenegen.py (the particles scene), solar.py (the solar system)
   gallery/           one gallery scene each, registered in the menu. shadows.cs, jungle.cs and
                      terrain.cs are built inside the editor: `python3 build.py terrain` sends
@@ -78,3 +86,9 @@ and materials), `archery/build_archery.py` (bow, arrow, target) and
 - A scene lives under the menu category it is filed in (`SceneEntry.Category`).
 - A generated file says so in the generator's docstring. Run the generator
   from its own folder: `cd tools/fx && python3 solar.py`.
+- Nothing under `tools/` writes down where the checkout is; each script reads
+  that off its own path, because the project has moved and every absolute path
+  in here went stale at once.
+- The character is built by Blender rather than drawn by hand:
+  `blender -b -P tools/character/rig.py` writes the fbx and the .mdl, and
+  `cd tools/character && python3 scenes.py` lays the scenes that use them.
