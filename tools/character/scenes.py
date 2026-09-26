@@ -87,6 +87,12 @@ def stand(S, name, text, pos, components, sign_y=2.6, pedestal=True, sign_text=N
     return S.go(f"Station: {name}", pos, children=kids)
 
 
+def at(S, title, z, children):
+    """The area's slab and wall are placed at its z; what stands on it has to
+    be carried there too, or every row lands on top of the first."""
+    return [S.go(f"Row: {title}", (0, 0, z), children=children)]
+
+
 def row(count, spacing):
     """x positions for a row of stations, centred on the station's own origin."""
     return [(i - (count - 1) / 2.0) * spacing for i in range(count)]
@@ -118,7 +124,7 @@ def character_scene():
                Seconds=3.0, Sign=sign_ref(S, "cycle")),
     ], sign_text="cycle"))
     S.stagger_signs(stands)
-    areas.append(S.area("Clips", "one sequence each, straight off the model", -14, 24, children=stands))
+    areas.append(S.area("Clips", "one sequence each, straight off the model", -14, 24, children=at(S, "Clips", -14, stands)))
 
     # --- the graph ---------------------------------------------------------
     stands = [
@@ -139,7 +145,7 @@ def character_scene():
         ], sign_text="both"),
     ]
     S.stagger_signs(stands)
-    areas.append(S.area("Animation graph", "built in code: a blend space inside a state machine", -32, 20, children=stands))
+    areas.append(S.area("Animation graph", "built in code: a blend space inside a state machine", -32, 20, children=at(S, "Animation graph", -32, stands)))
 
     # --- root motion -------------------------------------------------------
     stands = [
@@ -155,7 +161,7 @@ def character_scene():
         ], pedestal=False, sign_text="on the spot"),
     ]
     areas.append(S.area("Root motion", "walk and run have their travel lifted by MotionBone; this puts it back",
-                        -50, 20, children=stands))
+                        -50, 20, children=at(S, "Root motion", -50, stands)))
 
     # --- bones and attachments --------------------------------------------
     markers = []
@@ -202,7 +208,7 @@ def character_scene():
     stands[0]["Children"].extend(markers)
     stands[1]["Children"].extend(attached)
     areas.append(S.area("Bones and attachments", "where the skeleton puts a bone, and where the model declares a point",
-                        -68, 20, children=stands))
+                        -68, 20, children=at(S, "Bones and attachments", -68, stands)))
 
     # --- jiggle ------------------------------------------------------------
     modes = [
@@ -220,7 +226,7 @@ def character_scene():
         ], pedestal=False, sign_text=mode))
     S.stagger_signs(stands)
     areas.append(S.area("Jiggle bones", "the ponytail and the belt tassel are springs; they only move when the body does",
-                        -86, 24, children=stands))
+                        -86, 24, children=at(S, "Jiggle bones", -86, stands)))
 
     S.objects = [
         S.environment(),
@@ -267,7 +273,7 @@ def ragdoll_scene():
                 note="pushed sideways"),
     ]
     areas.append(S.area("The switch", "physics on, animation off, a push - then back on its feet",
-                        -14, 22, children=stands))
+                        -14, 22, children=at(S, "The switch", -14, stands)))
 
     # --- joints: one left down for good, so the limits can be read ---------
     stands = []
@@ -276,7 +282,7 @@ def ragdoll_scene():
                               direction=(0.3 * (i - 1.5), 0.5, -1), sign=(i == 0),
                               tint="0.92,0.92,0.95,1", note=""))
     areas.append(S.area("Joints", "dropped once and left there: sixteen bodies, fifteen joints, one piece",
-                        -32, 20, children=stands))
+                        -32, 20, children=at(S, "Joints", -32, stands)))
 
     # --- a pile, dropped from a height ------------------------------------
     pile = []
@@ -289,10 +295,10 @@ def ragdoll_scene():
             model_physics(S, f"pile{i}", f"Pile {i + 1}", enabled=True),
         ]))
     areas.append(S.area("A pile", "six of them dropped on each other - bodies against bodies, not just the floor",
-                        -50, 20, children=[
+                        -50, 20, children=at(S, "A pile", -50, [
                             S.label("pile", (0, 3.4, 4), "a pile", scale=0.6),
                             *pile,
-                        ]))
+                        ])))
 
     # --- a slope ----------------------------------------------------------
     slope = S.block("Slope", (0, 1.6, 2.0), (8, 0.4, 9), "0.28,0.3,0.34,1", rot=pitch_yaw(0, 0))
@@ -305,7 +311,7 @@ def ragdoll_scene():
             S.comp("TestGround.ResetOnFall", "slidereset/" + str(i), Height=-4, SpawnPoint=None),
         ]))
     areas.append(S.area("A slope", "dropped on a ramp: friction, the joints under load, and where they end up",
-                        -70, 22, depth=18, children=[slope, *sliders]))
+                        -70, 22, depth=18, children=at(S, "A slope", -70, [slope, *sliders])))
 
     S.objects = [
         S.environment(),
@@ -345,7 +351,7 @@ def build():
     ragdoll = ragdoll_scene()
     check_unique(ragdoll.objects)
     ragdoll.write("animation/ragdoll.scene")
-    register_in_menu("animation/ragdoll.scene", "Ragdoll", "Physics",
+    register_in_menu("animation/ragdoll.scene", "Ragdoll", "Animation",
                      "Model physics: the switch both ways, the joint limits, a pile, and a ramp")
 
 

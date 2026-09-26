@@ -106,10 +106,10 @@
             },
             {
               "Scene": "scenes/physics/collider.scene",
-              "Title": "Colliders \u0026 Triggers",
+              "Title": "Colliders & Triggers",
               "Category": "Physics",
               "Description": "Static and keyframed shapes, trigger volumes, enter/exit events",
-              "DisplayName": "Colliders \u0026 Triggers"
+              "DisplayName": "Colliders & Triggers"
             },
             {
               "Scene": "scenes/physics/rigidbody.scene",
@@ -268,7 +268,7 @@
             {
               "Scene": "scenes/animation/ragdoll.scene",
               "Title": "Ragdoll",
-              "Category": "Physics",
+              "Category": "Animation",
               "Description": "Model physics: the switch both ways, the joint limits, a pile, and a ramp",
               "DisplayName": "Ragdoll"
             }

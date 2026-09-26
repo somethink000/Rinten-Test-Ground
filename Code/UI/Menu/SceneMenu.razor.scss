@@ -135,29 +135,29 @@ scenemenu
 
 			.card-tag
 			{
+				// Fixed, not just a width: a long note beside it would otherwise
+				// squeeze it, a different amount on every card.
 				width: 96px;
+				flex-shrink: 0;
 				font-size: 11px;
 				font-weight: 700;
 				color: #0d1016;
 				text-align: center;
+				justify-content: center;
+				white-space: nowrap;
 				padding: 4px 0px;
 				margin-right: 16px;
 				border-radius: 6px;
 				background-color: #7b8496;
-				justify-content: center;
 
-				&.physics { background-color: #ffb454;
-					justify-content: center;
-				}
-				&.rendering { background-color: #b48cff;
-					justify-content: center;
-				}
+				&.physics { background-color: #ffb454; }
+				&.rendering { background-color: #b48cff; }
+				&.animation { background-color: #ff9d6f; }
+				&.fx { background-color: #ffd86f; }
 				&.interface { background-color: #6fb2ff; }
 				&.audio { background-color: #6fe0b8; }
 				&.networking { background-color: #ff8fa3; }
-				&.general { background-color: #c8d0dd;
-					justify-content: center;
-				}
+				&.general { background-color: #c8d0dd; }
 				&.scratch { background-color: #7b8496; }
 			}
 
@@ -173,6 +173,9 @@ scenemenu
 			.card-note
 			{
 				flex-grow: 1;
+				flex-shrink: 1;
+				min-width: 0px;
+				overflow: hidden;
 				font-size: 13px;
 				color: #838c9c;
 				white-space: nowrap;
